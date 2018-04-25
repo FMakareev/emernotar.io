@@ -7,7 +7,7 @@ const NavigationListStyle = () => ({
     marginRight: '-15px',
     padding: '0',
     textAlign: 'center',
-    '@media (max-width: 810px)': {margit: 'auto -15px'}
+    '@media (max-width: 810px)': {margin: 'auto'}
 })
 
 class NavigationList extends Component {

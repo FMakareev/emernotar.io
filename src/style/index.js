@@ -55,6 +55,21 @@ export const createStyleRenderer = () => {
         },
         'html,body,#root'
     );
+    renderer.renderStatic(`
+        html{
+            font-size: 10px;        
+        }
+        @media (min-width:768px){
+            html{
+                font-size: 12px;        
+            }
+        }
+        @media (min-width:1024px){
+            html{
+                font-size: 16px;        
+            }
+        }
+    `)
     renderer.renderStatic({minHeight: '100%',}, 'main');
     renderer.renderStatic(`@page {
     size: A4 landscape;

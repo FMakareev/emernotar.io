@@ -52,7 +52,6 @@ class NavigationTopBurger extends Component {
 
         return (
             <NavigationWrapper ref="NavigationWrapper">
-                <button>open</button>
                 <NavigationList key={'NavigationList1'} ref="navigation">
                     {
                         navigationItems.map((item, index) => <NavigationItem key={`NavigationTopBurger-${index}`}>

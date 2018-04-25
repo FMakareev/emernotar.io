@@ -47,7 +47,7 @@ class Header extends Component {
                                     height: '2rem',
                                     // margin: '1rem 0.5rem',
                                     '@media (min-width: 900px)': { height: '3rem'},
-                                    '@media (max-width: 810px)': {margit: 'auto'}
+                                    '@media (max-width: 810px)': {margin: 'auto'}
                                 }}/>
                             </Link>
                         </Column>
