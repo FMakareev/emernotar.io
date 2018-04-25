@@ -1,0 +1,14 @@
+.logo{
+  &_wrapper {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 50px;
+    overflow: hidden;
+  }
+
+  &_image{
+    display: block;
+    height: 100%;
+  }
+}

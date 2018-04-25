@@ -1,0 +1,100 @@
+@import '../../../../frontend-mechanic/src/style/base/var';
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 8px 16px;
+  box-sizing: border-box;
+
+  font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  font-size: 14px;
+  color: $mine-shaft;
+  text-decoration: none;
+
+  background-color: $white;
+  border: 1px solid $mine-shaft;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:active {
+
+  }
+
+  &:hover {
+    color: $half-baked;
+    background-color: $bright-gray;
+    border-color: $bright-gray;
+  }
+
+  &:focus {
+
+  }
+
+  &:disabled {
+    color: rgba(#222, .5);
+    cursor: default;
+  }
+
+  // elem
+
+  &_icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &_content {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  // mods
+  &--transparent {
+    background-color: transparent;
+    border: none;
+    color: $mine-shaft;
+  }
+
+  &--block {
+    display: block;
+  }
+  &--full-width {
+    width: 100%;
+  }
+
+  &--padding-none {
+    padding: 0;
+  }
+  &--xs {
+    padding: 4px 8px;
+  }
+
+  &--center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &--text-left{
+    text-align: left;
+  }
+
+  &--accordion-toggle {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0;
+    padding: 16px 16px;
+  }
+
+  &--right {
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  &--max-width-100 {
+    max-width: 100px;
+  }
+  &--max-width-130 {
+    max-width: 130px;
+  }
+}
