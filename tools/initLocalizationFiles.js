@@ -115,29 +115,23 @@ const getDefaultModuleTranslate = (packageJson) => {
 * */
 const createDictionary = (translateJson, messagesArray, moduleName) => {
 
-    console.log(translateJson, messagesArray);
+    console.info('run createDictionary...');
     messagesArray.map((item, index) => {
 
         for (let i = 1; i < translateJson.translate.length; i++) {
-            // console.log('translateJson.translate[i]', translateJson.translate[i]);
             let translateItem = translateJson.translate[i] && translateJson.translate[i].Data ? translateJson.translate[i].Data : null;
 
             if (translateItem) {
                 if (item['ISO Code'].toUpperCase() === translateItem.toUpperCase()) {
                     for (let a = 0; a < translateJson.data.length; a++) {
                         let translateData = translateJson.data[a];
-                        // item.message.push({
-                        //     id: translateData[0]["Data"],
-                        //     message: translateData[i] && translateData[i]["Data"] ? translateData[i]["Data"] : translateData[0]["Data"],
-                        // })
 
-                        // add new word key
                         item.message[`${moduleName}_` + translateData[0]["Data"]] = translateData[i] && translateData[i]["Data"] ? translateData[i]["Data"] : translateData[0]["Data"];
 
                     }
                 }
             } else {
-                console.log('Empty key ISO code in XML or package.json')
+                console.info('Empty key ISO code in XML or package.json')
             }
         }
     });
@@ -240,7 +234,6 @@ const initModuleTranslate = (packageJson, translateJson) => {
 
     if (messagesArray.length) {
         messagesArray = createDictionary(translateJson, messagesArray, moduleName);
-        console.log('moduleName,messagesArray:', moduleName, messagesArray);
         allModulesMessage.push(messagesArray);
         if (splitForModules) {
             // creatingFilesWithModuleLanguages(moduleDictionary, moduleName);
@@ -266,19 +259,13 @@ const normalizeTranslateFiles = (modules) => {
             let module = fs.readdirSync(path.resolve(__dirname, srcPath + '/modules/' + modules[i]));
 
             if (module && module.length) {
-                console.log('module', module);
                 let translateJson = findXMLTranslate(modules[i], module);
 
                 if (translateJson) {
-                    // console.log(`'translateJson ${modules[i]}: '`, translateJson);
 
                     let packageJson = findPackageJson(modules[i], module);
                     if (packageJson && packageJson.translate && packageJson.translate.length) {
-                        // console.log(`'packageJson ${modules[i]}: '`, packageJson);
-
                         initModuleTranslate(packageJson, translateJson);
-
-
                     } else {
                         console.error(`Can not find file "package.json" in ${modules[i]}`);
                     }
@@ -318,7 +305,6 @@ const createLanguageListFile = (languageList, allModulesMessage) => {
 
             })
         }
-        // console.log('languageList', languageList);
     });
 
 
@@ -331,15 +317,14 @@ const createLanguageListFile = (languageList, allModulesMessage) => {
 
 
 const creatingLocalizationFiles = (data) => {
-    console.log('creatingLocalizationFiles:', data);
-    // const messages_directory_path = path.resolve(__dirname, `${languageListPath}/messages`);
+    console.info('run creatingLocalizationFiles...');
     const messages_directory_path = path.resolve(__dirname, `${publicPath}/messages/`);
     if (!fs.existsSync(messages_directory_path)) {
-        console.log('Create folder messages...');
+        console.info('Create folder messages...');
         fs.mkdirSync(path.resolve(__dirname, `${publicPath}`));
         fs.mkdirSync(messages_directory_path);
     } else {
-        console.log('Directory created.');
+        console.info(`Directory: ${messages_directory_path} created. `);
     }
     let messagesList = {};
 
@@ -354,21 +339,18 @@ const creatingLocalizationFiles = (data) => {
             )
         })
     });
-    console.log('messagesList: ', messagesList);
     Object.entries(messagesList).map(([key, value]) => {
         fs.writeFileSync(`${messages_directory_path}/${key.toUpperCase()}.json`, JSON.stringify(value));
     })
 
-    // fs.writeFileSync(`${messages_dir}/${item['ISO Code'].toUpperCase()}.json`, JSON.stringify(item));
-
-}
+};
 
 /*
 * @description -
 * */
 export const initMessage = () => new Promise((resolve, reject) => {
     try {
-        console.info('run: initMessage');
+        console.info('run initMessage...');
         // получаем массив названий всех файлов и папок в папке с модулями
         const modules = fs.readdirSync(path.resolve(__dirname, srcPath + '/modules'));
 
@@ -407,9 +389,3 @@ export const initMessage = () => new Promise((resolve, reject) => {
 
 export default initMessage();
 
-//
-// app.listen(4000, () => {
-//     console.clear();
-//     console.log(`RUN SERVER, RUN! SERVER PORT 4000`);
-//     initMessage();
-// });
