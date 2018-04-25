@@ -185,20 +185,23 @@ const createMessageArray = (packageJson, translateJson, defaultTranslate) => {
 };
 
 const creatingFilesWithLanguagesForModules = (moduleDictionary, moduleName) => {
+    console.log('run creatingFilesWithLanguagesForModules');
     const messages_directory_path = path.resolve(__dirname, `${publicPath}/messages/`);
 
     if (!fs.existsSync(messages_directory_path)) {
         console.log('Create folder messages...');
+        fs.mkdirSync(path.resolve(__dirname, `${publicPath}`));
         fs.mkdirSync(messages_directory_path);
     } else {
         console.log('Directory created.');
     }
 
-    console.log(moduleDictionary);
+    console.log('moduleDictionary:',moduleDictionary);
 
     moduleDictionary.map((item) => {
         const messages_dir = path.resolve(__dirname, `${publicPath}/messages/${moduleName}`);
         if (!fs.existsSync(messages_dir)) {
+            fs.mkdirSync(path.resolve(__dirname, `${publicPath}`));
             fs.mkdirSync(messages_dir);
         }
         fs.writeFileSync(`${messages_dir}/${item['ISO Code'].toUpperCase()}.json`, JSON.stringify(item));
@@ -333,6 +336,7 @@ const creatingLocalizationFiles = (data) => {
     const messages_directory_path = path.resolve(__dirname, `${publicPath}/messages/`);
     if (!fs.existsSync(messages_directory_path)) {
         console.log('Create folder messages...');
+        fs.mkdirSync(path.resolve(__dirname, `${publicPath}`));
         fs.mkdirSync(messages_directory_path);
     } else {
         console.log('Directory created.');

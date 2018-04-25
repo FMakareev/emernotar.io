@@ -20,6 +20,7 @@ import {Clear} from "./clear";
 
 const start = async () => {
     await Clear();
+    await initMessage();
     await getVariablesesEnvironment();
 
     if (process.env.WATCH === "true") {
@@ -28,7 +29,6 @@ const start = async () => {
     } else if (process.env.MODE === 'production') {
         await bundle();
     }
-    await initMessage();
 };
 
 start();
