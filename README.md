@@ -60,6 +60,8 @@
     
 
 * Variables Environment
+    > В npm скриптах заранее проставлены эти переменные, через cli можно переопределить любую из них
+     ~*Пример:*~ yarn build:ssr:dev --endpoint='http://localhost:5001'
     * watch -*default: 'false'*
     * mode -*default: 'development'*
     * public_url -*default: 'public'*
@@ -67,7 +69,7 @@
     * server_entry -*default: './src/server/index.js'*
     * ssr_fetch -*default: true* отвечает за включение запросов graphql на сервере (стоит отключить если сервер не работает)
     * port -*default: 3000* 
-    * endpoint -*default: 'http://localhost:5001/graphql'* 
+    * endpoint -*default: 'http://192.168.1.188:5001'* 
 
 
 
