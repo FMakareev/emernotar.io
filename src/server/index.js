@@ -10,7 +10,7 @@ import {ApolloProvider, renderToStringWithData} from 'react-apollo';
 import path from 'path';
 import {Provider as StyleProvider, ThemeProvider} from 'react-fela'
 import {Provider as ProviderRedux} from 'react-redux'
-import {matchRoutes, renderRoutes} from 'react-router-config';
+import {renderRoutes} from 'react-router-config';
 
 import {StaticRouter} from 'react-router';
 import {Store} from '../store'
@@ -177,7 +177,7 @@ app.get("*", async (request, response) => {
                  * @param {Object} client - Apollo client
                  * @description Marking of html markup
                  * */
-                const REACT_HTML = <Html title={pageTitle} request={request} content={content} reduxState={reduxState}
+                const REACT_HTML = <Html title={pageTitle} content={content} reduxState={reduxState}
                                          asyncState={asyncState}
                                          {...client}/>;
 

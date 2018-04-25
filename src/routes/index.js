@@ -134,28 +134,28 @@ export const ConfigRouter = [
         routes: routes
     }
 ];
-
-export const RootRouter = () => (
-    <Layout>
-
-        <Route path="/">
-            <Switch>
-                {
-                    routes.map((item, index) => {
-
-                            return (
-                                <MainRoute
-                                    key={`${item.path}-${index}`}
-                                    exact={true}
-                                    path={item.path}
-                                    component={item.component}
-                                    routes={item.children || null}
-                                />)
-                        }
-                    )
-                }
-            </Switch>
-        </Route>
-
-    </Layout>
-);
+//
+// export const RootRouter = () => (
+//     <Layout>
+//
+//         <Route path="/">
+//             <Switch>
+//                 {
+//                     routes.map((item, index) => {
+//
+//                             return (
+//                                 <MainRoute
+//                                     key={`${item.path}-${index}`}
+//                                     exact={true}
+//                                     path={item.path}
+//                                     component={item.component}
+//                                     routes={item.children || null}
+//                                 />)
+//                         }
+//                     )
+//                 }
+//             </Switch>
+//         </Route>
+//
+//     </Layout>
+// );

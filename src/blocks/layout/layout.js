@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { connect} from "react-fela";
+import { connect as FelaConnect} from "react-fela";
 import { renderRoutes } from 'react-router-config';
+import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
 import Header from "../../blocks/header/header";
 import Footer from "../../blocks/footer/footer";
 import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
 const LayoutStyle = ({theme}) => {
     return ({
@@ -23,7 +25,7 @@ class Layout extends Component {
     static propTypes = {};
 
     render() {
-        const {styles} = this.props;
+        const {styles,translate} = this.props;
         return (
             <React.Fragment>
 
@@ -36,11 +38,18 @@ class Layout extends Component {
                 </div>
 
                 <Footer className={styles && styles.footer}>
-                    Нотаризация. Copyright 2018
+                    {translate('home_copyright')}
                 </Footer>
             </React.Fragment>
         );
     }
 }
 
-export default withRouter(connect(LayoutStyle)(Layout));
+const mapStateToProps = state => ({
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code
+});
+Layout = FelaConnect(LayoutStyle)(Layout);
+Layout = connect(mapStateToProps)(Layout);
+
+export default withRouter(Layout);

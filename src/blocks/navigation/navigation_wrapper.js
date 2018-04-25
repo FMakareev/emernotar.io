@@ -6,9 +6,12 @@ const NavigationWrapperStyle = ({state}) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: '2rem',
+
     '@media (max-width: 500px)': {
         justifyContent: 'space-around',
+    },
+    '@media (min-width: 811px)': {
+        paddingRight: '2rem',
     },
 });
 

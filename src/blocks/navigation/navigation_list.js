@@ -8,7 +8,7 @@ const NavigationListStyle = () => ({
     padding: '0',
     textAlign: 'center',
     '@media (max-width: 810px)': {margin: 'auto'}
-})
+});
 
 class NavigationList extends Component {
     static propTypes = {};
