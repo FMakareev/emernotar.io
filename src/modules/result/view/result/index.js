@@ -64,11 +64,13 @@ class Result extends Component {
     //     return {}
     // }
 
-    componentWillMount() {
-      this.createCertificate();
+    componentDidMount() {
+        console.log('run componentDidMount...');
+        this.createCertificate();
     }
 
     createCertificate() {
+        console.log('run createCertificate...');
         if (!process.env.__isBrowser__) return null;
         const name = localStorage.getItem('fileHash');
         const notarizationDate = Number.parseInt(localStorage.getItem('timestamp')); //timestam from notar
@@ -78,7 +80,6 @@ class Result extends Component {
         const obj = {name, notarizationDate, paymentId, PayerID};
         const data = {variables: obj};
 
-        console.log('data',data);
 
         this.props.createCertificate(data).then((res)=>{
             console.log(res);

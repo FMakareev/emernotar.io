@@ -10,7 +10,7 @@ const VerifyItem = ({className, styles,data}) => {
             <Image src={iconVerify} className={styles.VerifyItemImage}/>
         </div>
         <div className={styles.VerifyItemContent}>
-            <Typography fontWeight={'bold'} as={'h3'} size={'medium'}>
+            <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
                {data.ownerEmail}
             </Typography>
             <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>

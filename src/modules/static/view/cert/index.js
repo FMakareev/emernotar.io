@@ -130,7 +130,7 @@ class Cert extends Component {
                                         </TopLabel>
                                     </TopLabelRow>
                                 </div>
-                                <div style={{margin: '0 0 -12px 0'}}>
+                                <div style={{margin: '0 0 -9px 0'}}>
                                     <div className={styles.topFooter}>
                                         <Typography as={"p"} size={'small'} textAlign={'center'}>
                                             SHA512 Хэш-сумма: <span style={{wordWrap: 'break-word'}}>

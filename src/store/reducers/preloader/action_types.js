@@ -1,0 +1,2 @@
+export const PRELOADER_RUN = 'PRELOADER_RUN';
+export const PRELOADER_STOP = 'PRELOADER_STOP';

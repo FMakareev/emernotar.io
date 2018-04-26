@@ -24,6 +24,7 @@ import VerifyModal from "./verify_modal";
 
 import {Query} from "react-apollo";
 import gql from 'graphql-tag';
+import {PreLoader} from "../../../../components/preloader/index";
 
 
 const certificate = gql`query certificate($hash: String){
@@ -69,6 +70,7 @@ class VerifyPage extends Component {
             return {
                 open: false,
                 hasError: false,
+                preLoader: false,
             }
         }
         return {
@@ -84,14 +86,15 @@ class VerifyPage extends Component {
         this.setState({open})
     }
 
+
     componentDidMount() {
 
     }
 
     render() {
         const {translate, styles} = this.props;
-        const {open, hash} = this.state;
-        console.log(this.props.match.params.hash);
+        const {open} = this.state;
+        console.log(this.props);
         // return (<div>
         //     hello
         // </div>)
@@ -146,7 +149,9 @@ class VerifyPage extends Component {
                     <Row>
                         <Column>
                             {
-                                this.props.match.params.hash && <Query query={certificateList} variables={{name: this.props.match.params.hash}} ssr={__SSR_FETCH__}>
+                                this.props.match.params.hash &&
+                                <Query query={certificateList} variables={{name: this.props.match.params.hash}}
+                                       ssr={__SSR_FETCH__}>
                                     {
                                         ({loading, error, data}) => {
                                             console.log(loading, error, data);
@@ -191,6 +196,7 @@ class VerifyPage extends Component {
                         </Column>
                     </Row>
                 </Container>
+
                 <VerifyModal open={open} onModalToggle={this.onModalToggle}/>
             </Fragment>
         )
@@ -199,7 +205,8 @@ class VerifyPage extends Component {
 
 const mapStateToProps = state => ({
     translate: getTranslate(state.locale),
-    currentLanguage: state.locale ? getActiveLanguage(state.locale).code : null
+    currentLanguage: state.locale ? getActiveLanguage(state.locale).code : null,
+    preLoader: state.preLoader.toggle
 });
 
 const STYLE = () => {

@@ -81,11 +81,12 @@ const createPDF = (hash,fileName) => {
 
                     options: {
                         printBackground: true,
-                        // width: '842px',
-                        // height: '595px',
+                        width: '842px',
+                        height: '595px',
                         marginsType: 1,
                         format: 'A4',
                         landscape: true,
+                        pageRanges: '1-1',
                         margin: {
                             top: 0,
                             bottom: 0,

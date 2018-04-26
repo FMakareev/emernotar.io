@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js build:ssr:dev
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start:ssr:server
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\FMakareev\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32;C:\Users\FMakareev\AppData\Local\Microsoft\WindowsApps;C:\Users\FMakareev\AppData\Roaming\npm;C:\Users\FMakareev\AppData\Local\Yarn\bin
@@ -62,6 +62,7 @@ npm manifest:
       "react-redux": "^5.0.7",
       "react-responsive-modal": "^2.1.0",
       "react-router": "^4.2.0",
+      "react-router-config": "^1.0.0-beta.4",
       "react-router-dom": "^4.2.2",
       "react-scrollchor": "^5.0.1",
       "redux": "^4.0.0",
@@ -97,6 +98,7 @@ npm manifest:
       "extract-text-webpack-plugin": "^3.0.2",
       "file-loader": "^1.1.11",
       "ignore-loader": "^0.1.2",
+      "ignore-styles": "^5.0.1",
       "isomorphic-style-loader": "^4.0.0",
       "nodemon": "^1.17.3",
       "npm-run-all": "^4.1.2",
@@ -121,7 +123,7 @@ npm manifest:
       "build:dev": "",
       "start:ssr": "concurrently \"yarn build:ssr:dev\" \"yarn start:ssr:server\"",
       "start:ssr:server": "nodemon public/server.js --inspect --verbose",
-      "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false && yarn localization:prod",
+      "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --endpoint='http://192.168.1.188:5001'",
       "build:ssr:dev": "babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --endpoint='http://192.168.1.188:5001'",
       "localization:prod": "babel-node ./tools/initLocalizationFiles.js",
       "create-index": "create-index ./src/modules/",
@@ -4679,6 +4681,10 @@ Lockfile:
     version "0.1.2"
     resolved "https://registry.yarnpkg.com/ignore-loader/-/ignore-loader-0.1.2.tgz#d81f240376d0ba4f0d778972c3ad25874117a463"
   
+  ignore-styles@^5.0.1:
+    version "5.0.1"
+    resolved "https://registry.yarnpkg.com/ignore-styles/-/ignore-styles-5.0.1.tgz#b49ef2274bdafcd8a4880a966bfe38d1a0bf4671"
+  
   ignore-walk@^3.0.1:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/ignore-walk/-/ignore-walk-3.0.1.tgz#a83e62e7d272ac0e3b551aaa82831a19b69f82f8"
@@ -7296,6 +7302,10 @@ Lockfile:
       react-minimalist-portal "^2.1.1"
       react-transition-group "^2.2.1"
   
+  react-router-config@^1.0.0-beta.4:
+    version "1.0.0-beta.4"
+    resolved "https://registry.yarnpkg.com/react-router-config/-/react-router-config-1.0.0-beta.4.tgz#d202496dd0eabdf06cf24eb0793031f6891eef01"
+  
   react-router-dom@^4.2.2:
     version "4.2.2"
     resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
@@ -9527,7 +9537,7 @@ Trace:
   Error: Command failed.
   Exit code: 3221225786
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --endpoint='http://192.168.1.188:5001'
+  Arguments: /d /s /c nodemon public/server.js --inspect --verbose
   Directory: E:\development\compaero.project\emernatar.io-ssr
   Output:
   

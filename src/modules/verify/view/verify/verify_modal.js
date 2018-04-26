@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Modal from 'react-responsive-modal';
 import gql from 'graphql-tag';
 import {Mutation, graphql} from "react-apollo";
@@ -15,6 +15,7 @@ import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
 import iconNotar from '../../../../assets/icons/icon_notorize-black.svg';
 import {connect} from "react-redux";
+import {PreLoader} from "../../../../components/preloader/index";
 
 
 const createNotarization = gql`mutation createNotarization(
@@ -47,6 +48,7 @@ class VerifyModal extends Component {
         this.state = this.initialState;
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
+        this.onPreLoaderToggle = this.onPreLoaderToggle.bind(this);
     }
 
     componentDidMount() {
@@ -85,7 +87,9 @@ class VerifyModal extends Component {
         }
         let data = {variables: obj};
         this.setState({responseData: data});
-        console.log(data);
+
+        this.onPreLoaderToggle(true);
+
         this.props.createNotarization(data).then((res) => {
             console.log(res);
             this.props.onModalToggle(false);
@@ -96,75 +100,85 @@ class VerifyModal extends Component {
         })
     }
 
+    onPreLoaderToggle(state) {
+        console.log(open);
+        this.setState({preLoader: state})
+    }
+
     render() {
         const {open, onModalToggle, styles, handleSubmit, reset, error, pristine, submitting, translate} = this.props;
-        // console.log(this.props);
-        // var selectedValue = false;
+        const {preLoader} = this.state;
         console.log(this);
         return (
-            <Modal
-                open={open}
-                classNames={{modal: styles.VerifyModalWrapper}}
-                onClose={() => onModalToggle(!open)}
-                little>
+            <Fragment>
+                <Modal
+                    open={open}
+                    classNames={{modal: styles.VerifyModalWrapper}}
+                    onClose={() => onModalToggle(!open)}
+                    little>
 
-                <div className={styles.VerifyModalHeader}>
-                    <Typography as={'h3'} size={'large'}
-                                fontWeight={'bold'} textAlign={'center'}
-                                textTransform={'uppercase'}
-                                color={'secondary'} bright={'contrastText'}>
-                        {translate('verify_modal_title')}
-                    </Typography>
-                </div>
-                <form onSubmit={handleSubmit((value) => this.submit(value))}>
-                    <RadioGroup name="emailHashed"
-                                selectedValue={this.state.emailHashed}
-                                onChange={this.handleChange}
-                    >
-                        <Radio value={true} checked/>{translate('verify_modal_open_email')}<br/>
-                        <Radio value={false}/>{translate('verify_modal_open_email')}
-                    </RadioGroup>
-                    <br/>
-                    <label htmlFor="">
-                        <Typography as={'p'} size={'small'} textDecoration={'none'} color={'secondary'}
-                                    bright={'contrastText'}>
-                            {translate('verify_modal_additional_label')}
+                    <div className={styles.VerifyModalHeader}>
+                        <Typography as={'h3'} size={'large'}
+                                    fontWeight={'bold'} textAlign={'center'}
+                                    textTransform={'uppercase'}
+                                    color={'secondary'} bright={'contrastText'}>
+                            {translate('verify_modal_title')}
                         </Typography>
-                        <Field
-                            name="additionalInfo"
-                            component={InputText}
-                            placeholder={translate('verify_modal_additional_textarea')}
-                            type="textarea"
-                        />
-                    </label>
-                    {error && <strong>{error}</strong>}
-
-                    <div className={styles.VerifyModalFooter}>
-                        {/* <Link to='/paypal/paypal' styles={{textDecoration: 'none'}}> */}
-                        <Button variant={'raised'} color={'primary'}
-                                type="submit" disabled={pristine || submitting}
-                                styles={{textAlign: 'center'}}>
-                            <Image src={iconNotar} styles={{padding: '0.2rem', maxWidth: '40px'}}/>
-
+                    </div>
+                    <form onSubmit={handleSubmit((value) => this.submit(value))}>
+                        <RadioGroup name="emailHashed"
+                                    selectedValue={this.state.emailHashed}
+                                    onChange={this.handleChange}
+                        >
+                            <Radio value={true} checked/>{translate('verify_modal_open_email')}<br/>
+                            <Radio value={false}/>{translate('verify_modal_open_email')}
+                        </RadioGroup>
+                        <br/>
+                        <label htmlFor="">
                             <Typography as={'p'} size={'small'} textDecoration={'none'} color={'secondary'}
                                         bright={'contrastText'}>
-
-                                {translate('verify_modal_btn_submit')}
+                                {translate('verify_modal_additional_label')}
                             </Typography>
-                        </Button>
-                    </div>
+                            <Field
+                                name="additionalInfo"
+                                component={InputText}
+                                placeholder={translate('verify_modal_additional_textarea')}
+                                type="textarea"
+                            />
+                        </label>
+                        {error && <strong>{error}</strong>}
 
-                    <div className={styles.VerifyModalFooterText}>
-                        <Typography as={'div'} color={'secondary'} bright={'contrastText'} fontWeight={'bold'}
-                                    size={'small'} textTransform={'uppercase'}>
-                            {translate('verify_modal_info_title')}
-                        </Typography>
-                        <Typography as={'span'} color={'secondary'} bright={'contrastText'} size={'small'}>
-                            {translate('verify_modal_info_text')}
-                        </Typography>
-                    </div>
-                </form>
-            </Modal>);
+                        <div className={styles.VerifyModalFooter}>
+                            {/* <Link to='/paypal/paypal' styles={{textDecoration: 'none'}}> */}
+                            <Button variant={'raised'} color={'primary'}
+                                    type="submit" disabled={pristine || submitting}
+                                    styles={{textAlign: 'center'}}>
+                                <Image src={iconNotar} styles={{padding: '0.2rem', maxWidth: '40px'}}/>
+
+                                <Typography as={'p'} size={'small'} textDecoration={'none'} color={'secondary'}
+                                            bright={'contrastText'}>
+
+                                    {translate('verify_modal_btn_submit')}
+                                </Typography>
+                            </Button>
+                        </div>
+
+                        <div className={styles.VerifyModalFooterText}>
+                            <Typography as={'div'} color={'secondary'} bright={'contrastText'} fontWeight={'bold'}
+                                        size={'small'} textTransform={'uppercase'}>
+                                {translate('verify_modal_info_title')}
+                            </Typography>
+                            <Typography as={'span'} color={'secondary'} bright={'contrastText'} size={'small'}>
+                                {translate('verify_modal_info_text')}
+                            </Typography>
+                        </div>
+                    </form>
+                </Modal>
+
+                {
+                    preLoader && <PreLoader/>
+                }
+            </Fragment>);
     }
 }
 
