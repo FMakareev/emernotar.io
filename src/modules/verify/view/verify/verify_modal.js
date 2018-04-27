@@ -93,7 +93,7 @@ class VerifyModal extends Component {
         this.props.createNotarization(data).then((res) => {
             console.log(res);
             this.props.onModalToggle(false);
-            window.location.replace(`${__ENDPOINT__}/paypal/paypal`);
+            window.location.replace(`/paypal/paypal`);
         }).catch((err) => {
             console.log(err);
             this.props.onModalToggle(false);
