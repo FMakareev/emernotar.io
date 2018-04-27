@@ -5,18 +5,16 @@ import {browserConfig} from "./config/webpack.client";
 
 function bundle() {
     console.log('run bundle');
-    return new Promise((resolve, reject) => {
 
         webpack([browserConfig(), serverConfig()]).run((err, stats) => {
             if (err) {
-                return reject(err);
+                return err
             }
 
             if (stats.hasErrors()) {
-                return reject(new Error('Webpack compilation errors'));
+                return new Error('Webpack compilation errors')
             }
-            return resolve(stats);
+            return stats;
         });
-    });
 }
 export default bundle;
