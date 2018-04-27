@@ -12,7 +12,7 @@ import {
     // ErrorLink
 } from './Links';
 
-const pyEndpoint = new FileUploadLink({uri: __ENDPOINT__+'/graphql'});
+const pyEndpoint = new FileUploadLink({uri: '/graphql'});
 
 
 const link = from([
