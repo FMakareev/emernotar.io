@@ -8,7 +8,7 @@
   dependencies:
     "@babel/highlight" "7.0.0-beta.44"
 
-"@babel/core@^7.0.0-beta.44":
+"@babel/core@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.0.0-beta.44.tgz#90bb9e897427e7ebec2a1b857f458ff74ca28057"
   dependencies:
@@ -193,7 +193,7 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/node@^7.0.0-beta.44":
+"@babel/node@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.0.0-beta.44.tgz#aa729d285b71bfd1d221c6d925430b86b4c965cb"
   dependencies:
@@ -493,7 +493,7 @@
     "@babel/helper-get-function-arity" "7.0.0-beta.44"
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
 
-"@babel/plugin-transform-react-constant-elements@^7.0.0-beta.44":
+"@babel/plugin-transform-react-constant-elements@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-constant-elements/-/plugin-transform-react-constant-elements-7.0.0-beta.44.tgz#326b28dc2fc3b0a8bab0823c30bcfb584b74ca4a"
   dependencies:
@@ -506,7 +506,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
 
-"@babel/plugin-transform-react-inline-elements@^7.0.0-beta.44":
+"@babel/plugin-transform-react-inline-elements@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-inline-elements/-/plugin-transform-react-inline-elements-7.0.0-beta.44.tgz#2f453cc10706f53e6ca87f43f576fb7048b34c8a"
   dependencies:
@@ -588,7 +588,7 @@
     core-js "^2.5.3"
     regenerator-runtime "^0.11.1"
 
-"@babel/preset-env@^7.0.0-beta.44":
+"@babel/preset-env@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.0.0-beta.44.tgz#9d3df27d81b134cae8a52a36279402aadad6d5d2"
   dependencies:
@@ -632,14 +632,14 @@
     invariant "^2.2.2"
     semver "^5.3.0"
 
-"@babel/preset-flow@^7.0.0-beta.44":
+"@babel/preset-flow@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.0.0-beta.44.tgz#0adc4674743a29e6f303dc542d2d35eaec095673"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
     "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.44"
 
-"@babel/preset-react@^7.0.0-beta.44":
+"@babel/preset-react@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.0.0-beta.44.tgz#ab57e92f41518f871d82d62791c84383cfd9691a"
   dependencies:
@@ -650,7 +650,7 @@
     "@babel/plugin-transform-react-jsx-self" "7.0.0-beta.44"
     "@babel/plugin-transform-react-jsx-source" "7.0.0-beta.44"
 
-"@babel/preset-stage-2@^7.0.0-beta.44":
+"@babel/preset-stage-2@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/preset-stage-2/-/preset-stage-2-7.0.0-beta.44.tgz#1e435afc4d47acdee54fc6ba6a107c84eebf16f5"
   dependencies:
