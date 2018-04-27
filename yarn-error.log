@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start:ssr:server
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js build:ssr:prod
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\FMakareev\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32;C:\Users\FMakareev\AppData\Local\Microsoft\WindowsApps;C:\Users\FMakareev\AppData\Roaming\npm;C:\Users\FMakareev\AppData\Local\Yarn\bin
@@ -73,14 +73,14 @@ npm manifest:
       "sha512-es": "^1.8.2"
     },
     "devDependencies": {
-      "@babel/core": "^7.0.0-beta.44",
-      "@babel/node": "^7.0.0-beta.44",
-      "@babel/plugin-transform-react-constant-elements": "^7.0.0-beta.44",
-      "@babel/plugin-transform-react-inline-elements": "^7.0.0-beta.44",
-      "@babel/preset-env": "^7.0.0-beta.44",
-      "@babel/preset-flow": "^7.0.0-beta.44",
-      "@babel/preset-react": "^7.0.0-beta.44",
-      "@babel/preset-stage-2": "^7.0.0-beta.44",
+      "@babel/core": "7.0.0-beta.44",
+      "@babel/node": "7.0.0-beta.44",
+      "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.44",
+      "@babel/plugin-transform-react-inline-elements": "7.0.0-beta.44",
+      "@babel/preset-env": "7.0.0-beta.44",
+      "@babel/preset-flow": "7.0.0-beta.44",
+      "@babel/preset-react": "7.0.0-beta.44",
+      "@babel/preset-stage-2": "7.0.0-beta.44",
       "autoprefixer": "^8.1.0",
       "babel-core": "^7.0.0-0",
       "babel-eslint": "^8.2.2",
@@ -123,7 +123,7 @@ npm manifest:
       "build:dev": "",
       "start:ssr": "concurrently \"yarn build:ssr:dev\" \"yarn start:ssr:server\"",
       "start:ssr:server": "nodemon public/server.js --inspect --verbose",
-      "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --endpoint='http://192.168.1.188:5001'",
+      "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint='http://127.0.0.1:5001'",
       "build:ssr:dev": "babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --endpoint='http://192.168.1.188:5001'",
       "localization:prod": "babel-node ./tools/initLocalizationFiles.js",
       "create-index": "create-index ./src/modules/",
@@ -146,7 +146,7 @@ Lockfile:
     dependencies:
       "@babel/highlight" "7.0.0-beta.44"
   
-  "@babel/core@^7.0.0-beta.44":
+  "@babel/core@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.0.0-beta.44.tgz#90bb9e897427e7ebec2a1b857f458ff74ca28057"
     dependencies:
@@ -331,7 +331,7 @@ Lockfile:
       esutils "^2.0.2"
       js-tokens "^3.0.0"
   
-  "@babel/node@^7.0.0-beta.44":
+  "@babel/node@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.0.0-beta.44.tgz#aa729d285b71bfd1d221c6d925430b86b4c965cb"
     dependencies:
@@ -631,7 +631,7 @@ Lockfile:
       "@babel/helper-get-function-arity" "7.0.0-beta.44"
       "@babel/helper-plugin-utils" "7.0.0-beta.44"
   
-  "@babel/plugin-transform-react-constant-elements@^7.0.0-beta.44":
+  "@babel/plugin-transform-react-constant-elements@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-constant-elements/-/plugin-transform-react-constant-elements-7.0.0-beta.44.tgz#326b28dc2fc3b0a8bab0823c30bcfb584b74ca4a"
     dependencies:
@@ -644,7 +644,7 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "7.0.0-beta.44"
   
-  "@babel/plugin-transform-react-inline-elements@^7.0.0-beta.44":
+  "@babel/plugin-transform-react-inline-elements@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-inline-elements/-/plugin-transform-react-inline-elements-7.0.0-beta.44.tgz#2f453cc10706f53e6ca87f43f576fb7048b34c8a"
     dependencies:
@@ -726,7 +726,7 @@ Lockfile:
       core-js "^2.5.3"
       regenerator-runtime "^0.11.1"
   
-  "@babel/preset-env@^7.0.0-beta.44":
+  "@babel/preset-env@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.0.0-beta.44.tgz#9d3df27d81b134cae8a52a36279402aadad6d5d2"
     dependencies:
@@ -770,14 +770,14 @@ Lockfile:
       invariant "^2.2.2"
       semver "^5.3.0"
   
-  "@babel/preset-flow@^7.0.0-beta.44":
+  "@babel/preset-flow@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.0.0-beta.44.tgz#0adc4674743a29e6f303dc542d2d35eaec095673"
     dependencies:
       "@babel/helper-plugin-utils" "7.0.0-beta.44"
       "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.44"
   
-  "@babel/preset-react@^7.0.0-beta.44":
+  "@babel/preset-react@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.0.0-beta.44.tgz#ab57e92f41518f871d82d62791c84383cfd9691a"
     dependencies:
@@ -788,7 +788,7 @@ Lockfile:
       "@babel/plugin-transform-react-jsx-self" "7.0.0-beta.44"
       "@babel/plugin-transform-react-jsx-source" "7.0.0-beta.44"
   
-  "@babel/preset-stage-2@^7.0.0-beta.44":
+  "@babel/preset-stage-2@7.0.0-beta.44":
     version "7.0.0-beta.44"
     resolved "https://registry.yarnpkg.com/@babel/preset-stage-2/-/preset-stage-2-7.0.0-beta.44.tgz#1e435afc4d47acdee54fc6ba6a107c84eebf16f5"
     dependencies:
@@ -9535,9 +9535,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
+  Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c nodemon public/server.js --inspect --verbose
+  Arguments: /d /s /c babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint='http://127.0.0.1:5001'
   Directory: E:\development\compaero.project\emernatar.io-ssr
   Output:
   

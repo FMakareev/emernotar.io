@@ -1,5 +1,4 @@
 
 /node_modules/
-/public/
 /.idea/
 /src/store/reducers/localization/localization.json
