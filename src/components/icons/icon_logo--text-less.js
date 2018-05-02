@@ -5,20 +5,23 @@ const Style = ({theme, styles, ...props}) => {
     return {
         wrapper: {
             display: 'block',
-            margin: '20px auto'
+            margin: '20px auto',
+            fill: 'inherit',
         },
         Vector_2: {
-            fill:theme.palette.primary.main,
+            // fill:theme.palette.primary.main,
+            fill: 'inherit',
         },
         Vector_3: {
-            fill:theme.palette.primary.main,
+            // fill:theme.palette.primary.main,
+            fill: 'inherit',
         },
     }
 }
 
 const IconLogoEmerNatar = ({styles, text = true}) => (
     <svg className={styles.wrapper} width={'80px'} height={'70px'} viewBox="0 0 115 100">
-        <g id="Canvas" fill="none">
+        <g id="Canvas" fill="inherit">
             <g id="785325152">
                 <g id="Vector_2">
                     <path transform="translate(29.8909, 31.5054)" className={styles.Vector_2}

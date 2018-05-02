@@ -29,11 +29,10 @@ export class FileUploadLink extends ApolloLink {
                     observer.complete();
                 })
                 .catch((error) => {
-                    console.log(error);
-                    // console.log(JSON.parse(error));
-                    // observer.error(error)
-                    observer.next(error)
-                    observer.complete();
+                    console.log(JSON.stringify(error.networkError));
+                    observer.error(error)
+                    // observer.next(error)
+                    // observer.complete();
                     // return error
                 });
 

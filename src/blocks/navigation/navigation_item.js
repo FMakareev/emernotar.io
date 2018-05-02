@@ -1,7 +1,7 @@
 import React from 'react';
 import {createComponentWithProxy} from 'react-fela'
 
-const NavigationItemStyle = ({state}) => {
+const NavigationItemStyle = ({state, styles}) => {
 
     return ({
         position: 'relative',
@@ -15,7 +15,8 @@ const NavigationItemStyle = ({state}) => {
         ':hover > ul': {
             height: 'auto',
             opacity: '1',
-        }
+        },
+        ...styles,
     })
 }
 

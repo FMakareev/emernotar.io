@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, SubmissionError} from "redux-form";
 import {InputText} from "../../blocks/input-fela/input_text/input_text";
 import {Textarea} from "../../blocks/input-fela/textarea";
 import {Typography} from '../../blocks/typography/index';
@@ -10,6 +10,7 @@ import gql from 'graphql-tag';
 import {Mutation, graphql} from "react-apollo";
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
+import {PreLoader} from "../preloader/index";
 
 
 const createFeedback = gql`mutation createFeedback(
@@ -43,26 +44,39 @@ class FormFeedback extends Component {
     }
 
     get initialState() {
-        return {}
+        return {preLoader: false, error: null}
+    }
+
+
+    onPreLoaderToggle(state) {
+        console.log(open);
+        this.setState({preLoader: state})
     }
 
     submit(value) {
         let data = {variables: value};
-        this.props.createFeedback(data).then((res)=>{
-            console.log(res);
-        }).catch((err) => {
-            console.log(err);
-        })
-        // при положителном ответе закрываешь окно и редиректишь на paypal/paypal
+        this.onPreLoaderToggle(true);
+        return this.props.createFeedback(data)
+            .then((res) => {
+                console.log(res);
+                this.onPreLoaderToggle(false);
+            })
+            .catch((err) => {
+                this.onPreLoaderToggle(false);
+                console.log('statusCode: ', err.networkError.statusCode);
+                console.log('bodyText: ', err.networkError.bodyText);
 
+                if (err.networkError.statusCode >= 400) {
+                    this.setState({error: err.networkError.bodyText})
+                }
 
-
-
-        // this.onModalToggle(true);
+            })
     }
 
     render() {
-        const {handleSubmit, reset, error, pristine, submitting, styles, translate} = this.props;
+        const {handleSubmit, reset, pristine, submitting, styles, translate} = this.props;
+        const {preLoader, error} = this.state;
+
         return (
             <form onSubmit={handleSubmit((value) => this.submit(value))}>
                 <Field
@@ -89,14 +103,31 @@ class FormFeedback extends Component {
                     placeholder={translate('contact_form_message')}
                     type="textarea"
                 />
+                {
+                    error && <Typography
+                        as={'p'}
+                        size={'medium'}
+                        color={'error'}
+                        bright={'dark'}
+                        fontWeight={'bold'}
+                        textAlign={'center'}
+                        textTransform={'uppercase'}
+                    >
+                        {translate('home_network_error')}
+                    </Typography>
+                }
+
                 <div className={styles.footer}>
-                    <Button variant={"raised"} color={'primary'} 
-                        type="submit" disabled={pristine || submitting}>
+                    <Button variant={"raised"} color={'primary'}
+                            type="submit" disabled={pristine || submitting}>
                         <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
                             {translate('contact_submit')}
                         </Typography>
                     </Button>
                 </div>
+                {
+                    preLoader && <PreLoader backdrop/>
+                }
             </form>
         )
     }
@@ -105,7 +136,7 @@ class FormFeedback extends Component {
 const STYLE = () => {
     return {
         maxWidth: '100%',
-        footer:{
+        footer: {
             textAlign: 'right',
             marginBottom: '5rem'
         },
@@ -130,7 +161,6 @@ const mapStateToProps = state => ({
     translate: getTranslate(state.locale),
     currentLanguage: getActiveLanguage(state.locale).code
 });
-
 
 
 export default connect(mapStateToProps)(FormFeedback)

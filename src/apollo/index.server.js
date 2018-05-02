@@ -12,34 +12,41 @@ import {
     // ErrorLink
 } from './Links';
 
-const pyEndpoint = new FileUploadLink({uri: __ENDPOINT__+'/graphql'});
+const httpLink = new FileUploadLink({uri: __ENDPOINT__+'/graphql'});
 
-const link = from([
-    new CatchLink,
-    onError(({ graphQLErrors, networkError }) => {
-        if (graphQLErrors)
-            graphQLErrors.map(({ message, locations, path }) =>
-                console.warn(
-                    `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-                ),
-            );
-        if (networkError) console.warn(`[Network error]: ${networkError}`);
-    }),
-    ...(__DEV__ ? [apolloLogger] : []),
-    pyEndpoint,
+// const link = from([
+//     new CatchLink,
+//     onError(({ graphQLErrors, networkError }) => {
+//         if (graphQLErrors)
+//             graphQLErrors.map(({ message, locations, path }) =>
+//                 console.warn(
+//                     `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+//                 ),
+//             );
+//         if (networkError) console.warn(`[Network error]: ${networkError}`);
+//     }),
+//     ...(__DEV__ ? [apolloLogger] : []),
+//     httpLink,
+//
+//
+//     // new HttpLink({
+//     //     uri: 'http://192.168.1.188:5001/graphql',
+//     //     credentials: 'same-origin',
+//     //     fetch: fetch
+//     // }),
+// ]);
+const logoutLink = onError(({ networkError }) => {
+    console.log(networkError);
+    console.log(networkError.statusCode);
+    // if (networkError.statusCode === 401) {
+    //
+    // };
+})
 
-
-    // new HttpLink({
-    //     uri: 'http://192.168.1.188:5001/graphql',
-    //     credentials: 'same-origin',
-    //     fetch: fetch
-    // }),
-]);
 export const client = new ApolloClient({
     ssrMode: true,
-    // Remember that this is the interface the SSR server will use to connect to the
-    // API server, so we need to ensure it isn't firewalled, etc
-    link,
+    // link,
+    link: logoutLink.concat(httpLink),
     cache: new InMemoryCache(),
     defaultOptions: {
         watchQuery: {

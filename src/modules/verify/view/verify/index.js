@@ -155,15 +155,32 @@ class VerifyPage extends Component {
                                     {
                                         ({loading, error, data}) => {
                                             console.log(loading, error, data);
-                                            if (loading) return "Loading...";
-                                            if (error) return `Error! ${error.message}`;
+
+                                            if (loading) {
+                                                return (<PreLoader palette={'dark'}/>);
+                                            }
+                                            if (error) {
+                                                return (<Typography
+                                                    as={'h3'}
+                                                    size={'large'}
+                                                    fontWeight={'bold'}
+                                                    textAlign={'center'}
+                                                    textTransform={'uppercase'}
+                                                >
+                                                    {translate('home_network_error')}
+                                                </Typography>)
+                                            }
                                             if (data.certificateList && data.certificateList.length) {
 
                                                 return (
                                                     <Fragment>
-                                                        <Typography as={'h3'} size={'large'}
-                                                                    fontWeight={'bold'} textAlign={'center'}
-                                                                    textTransform={'uppercase'}>
+                                                        <Typography
+                                                            as={'h3'}
+                                                            size={'large'}
+                                                            fontWeight={'bold'}
+                                                            textAlign={'center'}
+                                                            textTransform={'uppercase'}
+                                                        >
                                                             {translate('verify_file_is_not_unique')}<br/>
                                                             {translate('verify_matches_found')}: {data.certificateList.length}
                                                         </Typography>
@@ -179,10 +196,13 @@ class VerifyPage extends Component {
                                                     <Fragment>
                                                         <Typography
                                                             styles={{marginBottom: '5rem'}}
-                                                            as={'h3'} size={'large'}
-                                                            fontWeight={'bold'} textAlign={'center'}
-                                                            textTransform={'uppercase'}>
-                                                            not_matches_found
+                                                            as={'h3'}
+                                                            size={'large'}
+                                                            fontWeight={'bold'}
+                                                            textAlign={'center'}
+                                                            textTransform={'uppercase'}
+                                                        >
+                                                            {translate('verify_not_matches_found')}
                                                         </Typography>
 
                                                     </Fragment>

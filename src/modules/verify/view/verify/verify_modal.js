@@ -88,15 +88,14 @@ class VerifyModal extends Component {
         let data = {variables: obj};
         this.setState({responseData: data});
 
+        this.props.onModalToggle(false);
         this.onPreLoaderToggle(true);
 
         this.props.createNotarization(data).then((res) => {
             console.log(res);
-            this.props.onModalToggle(false);
             window.location.replace(`/paypal/paypal`);
         }).catch((err) => {
             console.log(err);
-            this.props.onModalToggle(false);
         })
     }
 
@@ -130,7 +129,7 @@ class VerifyModal extends Component {
                                     selectedValue={this.state.emailHashed}
                                     onChange={this.handleChange}
                         >
-                            <Radio value={true} checked/>{translate('verify_modal_open_email')}<br/>
+                            <Radio value={true} checked/>{translate('verify_modal_hash_email')}<br/>
                             <Radio value={false}/>{translate('verify_modal_open_email')}
                         </RadioGroup>
                         <br/>

@@ -17,7 +17,7 @@ class NavigationTopBurger extends Component {
 
     static defaultProps = {
         navigationItems: [
-        // ],
+            // ],
             {
                 title: 'home_navigation_name',
                 path: '/',
@@ -60,7 +60,7 @@ class NavigationTopBurger extends Component {
                             </NavigationLink>
                         </NavigationItem>)
                     }
-                    <NavigationItem>
+                    <NavigationItem styles={{paddingLeft: '2rem'}}>
                         <LanguageSwitcher/>
                     </NavigationItem>
                 </NavigationList>

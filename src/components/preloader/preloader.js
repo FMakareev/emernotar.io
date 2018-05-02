@@ -7,6 +7,7 @@ class PreLoader extends Component {
         super();
         this.state = this.initialState;
         this.onClose = this.onClose.bind(this);
+        this.renderPreloader = this.renderPreloader.bind(this);
     }
 
     get initialState() {
@@ -30,29 +31,42 @@ class PreLoader extends Component {
         </div>)
     }
 
+    renderPreloader(styles,palette) {
+        return (<div className={styles.cssloadLoader}>
+            {
+                this.renderCssLoadContainer(styles)
+            }
+            <IconLogoEmerNatar palette={palette}/>
+            {
+                this.renderCssLoadContainer(styles)
+            }
+        </div>)
+    }
+
     render() {
-        const {styles} = this.props;
+        const {styles,backdrop,palette} = this.props;
         if (!this.state.active) return null;
-        return (
-            <div className={styles.backdrop} onClick={this.onClose}>
-                <div className={styles.wrapper}>
-                    {
-                        this.renderCssLoadContainer(styles)
-                    }
-                    <IconLogoEmerNatar/>
-                    {
-                        this.renderCssLoadContainer(styles)
-                    }
+
+        if(backdrop) {
+            return (
+                <div className={styles.backdrop} onClick={this.onClose}>
+                    <div className={styles.wrapper}>
+                        {this.renderPreloader(styles,palette)}
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return this.renderPreloader(styles,palette)
+        }
+
+
     }
 }
 
-const Style = ({theme}) => {
+const Style = ({theme,palette= 'main'}) => {
     return {
         backdrop: {
-            position: 'absolute',
+            position: 'fixed',
             top: '0',
             left: '0',
             right: '0',
@@ -65,20 +79,27 @@ const Style = ({theme}) => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%,-50%)',
-            display: 'flex',
-            alignItems: 'center'
         },
+
+
+        cssloadLoader: {
+            display: 'flex',
+            alignItems: 'center',
+            width:'210px',
+            margin: '0 auto',
+            fill: theme.palette.primary[palette],
+        },
+
         cssloadContainer: {
             position: 'relative',
             zIndex: 4,
             margin: '0 auto',
-            width: '66px',
+            width: '55px',
             height: '49px',
             listStyle: 'none',
         },
-        cssloadLoader: {},
         cssloadLi: {
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary[palette],
             width: '10px',
             height: '10px',
             float: 'right',

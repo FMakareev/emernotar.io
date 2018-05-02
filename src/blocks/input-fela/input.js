@@ -18,6 +18,7 @@ const InputStyle = ({state, ...props}) => {
         color: '#333333',
         cursor: 'auto',
         overflow: 'hidden',
+        fontFamily: 'inherit',
 
         '::placeholder': {
             color: '#AEAEAE',
