@@ -4,12 +4,12 @@
   "private": true,
   "main": "./index.js",
   "translate":[{
-    "ISO Code":"ru",
+    "ISO_Code":"ru",
     "language":"Русский",
     "active": true,
     "default": true
   },{
-    "ISO Code":"en",
+    "ISO_Code":"en",
     "language":"English",
     "active": true,
     "default": false

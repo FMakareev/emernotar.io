@@ -122,7 +122,7 @@ const createDictionary = (translateJson, messagesArray, moduleName) => {
             let translateItem = translateJson.translate[i] && translateJson.translate[i].Data ? translateJson.translate[i].Data : null;
 
             if (translateItem) {
-                if (item['ISO Code'].toUpperCase() === translateItem.toUpperCase()) {
+                if (item['ISO_Code'].toUpperCase() === translateItem.toUpperCase()) {
                     for (let a = 0; a < translateJson.data.length; a++) {
                         let translateData = translateJson.data[a];
 
@@ -131,7 +131,7 @@ const createDictionary = (translateJson, messagesArray, moduleName) => {
                     }
                 }
             } else {
-                console.info('Empty key ISO code in XML or package.json')
+                console.info('Empty key ISO_Code in XML or package.json')
             }
         }
     });
@@ -157,11 +157,11 @@ const createMessageArray = (packageJson, translateJson, defaultTranslate) => {
         if (itemParent.active) {
             translate.map(({Data: ISOCodeChild}) => {
                 if (ISOCodeChild) {
-                    if (itemParent['ISO Code'].toUpperCase() === ISOCodeChild.toUpperCase()) {
+                    if (itemParent['ISO_Code'].toUpperCase() === ISOCodeChild.toUpperCase()) {
                         messageArray.push({
-                            "ISO Code": itemParent['ISO Code'].toUpperCase(),
+                            "ISO_Code": itemParent['ISO_Code'].toUpperCase(),
                             "language": itemParent['language'],
-                            "defaultTranslate": moduleTranslate[defaultTranslate]['ISO Code'].toUpperCase(),
+                            "defaultTranslate": moduleTranslate[defaultTranslate]['ISO_Code'].toUpperCase(),
                             "moduleName": moduleName,
                             message: {},
                         })
@@ -171,7 +171,7 @@ const createMessageArray = (packageJson, translateJson, defaultTranslate) => {
                 }
             })
         } else {
-            console.info(`In module ${moduleName} translate "${itemParent['ISO Code']}" is disabled.`);
+            console.info(`In module ${moduleName} trISO_Codeanslate "${itemParent['ISO_Code']}" is disabled.`);
         }
     });
 
@@ -198,8 +198,8 @@ const creatingFilesWithLanguagesForModules = (moduleDictionary, moduleName) => {
             fs.mkdirSync(path.resolve(__dirname, `${publicPath}`));
             fs.mkdirSync(messages_dir);
         }
-        fs.writeFileSync(`${messages_dir}/${item['ISO Code'].toUpperCase()}.json`, JSON.stringify(item));
-        if (item['ISO Code'] === item.defaultTranslate) {
+        fs.writeFileSync(`${messages_dir}/${item['ISO_Code'].toUpperCase()}.json`, JSON.stringify(item));
+        if (item['ISO_Code'] === item.defaultTranslate) {
             fs.writeFileSync(`${messages_dir}/defaultTranslate.json`, JSON.stringify(item));
         }
 
@@ -291,12 +291,12 @@ const createLanguageListFile = (languageList, allModulesMessage) => {
         if (item.length) {
             item.map((childItem) => {
                 if (languageList.length) {
-                    let result = findIndex(languageList, (item) => childItem['ISO Code'] === item['code']);
+                    let result = findIndex(languageList, (item) => childItem['ISO_Code'] === item['code']);
                     if (result === -1) {
-                        languageList.push({name: childItem['language'], code: childItem['ISO Code']})
+                        languageList.push({name: childItem['language'], code: childItem['ISO_Code']})
                     }
                 } else {
-                    languageList.push({name: childItem['language'], code: childItem['ISO Code']})
+                    languageList.push({name: childItem['language'], code: childItem['ISO_Code']})
                 }
 
                 if (childItem) {
@@ -330,9 +330,9 @@ const creatingLocalizationFiles = (data) => {
 
     data.map((itemParent) => {
         itemParent.map((itemChild) => {
-            messagesList[itemChild['ISO Code']] = Object.assign(
+            messagesList[itemChild['ISO_Code']] = Object.assign(
                 {},
-                messagesList[itemChild['ISO Code']],
+                messagesList[itemChild['ISO_Code']],
                 {
                     ...itemChild.message
                 }
@@ -360,18 +360,18 @@ export const initMessage = () => new Promise((resolve, reject) => {
 
         /*
         * @description проверка во всех ли модулях есть переводы для доступных языков, если нет
-        * добавляем вместо отсутствующего языка язык по умолчанию но в объекте ISO Code и language
+        * добавляем вместо отсутствующего языка язык по умолчанию но в объекте ISO_Code и language
         * берется из отсутствующего языка
         * */
         languageList.map(({code, name}, index) => {
             allModulesMessage.map((moduleLang, index) => {
-                if (findIndex(moduleLang, (item) => item['ISO Code'] === code) === -1) {
-                    const defaultTranslateIndex = findIndex(moduleLang, (item) => item['defaultTranslate'] === item['ISO Code']);
+                if (findIndex(moduleLang, (item) => item['ISO_Code'] === code) === -1) {
+                    const defaultTranslateIndex = findIndex(moduleLang, (item) => item['defaultTranslate'] === item['ISO_Code']);
                     moduleLang.push({
                         ...Object.assign({},
                             moduleLang[defaultTranslateIndex],
                             {
-                                'ISO Code': code,
+                                'ISO_Code': code,
                                 language: name
                             })
                     })
