@@ -41,7 +41,7 @@ class PageNotFound extends Component {
                                         fontWeight={'bold'} textAlign={'center'}
                                         textTransform={'uppercase'}
                                         color={'secondary'} bright={'contrastText'}>
-                                        Page is Not Found
+                                        Page Not Found
                                     </Typography>
                                 </TopLabel>
                             </TopLabelRow>

@@ -56,7 +56,9 @@ class AboutPage extends Component {
                             {
                                 data.map((item, index) => (
                                     <Row>
-                                        <Typography as={'p'}>{item.content}</Typography>
+                                        <Typography as={'p'}>
+                                            {item.content}
+                                        </Typography>
                                         <DecorateDots/>
                                     </Row>
                                 ))
