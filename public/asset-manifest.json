@@ -10,10 +10,10 @@
   "static/js/5.js": "/static/js/5.js",
   "static/js/6.js": "/static/js/6.js",
   "static/js/7.js": "/static/js/7.js",
-  "static/js/8.js": "/static/js/8.js",
+  "static/js/11.js": "/static/js/11.js",
   "static/js/9.js": "/static/js/9.js",
   "static/js/10.js": "/static/js/10.js",
-  "static/js/11.js": "/static/js/11.js",
+  "static/js/12.js": "/static/js/12.js",
   "/static/media/icon_arrow_group.svg": "//static/media/icon_arrow_group-1a054eb9.svg",
   "/static/media/icon_close.svg": "//static/media/icon_close-ac16cd0b.svg",
   "/static/media/icon_email.svg": "//static/media/icon_email-afaa036e.svg",
@@ -24,8 +24,6 @@
   "/static/media/icon_paypal.svg": "//static/media/icon_paypal-cceed1ec.svg",
   "/static/media/icon_pluse.svg": "//static/media/icon_pluse-3b884da7.svg",
   "/static/media/icon_print.svg": "//static/media/icon_print-81a6a0fb.svg",
-  "/static/media/icon_question.svg": "//static/media/icon_question-cd02d3c2.svg",
-  "/static/media/icon_search.svg": "//static/media/icon_search-9008f843.svg",
   "/static/media/icon_verify.svg": "//static/media/icon_verify-79cd01e0.svg",
   "/static/media/icon_clock.svg": "//static/media/icon_clock-b5d62328.svg"
 }

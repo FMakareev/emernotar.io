@@ -4,6 +4,7 @@ import {asyncComponent} from 'react-async-component';
 import * as modules from '../modules/index';
 import Layout from "../blocks/layout/layout";
 import {PreLoader} from "../components/preloader/index";
+// import {GetPageTitle} from '../utils/component/get_page_title';
 
 
 const MainRoute = ({component: Component, ...rest}) => {
@@ -58,6 +59,13 @@ const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
                 exact: modulesRoutes[i].exact,
                 name: modulesRoutes[i].name || modulesRoutes[i].title,
                 path: modulesRoutes[i].path || console.error(`Error: in the module ${moduleName} in one of the routes there is no property "path".`),
+                // component: <GetPageTitle children={
+                //         asyncComponent({
+                //         resolve: modulesRoutes[i].load,
+                //         LoadingComponent: () => <PreLoader/>,
+                //         ErrorComponent: ({error}) => <div>{error.message}</div>
+                //     })
+                // } />
                 component: asyncComponent({
                     resolve: modulesRoutes[i].load,
                     LoadingComponent: () => <PreLoader/>,
