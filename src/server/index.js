@@ -30,7 +30,7 @@ import Html from "./html";
 import {ConfigRouter} from '../routes';
 import languages from '../store/reducers/localization/localization.json';
 import {initLocalize} from "../store/reducers/localization/actions";
-import {createEmailTemplate} from "./createEmailTemplate";
+// import {createEmailTemplate} from "./createEmailTemplate";
 import {createCertificat} from "./createCertificatPDF";
 
 
@@ -63,18 +63,18 @@ app.use(requestLanguage({
     },
 }));
 
-if (__DEV__) {
-    app.get("/create_email_template", (request, response) => {
-        createEmailTemplate();
-
-        response.status(200);
-        /** @description http://expressjs.com/en/4x/api.html#res.send */
-        response.send('create_email_template');
-        /** @description http://expressjs.com/en/4x/api.html#res.end */
-        response.end();
-
-    })
-}
+// if (__DEV__) {
+//     app.get("/create_email_template", (request, response) => {
+//         createEmailTemplate();
+//
+//         response.status(200);
+//         /** @description http://expressjs.com/en/4x/api.html#res.send */
+//         response.send('create_email_template');
+//         /** @description http://expressjs.com/en/4x/api.html#res.end */
+//         response.end();
+//
+//     })
+// }
 
 
 app.get('/create_certificat/:hash', createCertificat);

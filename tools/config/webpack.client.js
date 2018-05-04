@@ -100,7 +100,7 @@ export const browserConfig = () => {
                 __DEV__: true,
                 __SSR_FETCH__: process.env.SSR_FETCH,
                 __PORT__: process.env.PORT || 3000,
-                __ENDPOINT__: process.env.ENDPOINT || 'http://localhost:5001',
+                __ENDPOINT__: process.env.ENDPOINT || "'http://localhost:5001'",
             }),
             // new CleanWebpackPlugin([ process.env.PUBLIC_URL || '../../public']),
 
