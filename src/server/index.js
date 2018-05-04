@@ -104,20 +104,6 @@ app.get("*", async (request, response) => {
     let parsedQs = querystring.parse(parsedUrl.query);
 
 
-    // TODO: Сделать маршрутов
-    let pageTitle = ConfigRouter.map((parent) => {
-
-        if(parent.hasOwnProperty('routes')){
-            return parent.routes.map((route) => {
-                if(parsedUrl.pathname === route.path && route.path.indexOf(parsedUrl.pathname) === 0){
-                    console.log('result:',route);
-                    return Store.getState().locale.translations[route.name];
-                }
-            })
-        }
-
-    });
-
     /**
      * @description root react component
      * */
@@ -171,7 +157,7 @@ app.get("*", async (request, response) => {
                  * */
                 const reduxState = Store.getState();
 
-
+                console.log('pageTitle:',pageTitle);
                 /**
                  * @param {string} content - markup of the requested page converted into a string
                  * @param {Object} client - Apollo client
