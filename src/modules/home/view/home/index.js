@@ -6,6 +6,8 @@ import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import Cookies from 'js-cookie';
 import {connect as felaConnect} from 'react-fela';
 
+import {GetPageTitle} from '../../../../utils/component/get_page_title'
+
 import {Container} from "../../../../blocks/container/index";
 import {Row} from "../../../../blocks/row/index";
 import {Column} from "../../../../blocks/column/index";
@@ -110,8 +112,7 @@ class HomePage extends Component {
 
     render() {
         const {hash} = this.state;
-        const {translate, instruction, styles} = this.props;
-
+        const {translate, instruction, styles, staticContext} = this.props;
 
         if (hash) {
             localStorage.setItem('fileHash', hash);
@@ -289,5 +290,6 @@ const mapStateToProps = state => ({
 });
 
 
-export default withRouter(connect(mapStateToProps)(HomePage));
+HomePage = withRouter(connect(mapStateToProps)(HomePage));
 
+export default <GetPageTitle> <HomePage/></GetPageTitle>

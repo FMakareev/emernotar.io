@@ -30,7 +30,7 @@ import Html from "./html";
 import {ConfigRouter} from '../routes';
 import languages from '../store/reducers/localization/localization.json';
 import {initLocalize} from "../store/reducers/localization/actions";
-// import {createEmailTemplate} from "./createEmailTemplate";
+import {createEmailTemplate} from "./createEmailTemplate";
 import {createCertificat} from "./createCertificatPDF";
 
 
@@ -63,18 +63,18 @@ app.use(requestLanguage({
     },
 }));
 
-// if (__DEV__) {
-//     app.get("/create_email_template", (request, response) => {
-//         createEmailTemplate();
-//
-//         response.status(200);
-//         /** @description http://expressjs.com/en/4x/api.html#res.send */
-//         response.send('create_email_template');
-//         /** @description http://expressjs.com/en/4x/api.html#res.end */
-//         response.end();
-//
-//     })
-// }
+if (__DEV__) {
+    app.get("/create_email_template", (request, response) => {
+        createEmailTemplate();
+
+        response.status(200);
+        /** @description http://expressjs.com/en/4x/api.html#res.send */
+        response.send('create_email_template');
+        /** @description http://expressjs.com/en/4x/api.html#res.end */
+        response.end();
+
+    })
+}
 
 
 app.get('/create_certificat/:hash', createCertificat);
@@ -103,6 +103,7 @@ app.get("*", async (request, response) => {
     let parsedUrl = url.parse(request.url);
     let parsedQs = querystring.parse(parsedUrl.query);
 
+    const RouterContext = {}
 
     /**
      * @description root react component
@@ -118,7 +119,7 @@ app.get("*", async (request, response) => {
                                 location={{
                                     pathname: parsedUrl.pathname,
                                     search: parsedQs,
-                                }} context={{}}
+                                }} context={RouterContext}
                             >
                                 {renderRoutes(ConfigRouter)}
                             </StaticRouter>
@@ -138,6 +139,16 @@ app.get("*", async (request, response) => {
          * */
         renderToStringWithData(COMPONENT)
             .then(content => {
+
+                console.log('RouterContext:', RouterContext)
+
+                const pageTitle = Store.getState().locale.translations[RouterContext.pageTitle];
+                try {
+                    // const pageTitle = Store.getState().locale.translations[RouterContext.pageTitle];
+                }
+                catch(error) {
+                    console.error(error)
+                }
 
                 /**
                  * @param {Object} renderer
