@@ -290,5 +290,6 @@ const mapStateToProps = state => ({
 });
 
 
-export default withRouter(connect(mapStateToProps)(HomePage));
+HomePage = withRouter(connect(mapStateToProps)(HomePage));
 
+export default <GetPageTitle> <HomePage/></GetPageTitle>
