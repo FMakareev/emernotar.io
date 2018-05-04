@@ -21,6 +21,8 @@
     "fela": "^6.1.7",
     "fela-dom": "^7.0.7",
     "fela-monolithic": "^5.0.21",
+    "fela-plugin-fallback-value": "^5.0.17",
+    "fela-plugin-prefixer": "^5.0.18",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.1",
     "graphql-tools": "^2.24.0",

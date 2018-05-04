@@ -6,8 +6,6 @@ import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import Cookies from 'js-cookie';
 import {connect as felaConnect} from 'react-fela';
 
-import {GetPageTitle} from '../../../../utils/component/get_page_title'
-
 import {Container} from "../../../../blocks/container/index";
 import {Row} from "../../../../blocks/row/index";
 import {Column} from "../../../../blocks/column/index";
@@ -290,6 +288,8 @@ const mapStateToProps = state => ({
 });
 
 
-HomePage = withRouter(connect(mapStateToProps)(HomePage));
+HomePage = connect(mapStateToProps)(HomePage);
 
-export default <GetPageTitle> <HomePage/></GetPageTitle>
+
+
+export default HomePage

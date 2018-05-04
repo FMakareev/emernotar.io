@@ -2,4 +2,4 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 // Navigation manager, e.g. history.push('/home')
 // https://github.com/mjackson/history
-export default process.env.__isBrowser__=== "true" && createBrowserHistory();
+export default __isBrowser__ && createBrowserHistory();

@@ -1,13 +1,21 @@
 import {createRenderer} from 'fela'
 import monolithic from 'fela-monolithic'
+import prefixer from 'fela-plugin-prefixer'
+import fallbackValue from 'fela-plugin-fallback-value'
 
 /**
  * {@linkcode http://fela.js.org/docs/advanced/RendererConfiguration.html}
  * */
 export const createStyleRenderer = () => {
     const renderer = createRenderer({
-        plugins: [],
-        enhancers: [monolithic({prettySelectors: true})],
+        plugins: [
+            prefixer(),
+            fallbackValue()
+        ],
+        enhancers: [
+            // monolithic({prettySelectors: true}),
+        ]
+        ,
     });
 
     const keyframe = props => ({
@@ -69,18 +77,14 @@ export const createStyleRenderer = () => {
                 font-size: 16px;        
             }
         }
-    `)
+    `);
     renderer.renderStatic({minHeight: '100%',}, 'main');
     renderer.renderStatic(`@page {
     size: A4 landscape;
     margin: 0;
     padding: 0;
-}`)
+}`);
 
-    // @page {
-    //     size: A4 landscape;
-    //     margin-top: 4cm;
-    //     margin-left: 4cm;
-    // }
+
     return renderer
 }

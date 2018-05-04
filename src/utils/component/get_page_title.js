@@ -1,19 +1,42 @@
 import React, {Component} from 'react';
+import {getTranslate} from 'react-localize-redux';
 
-class GetPageTitle extends Component {
+export const getPageTitle = ({Store}) => WrappedComponent => {
 
-    constructor(props){
-        super(props);
-        this.shouldComponentUpdate = React.addons.PureRenderMixin.shouldComponentUpdate.bind(this);
-      }
+    return class GetPageTitle extends Component {
 
-      if (staticContext) {
-        staticContext.pageTitle = this.props.route.name;
-      }
+        constructor(props) {
+            super(props);
+        }
 
-    render (){
-        return this.props.children
+
+        componentDidMount() {
+            if (__isBrowser__) {
+                try {
+                    const translate = getTranslate(Store.getState().locale);
+                    let $Title = document.getElementsByTagName('title')[0];
+                    let currentTitle = $Title.innerHTML;
+                    let newTitle = translate(this.props.route.name);
+                    if(currentTitle !== newTitle){
+                        $Title.innerHTML = newTitle;
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+
+        render() {
+            const {staticContext, route} = this.props;
+            if (staticContext && route) {
+                staticContext.pageTitle = route.name;
+            }
+            return (
+                <WrappedComponent
+                    {...this.props}
+                />
+            )
+        }
     }
-}
 
-export default GetPageTitle;
+}

@@ -4,46 +4,10 @@ import {asyncComponent} from 'react-async-component';
 import * as modules from '../modules/index';
 import Layout from "../blocks/layout/layout";
 import {PreLoader} from "../components/preloader/index";
-// import {GetPageTitle} from '../utils/component/get_page_title';
+import {getPageTitle} from "../utils/component/get_page_title";
+import {Store} from '../store'
 
 
-const MainRoute = ({component: Component, ...rest}) => {
-    try {
-        if (rest.hasOwnProperty('routes') && rest.routes) {
-            return (
-                <Switch>
-                    <Route exact={true} {...rest} render={matchProps => {
-                        return (
-                            <Component {...matchProps} />
-                        )
-                    }}/>
-                    {
-                        rest.routes.map((item, index) => (
-                            <MainRoute
-                                key={`${item.path}-${index}`}
-                                exact={item.exact}
-                                path={item.path}
-                                component={item.component}
-                                routes={item.children || null}
-                            />))
-                    }
-                </Switch>
-            )
-        } else {
-            return (
-                <Route exact={true} {...rest} render={matchProps => {
-                    return (
-                        <Component {...matchProps} />
-                    )
-                }}/>
-            )
-        }
-
-    } catch (error) {
-        console.error(error);
-    }
-
-};
 
 /**
  * @param {array} modulesRoutes - array routes
@@ -59,18 +23,12 @@ const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
                 exact: modulesRoutes[i].exact,
                 name: modulesRoutes[i].name || modulesRoutes[i].title,
                 path: modulesRoutes[i].path || console.error(`Error: in the module ${moduleName} in one of the routes there is no property "path".`),
-                // component: <GetPageTitle children={
-                //         asyncComponent({
-                //         resolve: modulesRoutes[i].load,
-                //         LoadingComponent: () => <PreLoader/>,
-                //         ErrorComponent: ({error}) => <div>{error.message}</div>
-                //     })
-                // } />
-                component: asyncComponent({
+
+                component: getPageTitle({Store})(asyncComponent({
                     resolve: modulesRoutes[i].load,
                     LoadingComponent: () => <PreLoader/>,
                     ErrorComponent: ({error}) => <div>{error.message}</div>
-                }),
+                })),
 
             })
         } else if (modulesRoutes[i].hasOwnProperty('component')) {
@@ -142,28 +100,3 @@ export const ConfigRouter = [
         routes: routes
     }
 ];
-//
-// export const RootRouter = () => (
-//     <Layout>
-//
-//         <Route path="/">
-//             <Switch>
-//                 {
-//                     routes.map((item, index) => {
-//
-//                             return (
-//                                 <MainRoute
-//                                     key={`${item.path}-${index}`}
-//                                     exact={true}
-//                                     path={item.path}
-//                                     component={item.component}
-//                                     routes={item.children || null}
-//                                 />)
-//                         }
-//                     )
-//                 }
-//             </Switch>
-//         </Route>
-//
-//     </Layout>
-// );

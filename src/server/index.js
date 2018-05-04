@@ -1,5 +1,6 @@
 import register from 'ignore-styles'
 
+import {getTranslate} from 'react-localize-redux';
 
 import React from 'react'
 import ReactDOMServer from 'react-dom/server';
@@ -139,16 +140,8 @@ app.get("*", async (request, response) => {
          * */
         renderToStringWithData(COMPONENT)
             .then(content => {
-
-                console.log('RouterContext:', RouterContext)
-
-                const pageTitle = Store.getState().locale.translations[RouterContext.pageTitle];
-                try {
-                    // const pageTitle = Store.getState().locale.translations[RouterContext.pageTitle];
-                }
-                catch(error) {
-                    console.error(error)
-                }
+                const translate = getTranslate(Store.getState().locale);
+                const pageTitle = RouterContext.pageTitle && translate(RouterContext.pageTitle);
 
                 /**
                  * @param {Object} renderer
@@ -168,7 +161,6 @@ app.get("*", async (request, response) => {
                  * */
                 const reduxState = Store.getState();
 
-                console.log('pageTitle:',pageTitle);
                 /**
                  * @param {string} content - markup of the requested page converted into a string
                  * @param {Object} client - Apollo client
