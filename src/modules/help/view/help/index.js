@@ -7,9 +7,9 @@ import {
     AccordionWrapper,
 } from '../../../../blocks/accordion';
 
-// import AccordionButton from './accordion_button';
-// import AccordionHelpContent from './accordion-help_content';
-// import AccordionItemWrapper from './accordion_item-wrapper';
+import AccordionButton from './accordion_button';
+import AccordionHelpContent from './accordion-help_content';
+import AccordionItemWrapper from './accordion_item-wrapper';
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
 import Button from '../../../../blocks/button/button';
