@@ -103,20 +103,7 @@ app.get("*", async (request, response) => {
     let parsedUrl = url.parse(request.url);
     let parsedQs = querystring.parse(parsedUrl.query);
 
-
-    // TODO: Сделать маршрутов
-    let pageTitle = ConfigRouter.map((parent) => {
-
-        if(parent.hasOwnProperty('routes')){
-            return parent.routes.map((route) => {
-                if(parsedUrl.pathname === route.path && route.path.indexOf(parsedUrl.pathname) === 0){
-                    console.log('result:',route);
-                    return Store.getState().locale.translations[route.name];
-                }
-            })
-        }
-
-    });
+    const RouterContext = {}
 
     /**
      * @description root react component
@@ -132,7 +119,7 @@ app.get("*", async (request, response) => {
                                 location={{
                                     pathname: parsedUrl.pathname,
                                     search: parsedQs,
-                                }} context={{}}
+                                }} context={RouterContext}
                             >
                                 {renderRoutes(ConfigRouter)}
                             </StaticRouter>
@@ -152,6 +139,16 @@ app.get("*", async (request, response) => {
          * */
         renderToStringWithData(COMPONENT)
             .then(content => {
+                
+                console.log('RouterContext:', RouterContext)
+
+                const pageTitle = Store.getState().locale.translations[RouterContext.pageTitle];
+                try {
+                    // const pageTitle = Store.getState().locale.translations[RouterContext.pageTitle];                    
+                }
+                catch(error) {
+                    console.error(error)
+                }
 
                 /**
                  * @param {Object} renderer
