@@ -150,7 +150,7 @@ class VerifyModal extends Component {
                         <div className={styles.VerifyModalFooter}>
                             {/* <Link to='/paypal/paypal' styles={{textDecoration: 'none'}}> */}
                             <Button variant={'raised'} color={'primary'}
-                                    type="submit" disabled={pristine || submitting}
+                                    type="submit"
                                     styles={{textAlign: 'center'}}>
                                 <Image src={iconNotar} styles={{padding: '0.2rem', maxWidth: '40px'}}/>
 
