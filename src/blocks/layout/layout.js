@@ -32,7 +32,6 @@ class Layout extends Component {
                 <div className={styles && styles.layout}>
                     <Header/>
                     <main>
-
                         {renderRoutes(this.props.route.routes)}
                     </main>
                 </div>
@@ -40,6 +39,7 @@ class Layout extends Component {
                 <Footer className={styles && styles.footer}>
                     {translate('home_copyright')}
                 </Footer>
+
             </React.Fragment>
         );
     }
