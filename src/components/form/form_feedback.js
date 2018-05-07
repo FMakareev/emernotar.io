@@ -60,6 +60,7 @@ class FormFeedback extends Component {
             .then((res) => {
                 console.log(res);
                 this.onPreLoaderToggle(false);
+                this.setState({status: err.success.bodyText})
             })
             .catch((err) => {
                 this.onPreLoaderToggle(false);
@@ -75,7 +76,7 @@ class FormFeedback extends Component {
 
     render() {
         const {handleSubmit, reset, pristine, submitting, styles, translate} = this.props;
-        const {preLoader, error} = this.state;
+        const {preLoader, error, answer} = this.state;
 
         return (
             <form onSubmit={handleSubmit((value) => this.submit(value))}>
@@ -84,12 +85,14 @@ class FormFeedback extends Component {
                     component={InputText}
                     placeholder={translate('contact_form_name')}
                     type="text"
+                    required
                 />
                 <Field
                     name="email"
                     component={InputText}
                     placeholder={translate('contact_form_email')}
                     type="email"
+                    required
                 />
                 <Field
                     name="title"
@@ -102,6 +105,7 @@ class FormFeedback extends Component {
                     component={InputText}
                     placeholder={translate('contact_form_message')}
                     type="textarea"
+                    required
                 />
                 {
                     error && <Typography
@@ -114,6 +118,19 @@ class FormFeedback extends Component {
                         textTransform={'uppercase'}
                     >
                         {translate('home_network_error')}
+                    </Typography>
+                }
+
+                {
+                    status && <Typography
+                        as={'p'}
+                        size={'medium'}
+                        bright={'dark'}
+                        fontWeight={'bold'}
+                        textAlign={'center'}
+                        textTransform={'uppercase'}
+                    >
+                        {translate('home_success')}
                     </Typography>
                 }
 

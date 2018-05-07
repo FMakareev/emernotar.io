@@ -3,6 +3,8 @@ import {Container} from "../../../../blocks/container/index";
 
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
+import ReactHtmlParser from 'react-html-parser';
+
 import {Top} from "../../../../components/top/index";
 import {Row} from "../../../../blocks/row/index";
 import {Column} from "../../../../blocks/column/index";
