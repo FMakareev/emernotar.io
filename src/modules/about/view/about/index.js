@@ -33,6 +33,25 @@ class AboutPage extends Component {
 
     static defaultProps = {}
 
+    addLink(target) {
+        let test = '<a href=”http://oleksii.konashevych.site/”>Oleksii Konashevych</a>';
+        let test2 = '<a href=”http://oleksii.konashevych.site/”>Алексей Конашевич</a>';
+        let Emercoin = '<a href=”http://oleksii.konashevych.site/”>Emercoin</a>';
+        if (target.substring('Алексей Конашевич')) {
+            target = target.replace('Алексей Конашевич', '<a href=”http://oleksii.konashevych.site/”>Алексей Конашевич</a>')
+        }
+        if (target.substring('Oleksii Konashevych')) {
+            target = target.replace('Oleksii Konashevych', '<a href=”http://oleksii.konashevych.site/”>Oleksii Konashevych</a>')
+        }
+        if (target.substring('Emercoin')) {
+            target = target.replace('Emercoin', '<a href=”https://emercoin.com/”>Emercoin</a>')
+        }
+        if (target.substring('Emercoin Partnership')) {
+            target = target.replace('Emercoin Partnership', '<a href=”https://emercoin.com/”>Emercoin Partnership</a>')
+        }
+        return ReactHtmlParser(target);
+    }
+
     render() {
         const {translate} = this.props;
         const {data} = this.state;
@@ -54,16 +73,37 @@ class AboutPage extends Component {
                 </Container>
                 <Container styles={{marginBottom: '3rem', textAlign: 'center'}} maxWidth={'768px'}>
                     {
-                        data && data.map((item, index) => (
-                            <Row key={`AccordionWrapper-${index}`}>
-                                <Column>
-                                    <Typography textAlign={'center'} as={'p'}>
-                                        {translate(item.content)}
-                                    </Typography>
-                                    <DecorateDots/>
-                                </Column>
-                            </Row>
-                        ))
+                        data && data.map((item, index) => {
+                            let element = this.addLink(translate(item.content));
+                            console.log(element);
+                            if (typeof element === 'string') {
+                                return (
+                                    <Row key={`AccordionWrapper-${index}`}>
+                                        <Column>
+                                            <Typography textAlign={'center'} as={'p'}>
+                                                {
+                                                    element
+                                                }
+                                            </Typography>
+                                            <DecorateDots/>
+                                        </Column>
+                                    </Row>
+                                )
+                            } else {
+                                return (
+                                    <Row key={`AccordionWrapper-${index}`}>
+                                        <Column>
+                                            <Typography textAlign={'center'} as={'p'}>
+                                                {
+                                                    element
+                                                }
+                                            </Typography>
+                                            <DecorateDots/>
+                                        </Column>
+                                    </Row>
+                                )
+                            }
+                        })
                     }
                 </Container>
             </Fragment>
