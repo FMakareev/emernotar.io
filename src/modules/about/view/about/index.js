@@ -34,20 +34,17 @@ class AboutPage extends Component {
     static defaultProps = {}
 
     addLink(target) {
-        let test = '<a href=”http://oleksii.konashevych.site/”>Oleksii Konashevych</a>';
-        let test2 = '<a href=”http://oleksii.konashevych.site/”>Алексей Конашевич</a>';
-        let Emercoin = '<a href=”http://oleksii.konashevych.site/”>Emercoin</a>';
         if (target.substring('Алексей Конашевич')) {
-            target = target.replace('Алексей Конашевич', '<a href=”http://oleksii.konashevych.site/”>Алексей Конашевич</a>')
+            target = target.replace('Алексей Конашевич', '<a href="http://oleksii.konashevych.site/">Алексей Конашевич</a>')
         }
         if (target.substring('Oleksii Konashevych')) {
-            target = target.replace('Oleksii Konashevych', '<a href=”http://oleksii.konashevych.site/”>Oleksii Konashevych</a>')
+            target = target.replace('Oleksii Konashevych', '<a href="http://oleksii.konashevych.site/">Oleksii Konashevych</a>')
         }
         if (target.substring('Emercoin')) {
-            target = target.replace('Emercoin', '<a href=”https://emercoin.com/”>Emercoin</a>')
+            target = target.replace('Emercoin', '<a href="https://emercoin.com/">Emercoin</a>')
         }
         if (target.substring('Emercoin Partnership')) {
-            target = target.replace('Emercoin Partnership', '<a href=”https://emercoin.com/”>Emercoin Partnership</a>')
+            target = target.replace('Emercoin Partnership', '<a href="https://emercoin.com/">Emercoin Partnership</a>')
         }
         return ReactHtmlParser(target);
     }
