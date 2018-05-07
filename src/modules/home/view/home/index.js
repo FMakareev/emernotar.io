@@ -28,6 +28,18 @@ import AboutItem from '../../../../components/about/about_item';
 import {Typography} from "../../../../blocks/typography/index";
 import {DecorateDots} from "../../../../components/decorate/index";
 
+import gql from "graphql-tag";
+import {Query} from "react-apollo";
+
+const price = gql`
+  {
+    price {
+        notarizationPrice
+    }
+  }
+`;
+
+
 class HomePage extends Component {
     static defaultProps = {
         instruction: [
