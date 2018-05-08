@@ -27,6 +27,7 @@ import AboutItem from '../../../../components/about/about_item';
 
 import {Typography} from "../../../../blocks/typography/index";
 import {DecorateDots} from "../../../../components/decorate/index";
+import {Preloader} from '../../../../components/preloader/index';
 
 import gql from "graphql-tag";
 import {Query} from "react-apollo";
@@ -72,11 +73,16 @@ class HomePage extends Component {
     get initialState() {
         return {
             files: [],
-            hash: null
+            hash: null,
+            loading: false
         }
     }
 
     onDrop(files) {
+        this.setState({
+            loading:true
+        });
+
         console.log(files);
         localStorage.setItem('fileName', files[0].name);
         let reader = new FileReader();
@@ -89,6 +95,7 @@ class HomePage extends Component {
         reader.readAsBinaryString(files[0]);
 
         this.setState({
+            loading: false,
             files
         });
     }
@@ -121,9 +128,11 @@ class HomePage extends Component {
     }
 
     render() {
-        const {hash} = this.state;
+        const {hash,loading} = this.state;
         const {translate, instruction, styles, staticContext} = this.props;
-
+        if (loading ){
+            return(<Preloader palette={'dark'}/>)
+        }
         if (hash) {
             localStorage.setItem('fileHash', hash);
             return (<Redirect to={`/verify/${hash}`}/>)
@@ -296,7 +305,8 @@ HomePage = felaConnect(STYLE)(HomePage);
 
 const mapStateToProps = state => ({
     translate: getTranslate(state.locale),
-    currentLanguage: getActiveLanguage(state.locale).code
+    currentLanguage: getActiveLanguage(state.locale).code,
+    preLoader: state.preLoader.toggle
 });
 
 

@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-fela';
 import IconLogoEmerNatar from '../icons/icon_logo--text-less';
+import Typography from '../../blocks/typography/index'
 
 class PreLoader extends Component {
+
     constructor() {
-        super();
+        super(props);
         this.state = this.initialState;
         this.onClose = this.onClose.bind(this);
         this.renderPreloader = this.renderPreloader.bind(this);
@@ -44,7 +47,7 @@ class PreLoader extends Component {
     }
 
     render() {
-        const {styles,backdrop,palette} = this.props;
+        const {styles,backdrop,palette,children} = this.props;
         if (!this.state.active) return null;
 
         if(backdrop) {
@@ -53,6 +56,7 @@ class PreLoader extends Component {
                     <div className={styles.wrapper}>
                         {this.renderPreloader(styles,palette)}
                     </div>
+                    <Typography>{children}</Typography>
                 </div>
             )
         } else {
