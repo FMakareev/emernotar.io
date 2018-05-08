@@ -71,6 +71,7 @@ class HomePage extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.addEventListenerCloseWindow = this.addEventListenerCloseWindow.bind(this);
         this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
+        this.errorHandler = this.errorHandler.bind(this);
     }
 
     get initialState() {
@@ -82,33 +83,79 @@ class HomePage extends Component {
     }
 
     onDrop(files) {
-        this.setState({
-            loading: true
-        });
-
-        if (__isBrowser__) {
-            this.addEventListenerCloseWindow()
-        }
-        console.log('files:', files);
-        localStorage.setItem('fileName', files[0].name);
         let reader = new FileReader();
 
         reader.onload = (e) => {
-            console.log('reader.result: ', reader.result);
+            console.log('onload:', e);
             const hash = SHA512.hash(reader.result);
-
-            console.log('SHA512: ', hash);
             this.setState({
-                loading: false,
                 files,
                 hash: hash
             });
             this.removeEventListenerCloseWindow()
         };
 
+
+        reader.onloadstart = (e) => {
+            console.log('onloadstart:', e);
+            localStorage.setItem('fileName', files[0].name);
+            this.addEventListenerCloseWindow();
+            this.setState({
+                loading: true
+            });
+        };
+
+        // reader.onprogress = updateProgress;
+        reader.onloadend = (e) => {
+            console.log('onloadend:', e);
+            this.setState({
+                loading: false
+            });
+        };
+        reader.onerror = this.errorHandler;
         reader.readAsBinaryString(files[0]);
 
 
+    }
+
+    // progress bar
+    updateProgress(evt) {
+        // evt is an ProgressEvent.
+        if (evt.lengthComputable) {
+            var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+            // Increase the progress bar length.
+            if (percentLoaded < 100) {
+                this.setState({
+                    progress: percentLoaded + '%'
+                });
+            }
+        }
+    }
+
+    errorHandler(evt) {
+        console.error(evt.target.error.name + ': ' + evt.target.error.message);
+        switch (evt.target.error.code) {
+            case evt.target.error.NOT_FOUND_ERR:
+                this.setState({
+                    error: 'home_not_found_err'
+                });
+                break;
+            case evt.target.error.NOT_READABLE_ERR:
+                this.setState({
+                    error: 'home_not_readable_err'
+                });
+                break;
+            case evt.target.error.ABORT_ERR:
+                this.setState({
+                    error: 'home_any_error'
+                });
+                break; // noop
+            default:
+                this.setState({
+                    error: 'home_any_error'
+                });
+                return
+        }
     }
 
     componentDidMount() {
@@ -211,6 +258,18 @@ class HomePage extends Component {
                                                 </Typography>
                                             </div>
                                         </div>
+                                        {
+                                            this.state.error &&  <Typography
+                                                as={'p'}
+                                                size={'medium'}
+                                                color={'error'}
+                                                bright={'dark'}
+                                                fontWeight={'bold'}
+                                                textAlign={'center'}
+                                            >
+                                                {translate(this.state.error)}
+                                            </Typography>
+                                        }
                                     </Dropzone>
                                 </TopLabel>
                             </TopLabelRow>
@@ -241,8 +300,8 @@ class HomePage extends Component {
                                         {
                                             instruction.map((item, index) => {
                                                 let description = '';
-                                                if(data.price && data.price.notarizationPrice){
-                                                    description = translate(item['description']).replace('_price',data.price.notarizationPrice)
+                                                if (data.price && data.price.notarizationPrice) {
+                                                    description = translate(item['description']).replace('_price', data.price.notarizationPrice)
                                                 } else {
                                                     description = translate(item['description'])
                                                 }

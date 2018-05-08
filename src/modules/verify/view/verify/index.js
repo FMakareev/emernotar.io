@@ -120,24 +120,28 @@ class VerifyPage extends Component {
                                         src={iconVerify}
                                     />
                                     <Row justifyContent={'spaceBetween'}>
-                                        <Link to='/' styles={{textDecoration: 'none'}}>
-                                            <Button variant={'raised'} color={'primary'}>
-                                                <Image src={iconHome} styles={{padding: '0.2rem'}}/>
-                                                <Typography as={'p'} size={'small'} textDecoration={'none'}
-                                                            color={'secondary'} bright={'contrastText'}>
-                                                    {translate('verify_home')}
+                                        <Column styles={{display: 'inline-block'}}>
+                                            <Link to='/' styles={{textDecoration: 'none'}}>
+                                                <Button variant={'raised'} color={'primary'}>
+                                                    <Image src={iconHome} styles={{padding: '0.2rem'}}/>
+                                                    <Typography as={'p'} size={'small'} textDecoration={'none'}
+                                                                color={'secondary'} bright={'contrastText'}>
+                                                        {translate('verify_home')}
+                                                    </Typography>
+                                                </Button>
+                                            </Link>
+                                        </Column>
+                                        <Column styles={{display: 'inline-block'}}>
+                                            <Button onClick={() => this.onModalToggle(true)} variant={'raised'}
+                                                    color={'primary'}>
+                                                <Image src={iconNotar} styles={{padding: '0.2rem', height: '2.3rem'}}/>
+                                                <Typography as={'p'} size={'small'}
+                                                            color={'secondary'} bright={'contrastText'}
+                                                            styles={{marginRight: '0.5rem'}}>
+                                                    {translate('verify_notarize')}
                                                 </Typography>
                                             </Button>
-                                        </Link>
-                                        <Button onClick={() => this.onModalToggle(true)} variant={'raised'}
-                                                color={'primary'}>
-                                            <Image src={iconNotar} styles={{padding: '0.2rem', height: '2.3rem'}}/>
-                                            <Typography as={'p'} size={'small'}
-                                                        color={'secondary'} bright={'contrastText'}
-                                                        styles={{marginRight: '0.5rem'}}>
-                                                {translate('verify_notarize')}
-                                            </Typography>
-                                        </Button>
+                                        </Column>
                                     </Row>
                                 </TopLabel>
                             </TopLabelRow>

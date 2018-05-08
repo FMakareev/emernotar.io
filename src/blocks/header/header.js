@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Navigation from "../navigation/navigation";
+import NavigationTopBurger from "../navigation/navigation_top-burger";
+
 import {createComponentWithProxy} from 'react-fela'
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
@@ -8,10 +9,9 @@ import {Row} from '../row/index';
 import {Column} from '../column/index';
 import {Typography} from '../typography/index';
 import {Image} from "../image/index";
-// import Logo from '../logo/logo'
 
 import iconLogo from '../../assets/icons/icon_logo.svg';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import gql from "graphql-tag";
 import {Query} from "react-apollo";
@@ -44,14 +44,14 @@ class Header extends Component {
                              }
                          }}>
                         <Column>
-                            <Link to='/' style={{textDecoration: 'none'}}>
+                            <NavLink to='/' style={{textDecoration: 'none'}}>
                                 <Image src={iconLogo} alt="logo" styles={{
                                     height: '2rem',
                                     // margin: '1rem 0.5rem',
                                     '@media (min-width: 900px)': { height: '3rem'},
                                     '@media (max-width: 810px)': {margin: 'auto'}
                                 }}/>
-                            </Link>
+                            </NavLink>
                         </Column>
                         <Column>
                             <Query query={price}  ssr={__SSR_FETCH__}>
@@ -70,7 +70,7 @@ class Header extends Component {
                             </Query>
                         </Column>
                         <Column>
-                            <Navigation/>
+                            <NavigationTopBurger/>
                         </Column>
                     </Row>
                 </Container>

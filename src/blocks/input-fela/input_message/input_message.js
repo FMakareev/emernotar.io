@@ -5,8 +5,8 @@ import {createComponentWithProxy,connect } from "react-fela";
 const InputMessageStyle = ({state}) => ({
     position: 'relative',
     display: 'block',
-    marginBottom: '0.5rem',
-    fontSize: '0.75rem',
+    marginBottom: '1.5rem',
+    fontSize: '1.375rem',
     ...(state? {
         ...(state.valid && state.touched ? {
             color: '#00bfa5',

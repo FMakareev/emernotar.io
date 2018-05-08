@@ -17,6 +17,7 @@ const removeClassActive = function (event) {
 };
 
 const NavigationLink = ({children, to, styles}) => {
+
     return (<NavLink onClick={removeClassActive} exact to={to} activeStyle={{
         textDecoration: 'underline'
     }} className={styles.link + ' NavigationLink'}>

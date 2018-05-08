@@ -11,6 +11,7 @@ import {Mutation, graphql} from "react-apollo";
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import {PreLoader} from "../preloader/index";
+import {required} from "../../utils/validation/required";
 
 
 const createFeedback = gql`mutation createFeedback(
@@ -41,6 +42,7 @@ class FormFeedback extends Component {
     constructor(props) {
         super(props);
         this.state = this.initialState;
+        this.submit = this.submit.bind(this);
     }
 
     get initialState() {
@@ -60,7 +62,8 @@ class FormFeedback extends Component {
             .then((res) => {
                 console.log(res);
                 this.onPreLoaderToggle(false);
-                this.setState({status: err.success.bodyText})
+                this.setState({status:res});
+                this.props.reset();
             })
             .catch((err) => {
                 this.onPreLoaderToggle(false);
@@ -85,27 +88,28 @@ class FormFeedback extends Component {
                     component={InputText}
                     placeholder={translate('contact_form_name')}
                     type="text"
-                    required
+                    validate={[required(translate('contact_error_required'))]}
                 />
                 <Field
                     name="email"
                     component={InputText}
                     placeholder={translate('contact_form_email')}
                     type="email"
-                    required
+                    validate={[required(translate('contact_error_required'))]}
                 />
                 <Field
                     name="title"
                     component={InputText}
                     placeholder={translate('contact_form_theme')}
                     type="text"
+                    validate={[required(translate('contact_error_required'))]}
                 />
                 <Field
                     name="message"
                     component={InputText}
                     placeholder={translate('contact_form_message')}
                     type="textarea"
-                    required
+                    validate={[required(translate('contact_error_required'))]}
                 />
                 {
                     error && <Typography
@@ -115,7 +119,6 @@ class FormFeedback extends Component {
                         bright={'dark'}
                         fontWeight={'bold'}
                         textAlign={'center'}
-                        textTransform={'uppercase'}
                     >
                         {translate('home_network_error')}
                     </Typography>
@@ -128,7 +131,6 @@ class FormFeedback extends Component {
                         bright={'dark'}
                         fontWeight={'bold'}
                         textAlign={'center'}
-                        textTransform={'uppercase'}
                     >
                         {translate('home_success')}
                     </Typography>
@@ -136,7 +138,9 @@ class FormFeedback extends Component {
 
                 <div className={styles.footer}>
                     <Button variant={"raised"} color={'primary'}
-                            type="submit" disabled={pristine || submitting}>
+                            type="submit"
+                            // disabled={pristine || submitting}
+                    >
                         <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
                             {translate('contact_submit')}
                         </Typography>

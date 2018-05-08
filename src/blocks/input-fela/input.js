@@ -8,7 +8,7 @@ const InputStyle = ({state, ...props}) => {
         display: 'block',
         width: '100%',
         // minHeight: '2.25rem',
-        marginBottom: '1.5rem',
+        marginBottom: '0.5rem',
         padding: '1rem',
         fontSize: '1.2rem',
         borderRadius: '0',
