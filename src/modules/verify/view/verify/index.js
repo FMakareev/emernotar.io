@@ -160,8 +160,10 @@ class VerifyPage extends Component {
                                             }
                                             if (error) {
                                                 return (<Typography
-                                                    as={'h3'}
-                                                    size={'large'}
+                                                    as={'p'}
+                                                    size={'medium'}
+                                                    color={'error'}
+                                                    bright={'dark'}
                                                     fontWeight={'bold'}
                                                     textAlign={'center'}
                                                 >

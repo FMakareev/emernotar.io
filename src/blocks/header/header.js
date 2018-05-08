@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Navigation from "../navigation/navigation";
 import {createComponentWithProxy} from 'react-fela'
+import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
 import {Container} from '../container/index';
 import {Row} from '../row/index';
@@ -14,6 +15,7 @@ import {Link} from 'react-router-dom';
 
 import gql from "graphql-tag";
 import {Query} from "react-apollo";
+import {connect} from "react-redux";
 
 const price = gql`
   {
@@ -30,7 +32,7 @@ const HeaderStyle = ({theme}) => ({
 
 class Header extends Component {
     render() {
-        const {className} = this.props;
+        const {translate,className} = this.props;
 
         return (
             <div className={className}>
@@ -61,7 +63,7 @@ class Header extends Component {
                                             <Typography as={'p'} size={'small'} textAlign={'center'}
                                                         textTransform={'uppercase'} color={'default'}
                                                         bright={'contrastText'}>
-                                                Rate {data.price && data.price.notarizationPrice} $
+                                                {translate('home_rate')} {data.price && data.price.notarizationPrice} $
                                             </Typography>
                                         );
                                 }}
@@ -77,4 +79,14 @@ class Header extends Component {
     }
 }
 
-export default createComponentWithProxy(HeaderStyle, Header)
+
+
+Header = createComponentWithProxy(HeaderStyle, Header);
+
+const mapStateToProps = state => ({
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code,
+    preLoader: state.preLoader.toggle
+});
+Header = connect(mapStateToProps)(Header);
+export default Header

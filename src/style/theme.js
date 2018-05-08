@@ -70,12 +70,12 @@ export const createTheme = (colorPallet) => {
                 content: '""',
                 display: 'block',
                 width: '100%',
-                height: '3rem',
+                height: '4.6rem',
             }
         },
         footer: {
-            height: '3.5rem',
-            marginTop: '-3.5rem',
+            minHeight: '4.6rem',
+            marginTop: '-4.6rem',
             textAlign: 'center',
             padding: '1rem',
             backgroundColor: colorPallet.primary.dark,

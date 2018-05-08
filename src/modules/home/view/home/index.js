@@ -30,6 +30,7 @@ import {DecorateDots} from "../../../../components/decorate/index";
 import {PreLoader} from '../../../../components/preloader/index';
 
 import gql from "graphql-tag";
+import {Query} from "react-apollo";
 
 const price = gql`
   {
@@ -156,9 +157,6 @@ class HomePage extends Component {
     render() {
         const {hash, loading} = this.state;
         const {translate, instruction, styles, staticContext} = this.props;
-        // if (loading) {
-        //     return (<Preloader palette={'dark'}/>)
-        // }
         if (hash) {
             localStorage.setItem('fileHash', hash);
             return (<Redirect to={`/verify/${hash}`}/>)
@@ -221,45 +219,74 @@ class HomePage extends Component {
                 </Container>
                 <Container styles={{paddingBottom: '5rem', marginTop: '-5rem'}}>
                     <Row>
-                        {
-                            instruction.map((item, index) => {
-
-                                if (index !== 0) {
-                                    return (
-                                        <Fragment key={`instruction-${index}`}>
-                                            <Column className={styles.instructionDotsWrapper}
-                                                    styles={{textAlign: 'center'}}
-                                                    key={`instruction-${index}`} grid={[
-                                                [768, 10, '%'],
-                                            ]}>
-                                                <DecorateDots/>
-                                            </Column>
-                                            <Column key={`instruction-${index + 1}`}
-                                                    grid={[
-                                                        [768, 17.5, '%'],
-                                                    ]}>
-                                                <AboutItem
-                                                    title={translate(item['title'])}
-                                                    description={translate(item['description'])}
-                                                    icon={item.icon}
-                                                />
-                                            </Column>
-                                        </Fragment>
-                                    )
-                                } else {
-                                    return (<Column key={`instruction-${index}`}
-                                                    grid={[
-                                                        [768, 17.5, '%'],
-                                                    ]}>
-                                        <AboutItem
-                                            title={translate(item['title'])}
-                                            description={translate(item['description'])}
-                                            icon={item.icon}
-                                        />
-                                    </Column>)
+                        <Query query={price} ssr={__SSR_FETCH__}>
+                            {({loading, error, data}) => {
+                                if (loading) {
+                                    return <PreLoader/>;
                                 }
-                            })
-                        }
+                                if (error) {
+                                    return (<Typography
+                                        as={'p'}
+                                        size={'medium'}
+                                        color={'error'}
+                                        bright={'dark'}
+                                        fontWeight={'bold'}
+                                        textAlign={'center'}
+                                    >
+                                        {translate('home_network_error')}
+                                    </Typography>)
+                                }
+                                else
+                                    return (<Fragment>
+                                        {
+                                            instruction.map((item, index) => {
+                                                let description = '';
+                                                if(data.price && data.price.notarizationPrice){
+                                                    description = translate(item['description']).replace('_price',data.price.notarizationPrice)
+                                                } else {
+                                                    description = translate(item['description'])
+                                                }
+
+
+                                                if (index !== 0) {
+                                                    return (
+                                                        <Fragment key={`instruction-${index}`}>
+                                                            <Column className={styles.instructionDotsWrapper}
+                                                                    styles={{textAlign: 'center'}}
+                                                                    key={`instruction-${index}`} grid={[
+                                                                [768, 10, '%'],
+                                                            ]}>
+                                                                <DecorateDots/>
+                                                            </Column>
+                                                            <Column key={`instruction-${index + 1}`}
+                                                                    grid={[
+                                                                        [768, 17.5, '%'],
+                                                                    ]}>
+                                                                <AboutItem
+                                                                    title={translate(item['title'])}
+                                                                    description={description}
+                                                                    icon={item.icon}
+                                                                />
+                                                            </Column>
+                                                        </Fragment>
+                                                    )
+                                                } else {
+                                                    return (<Column key={`instruction-${index}`}
+                                                                    grid={[
+                                                                        [768, 17.5, '%'],
+                                                                    ]}>
+                                                        <AboutItem
+                                                            title={translate(item['title'])}
+                                                            description={description}
+                                                            icon={item.icon}
+                                                        />
+                                                    </Column>)
+                                                }
+                                            })
+                                        }
+                                    </Fragment>)
+                            }}
+                        </Query>
                     </Row>
                 </Container>
                 <Container>
