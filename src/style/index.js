@@ -36,10 +36,40 @@ export const createStyleRenderer = () => {
     renderer.renderKeyframe(keyframe); // => k1
 
     renderer.renderFont('Roboto', [
-        './assets/fonts/Roboto.ttf',
+        '/assets/fonts/Roboto.ttf',
     ]);
     renderer.renderFont('Icons', [
-        './assets/fonts/icon-emernotario.ttf',
+        '/assets/fonts/icon-emernotario.ttf',
+    ]);
+
+    renderer.renderFont('Exo-Regular', [
+        '/assets/fonts/exo/Exo2-Regular.eot',
+        '/assets/fonts/exo/Exo2-Regular.ttf',
+        '/assets/fonts/exo/Exo2-Regular.otf',
+        '/assets/fonts/exo/Exo2-Regular.woff',
+        '/assets/fonts/exo/Exo2-Regular.woff2',
+    ]);
+    renderer.renderFont('Exo-Bold', [
+        '/assets/fonts/exo/Exo2-Bold.eot',
+        '/assets/fonts/exo/Exo2-Bold.ttf',
+        '/assets/fonts/exo/Exo2-Bold.otf',
+        '/assets/fonts/exo/Exo2-Bold.woff',
+        '/assets/fonts/exo/Exo2-Bold.woff2',
+    ]);
+
+    renderer.renderFont('Vollkorn-Regular', [
+        '/assets/fonts/Vollkorn/Vollkorn-Regular.eot',
+        '/assets/fonts/Vollkorn/Vollkorn-Regular.ttf',
+        '/assets/fonts/Vollkorn/Vollkorn-Regular.otf',
+        '/assets/fonts/Vollkorn/Vollkorn-Regular.woff',
+        '/assets/fonts/Vollkorn/Vollkorn-Regular.woff2',
+    ]);
+    renderer.renderFont('Vollkorn-Bold', [
+        '/assets/fonts/Vollkorn/Vollkorn-Bold.eot',
+        '/assets/fonts/Vollkorn/Vollkorn-Bold.ttf',
+        '/assets/fonts/Vollkorn/Vollkorn-Bold.otf',
+        '/assets/fonts/Vollkorn/Vollkorn-Bold.woff',
+        '/assets/fonts/Vollkorn/Vollkorn-Bold.woff2',
     ]);
 
 
@@ -57,7 +87,7 @@ export const createStyleRenderer = () => {
             margin: 0,
             padding: 0,
             backgroundColor: '#ffffff',
-            fontFamily: "'Roboto', sans-serif",
+            fontFamily: "'Exo-Regular', sans-serif, 'Roboto', sans-serif",
             fontWeight: 400,
             lineHeight: '1.45rem',
         },
@@ -78,6 +108,10 @@ export const createStyleRenderer = () => {
             }
         }
     `);
+    renderer.renderStatic({
+        fontFamily: "'Vollkorn-Regular', serif, 'Roboto', sans-serif",
+    }, 'h1,h2,h3,h4,h5,h6');
+
     renderer.renderStatic({minHeight: '100%',}, 'main');
     renderer.renderStatic(`@page {
     size: A4 landscape;

@@ -22,7 +22,7 @@ const InputStyle = ({state, ...props}) => {
 
         '::placeholder': {
             color: '#AEAEAE',
-            fontFamily: "'Roboto', 'HelveticaNeue-Light', sans-serif",
+            fontFamily: 'inherit',
             textOverflow: 'ellipsis',
         },
 

@@ -54,8 +54,6 @@ class Header extends Component {
                         <Column>
                             <Query query={price}  ssr={__SSR_FETCH__}>
                                 {({loading, error, data}) => {
-                                    console.log(error);
-                                    console.log(data);
                                     if (loading) return '';
                                     if (error) return '';
                                     else

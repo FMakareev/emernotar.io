@@ -112,7 +112,6 @@ class VerifyPage extends Component {
                                     as={'div'} isActive>
                                     <Typography styles={{margin: '0 0 2rem 0'}} as={'h2'} size={'large'}
                                                 fontWeight={'bold'} textAlign={'center'}
-                                                textTransform={'uppercase'}
                                                 color={'secondary'} bright={'contrastText'}>
                                         {translate('verify_file_hash')}
                                     </Typography>
@@ -165,7 +164,6 @@ class VerifyPage extends Component {
                                                     size={'large'}
                                                     fontWeight={'bold'}
                                                     textAlign={'center'}
-                                                    textTransform={'uppercase'}
                                                 >
                                                     {translate('home_network_error')}
                                                 </Typography>)
@@ -179,7 +177,6 @@ class VerifyPage extends Component {
                                                             size={'large'}
                                                             fontWeight={'bold'}
                                                             textAlign={'center'}
-                                                            textTransform={'uppercase'}
                                                         >
                                                             {translate('verify_file_is_not_unique')}<br/>
                                                             {translate('verify_matches_found')}: {data.certificateList.length}
@@ -200,7 +197,6 @@ class VerifyPage extends Component {
                                                             size={'large'}
                                                             fontWeight={'bold'}
                                                             textAlign={'center'}
-                                                            textTransform={'uppercase'}
                                                         >
                                                             {translate('verify_not_matches_found')}
                                                         </Typography>

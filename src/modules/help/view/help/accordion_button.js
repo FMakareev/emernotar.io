@@ -98,6 +98,7 @@ const STYLE = ({color, theme, count,active}) => {
             fontSize: '1.75rem',
             color: '#4F4F4F',
             fontWeight: 'bold',
+            fontFamily: "'Vollkorn-Bold', serif, 'Roboto', sans-serif",
             ':hover': {
                 color: '#000',
             },

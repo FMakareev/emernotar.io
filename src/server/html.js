@@ -9,6 +9,12 @@ const Html = ({content,request,title, cache, style,reduxState, asyncState, getSt
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{title}</title>
         <style></style>
+        {/*<style>*/}
+            {/*@import url('https://fonts.googleapis.com/css?family=Exo:300,400,700');*/}
+        {/*</style>*/}
+        {/*<style>*/}
+            {/*@import url('https://fonts.googleapis.com/css?family=Vollkorn:400,700,900&subset=cyrillic')*/}
+        {/*</style>*/}
     </head>
     <body>
     <div id="app" dangerouslySetInnerHTML={{__html: content}}/>

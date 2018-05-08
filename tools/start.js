@@ -12,6 +12,7 @@ import bundle from "./bundle";
 import watch from "./watch";
 import {initMessage} from "./initLocalizationFiles";
 import {Clear} from "./clear";
+import fs from 'fs-extra'
 
 // const clientCompiler = webpack(browserConfig);
 // const serverCompiler = webpack(serverConfig);
@@ -22,6 +23,7 @@ const start = async () => {
     await Clear();
     await initMessage();
     await getVariablesesEnvironment();
+    fs.copySync('./src/assets/fonts', './public/assets/fonts');
 
     if (process.env.WATCH === "true") {
         await watch();

@@ -101,7 +101,7 @@ class Result extends Component {
         return (
             <Fragment>
                 <Top paddingBottom={'7rem'}>
-                    {translate('result_congratulations')}
+                    {translate('result_сongratulations')}
                 </Top>
                 <Container>
                     <TopLabelRow>
@@ -112,15 +112,13 @@ class Result extends Component {
                                 color={'secondary'} bright={'contrastText'}>  
                                     {translate('result_file_notar')}
                             </Typography>
-                            <Typography styles={{padding: '0.5rem'}} as={'p'} textAlign={'center'}
+                            <Typography styles={{padding: '0.5rem',maxWidth: '30rem'}} as={'p'} textAlign={'center'}
                                 color={'secondary'} bright={'contrastText'}>
-                                We will send your sertificate<br/>
-                                to your paypal e-mail<br/>
-                                within 20 minutes
+                                {translate('result_description')}
                             </Typography>
                             <Row>
-                                <Link to='/' styles={{textDecoration: 'none'}}>
-                                    <Button size={'medium'} variant={'raised'} color={'primary'}>
+                                <Link to='/' style={{textDecoration: 'none',display: 'block',textAlign: 'center'}}>
+                                    <Button styles={{textDecoration: 'none'}} size={'medium'} variant={'raised'} color={'primary'}>
                                         <Image src={iconHome} styles={{padding: '0.2rem'}}/>
                                         <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
                                         {translate('result_home')}
@@ -131,18 +129,17 @@ class Result extends Component {
                         </TopLabel>
                     </TopLabelRow>
                 </Container>
-                <Container styles={{marginTop: '-10rem', textAlign: 'center'}}>
-                    <Column grid={[[, 70, '%'],]}>
-                    <Typography as={'p'} size={'medium'} fontWeight={'bold'} styles={{lineHeight: '2'}}
-                        color={'default'} bright={'contrastText'}>
-                        {/* SHA512: {name} <br/>
-                        FileName: {fileName} <br/>
-                        Date: {notarizationDate} <br/>
-                        Owner: {ownerEmail}*/}
-                        lololololo
-                    </Typography>
-                    </Column>
-                </Container>
+                {/*<Container styles={{marginTop: '-10rem', textAlign: 'center'}}>*/}
+                    {/*<Column grid={[[, 70, '%'],]}>*/}
+                    {/*<Typography as={'p'} size={'medium'} fontWeight={'bold'} styles={{lineHeight: '2'}}*/}
+                        {/*color={'default'} bright={'contrastText'}>*/}
+                         {/*SHA512: {name} <br/>*/}
+                        {/*FileName: {fileName} <br/>*/}
+                        {/*Date: {notarizationDate} <br/>*/}
+                        {/*Owner: {ownerEmail}*/}
+                    {/*</Typography>*/}
+                    {/*</Column>*/}
+                {/*</Container>*/}
             </Fragment>
         )
     }

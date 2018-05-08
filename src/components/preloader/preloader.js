@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-fela';
 import IconLogoEmerNatar from '../icons/icon_logo--text-less';
-import Typography from '../../blocks/typography/index'
+import {Typography} from '../../blocks/typography/index'
 
 class PreLoader extends Component {
 
-    constructor() {
+    constructor(props) {
         super(props);
         this.state = this.initialState;
         this.onClose = this.onClose.bind(this);
         this.renderPreloader = this.renderPreloader.bind(this);
+        this.renderCssLoadContainer = this.renderCssLoadContainer.bind(this);
     }
 
     get initialState() {
@@ -34,12 +35,12 @@ class PreLoader extends Component {
         </div>)
     }
 
-    renderPreloader(styles,palette) {
+    renderPreloader(styles) {
         return (<div className={styles.cssloadLoader}>
             {
                 this.renderCssLoadContainer(styles)
             }
-            <IconLogoEmerNatar palette={palette}/>
+            <IconLogoEmerNatar/>
             {
                 this.renderCssLoadContainer(styles)
             }
@@ -47,27 +48,35 @@ class PreLoader extends Component {
     }
 
     render() {
-        const {styles,backdrop,palette,children} = this.props;
+        const {styles, backdrop,  children} = this.props;
+        console.log(this.props);
         if (!this.state.active) return null;
 
-        if(backdrop) {
+        if (backdrop) {
             return (
-                <div className={styles.backdrop} onClick={this.onClose}>
+                <div className={styles.backdrop}>
                     <div className={styles.wrapper}>
-                        {this.renderPreloader(styles,palette)}
+                        {this.renderPreloader(styles)}
+                        <Typography
+                            as={'p'}
+                            size={'medium'}
+                            textAlign={'center'}
+                            bright={'main'}
+                        >
+                            {children}
+                        </Typography>
                     </div>
-                    <Typography>{children}</Typography>
                 </div>
             )
         } else {
-            return this.renderPreloader(styles,palette)
+            return this.renderPreloader(styles)
         }
 
 
     }
 }
 
-const Style = ({theme,palette= 'main'}) => {
+const Style = ({theme, palette = 'main'}) => {
     return {
         backdrop: {
             position: 'fixed',
@@ -76,7 +85,7 @@ const Style = ({theme,palette= 'main'}) => {
             right: '0',
             bottom: '0',
             zIndex: '100',
-            backgroundColor: 'rgba(0,0,0,0.4)'
+            backgroundColor: 'rgba(0,0,0,0.7)'
         },
         wrapper: {
             position: 'absolute',
@@ -89,7 +98,7 @@ const Style = ({theme,palette= 'main'}) => {
         cssloadLoader: {
             display: 'flex',
             alignItems: 'center',
-            width:'210px',
+            width: '210px',
             margin: '0 auto',
             fill: theme.palette.primary[palette],
         },

@@ -35,16 +35,16 @@ class AboutPage extends Component {
 
     addLink(target) {
         if (target.substring('Алексей Конашевич')) {
-            target = target.replace('Алексей Конашевич', '<a href="http://oleksii.konashevych.site/">Алексей Конашевич</a>')
+            target = target.replace('Алексей Конашевич', '<a target="_blank" href="http://oleksii.konashevych.site/">Алексей Конашевич</a>')
         }
         if (target.substring('Oleksii Konashevych')) {
-            target = target.replace('Oleksii Konashevych', '<a href="http://oleksii.konashevych.site/">Oleksii Konashevych</a>')
+            target = target.replace('Oleksii Konashevych', '<a target="_blank" href="http://oleksii.konashevych.site/">Oleksii Konashevych</a>')
         }
         if (target.substring('Emercoin')) {
-            target = target.replace('Emercoin', '<a href="https://emercoin.com/">Emercoin</a>')
+            target = target.replace('Emercoin', '<a target="_blank" href="https://emercoin.com/">Emercoin</a>')
         }
         if (target.substring('Emercoin Partnership')) {
-            target = target.replace('Emercoin Partnership', '<a href="https://emercoin.com/">Emercoin Partnership</a>')
+            target = target.replace('Emercoin Partnership', '<a target="_blank" href="https://emercoin.com/">Emercoin Partnership</a>')
         }
         return ReactHtmlParser(target);
     }
@@ -72,7 +72,6 @@ class AboutPage extends Component {
                     {
                         data && data.map((item, index) => {
                             let element = this.addLink(translate(item.content));
-                            console.log(element);
                             if (typeof element === 'string') {
                                 return (
                                     <Row key={`AccordionWrapper-${index}`}>

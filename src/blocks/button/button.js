@@ -252,7 +252,7 @@ const ButtonStyle = ({
     boxSizing: 'border-box',
     border: 'none',
 
-    // fontFamily: 'PTSansPro',
+    fontFamily: 'inherit',
     textDecoration: 'none',
     cursor: 'pointer',
     transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',

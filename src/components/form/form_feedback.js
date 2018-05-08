@@ -76,7 +76,7 @@ class FormFeedback extends Component {
 
     render() {
         const {handleSubmit, reset, pristine, submitting, styles, translate} = this.props;
-        const {preLoader, error, answer} = this.state;
+        const {preLoader, error, status} = this.state;
 
         return (
             <form onSubmit={handleSubmit((value) => this.submit(value))}>

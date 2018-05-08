@@ -20,7 +20,7 @@ export const browserConfig = () => {
             path: path.resolve(__dirname, process.env.PUBLIC_URL || '../../public'),
             publicPath: '/',
             filename: 'bundle.js',
-            chunkFilename: 'static/js/[name].js',
+            chunkFilename: 'assets/js/[name].js',
         },
         module: {
             rules: [
@@ -77,8 +77,8 @@ export const browserConfig = () => {
                                 emitFile: true,
                                 useRelativePath: false,
                                 name: '[name]-[hash:8].[ext]',
-                                outputPath: '/static/media/',
-                                publicPath: '/static/media/'
+                                outputPath: '/assets/media/',
+                                publicPath: '/assets/media/'
                             },
                         },
                     ]

@@ -27,10 +27,9 @@ import AboutItem from '../../../../components/about/about_item';
 
 import {Typography} from "../../../../blocks/typography/index";
 import {DecorateDots} from "../../../../components/decorate/index";
-import {Preloader} from '../../../../components/preloader/index';
+import {PreLoader} from '../../../../components/preloader/index';
 
 import gql from "graphql-tag";
-import {Query} from "react-apollo";
 
 const price = gql`
   {
@@ -68,6 +67,9 @@ class HomePage extends Component {
         super();
         this.state = this.initialState;
         this.renderVideo = this.renderVideo.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.addEventListenerCloseWindow = this.addEventListenerCloseWindow.bind(this);
+        this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
     }
 
     get initialState() {
@@ -80,24 +82,32 @@ class HomePage extends Component {
 
     onDrop(files) {
         this.setState({
-            loading:true
+            loading: true
         });
 
-        console.log(files);
+        if (__isBrowser__) {
+            this.addEventListenerCloseWindow()
+        }
+        console.log('files:', files);
         localStorage.setItem('fileName', files[0].name);
         let reader = new FileReader();
 
         reader.onload = (e) => {
-            console.log(reader.result);
-            this.setState({hash: SHA512.hash(reader.result)})
+            console.log('reader.result: ', reader.result);
+            const hash = SHA512.hash(reader.result);
+
+            console.log('SHA512: ', hash);
+            this.setState({
+                loading: false,
+                files,
+                hash: hash
+            });
+            this.removeEventListenerCloseWindow()
         };
 
         reader.readAsBinaryString(files[0]);
 
-        this.setState({
-            loading: false,
-            files
-        });
+
     }
 
     componentDidMount() {
@@ -105,6 +115,22 @@ class HomePage extends Component {
 
     onChange(event) {
         console.log(event.target);
+    }
+
+    confirmationMessageCloseWindow(e) {
+        let confirmationMessage = "";
+        (e || window.event).returnValue = confirmationMessage;
+        return confirmationMessage;
+    }
+
+    addEventListenerCloseWindow() {
+        console.log('run addEventListenerCloseWindow');
+        window.addEventListener("beforeunload", this.confirmationMessageCloseWindow);
+    }
+
+    removeEventListenerCloseWindow() {
+        console.log('run removeEventListenerCloseWindow');
+        window.removeEventListener("beforeunload", this.confirmationMessageCloseWindow);
     }
 
     renderVideo() {
@@ -128,19 +154,18 @@ class HomePage extends Component {
     }
 
     render() {
-        const {hash,loading} = this.state;
+        const {hash, loading} = this.state;
         const {translate, instruction, styles, staticContext} = this.props;
-        if (loading ){
-            return(<Preloader palette={'dark'}/>)
-        }
+        // if (loading) {
+        //     return (<Preloader palette={'dark'}/>)
+        // }
         if (hash) {
             localStorage.setItem('fileHash', hash);
             return (<Redirect to={`/verify/${hash}`}/>)
         }
         return (
             <Fragment>
-                <Top paddingBottom={'7rem'}
-                >
+                <Top paddingBottom={'7rem'}>
                     {translate('home_motivating_text')}
                 </Top>
                 <Container>
@@ -148,7 +173,7 @@ class HomePage extends Component {
                         <Column>
                             <TopLabelRow>
                                 <TopLabel as={'div'} className={styles.dropZoneContent} isActive>
-                                    <Dropzone className={styles.dropzone} onDrop={this.onDrop.bind(this)}>
+                                    <Dropzone className={styles.dropzone} onDrop={this.onDrop}>
                                         <Typography
                                             styles={{margin: '0 0 2rem 0'}}
                                             as={'h2'}
@@ -242,6 +267,13 @@ class HomePage extends Component {
                         this.renderVideo()
                     }
                 </Container>
+                {
+                    this.state.loading &&
+                    <PreLoader backdrop>
+                        {translate('home_calculation_of_hash_preloader')}
+                    </PreLoader>
+                }
+
             </Fragment>
 
         )
@@ -311,7 +343,6 @@ const mapStateToProps = state => ({
 
 
 HomePage = connect(mapStateToProps)(HomePage);
-
 
 
 export default HomePage
