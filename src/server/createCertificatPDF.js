@@ -9,7 +9,7 @@ export const createCertificat = async (req, response) => {
         const {params: {hash}} = req;
         console.log('hash:', encodeURIComponent(hash));
         console.log('req:', req);
-        console.log('__ENDPOINT__', __ENDPOINT__);
+        console.log('__ENDPOINT_SERVER__', __ENDPOINT_SERVER__);
 
         // @description path to the certificate store
         const certificates_dir = path.resolve(__dirname, '../../public/static/certificates/');

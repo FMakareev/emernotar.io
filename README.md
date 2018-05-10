@@ -69,7 +69,8 @@
     * server_entry -*default: './src/server/index.js'*
     * ssr_fetch -*default: true* отвечает за включение запросов graphql на сервере (стоит отключить если сервер не работает)
     * port -*default: 3000* 
-    * endpoint -*default: 'http://192.168.1.188:5001'* 
+    * endpoint_server -*default: 'http://192.168.1.188:5001'* 
+    * endpoint_client -*default: 'http://192.168.1.188:5001'* 
 
 
 

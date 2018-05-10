@@ -81,6 +81,16 @@ app.use(requestLanguage({
 app.get('/create_certificat/:hash', createCertificat);
 
 
+app.get('/unity_test', (request, response) =>{
+    response.status(200);
+    response.send(JSON.stringify([
+        {
+            title: 'Hello Unity. My name in node.js.'
+        }
+    ]));
+    response.end();
+});
+
 /**
  * @description http://expressjs.com/en/4x/api.html#app.get.method
  * */

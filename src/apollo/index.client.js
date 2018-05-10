@@ -12,7 +12,7 @@ import apolloLogger from 'apollo-link-logger';
 //     // ErrorLink
 // } from './Links';
 
-const httpLink = new HttpLink({uri: '/graphql'});
+const httpLink = new HttpLink({uri: __ENDPOINT_CLIENT__+ '/graphql'});
 
 const ErrorLogger = onError(({ networkError }) => {
     console.log(JSON.stringify(networkError));

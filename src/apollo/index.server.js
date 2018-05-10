@@ -12,7 +12,7 @@ import {
     // ErrorLink
 } from './Links';
 
-const httpLink = new FileUploadLink({uri: __ENDPOINT__+'/graphql'});
+const httpLink = new FileUploadLink({uri: __ENDPOINT_SERVER__+'/graphql'});
 
 // const link = from([
 //     new CatchLink,
