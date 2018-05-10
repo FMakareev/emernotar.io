@@ -11,7 +11,8 @@ const reImage = /\.(jpg|png|gif|svg|pdf|ico)$/;
 const reGraphql = /\.(graphql|gql)$/;
 
 export const browserConfig = () => {
-
+    console.log('process.env.ENDPOINT_CLIENT',process.env.ENDPOINT_CLIENT);
+    console.log('process.env.ENDPOINT_SERVER',process.env.ENDPOINT_SERVER);
     return {
         mode: process.env.MODE || 'development',
         watch: process.env.WATCH === "true",
@@ -100,7 +101,7 @@ export const browserConfig = () => {
                 __DEV__: true,
                 __SSR_FETCH__: process.env.SSR_FETCH,
                 __PORT__: process.env.PORT || 3000,
-                __ENDPOINT_CLIENT__: process.env.ENDPOINT_CLIENT || "'http://localhost:5001'",
+                __ENDPOINT_CLIENT__: process.env.ENDPOINT_CLIENT || "",
                 __ENDPOINT_SERVER__: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
             }),
             // new CleanWebpackPlugin([ process.env.PUBLIC_URL || '../../public']),

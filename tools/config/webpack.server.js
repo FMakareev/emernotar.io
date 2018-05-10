@@ -13,6 +13,8 @@ const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
 const reImage = /\.(jpg|png|gif|svg|pdf|ico)$/;
 
 export const serverConfig = () => {
+    console.log('process.env.ENDPOINT_CLIENT',process.env.ENDPOINT_CLIENT);
+    console.log('process.env.ENDPOINT_SERVER',process.env.ENDPOINT_SERVER);
 
     return {
         mode: process.env.MODE || 'development',
@@ -88,7 +90,7 @@ export const serverConfig = () => {
                 __DEV__: true,
                 __SSR_FETCH__: process.env.SSR_FETCH,
                 __PORT__: process.env.PORT || 3000,
-                __ENDPOINT_CLIENT__: process.env.ENDPOINT_CLIENT || "'http://localhost:5001'",
+                __ENDPOINT_CLIENT__: process.env.ENDPOINT_CLIENT || "",
                 __ENDPOINT_SERVER__: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
             }),
             // new CleanWebpackPlugin([process.env.PUBLIC_URL || '../../public']),

@@ -7,6 +7,7 @@ export const getVariablesesEnvironment = () => {
             process.argv.map((item) => {
                 if (item.indexOf('--') !== -1) {
                     env[item.substring(2, item.indexOf('='))] = item.substring(item.indexOf('=') + 1);
+                    console.log('env[item.substring(2, item.indexOf(\'=\'))]',env[item.substring(2, item.indexOf('='))]);
                     process.env[item.substring(2, item.indexOf('=')).toUpperCase()] = item.substring(item.indexOf('=') + 1);
                 }
             });
@@ -18,3 +19,4 @@ export const getVariablesesEnvironment = () => {
 
     })
 };
+// yarn build:ssr:prod  --endpoint_server='\"http://localhost:3002\"'  --endpoint_client='\"http://localhost:3002\"'
