@@ -68,7 +68,7 @@ class HomePage extends Component {
         super();
         this.state = this.initialState;
         this.renderVideo = this.renderVideo.bind(this);
-        this.onDrop = this.onDrop.bind(this);
+        this.createHashFromFile = this.createHashFromFile.bind(this);
         this.addEventListenerCloseWindow = this.addEventListenerCloseWindow.bind(this);
         this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
         this.errorHandler = this.errorHandler.bind(this);
@@ -82,12 +82,37 @@ class HomePage extends Component {
         }
     }
 
-    onDrop(files) {
+    /**
+     * @params {array} files
+     * @description
+     * */
+    createHashFromFile(files) {
+
         let reader = new FileReader();
 
+
+        reader.onloadstart = (e) => {
+            localStorage.setItem('fileName', files[0].name);
+            this.addEventListenerCloseWindow();
+            this.setState({
+                loading: true
+            });
+        };
+        reader.onloadend = (e) => {
+            this.setState({
+                loading: false
+            });
+        };
+        reader.onerror = this.errorHandler;
+
         reader.onload = (e) => {
-            console.log('onload:', e);
-            const hash = SHA512.hash(reader.result);
+            let binary = "";
+            let bytes = new Uint8Array(reader.result);
+            let length = bytes.byteLength;
+            for (let i = 0; i < length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            const hash = SHA512.hash(binary);
             this.setState({
                 files,
                 hash: hash
@@ -95,41 +120,9 @@ class HomePage extends Component {
             this.removeEventListenerCloseWindow()
         };
 
-
-        reader.onloadstart = (e) => {
-            console.log('onloadstart:', e);
-            localStorage.setItem('fileName', files[0].name);
-            this.addEventListenerCloseWindow();
-            this.setState({
-                loading: true
-            });
-        };
-
-        // reader.onprogress = updateProgress;
-        reader.onloadend = (e) => {
-            console.log('onloadend:', e);
-            this.setState({
-                loading: false
-            });
-        };
-        reader.onerror = this.errorHandler;
-        reader.readAsBinaryString(files[0]);
+        reader.readAsArrayBuffer(files[0]);
 
 
-    }
-
-    // progress bar
-    updateProgress(evt) {
-        // evt is an ProgressEvent.
-        if (evt.lengthComputable) {
-            var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
-            // Increase the progress bar length.
-            if (percentLoaded < 100) {
-                this.setState({
-                    progress: percentLoaded + '%'
-                });
-            }
-        }
     }
 
     errorHandler(evt) {
@@ -218,7 +211,7 @@ class HomePage extends Component {
                         <Column>
                             <TopLabelRow>
                                 <TopLabel as={'div'} className={styles.dropZoneContent} isActive>
-                                    <Dropzone className={styles.dropzone} onDrop={this.onDrop}>
+                                    <Dropzone className={styles.dropzone} onDrop={this.createHashFromFile}>
                                         <Typography
                                             styles={{margin: '0 0 2rem 0'}}
                                             as={'h2'}

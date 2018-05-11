@@ -38,9 +38,6 @@ class ContactPage extends Component {
 
                 <Container>
                     <Row justifyContent={'center'}>
-                        {/*<Column grid={[[700, 50, '%']]}>*/}
-                            {/*<Contacts/>*/}
-                        {/*</Column>*/}
                         <Column grid={[[700, 50, '%']]}>
                             <FormFeedback/>
                         </Column>

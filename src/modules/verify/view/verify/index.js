@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import PropTypes from 'prop-types';
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import {connect as connectFela} from 'react-fela';
-// import 'react-responsive-modal/lib/react-responsive-modal.css';
 
 import {Container} from "../../../../blocks/container/index";
 import {Row} from "../../../../blocks/row/index";
@@ -19,12 +17,10 @@ import iconHome from '../../../../assets/icons/icon_home.svg';
 import iconNotar from '../../../../assets/icons/icon_notorize-black.svg';
 import iconVerify from '../../../../assets/icons/icon_verify.svg';
 
-import VerifyItem from './verify_item';
 import VerifyModal from "./verify_modal";
 
-import {Query} from "react-apollo";
 import gql from 'graphql-tag';
-import {PreLoader} from "../../../../components/preloader/index";
+import VerifyCertificatList from "./verify_certificat-list";
 
 
 const certificate = gql`query certificate($hash: String){
@@ -33,13 +29,6 @@ const certificate = gql`query certificate($hash: String){
     }
 }`;
 
-const certificateList = gql`query($name: String){
-    certificateList(name: $name) {
-        name
-        notarizationDate
-        ownerEmail
-    }
-}`;
 
 
 class VerifyPage extends Component {
@@ -53,12 +42,7 @@ class VerifyPage extends Component {
             },
         }
     };
-    // componentDidCatch(error, info) {
-    //     // Display fallback UI
-    //     this.setState({ hasError: true });
-    //     // You can also log the error to an error reporting service
-    //     console.log(error, info);
-    // }
+
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -87,17 +71,10 @@ class VerifyPage extends Component {
     }
 
 
-    componentDidMount() {
-
-    }
-
     render() {
         const {translate, styles} = this.props;
         const {open} = this.state;
-        console.log(this.props);
-        // return (<div>
-        //     hello
-        // </div>)
+        const FILE_HASH = this.props.match.params.hash;
 
         return (
             <Fragment>
@@ -151,70 +128,7 @@ class VerifyPage extends Component {
                 <Container styles={{maxWidth: '768px !important', marginBottom: '5rem', marginTop: '-5rem'}}>
                     <Row>
                         <Column>
-                            {
-                                this.props.match.params.hash &&
-                                <Query query={certificateList} variables={{name: this.props.match.params.hash}}
-                                       ssr={__SSR_FETCH__}>
-                                    {
-                                        ({loading, error, data}) => {
-                                            console.log(loading, error, data);
-
-                                            if (loading) {
-                                                return (<PreLoader palette={'dark'}/>);
-                                            }
-                                            if (error) {
-                                                return (<Typography
-                                                    as={'p'}
-                                                    size={'medium'}
-                                                    color={'error'}
-                                                    bright={'dark'}
-                                                    fontWeight={'bold'}
-                                                    textAlign={'center'}
-                                                >
-                                                    {translate('home_network_error')}
-                                                </Typography>)
-                                            }
-                                            if (data.certificateList && data.certificateList.length) {
-
-                                                return (
-                                                    <Fragment>
-                                                        <Typography
-                                                            as={'h3'}
-                                                            size={'large'}
-                                                            fontWeight={'bold'}
-                                                            textAlign={'center'}
-                                                        >
-                                                            {translate('verify_file_is_not_unique')}<br/>
-                                                            {translate('verify_matches_found')}: {data.certificateList.length}
-                                                        </Typography>
-
-                                                        {
-                                                            data.certificateList.map((data, index) => <VerifyItem
-                                                                data={data} key={`VerifyItem-${index}`}/>)
-                                                        }
-                                                    </Fragment>
-                                                );
-                                            } else {
-                                                return (
-                                                    <Fragment>
-                                                        <Typography
-                                                            styles={{marginBottom: '5rem'}}
-                                                            as={'h3'}
-                                                            size={'large'}
-                                                            fontWeight={'bold'}
-                                                            textAlign={'center'}
-                                                        >
-                                                            {translate('verify_not_matches_found')}
-                                                        </Typography>
-
-                                                    </Fragment>
-                                                );
-                                            }
-                                        }
-                                    }
-                                </Query>
-                            }
-
+                            <VerifyCertificatList fileHash={FILE_HASH} />
                         </Column>
                     </Row>
                 </Container>

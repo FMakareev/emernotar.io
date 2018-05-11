@@ -163,13 +163,13 @@ class VerifyModal extends Component {
                         </div>
 
                         {/*<div className={styles.VerifyModalFooterText}>*/}
-                            {/*<Typography as={'div'} color={'secondary'} bright={'contrastText'} fontWeight={'bold'}*/}
-                                        {/*size={'small'} textTransform={'uppercase'}>*/}
-                                {/*{translate('verify_modal_info_title')}*/}
-                            {/*</Typography>*/}
-                            {/*<Typography as={'span'} color={'secondary'} bright={'contrastText'} size={'small'}>*/}
-                                {/*{translate('verify_modal_info_text')}*/}
-                            {/*</Typography>*/}
+                        {/*<Typography as={'div'} color={'secondary'} bright={'contrastText'} fontWeight={'bold'}*/}
+                        {/*size={'small'} textTransform={'uppercase'}>*/}
+                        {/*{translate('verify_modal_info_title')}*/}
+                        {/*</Typography>*/}
+                        {/*<Typography as={'span'} color={'secondary'} bright={'contrastText'} size={'small'}>*/}
+                        {/*{translate('verify_modal_info_text')}*/}
+                        {/*</Typography>*/}
                         {/*</div>*/}
                     </form>
                 </Modal>
@@ -185,6 +185,8 @@ const STYLE = () => {
     return {
         VerifyModalWrapper: {
             backgroundColor: '#FDF396 !important',
+            margin: '0 auto',
+            maxHeight: '600px'
         },
         VerifyModalHeader: {
             padding: '1rem 2rem !important',

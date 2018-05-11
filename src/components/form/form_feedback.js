@@ -1,17 +1,30 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Field, reduxForm, SubmissionError} from "redux-form";
+import {Field, reduxForm, updateSyncErrors,destroy} from "redux-form";
 import {InputText} from "../../blocks/input-fela/input_text/input_text";
-import {Textarea} from "../../blocks/input-fela/textarea";
 import {Typography} from '../../blocks/typography/index';
 import {Button} from "../../blocks/button/index";
 import {connect as connectFela} from 'react-fela';
 import gql from 'graphql-tag';
-import {Mutation, graphql} from "react-apollo";
+import {graphql} from "react-apollo";
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import {PreLoader} from "../preloader/index";
 import {required} from "../../utils/validation/required";
+
+import {Store} from '../../store/index';
+
+
+const validate = values => {
+    const errors = {}
+    if (!values.username) {
+        // required(translate('contact_error_required'))
+        errors.username = 'Required'
+    }
+    if (!values.password) {
+        errors.password = 'Required'
+    }
+    return errors
+}
 
 
 const createFeedback = gql`mutation createFeedback(
@@ -77,6 +90,20 @@ class FormFeedback extends Component {
             })
     }
 
+    componentDidMount() {
+        // Store.subscribe(() => {
+        //     unregisterField('FormFeedback','name');
+        //     registerField('FormFeedback', 'name', 'text')
+        // })
+        // console.log('updateSyncErrors');
+        // updateSyncErrors('FormFeedback')
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
+        destroy('FormFeedback');
+    }
+
     render() {
         const {handleSubmit, reset, pristine, submitting, styles, translate} = this.props;
         const {preLoader, error, status} = this.state;
@@ -139,7 +166,7 @@ class FormFeedback extends Component {
                 <div className={styles.footer}>
                     <Button variant={"raised"} color={'primary'}
                             type="submit"
-                            // disabled={pristine || submitting}
+                            disabled={pristine || submitting}
                     >
                         <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
                             {translate('contact_submit')}
@@ -183,5 +210,10 @@ const mapStateToProps = state => ({
     currentLanguage: getActiveLanguage(state.locale).code
 });
 
+const mapDispatchToProps = dispatch => ({
+    dispatch: (action, payload) => {
+        dispatch();
+    }
+})
 
 export default connect(mapStateToProps)(FormFeedback)

@@ -66,7 +66,7 @@ const STYLE = ({theme,variant = 'vertical'}) => {
 
             ...(variant === 'vertical' ? {
                 '@media(min-width: 768px)':{
-                    marginRight: '0',
+                    margin: '0 auto',
                 }
             }:null),
 

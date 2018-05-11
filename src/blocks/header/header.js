@@ -55,7 +55,7 @@ class Header extends Component {
                             </NavLink>
                         </Column>
                         <Column>
-                            <Query query={price}  ssr={__SSR_FETCH__}>
+                            <Query query={price} ssr={__SSR_FETCH__}>
                                 {({loading, error, data}) => {
                                     if (loading) return '';
                                     if (error) return '';

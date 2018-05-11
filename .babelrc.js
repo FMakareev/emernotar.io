@@ -10,18 +10,20 @@
 // Babel configuration
 // https://babeljs.io/docs/usage/api/
 module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          node: 'current',
-        },
-      },
+    presets: [
+        [
+            '@babel/preset-env',
+
+            {
+                targets: {
+                    node: 'current',
+                    "browsers": ["last 2 versions","ie 10", "safari >= 7"]
+                },
+            },
+        ],
+        '@babel/preset-stage-2',
+        '@babel/preset-flow',
+        '@babel/preset-react',
     ],
-    '@babel/preset-stage-2',
-    '@babel/preset-flow',
-    '@babel/preset-react',
-  ],
-  ignore: ['node_modules', 'build'],
+    ignore: ['node_modules', 'build'],
 };

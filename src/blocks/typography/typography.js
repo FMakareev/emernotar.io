@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {createComponentWithProxy} from "react-fela";
 import {getElementType} from '../../utils/component/get_element_type';
-
+import PropTypes from 'prop-types';
 
 const ColorTheme = ({palette}, color, bright) => ({
     color: palette[color][bright]
@@ -23,11 +21,6 @@ const Size = {
         fontSize: '2.4375rem',
         lineHeight: '2.8125rem'
     },
-    // 'superLarge': {
-    //     fontSize: '60px',
-    //     lineHeight: '65px',
-    //     textTransform: 'uppercase',
-    // },
 };
 
 
@@ -53,7 +46,7 @@ const TypographyStyle = ({
         ...(theme && color !== 'inherit' ? {
             ...ColorTheme(theme, color, bright)
         } : null),
-        ...(color === 'inherit' ? {color: 'inherit'}: null),
+        ...(color === 'inherit' ? {color: 'inherit'} : null),
         ...(fullWidth && {
             width: '100%',
         }),
@@ -61,18 +54,15 @@ const TypographyStyle = ({
 
 };
 
-const Typography = ({
-                        children,
-                        as,
-                        ...props
-                    }) => {
+const Typography = ({children, as, ...props}) => {
+
     const ElementType = getElementType(as, props);
 
     return (<ElementType>{children}</ElementType>)
 };
 
 // TODO: разобратся почему эта валидация срабатывает для layout component
-// Component.propTypes = {
+// Typography.propTypes = {
 //
 //     size: PropTypes.oneOf(['small', 'medium', 'large']),
 //     styles: PropTypes.object,
@@ -84,6 +74,5 @@ const Typography = ({
 //     textAlign: PropTypes.oneOf(['left', 'right', 'center']),
 //
 // };
-// Component.contextTypes = { fela: PropTypes.func.isRequired };
 
 export default createComponentWithProxy(TypographyStyle, Typography);
