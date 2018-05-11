@@ -13,8 +13,6 @@ const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
 const reImage = /\.(jpg|png|gif|svg|pdf|ico)$/;
 
 export const serverConfig = () => {
-    console.log('process.env.ENDPOINT_CLIENT',process.env.ENDPOINT_CLIENT);
-    console.log('process.env.ENDPOINT_SERVER',process.env.ENDPOINT_SERVER);
 
     return {
         mode: process.env.MODE || 'development',

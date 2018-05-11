@@ -35,6 +35,12 @@ import {createEmailTemplate} from "./createEmailTemplate";
 import {createCertificat} from "./createCertificatPDF";
 
 
+console.log('__ENDPOINT_CLIENT__: ',__ENDPOINT_CLIENT__);
+console.log('__ENDPOINT_SERVER__: ',__ENDPOINT_SERVER__);
+
+
+
+
 const url = require('url');
 const querystring = require('querystring');
 

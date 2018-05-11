@@ -37,7 +37,8 @@ class Header extends Component {
         return (
             <div className={className}>
                 <Container maxWidth={'100%'}>
-                    <Row alignItems={'center'} justifyContent={'spaceBetween'}
+                    <Row alignItems={'center'}
+                         justifyContent={'spaceBetween'}
                          styles={{
                              '@media (max-width: 810px)': {
                                  display: 'block'

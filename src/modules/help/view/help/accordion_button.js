@@ -41,6 +41,7 @@ const STYLE = ({color, theme, count,active}) => {
         wrapper: {
             display: 'flex',
             flexDirection: 'row',
+            // '-ms-flex-direction': 'row',
             alignItems: 'inherit',
             width: '100%',
             padding: 0,
@@ -79,10 +80,14 @@ const STYLE = ({color, theme, count,active}) => {
         content: {
             display: 'flex',
             justifyContent: 'flex-start',
+            // '-ms-flex-pack': 'start',
+
             alignItems: 'center',
+            // '-ms-flex-align': 'center',
+
             width: `calc(100% - ${baseSize / 2}rem)`,
             minHeight: `${baseSize}rem`,
-            marginLeft: `-${baseSize / 2}rem`,
+            marginLeft: `-${baseSize / 2}rem !important`,
             padding: `1rem 1rem 1rem ${baseSize / 2}rem`,
             backgroundColor: theme.palette.secondary[color()],
             textAlign: 'left',

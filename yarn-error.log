@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start:ssr:server
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js build:ssr:prod --endpoint_client="http://127.0.0.1:12345"
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\FMakareev\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32;C:\Users\FMakareev\AppData\Local\Microsoft\WindowsApps;C:\Users\FMakareev\AppData\Roaming\npm;C:\Users\FMakareev\AppData\Local\Yarn\bin
@@ -37,8 +37,10 @@ npm manifest:
       "fela": "^6.1.7",
       "fela-dom": "^7.0.7",
       "fela-monolithic": "^5.0.21",
+      "fela-plugin-dynamic-prefixer": "^5.0.9",
       "fela-plugin-fallback-value": "^5.0.17",
       "fela-plugin-prefixer": "^5.0.18",
+      "fela-plugin-remove-undefined": "^5.0.19",
       "fs-extra": "^6.0.0",
       "graphql": "^0.13.2",
       "graphql-tag": "^2.9.1",
@@ -75,7 +77,8 @@ npm manifest:
       "redux-form": "^7.3.0",
       "redux-thunk": "^2.2.0",
       "serve-favicon": "^2.5.0",
-      "sha512-es": "^1.8.2"
+      "sha512-es": "^1.8.2",
+      "unfetch": "^3.0.0"
     },
     "devDependencies": {
       "@babel/core": "7.0.0-beta.44",
@@ -128,8 +131,8 @@ npm manifest:
       "build:dev": "",
       "start:ssr": "concurrently \"yarn build:ssr:dev\" \"yarn start:ssr:server\"",
       "start:ssr:server": "nodemon public/server.js --inspect --verbose",
-      "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint='\"http://127.0.0.1:5001\"'",
-      "build:ssr:dev": "babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --endpoint='\"http://rc.compaero.ru/\"'",
+      "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_server='\"http://127.0.0.1:5001\"'",
+      "build:ssr:dev": "babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
       "localization:prod": "babel-node ./tools/initLocalizationFiles.js",
       "create-index": "create-index ./src/modules/",
       "clear": "babel-node  ./tools/clear.js",
@@ -3843,6 +3846,12 @@ Lockfile:
       fela-utils "^8.0.6"
       isobject "^3.0.1"
   
+  fela-plugin-dynamic-prefixer@^5.0.9:
+    version "5.0.9"
+    resolved "https://registry.yarnpkg.com/fela-plugin-dynamic-prefixer/-/fela-plugin-dynamic-prefixer-5.0.9.tgz#fb245acff66e2bb67d8ae77224c65ceec6e1f6a4"
+    dependencies:
+      inline-style-prefixer "^4.0.0"
+  
   fela-plugin-fallback-value@^5.0.17:
     version "5.0.17"
     resolved "https://registry.yarnpkg.com/fela-plugin-fallback-value/-/fela-plugin-fallback-value-5.0.17.tgz#09be0508030905b111d5195f57d29fbdfffade3d"
@@ -3860,6 +3869,13 @@ Lockfile:
       inline-style-prefixer "^4.0.0"
       isobject "^3.0.1"
   
+  fela-plugin-remove-undefined@^5.0.19:
+    version "5.0.19"
+    resolved "https://registry.yarnpkg.com/fela-plugin-remove-undefined/-/fela-plugin-remove-undefined-5.0.19.tgz#3a075ab961a9b90d96039025f186ccda0d20b00a"
+    dependencies:
+      fela-utils "^8.0.5"
+      isobject "^3.0.1"
+  
   fela-tools@^5.1.5:
     version "5.1.5"
     resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.1.5.tgz#f8f845daab2b22da62cad965f868f945d2606c73"
@@ -3869,7 +3885,7 @@ Lockfile:
       fela "^6.1.7"
       fela-utils "^8.0.6"
   
-  fela-utils@^8.0.6:
+  fela-utils@^8.0.5, fela-utils@^8.0.6:
     version "8.0.6"
     resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-8.0.6.tgz#f88bbf26f5d6bced52389fcac9a8fa4be82c0933"
     dependencies:
@@ -8889,6 +8905,10 @@ Lockfile:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.6.0.tgz#8b38b10cacdef63337b8b24e4ff86d45aea529a8"
   
+  unfetch@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-3.0.0.tgz#8d1e0513a4ecd0e5ff2d41a6ba77771aae8b6482"
+  
   unicode-canonical-property-names-ecmascript@^1.0.2:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.3.tgz#f6119f417467593c0086357c85546b6ad5abc583"
@@ -9626,9 +9646,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
+  Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c nodemon public/server.js --inspect --verbose
+  Arguments: /d /s /c babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_server='"http://127.0.0.1:5001"' ^"--endpoint_client=\^"http://127.0.0.1:12345\^"^"
   Directory: E:\development\compaero.project\emernatar.io-ssr
   Output:
   

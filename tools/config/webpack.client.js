@@ -11,8 +11,6 @@ const reImage = /\.(jpg|png|gif|svg|pdf|ico)$/;
 const reGraphql = /\.(graphql|gql)$/;
 
 export const browserConfig = () => {
-    console.log('process.env.ENDPOINT_CLIENT',process.env.ENDPOINT_CLIENT);
-    console.log('process.env.ENDPOINT_SERVER',process.env.ENDPOINT_SERVER);
     return {
         mode: process.env.MODE || 'development',
         watch: process.env.WATCH === "true",

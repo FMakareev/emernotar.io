@@ -3700,6 +3700,12 @@ fela-monolithic@^5.0.21:
     fela-utils "^8.0.6"
     isobject "^3.0.1"
 
+fela-plugin-dynamic-prefixer@^5.0.9:
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/fela-plugin-dynamic-prefixer/-/fela-plugin-dynamic-prefixer-5.0.9.tgz#fb245acff66e2bb67d8ae77224c65ceec6e1f6a4"
+  dependencies:
+    inline-style-prefixer "^4.0.0"
+
 fela-plugin-fallback-value@^5.0.17:
   version "5.0.17"
   resolved "https://registry.yarnpkg.com/fela-plugin-fallback-value/-/fela-plugin-fallback-value-5.0.17.tgz#09be0508030905b111d5195f57d29fbdfffade3d"
@@ -3717,6 +3723,13 @@ fela-plugin-prefixer@^5.0.18:
     inline-style-prefixer "^4.0.0"
     isobject "^3.0.1"
 
+fela-plugin-remove-undefined@^5.0.19:
+  version "5.0.19"
+  resolved "https://registry.yarnpkg.com/fela-plugin-remove-undefined/-/fela-plugin-remove-undefined-5.0.19.tgz#3a075ab961a9b90d96039025f186ccda0d20b00a"
+  dependencies:
+    fela-utils "^8.0.5"
+    isobject "^3.0.1"
+
 fela-tools@^5.1.5:
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.1.5.tgz#f8f845daab2b22da62cad965f868f945d2606c73"
@@ -3726,7 +3739,7 @@ fela-tools@^5.1.5:
     fela "^6.1.7"
     fela-utils "^8.0.6"
 
-fela-utils@^8.0.6:
+fela-utils@^8.0.5, fela-utils@^8.0.6:
   version "8.0.6"
   resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-8.0.6.tgz#f88bbf26f5d6bced52389fcac9a8fa4be82c0933"
   dependencies:
@@ -8745,6 +8758,10 @@ undefsafe@^2.0.2:
 underscore@~1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.6.0.tgz#8b38b10cacdef63337b8b24e4ff86d45aea529a8"
+
+unfetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-3.0.0.tgz#8d1e0513a4ecd0e5ff2d41a6ba77771aae8b6482"
 
 unicode-canonical-property-names-ecmascript@^1.0.2:
   version "1.0.3"

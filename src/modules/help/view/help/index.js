@@ -12,12 +12,10 @@ import AccordionHelpContent from './accordion-help_content';
 import AccordionItemWrapper from './accordion_item-wrapper';
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
-import Button from '../../../../blocks/button/button';
 import {Top} from "../../../../components/top/index";
 import {Row} from "../../../../blocks/row/index";
 import {Column} from "../../../../blocks/column/index";
 import {TopLabel, TopLabelRow} from "../../../../components/topLabel/index";
-import {Wrapper} from "../../../../blocks/wrapper/index";
 
 import {connect} from "react-redux";
 

@@ -2,6 +2,8 @@ import {createRenderer} from 'fela'
 import monolithic from 'fela-monolithic'
 import prefixer from 'fela-plugin-prefixer'
 import fallbackValue from 'fela-plugin-fallback-value'
+import removeUndefined from 'fela-plugin-remove-undefined'
+
 
 /**
  * {@linkcode http://fela.js.org/docs/advanced/RendererConfiguration.html}
@@ -9,8 +11,9 @@ import fallbackValue from 'fela-plugin-fallback-value'
 export const createStyleRenderer = () => {
     const renderer = createRenderer({
         plugins: [
+            removeUndefined(),
             prefixer(),
-            fallbackValue()
+            fallbackValue(),
         ],
         enhancers: [
             // monolithic({prettySelectors: true}),
@@ -113,6 +116,7 @@ export const createStyleRenderer = () => {
     }, 'h1,h2,h3,h4,h5,h6');
 
     renderer.renderStatic({minHeight: '100%',}, 'main');
+    renderer.renderStatic({border: 'none !important',}, 'img');
     renderer.renderStatic(`@page {
     size: A4 landscape;
     margin: 0;

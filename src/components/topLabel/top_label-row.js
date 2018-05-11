@@ -37,11 +37,16 @@ const style = ({children}) => {
             ...(children && children.length ? {
                 display: 'flex',
                 justifyContent: 'space-around',
-                flexDirection: 'row'
+                flexDirection: 'row',
+                // '-ms-flex-direction': 'row',
+                // '-ms-flex-pack': 'distribute',
+
             }: {
                 display: 'flex',
                 justifyContent: 'center',
-                flexDirection: 'row'
+                flexDirection: 'row',
+                // '-ms-flex-direction': 'row',
+                // '-ms-flex-pack': 'center'
             }),
 
         },

@@ -93,7 +93,7 @@ class VerifyModal extends Component {
 
         this.props.createNotarization(data).then((res) => {
             console.log(res);
-            window.location.replace(`/paypal/paypal`);
+            window.location.replace(`http://rc.compaero.ru/paypal/paypal`);
         }).catch((err) => {
             console.log(err);
         })
@@ -175,7 +175,7 @@ class VerifyModal extends Component {
                 </Modal>
 
                 {
-                    preLoader && <PreLoader/>
+                    preLoader && <PreLoader backdrop/>
                 }
             </Fragment>);
     }

@@ -259,7 +259,7 @@ class HomePage extends Component {
                                             </div>
                                         </div>
                                         {
-                                            this.state.error &&  <Typography
+                                            this.state.error && <Typography
                                                 as={'p'}
                                                 size={'medium'}
                                                 color={'error'}
@@ -380,10 +380,19 @@ const STYLE = ({theme}) => {
         },
         iconRow: {
             display: 'flex',
+
             flexDirection: 'row',
+            // '-ms-flex-direction': 'row',
+
             justifyContent: 'space-around',
+            // '-ms-flex-pack': 'distribute',
+
             alignItems: 'flex-start',
+            // '-ms-flex-align': 'start',
+
             flexWrap: 'wrap',
+            // '-ms-flex-wrap': 'wrap',
+
         },
         iconWrapper: {
             display: 'inline-block',
@@ -393,10 +402,17 @@ const STYLE = ({theme}) => {
         instructionDotsWrapper: {
             paddingTop: '1.5rem',
             display: 'inline-flex !important',
+
             flexDirection: 'column',
+            // '-ms-flex-direction': 'column',
+
             justifyContent: 'center',
+            // '-ms-flex-pack': 'center',
+
             alignItems: 'center',
-            marginBottom: '2rem'
+            // '-ms-flex-align': 'center',
+
+            marginBottom: '2rem',
         },
         iconWrap: {
             width: '3rem',

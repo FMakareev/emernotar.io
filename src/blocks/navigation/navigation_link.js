@@ -2,25 +2,13 @@ import React from 'react';
 import {NavLink} from 'react-router-dom'
 import {connect as FelaConnect} from 'react-fela'
 
-const removeClassActive = function (event) {
-    if (!event.target.classList.contains('active')) {
-        let navLinks = document.getElementsByClassName('NavigationLink');
-        for (let prop in navLinks) {
-            if (typeof  navLinks[prop] === 'object') {
-                navLinks[prop].classList.remove('active');
-                navLinks[prop].removeAttribute('style');
-            }
-        }
-        event.target.classList.add('active');
-        event.target.setAttribute('style', 'text-decoration: underline')
-    }
-};
+
 
 const NavigationLink = ({children, to, styles}) => {
 
-    return (<NavLink onClick={removeClassActive} exact to={to} activeStyle={{
+    return (<NavLink exact to={to} activeStyle={{
         textDecoration: 'underline'
-    }} className={styles.link + ' NavigationLink'}>
+    }} className={styles.link}>
         {children}
     </NavLink>);
 }
@@ -43,9 +31,6 @@ const NavigationLinkStyle = ({state}) => {
             ':visited': {
                 textDecoration: 'none',
             },
-            '.active': {
-                textDecoration: 'underline'
-            }
         },
         active: {
             textDecoration: 'underline'

@@ -14,6 +14,13 @@ function bundle() {
             if (stats.hasErrors()) {
                 return new Error('Webpack compilation errors')
             }
+
+            console.log('run bundle finish!');
+            // console.log('__ENDPOINT_CLIENT__: ',__ENDPOINT_CLIENT__);
+            // console.log('__ENDPOINT_SERVER__: ',__ENDPOINT_SERVER__);
+            console.log('process.env.ENDPOINT_CLIENT: ',process.env.ENDPOINT_CLIENT);
+            console.log('process.env.ENDPOINT_SERVER: ',process.env.ENDPOINT_SERVER);
+
             return stats;
         });
 }

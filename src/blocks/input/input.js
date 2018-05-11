@@ -77,11 +77,11 @@ export const InputStyle = ({...props, theme, state}) => {
             color: 'pink',
             fontSize: '1.375rem'
         },
-        ':-ms-input-placeholder': {
-            /* IE 10+ */
-            color: 'pink',
-            fontSize: '1.375rem'
-        },
+        // ':-ms-input-placeholder': {
+        //     /* IE 10+ */
+        //     color: 'pink',
+        //     fontSize: '1.375rem'
+        // },
         ':-moz-placeholder': {
             /* Firefox 18- */
             color: 'pink',

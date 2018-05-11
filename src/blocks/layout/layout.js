@@ -13,6 +13,7 @@ import {Row} from "../row/index";
 import {Column} from "../column/index";
 
 import logoCA from '../../assets/icons/logo_compaero_2018.svg'
+import {Typography} from "../typography/index";
 
 const LayoutStyle = ({theme}) => {
     return ({
@@ -56,7 +57,15 @@ class Layout extends Component {
                                     }
                                 }}
                             >
-                                {translate('home_copyright')}
+
+                                <Typography
+                                    as={'span'}
+                                    size={'medium'}
+                                    color={'default'}
+                                    bright={'contrastText'}
+                                >
+                                    {translate('home_copyright')}
+                                </Typography>
                             </Column>
                             <Column
                                 styles={{
@@ -68,19 +77,32 @@ class Layout extends Component {
                                     }
                                 }}
                             >
+
                                 <a target="_blank" style={{
                                     color: '#fff',
                                     textDecoration: 'none',
                                 }} href="https://compaero.ru">
                                     <div style={{
                                         display: 'inline-block',
-                                        width: '40px',
                                         verticalAlign: 'middle',
+                                        width: '40px',
+                                        height: '40px',
                                         marginRight: '10px',
                                     }}>
-                                        <img src={logoCA} alt=""/>
+                                        <img style={{border: 'none'}} src={logoCA} alt=""/>
                                     </div>
+                                    <Typography
+                                        as={'span'}
+                                        size={'medium'}
+                                        color={'default'}
+                                        bright={'contrastText'}
+                                        styles={{
+                                            display: 'inline-block',
+                                            verticalAlign: 'middle',
+                                        }}
+                                    >
                                     CompAero
+                                    </Typography>
                                 </a>
                             </Column>
                         </Row>
