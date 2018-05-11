@@ -77,7 +77,7 @@ class VerifyModal extends Component {
         // получаешь данные local storage
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
-        const creationTime = Math.round(new Date().getTime()); //timestamp
+        const creationTime = Date.now() + ''; //timestamp
         localStorage.setItem('timestamp', creationTime);
 
 

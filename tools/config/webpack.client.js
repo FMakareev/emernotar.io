@@ -95,7 +95,7 @@ export const browserConfig = () => {
         plugins: [
             new webpack.DefinePlugin({
                 'process.env.__isBrowser__': true,
-                __isBrowser__: "true",
+                __isBrowser__: true,
                 __DEV__: true,
                 __SSR_FETCH__: process.env.SSR_FETCH,
                 __PORT__: process.env.PORT || 3000,

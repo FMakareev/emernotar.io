@@ -5,17 +5,6 @@ import fallbackValue from 'fela-plugin-fallback-value'
 import removeUndefined from 'fela-plugin-remove-undefined'
 
 
-// function hiddenPluginFactory (name) {
-//     return (style, type, renderer, props) => {
-//         if (props && props[name]) {
-//             style.display = 'none'
-//         }
-//
-//         return style
-//     }
-// }
-//
-// const hiddenPlugin = hiddenPluginFactory('hideIt')
 
 
 /**
@@ -24,13 +13,12 @@ import removeUndefined from 'fela-plugin-remove-undefined'
 export const createStyleRenderer = () => {
     const renderer = createRenderer({
         plugins: [
-            // removeUndefined(),
+            removeUndefined(),
             prefixer(),
-            // fallbackValue(),
-            // hiddenPlugin()
+            fallbackValue(),
         ],
         enhancers: [
-            // monolithic({prettySelectors: true}),
+            monolithic({prettySelectors: true}),
         ]
         ,
     });
