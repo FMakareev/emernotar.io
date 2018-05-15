@@ -9,10 +9,20 @@ import fetch from 'unfetch';
 
 const httpLink = new HttpLink({uri: __ENDPOINT_CLIENT__+ '/graphql',fetch:fetch});
 
-const ErrorLogger = onError(({ networkError }) => {
-    console.log(JSON.stringify(networkError));
-    console.info('networkError: ',networkError);
-    console.info('statusCode: ',networkError.statusCode);
+const ErrorLogger = onError(({graphQLErrors, operation, response, networkError}) => {
+    console.log('graphQLErrors : ', graphQLErrors   );
+    console.log('operation     : ', operation       );
+    console.log('response      : ', response        );
+    console.log('networkError  : ', networkError    );
+    if(graphQLErrors) {
+        return graphQLErrors
+    }
+    if(networkError) {
+        return networkError
+    }
+    // console.log(JSON.stringify(networkError));
+    // console.info('networkError: ',networkError);
+    // console.info('statusCode: ',networkError.statusCode);
 });
 
 
@@ -32,7 +42,7 @@ export const client = new ApolloClient({
         },
         mutate: {
             fetchPolicy: 'no-cache',
-            errorPolicy: 'ignore'
+            errorPolicy: 'all'
         }
     },
     queryDeduplication: true,

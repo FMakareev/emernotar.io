@@ -3,8 +3,8 @@ import {InMemoryCache} from "apollo-cache-inmemory";
 import {from} from 'apollo-link';
 import {onError} from 'apollo-link-error';
 import apolloLogger from 'apollo-link-logger';
-// import fetch from 'isomorphic-fetch'
-import fetch from 'unfetch';
+import fetch from 'isomorphic-fetch'
+// import fetch from 'unfetch';
 
 import {createHttpLink} from 'apollo-link-http';
 

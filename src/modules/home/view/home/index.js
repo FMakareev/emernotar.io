@@ -92,7 +92,6 @@ class HomePage extends Component {
 
 
         reader.onloadstart = (e) => {
-            localStorage.setItem('fileName', files[0].name);
             this.addEventListenerCloseWindow();
             this.setState({
                 loading: true
@@ -113,6 +112,10 @@ class HomePage extends Component {
                 binary += String.fromCharCode(bytes[i]);
             }
             const hash = SHA512.hash(binary);
+
+            localStorage.setItem('fileName', files[0].name);
+            localStorage.setItem('fileHash', hash);
+
             this.setState({
                 files,
                 hash: hash
@@ -198,7 +201,6 @@ class HomePage extends Component {
         const {hash, loading} = this.state;
         const {translate, instruction, styles, staticContext} = this.props;
         if (hash) {
-            localStorage.setItem('fileHash', hash);
             return (<Redirect to={`/verify/${hash}`}/>)
         }
         return (
@@ -433,7 +435,6 @@ HomePage = felaConnect(STYLE)(HomePage);
 const mapStateToProps = state => ({
     translate: getTranslate(state.locale),
     currentLanguage: getActiveLanguage(state.locale).code,
-    preLoader: state.preLoader.toggle
 });
 
 

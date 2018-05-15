@@ -98,6 +98,7 @@ const Style = ({theme, palette = 'main'}) => {
         cssloadLoader: {
             display: 'flex',
             alignItems: 'center',
+            '-ms-flex-align': 'center',
             width: '210px',
             margin: '0 auto',
             fill: theme.palette.primary[palette],
@@ -139,6 +140,6 @@ const Style = ({theme, palette = 'main'}) => {
             }
         }
     }
-}
+};
 
 export default connect(Style)(PreLoader);

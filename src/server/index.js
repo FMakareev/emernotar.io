@@ -195,7 +195,6 @@ app.get("*", async (request, response) => {
 
                 /** @description http://expressjs.com/en/4x/api.html#res.status */
                 response.status(200);
-                response.cookie('name', 'tobi', {domain: '.example.com', path: '/admin', secure: false});
                 /** @description http://expressjs.com/en/4x/api.html#res.send */
                 response.send(HTML);
                 /** @description http://expressjs.com/en/4x/api.html#res.end */

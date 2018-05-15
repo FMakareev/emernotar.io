@@ -28,19 +28,19 @@ const InputStyle = ({state, ...props}) => {
 
         ...(state ? {
             ...(state.valid && state.touched ? {
-                borderColor: '#00bfa5',
+                border: '1px solid #00bfa5',
                 outlineColor: '#00bfa5',
             } : null),
             ...(state.warning ? {
-                borderColor: '#FFA500',
+                border: '1px solid #FFA500',
                 outlineColor: '#FFA500',
             } : null),
             ...(state.invalid && state.touched ? {
-                borderColor: '#ff1744',
+                border: '1px solid #ff1744',
                 outlineColor: '#ff1744',
             } : null),
             ...(state.active ? {
-                borderColor: '#2979ff',
+                border: '1px solid #2979ff',
                 outlineColor: '#2979ff',
                 background: '#fff',
             } : null)

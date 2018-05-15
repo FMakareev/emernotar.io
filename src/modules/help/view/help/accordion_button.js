@@ -43,6 +43,7 @@ const STYLE = ({color, theme, count,active}) => {
             flexDirection: 'row',
             '-ms-flex-direction': 'row',
             alignItems: 'inherit',
+            '-ms-flex-pack': 'inherit',
             width: '100%',
             padding: 0,
             backgroundColor: 'transparent',

@@ -23,7 +23,7 @@ const createNotarization = gql`mutation createNotarization(
     $emailHashed: Boolean,
     $docName: String,
     $additionalInfo: String,
-    $creationTime: Int,
+    $creationTime: String,
     ){
         createNotarization(
             name:$name,
@@ -90,10 +90,10 @@ class VerifyModal extends Component {
 
         this.props.onModalToggle(false);
         this.onPreLoaderToggle(true);
-
+        console.log(data);
         this.props.createNotarization(data).then((res) => {
             console.log(res);
-            window.location.replace(`http://rc.compaero.ru/paypal/paypal`);
+            window.location.replace(`/paypal/paypal`);
         }).catch((err) => {
             console.log(err);
         })
@@ -129,8 +129,8 @@ class VerifyModal extends Component {
                                     selectedValue={this.state.emailHashed}
                                     onChange={this.handleChange}
                         >
-                            <Radio value={true} checked/>{translate('verify_modal_hash_email')}<br/>
-                            <Radio value={false}/>{translate('verify_modal_open_email')}
+                            <Radio value={true}/>{translate('verify_modal_hash_email')}<br/>
+                            <Radio value={false} checked/>{translate('verify_modal_open_email')}
                         </RadioGroup>
                         <br/>
                         <label htmlFor="">
@@ -202,7 +202,7 @@ const STYLE = () => {
             padding: '1rem 2rem !important',
         },
     }
-}
+};
 
 VerifyModal = connectFela(STYLE)(VerifyModal);
 

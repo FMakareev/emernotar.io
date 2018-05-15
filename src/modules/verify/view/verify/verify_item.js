@@ -5,6 +5,7 @@ import iconVerify from '../../../../assets/icons/icon_verify.svg';
 import {Typography} from "../../../../blocks/typography/index";
 
 const VerifyItem = ({className, styles,data}) => {
+    const notarizationDate = new Date(data.notarizationDate).toString();
     return (<div className={className + ' ' + styles.VerifyItemWrapper}>
         <div className={styles.VerifyItemImageWrapper}>
             <Image src={iconVerify} className={styles.VerifyItemImage}/>
@@ -17,7 +18,7 @@ const VerifyItem = ({className, styles,data}) => {
                 {data.name}
             </Typography>
             <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                {data.notarizationDate}
+                {notarizationDate}
             </Typography>
         </div>
     </div>);

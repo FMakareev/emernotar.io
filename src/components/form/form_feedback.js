@@ -1,30 +1,15 @@
-import React, {Component} from 'react';
-import {Field, reduxForm, updateSyncErrors,destroy} from "redux-form";
+import React,{Component} from 'react';
+import {Field,reduxForm,updateSyncErrors,destroy} from "redux-form";
 import {InputText} from "../../blocks/input-fela/input_text/input_text";
 import {Typography} from '../../blocks/typography/index';
 import {Button} from "../../blocks/button/index";
 import {connect as connectFela} from 'react-fela';
 import gql from 'graphql-tag';
 import {graphql} from "react-apollo";
-import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import {PreLoader} from "../preloader/index";
-import {required} from "../../utils/validation/required";
 
-import {Store} from '../../store/index';
-
-
-const validate = values => {
-    const errors = {}
-    if (!values.username) {
-        // required(translate('contact_error_required'))
-        errors.username = 'Required'
-    }
-    if (!values.password) {
-        errors.password = 'Required'
-    }
-    return errors
-}
 
 
 const createFeedback = gql`mutation createFeedback(
@@ -56,12 +41,20 @@ class FormFeedback extends Component {
         super(props);
         this.state = this.initialState;
         this.submit = this.submit.bind(this);
+        this.required = this.required.bind(this);
     }
 
     get initialState() {
-        return {preLoader: false, error: null}
+        return {
+            preLoader: false,
+            error: null
+        }
     }
 
+
+    required(value){
+        return value ? undefined : this.props.translate('contact_error_required');
+    }
 
     onPreLoaderToggle(state) {
         console.log(open);
@@ -75,13 +68,13 @@ class FormFeedback extends Component {
             .then((res) => {
                 console.log(res);
                 this.onPreLoaderToggle(false);
-                this.setState({status:res});
+                this.setState({status: res});
                 this.props.reset();
             })
             .catch((err) => {
                 this.onPreLoaderToggle(false);
-                console.log('statusCode: ', err.networkError.statusCode);
-                console.log('bodyText: ', err.networkError.bodyText);
+                console.log('statusCode: ',err.networkError.statusCode);
+                console.log('bodyText: ',err.networkError.bodyText);
 
                 if (err.networkError.statusCode >= 400) {
                     this.setState({error: err.networkError.bodyText})
@@ -90,24 +83,9 @@ class FormFeedback extends Component {
             })
     }
 
-    componentDidMount() {
-        // Store.subscribe(() => {
-        //     unregisterField('FormFeedback','name');
-        //     registerField('FormFeedback', 'name', 'text')
-        // })
-        // console.log('updateSyncErrors');
-        // updateSyncErrors('FormFeedback')
-    }
-
-    componentWillUnmount() {
-        this.props.reset();
-        destroy('FormFeedback');
-    }
-
     render() {
-        const {handleSubmit, reset, pristine, submitting, styles, translate} = this.props;
-        const {preLoader, error, status} = this.state;
-
+        const {handleSubmit,reset,pristine,submitting,styles,translate} = this.props;
+        const {preLoader,error,status} = this.state;
         return (
             <form onSubmit={handleSubmit((value) => this.submit(value))}>
                 <Field
@@ -115,28 +93,29 @@ class FormFeedback extends Component {
                     component={InputText}
                     placeholder={translate('contact_form_name')}
                     type="text"
-                    validate={[required(translate('contact_error_required'))]}
+                    // validate={[required(translate('contact_error_required'))]}
+                    validate={[ this.required ]}
                 />
                 <Field
                     name="email"
                     component={InputText}
                     placeholder={translate('contact_form_email')}
                     type="email"
-                    validate={[required(translate('contact_error_required'))]}
+                    validate={[ this.required ]}
                 />
                 <Field
                     name="title"
                     component={InputText}
                     placeholder={translate('contact_form_theme')}
                     type="text"
-                    validate={[required(translate('contact_error_required'))]}
+                    validate={[ this.required ]}
                 />
                 <Field
                     name="message"
                     component={InputText}
                     placeholder={translate('contact_form_message')}
                     type="textarea"
-                    validate={[required(translate('contact_error_required'))]}
+                    validate={[ this.required ]}
                 />
                 {
                     error && <Typography
@@ -211,7 +190,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    dispatch: (action, payload) => {
+    dispatch: (action,payload) => {
         dispatch();
     }
 })
