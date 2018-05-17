@@ -22,14 +22,14 @@ class AccordionButton extends Component {
         const {children, styles, onClick} = this.props;
         console.log(this.props);
         return (
-            <button onClick={onClick} className={styles.wrapper}>
+            <div onClick={onClick} className={styles.wrapper}>
                 <div className={styles.icon}></div>
-                <div className={styles.content}>
+                <button className={styles.content}>
                     <div className={styles.text}>
                         {children}
                     </div>
-                </div>
-            </button>
+                </button>
+            </div>
         )
     }
 }
@@ -39,6 +39,8 @@ const STYLE = ({color, theme, count,active}) => {
     const baseSize = 80 / 16;
     return {
         wrapper: {
+            position: 'relative',
+            zIndex: 2,
             display: 'flex',
             flexDirection: 'row',
             '-ms-flex-direction': 'row',
@@ -93,6 +95,7 @@ const STYLE = ({color, theme, count,active}) => {
             backgroundColor: theme.palette.secondary[color()],
             textAlign: 'left',
             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)',
+            border: 'none',
             ':hover': {
                 color: '#000',
             },

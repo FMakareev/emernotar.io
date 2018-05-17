@@ -5,11 +5,11 @@ import Dropzone from "react-dropzone";
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import Cookies from 'js-cookie';
 import {connect as felaConnect} from 'react-fela';
+import {connect} from "react-redux";
 
 import {Container} from "../../../../blocks/container/index";
 import {Row} from "../../../../blocks/row/index";
 import {Column} from "../../../../blocks/column/index";
-import {connect} from "react-redux";
 import {TopLabel, TopLabelRow} from "../../../../components/topLabel/index";
 import {Top} from "../../../../components/top/index";
 import {Image} from "../../../../blocks/image/index";

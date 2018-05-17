@@ -1,39 +1,49 @@
-import React, {Component} from 'react';
+import React,{Component} from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {Provider as StyleProvider} from 'react-fela'
 import {ThemeProvider} from 'react-fela'
 import {renderToMarkup} from "fela-dom";
-import {createTheme, palette} from '../style/theme';
+import {createTheme,palette} from '../style/theme';
 import {client} from '../apollo/index.server';
 
 import Cert from '../modules/static/view/cert/index'
 import {createStyleRenderer} from "../style";
 import Html from "./html";
-import {ApolloProvider, renderToStringWithData} from "react-apollo";
+import {ApolloProvider,renderToStringWithData} from "react-apollo";
 
 import {StaticRouter} from 'react-router';
-import {ConfigRouter} from '../routes';
+import {getTranslate} from 'react-localize-redux';
+import {Provider as ProviderRedux} from 'react-redux'
+import {Store} from '../store'
+import {initLocalize} from "../store/reducers/localization/actions";
 
 
-export const certificate_template = (hash) => {
+export const certificateTemplate = async (hash,language = 'EN') => {
+
+
 
     try {
-        console.log('hash: ', hash);
-        return new Promise((resolve, reject) => {
+        await Store.dispatch(initLocalize(Store.getState(), language ));
+
+        console.log('certificate_template hash: ',hash);
+        return new Promise((resolve,reject) => {
 
             const renderer = createStyleRenderer();
 
 
             const Component = (
-                <StyleProvider renderer={renderer}>
-                    <ThemeProvider theme={createTheme(palette)}>
-                        <ApolloProvider client={client}>
-                            <StaticRouter location={'/create_certificat'} >
-                                <Cert emerhash={hash}/>
-                            </StaticRouter>
-                        </ApolloProvider>
-                    </ThemeProvider>
-                </StyleProvider>);
+                <ProviderRedux store={Store}>
+                    <StyleProvider renderer={renderer}>
+                        <ThemeProvider theme={createTheme(palette)}>
+                            <ApolloProvider client={client}>
+                                <StaticRouter location={'/create_certificat'}>
+                                    <Cert emerhash={hash}/>
+                                </StaticRouter>
+                            </ApolloProvider>
+                        </ThemeProvider>
+                    </StyleProvider>
+                </ProviderRedux>
+            );
 
 
             /**
@@ -46,7 +56,7 @@ export const certificate_template = (hash) => {
 
                     const REACT_HTML = <Html getStatic={true} content={content}/>;
 
-                    const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>', styleMarkup)
+                    const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>',styleMarkup)
 
                     resolve(HTML)
                 })
@@ -67,7 +77,7 @@ export const certificate_template = (hash) => {
 
 
 //
-// export const certificate_template = (hash) => {
+// export const certificateTemplate = (hash) => {
 //
 //
 //     return `<body>

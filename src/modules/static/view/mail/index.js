@@ -1,23 +1,18 @@
-import React, {Component, Fragment} from 'react';
-// import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
-import {createComponentWithProxy, connect} from "react-fela";
-import {Typography} from "../../../../blocks/typography/index";
-// import Footer from '../../../../blocks/footer/footer'
-// import {Container} from '../../../../blocks/container/index';
-import {TopLabel} from '../../../../components/topLabel/index';
-// import {Column} from '../../../../blocks/column/index';
-// import {Row} from '../../../../blocks/row/index';
-import {Image} from '../../../../blocks/image/index';
-import {Button} from '../../../../blocks/button/index';
-// import  {table, tbody, td, tr} from '../../../../blocks/table/index';
-// import { Email, Item, Span, A, renderEmail } from 'react-html-email';
+import React,{Component,Fragment} from 'react';
+import PropTypes from 'prop-types';
+import {connect as FelaConnect} from "react-fela";
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
+import {connect as ReduxConnect} from "react-redux";
 
-import iconPrint from '../../../../assets/icons/icon_print.svg';
+import {Typography} from "../../../../blocks/typography/index";
+import {TopLabel} from '../../../../components/topLabel/index';
+import {Button} from '../../../../blocks/button/index';
+import {changeTranslate} from "../../../../store/reducers/localization/actions";
+import {Store} from '../../../../store';
 
 const name = '{name}';
 const fileName = '{fileName}';
-const notarizationDate = '{notarizationDate}';
+const notarizationCreateTime = '{notarizationCreateTime}';
 const submittingDate = '{submittingDate}';
 const submittingExpiration = '{submittingExpiration}';
 const ownerEmail = '{ownerEmail}';
@@ -28,9 +23,33 @@ const serviceName = '{serviceName}';
 
 class Mail extends Component {
 
-    static propTypes = {};
+    static propTypes = {
+        /**
+         * @desc Current language loaded in the redux store
+         * */
+        currentLanguage: PropTypes.string,
+        /**
+         * @desc Current language on the server
+         * */
+        language: PropTypes.string,
+        /**
+         * @desc Function of changing the language, the input receives a string
+         * */
+        setActiveLanguage: PropTypes.func,
+        /**
+         * @desc Function for receiving translation by key
+         * */
+        translate: PropTypes.func,
+        /**
+         * @desc Object with styles CSS-IN-JS
+         * */
+        styles: PropTypes.object,
+    };
 
-    static defaultProps = {};
+    static defaultProps = {
+        currentLanguage: 'EN',
+        language: 'EN'
+    };
 
     constructor(props) {
         super(props);
@@ -42,103 +61,142 @@ class Mail extends Component {
     }
 
     render() {
-        const {styles, children} = this.props;
-        if (!styles) return null;
-        return (<table border="0" cellPadding="0" cellSpacing="0"  className={styles.table}>
+        const {translate,styles,setActiveLanguage,currentLanguage,language} = this.props;
+        if (currentLanguage !== language) {
+            setActiveLanguage(language);
+        }
 
-                <thead  className={styles.th}>
-                <tr className={styles.top}>
-                    <td colSpan="2" width="100%">
-                        <Typography as={"h1"} color={'default'} size={'large'} fontWeight={'bold'} textAlign={'center'}
-                                    textTransform={'uppercase'} styles={{fontSize: '4rem',
-                             lineHeight: '5rem'}}>
-                            EMERNOTAR.IO
-                        </Typography>
-                    </td>
-                </tr>
-                </thead>
+        return (<table border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
 
-                <tbody>
-                <tr className={styles.topFooter}>
-                    <td colSpan="2">
-                        <TopLabel isActive styles={{transform: 'none', maxWidth: '540px', width: '100%',marginTop: '2rem'}}>
-                            <Typography as={'h3'} fontWeight={'bold'} textAlign={'center'}>
-                                Уважаемый пользователь!
-                            </Typography>
-                            <Typography as={'p'} fontWeight={'bold'}>
-                                Ваша заявка на создание/редакторование записи в блокчейн была выполнена. Ниже Вы найдете
-                                все
-                                нужные данные о транзакции, а в приложении - архив с подписью и сертификат.
-                            </Typography>
-                        </TopLabel>
-                    </td>
-                </tr>
-                <tr className={styles.topFooter}>
-                    <td  colSpan="1" style={{
-                        width: '50%',
-                    }} >
-                        <TopLabel isActive styles={{transform: 'none', width: 'calc(100%-4rem)', margin: '2rem'}}>
-                            Данные о транзакции в блокчейн:
-                            <Typography as={'p'}>
-                                Дата внесения: {submittingDate} <br/>
-                                ID транзакции: {idTransaction} <br/>
-                                Ваш адрес в блокчейн Emercoin: {blockChainAddress} <br/>
-                            </Typography>
-                        </TopLabel>
-                    </td>
-                    <td colSpan="1" style={{
-                        width: '50%',
+            <thead className={styles.th}>
+            <tr className={styles.top}>
+                <td colSpan="2" width="100%">
+                    <Typography as={"h1"} color={'default'} size={'large'} fontWeight={'bold'} textAlign={'center'}
+                                textTransform={'uppercase'} styles={{
+                        fontSize: '4rem',
+                        lineHeight: '5rem'
                     }}>
-                        <TopLabel isActive styles={{transform: 'none', width: 'calc(100%-4rem)', margin: '2rem'}}>
-                            Данные о сертификате:
-                            <Typography as={'p'} lineHeight={'2rem'}>
-                                Дата нотаризации: {notarizationDate} <br/>
-                                Владелец нотаризации: {ownerEmail} <br/>
-                                Срок действия: до {submittingExpiration}
-                                <a to='http://emernoter.io/faq' style={{textDecoration: 'none'}}>
-                                    <span className={styles.circle}> &iquest; </span>
-                                </a><br/>
-                                Сервис: {serviceName} <br/>
+                        EMERNOTAR.IO
+                    </Typography>
+                </td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr className={styles.topFooter}>
+                <td colSpan="2">
+                    <TopLabel isActive styles={{
+                        transform: 'none',
+                        maxWidth: '540px',
+                        width: 'calc(100% - 4rem)',
+                        marginTop: '2rem'
+                    }}>
+                        <Typography as={'h3'} fontWeight={'bold'} textAlign={'center'}>
+                            {translate('static_dear_user')}
+                        </Typography>
+                        <Typography as={'p'} fontWeight={'bold'}>
+
+                            {translate('static_description_row_1')} <br/>
+                            {translate('static_description_row_2')}
+                        </Typography>
+                    </TopLabel>
+                </td>
+            </tr>
+            <tr className={styles.topFooter}>
+                <td colSpan="2">
+                    <div className={styles.col2}>
+                        <TopLabel isActive styles={{transform: 'none',width: 'calc(100% - 4rem)',margin: '2rem'}}>
+
+                            {translate('static_info_transactions')}
+                            <Typography as={'p'}>
+                                {translate('static_date_entry')}: {submittingDate} <br/>
+                                {translate('static_transaction_id')}: {idTransaction} <br/>
+                                {translate('static_your_address')}: {blockChainAddress} <br/>
                             </Typography>
                         </TopLabel>
-                    </td>
-                </tr>
-                <tr className={styles.topFooter}>
-                    <td colSpan="2" >
-                        <Button as="a" href="" variant={"raised"} color={'primary'}>
-                            <Image src={iconPrint} styles={{padding: '0.2rem', height: '3rem'}}/>
-                            <Typography as={'span'} size={'large'} textDecoration={'none'}>
-                                Print
+                    </div>
+                    <div className={styles.col2}>
+
+                        <TopLabel isActive styles={{transform: 'none',width: 'calc(100% - 4rem)',margin: '2rem'}}>
+                            {translate('static_info_cert')}
+                            <Typography as={'p'} lineHeight={'2rem'}>
+                                {translate('static_notarization_date')}: {notarizationCreateTime} <br/>
+                                {translate('static_owner')}: {ownerEmail} <br/>
+                                {translate('static_validity_period')}: <a target="_blank"
+                                                                          href='http://rc.compaero.ru/help'
+                                                                          style={{textDecoration: 'none'}}>
+                                <span className={styles.circle}> ? </span>
+                            </a>: {translate('static_to')} {submittingExpiration}<br/>
+                                {translate('static_service')}: {serviceName} <br/>
                             </Typography>
-                        </Button>
-                    </td>
-                </tr>
-                <tr  className={styles.topFooter}>
-                    <td colSpan="2" >
-                        <Typography as={"p"} textAlign={'center'}>
-                            SHA512 Хэш-сумма: {name} <br/>
-                            Наимменование файла:{fileName}
+                        </TopLabel>
+                    </div>
+                </td>
+            </tr>
+            <tr className={styles.topFooter}>
+                <td colSpan="2">
+                    <Button as="a" href="http://rc.compaero.ru/create_certificat/{emerhash}" variant={"raised"}
+                            color={'primary'}>
+                        <Typography as={'span'} size={'large'} textDecoration={'none'}>
+                            {translate('static_print')}
                         </Typography>
-                    </td>
-                </tr>
-                </tbody>
-                <tfoot >
-                <tr className={styles.footer}>
-                    <td colSpan="2" >
-                        <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'} textAlign={'center'}>
-                            EMERNOTAR.IO &copy; 2018
+                    </Button>
+                </td>
+            </tr>
+            <tr className={styles.topFooter}>
+                <td colSpan="2">
+                    <Typography as={"p"} textAlign={'center'}>
+                        {translate('static_hash_sum')}: {name} <br/>
+                        {translate('static_file_name')}: {fileName}
+                    </Typography>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr className={styles.footer}>
+                <td colSpan="1">
+                    <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'} textAlign={'center'}>
+                        EMERNOTAR.IO &copy; 2018
+                    </Typography>
+                </td>
+                <td colSpan="1">
+                    <a target="_blank" style={{
+                        color: '#fff',
+                        textDecoration: 'none',
+                    }} href="https://compaero.ru">
+                        <div style={{
+                            display: 'inline-block',
+                            verticalAlign: 'middle',
+                            width: '40px',
+                            height: '40px',
+                            marginRight: '10px',
+                        }}>
+                            <img style={{border: 'none'}}
+                                 src={'http://rc.compaero.ru//assets/icons/Монтажная область 1-100.jpg'} alt=""/>
+                        </div>
+                        <Typography
+                            as={'span'}
+                            size={'medium'}
+                            color={'default'}
+                            bright={'contrastText'}
+                            styles={{
+                                display: 'inline-block',
+                                verticalAlign: 'middle',
+                            }}
+                        >
+                            CompAero
                         </Typography>
-                    </td>
-                </tr>
-                </tfoot>
+                    </a>
+                </td>
+            </tr>
+            </tfoot>
 
-            </table>
+        </table> )
 
-        )
     }
 }
 
-const style = ({theme, marginBottom, paddingBottom}) => {
+const style = ({theme}) => {
     return {
         top: {
             minHeight: '10rem',
@@ -167,18 +225,39 @@ const style = ({theme, marginBottom, paddingBottom}) => {
             width: '100%',
         },
 
-        table:{
+        table: {
             borderSpacing: 0,
             borderCollapse: 'collapse',
             width: '100%',
         },
-        th:{
-        },
-        tr:{
+        th: {},
+        tr: {
             width: '100%',
+        },
+        col2: {
+            width: '50% !important',
+            display: 'inline-block',
+            '@media  only screen and  (max-width:600px)': {
+                width: '100% !important',
+
+            }
         }
 
     }
-}
+};
 
-export default connect(style)(Mail)
+const mapStateToProps = state => ({
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setActiveLanguage: (value) => {
+        dispatch(changeTranslate(Store.getState(),value))
+    }
+});
+
+Mail = FelaConnect(style)(Mail);
+Mail = ReduxConnect(mapStateToProps,mapDispatchToProps)(Mail);
+
+export default Mail;

@@ -17,18 +17,18 @@ import {PreLoader} from "../../../../components/preloader/index";
 
 const createCertificate = gql`mutation createCertificate(
     $name: String!,
-    $notarizationDate: String,
+    $notarizationCreateTime: String,
     $paymentId: String,
     $PayerID: String,
     ){
         createCertificate(
             name:$name,
-            notarizationDate: $notarizationDate,
+            notarizationCreateTime: $notarizationCreateTime,
             paymentId: $paymentId,
             PayerID: $PayerID,
         ) {
             name
-            notarizationDate
+            notarizationCreateTime
             paymentId
             PayerID
             emerhash
@@ -125,14 +125,14 @@ class Result extends Component {
          * */
         if (url && Object.getOwnPropertyNames(url).length) {
             const name = localStorage.getItem('fileHash');
-            const notarizationDate = localStorage.getItem('timestamp'); //timestam from notar
+            const notarizationCreateTime = localStorage.getItem('timestamp'); //timestam from notar
             const paymentId = url.paymentId;
             const PayerID = url.PayerID;
 
             if (!name) return null;
-            if (!notarizationDate) return null;
+            if (!notarizationCreateTime) return null;
 
-            return {name,notarizationDate,paymentId,PayerID};
+            return {name,notarizationCreateTime,paymentId,PayerID};
         } else {
             return null
         }

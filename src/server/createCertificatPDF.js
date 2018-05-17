@@ -1,4 +1,4 @@
-import {certificate_template} from './certificate_template';
+import {certificateTemplate} from './certificate_template';
 import HTMLToPDF from 'html5-to-pdf';
 import fs from 'fs';
 import path from 'path';
@@ -11,21 +11,16 @@ export const createCertificat = async (req, response) => {
         console.log('req:', req);
         console.log('__ENDPOINT_SERVER__', __ENDPOINT_SERVER__);
 
-        // @description path to the certificate store
-        const certificates_dir = path.resolve(__dirname, '../../public/static/certificates/');
-        const fileName = encodeURIComponent(hash).substring(0,30)
-        // @description path to the certificate
-        const certificat_path = path.resolve(__dirname, `${certificates_dir}/${fileName}.pdf`);
+        /**
+         * @description path to the certificate store
+         * */
+        const certificates_dir = path.resolve(__dirname, '../../public/assets/certificates/');
+        const fileName = encodeURIComponent(hash).substring(0,30);
 
-        console.log('certificates_dir:', certificates_dir);
-        console.log('certificat_path:', certificat_path);
-        /*
-        *
-        * СЮДА ПРОПИСАТЬ ЗАПРОС К СЕРВЕРУ PYTHON ДЛЯ ПОВЕРКИ НАЛИЧИЯ СЕРТИФИКАТА И ПОЛУЧЕНИЯ ДАННЫХ ДЛЯ ЕГО ГЕНЕРАЦИИ
-        *
-        * */
-        // const data = await getCertificate(hash);
-        // console.log('hash:',data);
+        /**
+         * @description path to the certificate
+         * */
+        const certificat_path = path.resolve(__dirname, `${certificates_dir}/${fileName}.pdf`);
 
         /**
          * @description check for a directory for storing certificates
@@ -38,13 +33,13 @@ export const createCertificat = async (req, response) => {
         /**
          * @description Verifying the presence of a certificate with a transmitted hash
          */
-        if (!fs.existsSync(certificat_path)) {
+        // if (!fs.existsSync(certificat_path)) {
             console.log('No certificate with hash:', hash);
 
-            const result = await createPDF(hash, fileName)
-        } else {
-            console.log('Yes certificate with hash:', hash);
-        }
+            const result = await createPDF(hash, fileName);
+        // } else {
+        //     console.log('Yes certificate with hash:', hash);
+        // }
 
         /**
          * @description Read the certificate file and send in response to the user
@@ -72,12 +67,12 @@ export const createCertificat = async (req, response) => {
 const createPDF = (hash,fileName) => {
     return new Promise((resolve, reject) => {
         console.log('createCertificatPDF');
-        const inputBody = certificate_template(hash)
+        const inputBody = certificateTemplate(hash)
             .then((response) => {
 
                 const htmlToPDF = new HTMLToPDF({
                     inputBody: response,
-                    outputPath: `./public/static/certificates/${fileName}.pdf`,
+                    outputPath: `./public/assets/certificates/${fileName}.pdf`,
 
                     options: {
                         printBackground: true,
@@ -107,5 +102,4 @@ const createPDF = (hash,fileName) => {
             })
 
     })
-
 }

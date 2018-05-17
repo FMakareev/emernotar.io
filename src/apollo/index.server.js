@@ -14,7 +14,6 @@ const httpLink = new createHttpLink({uri: __ENDPOINT_SERVER__ + '/graphql', fetc
 const ErrorLogger = onError(({networkError}) => {
     console.log(JSON.stringify(networkError));
     console.info('networkError: ', networkError);
-    console.info('statusCode: ', networkError.statusCode);
 });
 
 export const client = new ApolloClient({

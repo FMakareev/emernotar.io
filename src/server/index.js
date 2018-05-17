@@ -1,3 +1,6 @@
+/**
+ * @description
+ * */
 import register from 'ignore-styles'
 
 import {getTranslate} from 'react-localize-redux';
@@ -70,32 +73,22 @@ app.use(requestLanguage({
     },
 }));
 
-// if (__DEV__) {
-//     app.get("/create_email_template", (request, response) => {
-//         createEmailTemplate();
-//
-//         response.status(200);
-//         /** @description http://expressjs.com/en/4x/api.html#res.send */
-//         response.send('create_email_template');
-//         /** @description http://expressjs.com/en/4x/api.html#res.end */
-//         response.end();
-//
-//     })
-// }
+if (__DEV__) {
+    app.get("/create_email_template", (request, response) => {
+        createEmailTemplate('RU');
+        createEmailTemplate('EN');
+
+        response.status(200);
+        /** @description http://expressjs.com/en/4x/api.html#res.send */
+        response.send('create_email_template');
+        /** @description http://expressjs.com/en/4x/api.html#res.end */
+        response.end();
+
+    })
+}
 
 
 app.get('/create_certificat/:hash', createCertificat);
-
-
-app.get('/unity_test', (request, response) =>{
-    response.status(200);
-    response.send(JSON.stringify([
-        {
-            title: 'Hello Unity. My name in node.js.'
-        }
-    ]));
-    response.end();
-});
 
 /**
  * @description http://expressjs.com/en/4x/api.html#app.get.method
@@ -120,7 +113,7 @@ app.get("*", async (request, response) => {
     let parsedUrl = url.parse(request.url);
     let parsedQs = querystring.parse(parsedUrl.query);
 
-    const RouterContext = {}
+    const RouterContext = {};
 
     /**
      * @description root react component

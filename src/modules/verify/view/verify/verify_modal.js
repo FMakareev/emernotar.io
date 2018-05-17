@@ -23,20 +23,20 @@ const createNotarization = gql`mutation createNotarization(
     $emailHashed: Boolean,
     $docName: String,
     $additionalInfo: String,
-    $creationTime: String,
+    $notarizationCreateTime: String,
     ){
         createNotarization(
             name:$name,
             emailHashed:$emailHashed,
             docName:$docName,
             additionalInfo:$additionalInfo,
-            creationTime:$creationTime
+            notarizationCreateTime:$notarizationCreateTime
         ) {
             name
             emailHashed
             docName
             additionalInfo
-            creationTime
+            notarizationCreateTime
         }
     }`;
 
@@ -77,11 +77,11 @@ class VerifyModal extends Component {
         // получаешь данные local storage
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
-        const creationTime = Date.now() + ''; //timestamp
-        localStorage.setItem('timestamp', creationTime);
+        const notarizationCreateTime = Date.now() + ''; //timestamp
+        localStorage.setItem('timestamp', notarizationCreateTime);
 
 
-        let obj = {name, docName, creationTime, ...value, emailHashed: this.state.emailHashed};
+        let obj = {name, docName, notarizationCreateTime, ...value, emailHashed: this.state.emailHashed};
         if (!obj.hasOwnProperty('additionalInfo') || !obj.additionalInfo) {
             obj.additionalInfo = '';
         }

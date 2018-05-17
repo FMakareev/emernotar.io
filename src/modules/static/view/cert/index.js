@@ -1,20 +1,22 @@
-import React, {Component, Fragment} from 'react';
+import React,{Component,Fragment} from 'react';
 import {connect} from "react-fela";
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
+import {connect as ReduxConnect} from "react-redux";
 import {Typography} from "../../../../blocks/typography/index";
-import {TopLabelRow, TopLabel} from '../../../../components/topLabel/index';
-import iconLogo from '../../../../assets/icons/icon_logo.svg';
-import {Image} from "../../../../blocks/image/index";
+import {TopLabelRow,TopLabel} from '../../../../components/topLabel/index';
 import IconLogoEmerNatar from '../../../../components/icons/icon_logo';
 import gql from "graphql-tag";
 import {Query} from "react-apollo";
-import {PageNotFound} from "../../../../routes/errors/index";
+import {changeTranslate} from "../../../../store/reducers/localization/actions";
+import {Store} from '../../../../store';
+import {graphql} from "react-apollo";
 
-const price = gql`
+const certificateItem = gql`
   query($emerhash: String) {
         certificateItem(emerhash:$emerhash){
             name
             fileName
-            notarizationDate
+            notarizationCreateTime
             submittingDate
             submittingExpiration
             ownerEmail
@@ -30,7 +32,7 @@ const price = gql`
 
 // const name = '{name}';
 // const fileName = '{fileName}';
-// const notarizationDate = '{notarizationDate}';
+// const notarizationCreateTime = '{notarizationCreateTime}';
 // const submittingDate = '{submittingDate}';
 // const submittingExpiration = '{submittingExpiration}';
 // const ownerEmail = '{ownerEmail}';
@@ -55,110 +57,113 @@ class Cert extends Component {
     }
 
     render() {
-        const {styles, emerhash} = this.props;
-        if (!styles) return null;
-        return (
-            <Query query={price} variables={{emerhash: emerhash}}>
-                {({loading, error, data}) => {
-                    console.log(error);
-                    console.log(data);
-                    if (loading) {
-                        return ''
-                    }
+        const {translate,styles,loading,error,data,setActiveLanguage,currentLanguage} = this.props;
+        console.log('CERTIFICAT TEMPLATE: ', this.props)
+        if (loading) {
+            console.log('loading...',loading);
+            return null;
+        }
+        if (error) {
+            console.error('ERROR: ',error);
+            return (<Typography
+                as={'p'}
+                size={'medium'}
+                color={'error'}
+                bright={'dark'}
+                fontWeight={'bold'}
+                textAlign={'center'}
+            >
+                {translate('home_network_error')}
+            </Typography>)
+        }
+        if (data && data.certificateItem) {
+            const {
+                name,
+                fileName,
+                notarizationCreateTime,
+                submittingDate,
+                submittingExpiration,
+                ownerEmail,
+                emerhash,
+                idTransaction,
+                blockChainAddress,
+                serviceName,
+                paymentId,
+                PayerID,
 
-                    if (error) {
-                        return null
-                    } else if (data.certificateItem) {
-                        const {
-                            name,
-                            fileName,
-                            notarizationDate,
-                            submittingDate,
-                            submittingExpiration,
-                            ownerEmail,
-                            emerhash,
-                            idTransaction,
-                            blockChainAddress,
-                            serviceName,
-                            paymentId,
-                            PayerID,
+            } = data.certificateItem;
+            // const newLang = 'RU';
+            // if(newLang !== currentLanguage) {
+            //     setActiveLanguage(newLang);
+            // }
+            return (
+                <div style={{
+                    height: '100vh',width: '100%',display: 'flex',flexDirection: 'column',
+                    justifyContent: 'space-between',
+                }}>
+                    <div>
+                        <div className={styles.top}>
+                            <IconLogoEmerNatar/>
+                        </div>
 
-                        } = data.certificateItem;
-                        return (
-                            <div style={{
-                                height: '100vh', width: '100%', display: 'flex', flexDirection: 'column',
-                                justifyContent: 'space-between',
-                            }}>
-
-
-                                <div>
-                                    <div className={styles.top}>
-                                        <IconLogoEmerNatar/>
-
-                                    </div>
-
-                                    <div>
-                                        <Typography as={"h1"} size={'large'} color={'primary'} bright={'dark'}
-                                                    fontWeight={'bold'}
-                                                    textAlign={'center'}
-                                                    textTransform={'uppercase'}
-                                                    styles={{fontSize: '3rem', lineHeight: '5rem'}}>
-                                            Certificate
-                                        </Typography>
-                                    </div>
-                                    <TopLabelRow>
-                                        <TopLabel isActive styles={{transform: 'none', padding: '1rem', width: '40%'}}>
-                                            Данные о транзакции в блокчейн:
-                                            <Typography as={'p'}>
-                                                Дата внесения: {submittingDate} <br/>
-                                                ID транзакции: <span style={{wordWrap: 'break-word'}}>
+                        <div>
+                            <Typography as={"h1"} size={'large'} color={'primary'} bright={'dark'}
+                                        fontWeight={'bold'}
+                                        textAlign={'center'}
+                                        textTransform={'uppercase'}
+                                        styles={{fontSize: '3rem',lineHeight: '5rem'}}>
+                                Certificate
+                            </Typography>
+                        </div>
+                        <TopLabelRow>
+                            <TopLabel isActive styles={{transform: 'none',padding: '1rem',width: '40%'}}>
+                                {translate('static_info_transactions')}:
+                                <Typography as={'p'}>
+                                    {translate('static_date_entry')}: {submittingDate} <br/>
+                                    {translate('static_transaction_id')}: <span
+                                    style={{wordWrap: 'break-word'}}>
                                                 {idTransaction}
                                             </span> <br/>
-                                                Ваш адрес в блокчейн Emercoin: {blockChainAddress} <br/>
-                                            </Typography>
-                                        </TopLabel>
-                                        <TopLabel isActive styles={{transform: 'none', padding: '1rem', width: '40%'}}>
-                                            Данные о сертификате:
-                                            <Typography as={'p'} styles={{lineHeight: '2rem'}}>
-                                                Дата нотаризации: {notarizationDate} <br/>
-                                                Владелец нотаризации: {ownerEmail} <br/>
-                                                Срок действия: до {submittingExpiration}
+                                    {translate('static_your_address')}: {blockChainAddress} <br/>
+                                </Typography>
+                            </TopLabel>
+                            <TopLabel isActive styles={{transform: 'none',padding: '1rem',width: '40%'}}>
+                                {translate('static_info_cert')}:
+                                <Typography as={'p'} styles={{lineHeight: '2rem'}}>
+                                    {translate('static_notarization_date')}: {notarizationCreateTime} <br/>
+                                    {translate('static_owner')}: {ownerEmail} <br/>
+                                    {translate('static_validity_period')}: to {submittingExpiration}
 
-                                                <br/>
-                                                Сервис: {serviceName} <br/>
-                                            </Typography>
-                                        </TopLabel>
-                                    </TopLabelRow>
-                                </div>
-                                <div style={{margin: '0 0 -9px 0'}}>
-                                    <div className={styles.topFooter}>
-                                        <Typography as={"p"} size={'small'} textAlign={'center'}>
-                                            SHA512 Хэш-сумма: <span style={{wordWrap: 'break-word'}}>
+                                    <br/>
+                                    {translate('static_service')}: {serviceName} <br/>
+                                </Typography>
+                            </TopLabel>
+                        </TopLabelRow>
+                    </div>
+                    <div style={{margin: '0 0 -9px 0'}}>
+                        <div className={styles.topFooter}>
+                            <Typography as={"p"} size={'small'} textAlign={'center'}>
+                                {translate('static_hash_sum')}: <span style={{wordWrap: 'break-word'}}>
                                                 {name}
-                                            </span>  <br/>
-                                            Наимменование файла:{fileName}
-                                        </Typography>
-                                    </div>
-                                    <div className={styles.footer}>
-                                        <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
-                                                    textAlign={'center'}>
-                                            EMERNOTAR.IO &copy; 2018
-                                        </Typography>
-                                    </div>
-                                </div>
-                            </div>)
-                    } else {
-                        return null
-                    }
-
-                }}
-            </Query>
-
-        )
+                                            </span> <br/>
+                                {translate('static_file_name')}:{fileName}
+                            </Typography>
+                        </div>
+                        <div className={styles.footer}>
+                            <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
+                                        textAlign={'center'}>
+                                EMERNOTAR.IO &copy; 2018
+                            </Typography>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        return null;
     }
 }
 
-const style = ({theme, marginBottom, paddingBottom}) => {
+const style = ({theme,marginBottom,paddingBottom}) => {
     return {
         wrapper: {},
         top: {
@@ -200,6 +205,38 @@ const style = ({theme, marginBottom, paddingBottom}) => {
 
         },
     }
-}
+};
 
-export default connect(style)(Cert)
+const mapStateToProps = state => ({
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code,
+});
+
+Cert = connect(style)(Cert);
+
+Cert = graphql(certificateItem,{
+
+    options: (ownProps) => {
+        console.log('ownProps:',ownProps);
+        return {
+            variables: {
+                emerhash: ownProps.emerhash
+            }
+        }
+    },
+    mutate: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all'
+    }
+})(Cert);
+
+Cert = ReduxConnect(
+    mapStateToProps,
+    dispatch => ({
+        setActiveLanguage: (value) => {
+            dispatch(changeTranslate(Store.getState(),value))
+        }
+    })
+)(Cert);
+
+export default Cert;

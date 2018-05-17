@@ -9,7 +9,7 @@ import VerifyItem from './verify_item';
 const certificateList = gql`query($name: String){
     certificateList(name: $name) {
         name
-        notarizationDate
+        notarizationCreateTime
         ownerEmail
     }
 }`;
