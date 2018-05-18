@@ -7,7 +7,7 @@ const rule = ({horizontal = false}) => ({
     ...(horizontal ? {
         display: 'flex',
         alignItems: 'baseline',
-        '-ms-flex-align': 'baseline',
+        // '-ms-flex-align': 'baseline',
     } : null)
 });
 

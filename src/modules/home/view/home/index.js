@@ -377,16 +377,16 @@ const STYLE = ({theme}) => {
             display: 'flex',
 
             flexDirection: 'row',
-            '-ms-flex-direction': 'row',
+            // '-ms-flex-direction': 'row',
 
             justifyContent: 'space-around',
-            '-ms-flex-pack': 'distribute',
+            // '-ms-flex-pack': 'distribute',
 
             alignItems: 'flex-start',
-            '-ms-flex-align': 'start',
+            // '-ms-flex-align': 'start',
 
             flexWrap: 'wrap',
-            '-ms-flex-wrap': 'wrap',
+            // '-ms-flex-wrap': 'wrap',
 
         },
         iconWrapper: {
@@ -399,13 +399,13 @@ const STYLE = ({theme}) => {
             display: 'inline-flex !important',
 
             flexDirection: 'column',
-            '-ms-flex-direction': 'column',
+            // '-ms-flex-direction': 'column',
 
             justifyContent: 'center',
-            '-ms-flex-pack': 'center',
+            // '-ms-flex-pack': 'center',
 
             alignItems: 'center',
-            '-ms-flex-align': 'center',
+            // '-ms-flex-align': 'center',
 
             marginBottom: '2rem',
         },

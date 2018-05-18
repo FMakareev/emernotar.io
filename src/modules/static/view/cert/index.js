@@ -26,6 +26,7 @@ const certificateItem = gql`
             serviceName
             paymentId
             PayerID
+            language
         }
   }
 `;
@@ -58,7 +59,6 @@ class Cert extends Component {
 
     render() {
         const {translate,styles,loading,error,data,setActiveLanguage,currentLanguage} = this.props;
-        console.log('CERTIFICAT TEMPLATE: ', this.props)
         if (loading) {
             console.log('loading...',loading);
             return null;
@@ -90,15 +90,19 @@ class Cert extends Component {
                 serviceName,
                 paymentId,
                 PayerID,
+                language
 
             } = data.certificateItem;
-            // const newLang = 'RU';
-            // if(newLang !== currentLanguage) {
-            //     setActiveLanguage(newLang);
-            // }
+            if(language.toUpperCase() !== currentLanguage) {
+                setActiveLanguage(language.toUpperCase());
+            }
+            // width: 793px;
+            // height: 560px;
             return (
                 <div style={{
-                    height: '100vh',width: '100%',display: 'flex',flexDirection: 'column',
+                    // height: '560px',
+                    // width: '793px',
+                    display: 'flex',flexDirection: 'column',
                     justifyContent: 'space-between',
                 }}>
                     <div>
@@ -111,7 +115,7 @@ class Cert extends Component {
                                         fontWeight={'bold'}
                                         textAlign={'center'}
                                         textTransform={'uppercase'}
-                                        styles={{fontSize: '3rem',lineHeight: '5rem'}}>
+                                        styles={{fontSize: '30px',lineHeight: '50px'}}>
                                 Certificate
                             </Typography>
                         </div>
@@ -121,7 +125,7 @@ class Cert extends Component {
                                 <Typography as={'p'}>
                                     {translate('static_date_entry')}: {submittingDate} <br/>
                                     {translate('static_transaction_id')}: <span
-                                    style={{wordWrap: 'break-word'}}>
+                                    style={{wordWrap: 'break-word', fontSize: '13.75px'}}>
                                                 {idTransaction}
                                             </span> <br/>
                                     {translate('static_your_address')}: {blockChainAddress} <br/>
@@ -129,7 +133,7 @@ class Cert extends Component {
                             </TopLabel>
                             <TopLabel isActive styles={{transform: 'none',padding: '1rem',width: '40%'}}>
                                 {translate('static_info_cert')}:
-                                <Typography as={'p'} styles={{lineHeight: '2rem'}}>
+                                <Typography as={'p'} styles={{lineHeight: '19.25px', fontSize: '13.75px'}}>
                                     {translate('static_notarization_date')}: {notarizationCreateTime} <br/>
                                     {translate('static_owner')}: {ownerEmail} <br/>
                                     {translate('static_validity_period')}: to {submittingExpiration}
@@ -140,9 +144,13 @@ class Cert extends Component {
                             </TopLabel>
                         </TopLabelRow>
                     </div>
-                    <div style={{margin: '0 0 -9px 0'}}>
+
+                    <div style={{
+                        position: 'relative',
+                        bottom: '-33px'
+                    }}>
                         <div className={styles.topFooter}>
-                            <Typography as={"p"} size={'small'} textAlign={'center'}>
+                            <Typography as={"p"} size={'small'} styles={{lineHeight: '13.75px', fontSize: '11.25px'}} textAlign={'center'}>
                                 {translate('static_hash_sum')}: <span style={{wordWrap: 'break-word'}}>
                                                 {name}
                                             </span> <br/>
@@ -151,7 +159,9 @@ class Cert extends Component {
                         </div>
                         <div className={styles.footer}>
                             <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
-                                        textAlign={'center'}>
+                                        textAlign={'center'}
+                                        styles={{lineHeight: '13.75px', fontSize: '11.25px'}}
+                            >
                                 EMERNOTAR.IO &copy; 2018
                             </Typography>
                         </div>
@@ -192,16 +202,17 @@ const style = ({theme,marginBottom,paddingBottom}) => {
             color: 'black',
             ...theme.top,
             margin: '0',
+
         },
         footer: {
-            minHeight: '5rem',
             height: 'auto',
             verticalAlign: 'middle',
             position: 'relative',
-            ...theme.footer,
-            borderTop: 'none',
+            backgroundColor: theme.palette.primary.dark,
+            color: theme.palette.default.contrastText,
+            borderTop: '0.5rem solid #FDF396',
             margin: '0',
-            padding: '1rem 1rem 2rem 1rem',
+            padding: '1rem',
 
         },
     }
@@ -217,12 +228,27 @@ Cert = connect(style)(Cert);
 Cert = graphql(certificateItem,{
 
     options: (ownProps) => {
-        console.log('ownProps:',ownProps);
-        return {
-            variables: {
-                emerhash: ownProps.emerhash
+        console.log(ownProps);
+        if(ownProps.emerhash){
+            return {
+                variables: {
+                    emerhash: ownProps.emerhash
+                }
+            }
+        }else {
+            try{
+                if(ownProps.match.params.emerhash){
+                    return {
+                        variables: {
+                            emerhash: ownProps.match.params.emerhash
+                        }
+                    }
+                }
+            } catch (err){
+                console.log(err);
             }
         }
+
     },
     mutate: {
         fetchPolicy: 'no-cache',

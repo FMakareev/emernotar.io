@@ -39,13 +39,13 @@ const STYLE = ({theme,variant = 'vertical'}) => {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            '-ms-flex-pack': 'start',
+            // '-ms-flex-pack': 'start',
             verticalAlign: 'inherit',
             ...(variant === 'vertical' ? {
                 '@media(min-width: 768px)':{
                     alignItems: 'center',
-                    '-ms-flex-align': 'center',
-                    '-ms-flex-pack': 'center',
+                    // '-ms-flex-align': 'center',
+                    // '-ms-flex-pack': 'center',
                     flexDirection: 'column',
                     justifyContent: 'center',
                 }

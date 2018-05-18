@@ -38,15 +38,15 @@ const style = ({children}) => {
                 display: 'flex',
                 justifyContent: 'space-around',
                 flexDirection: 'row',
-                '-ms-flex-direction': 'row',
-                '-ms-flex-pack': 'distribute',
+                // '-ms-flex-direction': 'row',
+                // '-ms-flex-pack': 'distribute',
 
             }: {
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'row',
-                '-ms-flex-direction': 'row',
-                '-ms-flex-pack': 'center'
+                // '-ms-flex-direction': 'row',
+                // '-ms-flex-pack': 'center'
             }),
 
         },

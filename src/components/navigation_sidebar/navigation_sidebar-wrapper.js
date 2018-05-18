@@ -18,8 +18,8 @@ const NavigationSidebarStyle = ({...props, theme}) => {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        '-ms-flex-align': 'center',
-        '-ms-flex-pack': 'center',
+        // '-ms-flex-align': 'center',
+        // '-ms-flex-pack': 'center',
         padding: '1.25rem',
         minHeight: '100%',
     }

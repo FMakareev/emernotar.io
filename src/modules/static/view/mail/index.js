@@ -66,130 +66,168 @@ class Mail extends Component {
             setActiveLanguage(language);
         }
 
-        return (<table border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+        return (<table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
+            borderSpacing: 0,
+            borderCollapse: 'collapse',
+        }}>
 
-            <thead className={styles.th}>
-            <tr className={styles.top}>
-                <td colSpan="2" width="100%">
-                    <Typography as={"h1"} color={'default'} size={'large'} fontWeight={'bold'} textAlign={'center'}
-                                textTransform={'uppercase'} styles={{
-                        fontSize: '4rem',
-                        lineHeight: '5rem'
-                    }}>
-                        EMERNOTAR.IO
-                    </Typography>
-                </td>
-            </tr>
-            </thead>
+            <tr>
+                <td align="center">
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <thead className={styles.th}>
+                        <tr className={styles.top}>
+                            <td colSpan="2" width="100%">
+                                <Typography as={"h1"} color={'default'} size={'large'} fontWeight={'bold'}
+                                            textAlign={'center'}
+                                            textTransform={'uppercase'} styles={{
+                                    fontSize: '48px',
+                                    lineHeight: '60px'
+                                }}>
+                                    EMERNOTAR
+                                </Typography>
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
 
-            <tbody>
-            <tr className={styles.topFooter}>
-                <td colSpan="2">
-                    <TopLabel isActive styles={{
-                        transform: 'none',
-                        maxWidth: '540px',
-                        width: 'calc(100% - 4rem)',
-                        marginTop: '2rem'
-                    }}>
-                        <Typography as={'h3'} fontWeight={'bold'} textAlign={'center'}>
-                            {translate('static_dear_user')}
-                        </Typography>
-                        <Typography as={'p'} fontWeight={'bold'}>
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <tbody>
+                        <tr className={styles.topFooter}>
+                            <td>
+                                <TopLabel isActive styles={{
+                                    transform: 'none',
+                                    width: 'calc(100% - 48px)',
+                                    marginTop: '24px'
+                                }}>
+                                    <Typography as={'h3'} fontWeight={'bold'} textAlign={'center'}>
+                                        {translate('static_dear_user')}
+                                    </Typography>
+                                    <Typography as={'p'} fontWeight={'bold'}>
 
-                            {translate('static_description_row_1')} <br/>
-                            {translate('static_description_row_2')}
-                        </Typography>
-                    </TopLabel>
-                </td>
-            </tr>
-            <tr className={styles.topFooter}>
-                <td colSpan="2">
-                    <div className={styles.col2}>
-                        <TopLabel isActive styles={{transform: 'none',width: 'calc(100% - 4rem)',margin: '2rem'}}>
+                                        {translate('static_description_row_1')} <br/>
+                                        {translate('static_description_row_2')}
+                                    </Typography>
+                                </TopLabel>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                            {translate('static_info_transactions')}
-                            <Typography as={'p'}>
-                                {translate('static_date_entry')}: {submittingDate} <br/>
-                                {translate('static_transaction_id')}: {idTransaction} <br/>
-                                {translate('static_your_address')}: {blockChainAddress} <br/>
-                            </Typography>
-                        </TopLabel>
-                    </div>
-                    <div className={styles.col2}>
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <tbody>
+                        <tr className={styles.topFooter}>
+                            <td>
+                                <TopLabel isActive
+                                          styles={{transform: 'none',width: 'calc(100% - 48px)',margin: '0 24px 24px'}}>
 
-                        <TopLabel isActive styles={{transform: 'none',width: 'calc(100% - 4rem)',margin: '2rem'}}>
-                            {translate('static_info_cert')}
-                            <Typography as={'p'} lineHeight={'2rem'}>
-                                {translate('static_notarization_date')}: {notarizationCreateTime} <br/>
-                                {translate('static_owner')}: {ownerEmail} <br/>
-                                {translate('static_validity_period')}: <a target="_blank"
-                                                                          href='http://rc.compaero.ru/help'
-                                                                          style={{textDecoration: 'none'}}>
-                                <span className={styles.circle}> ? </span>
-                            </a>: {translate('static_to')} {submittingExpiration}<br/>
-                                {translate('static_service')}: {serviceName} <br/>
-                            </Typography>
-                        </TopLabel>
-                    </div>
+                                    {translate('static_info_transactions')}
+                                    <Typography as={'p'}>
+                                        {translate('static_date_entry')}: {submittingDate} <br/>
+                                        {translate('static_transaction_id')}: {idTransaction} <br/>
+                                        {translate('static_your_address')}: {blockChainAddress} <br/>
+                                    </Typography>
+                                </TopLabel>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <TopLabel isActive
+                                          styles={{transform: 'none',width: 'calc(100% - 48px)',margin: '0 24px 24px'}}>
+                                    {translate('static_info_cert')}
+                                    <Typography as={'p'} lineHeight={'24px'}>
+                                        {translate('static_notarization_date')}: {notarizationCreateTime} <br/>
+                                        {translate('static_owner')}: {ownerEmail} <br/>
+                                        {translate('static_validity_period')}: <a target="_blank"
+                                                                                  href='http://rc.compaero.ru/help'
+                                                                                  style={{textDecoration: 'none'}}>
+                                        <span className={styles.circle}> ? </span>
+                                    </a>: {translate('static_to')} {submittingExpiration}<br/>
+                                        {translate('static_service')}: {serviceName} <br/>
+                                    </Typography>
+                                </TopLabel>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <tbody>
+                        <tr className={styles.topFooter}>
+                            <td>
+                                <Button as="a" href="http://rc.compaero.ru/create_certificat/{emerhash}"
+                                        variant={"raised"}
+                                        color={'primary'}>
+                                    <Typography as={'span'} size={'large'} textDecoration={'none'}>
+                                        {translate('static_print')}
+                                    </Typography>
+                                </Button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <tbody>
+                        <tr className={styles.topFooter}>
+                            <td colSpan="2">
+                                <Typography as={"p"} textAlign={'center'}>
+                                    {translate('static_hash_sum')}: {name} <br/>
+                                    {translate('static_file_name')}: {fileName}
+                                </Typography>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                        <tfoot>
+                        <tr className={styles.footer}>
+                            <td colSpan="1">
+                                <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
+                                            textAlign={'center'}>
+                                    EMERNOTAR.IO &copy; 2018
+                                </Typography>
+                            </td>
+                            <td colSpan="1">
+                                <a target="_blank" style={{
+                                    color: '#fff',
+                                    textDecoration: 'none',
+                                }} href="https://compaero.ru">
+                                    <div style={{
+                                        display: 'inline-block',
+                                        verticalAlign: 'middle',
+                                        width: '40px',
+                                        height: '40px',
+                                        marginRight: '10px',
+                                    }}>
+                                        <img style={{border: 'none'}}
+                                             src={'http://rc.compaero.ru//assets/icons/Монтажная область 1-100.jpg'}
+                                             alt=""/>
+                                    </div>
+                                    <Typography
+                                        as={'span'}
+                                        size={'medium'}
+                                        color={'default'}
+                                        bright={'contrastText'}
+                                        styles={{
+                                            display: 'inline-block',
+                                            verticalAlign: 'middle',
+                                        }}
+                                    >
+                                        CompAero
+                                    </Typography>
+                                </a>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </td>
             </tr>
-            <tr className={styles.topFooter}>
-                <td colSpan="2">
-                    <Button as="a" href="http://rc.compaero.ru/create_certificat/{emerhash}" variant={"raised"}
-                            color={'primary'}>
-                        <Typography as={'span'} size={'large'} textDecoration={'none'}>
-                            {translate('static_print')}
-                        </Typography>
-                    </Button>
-                </td>
-            </tr>
-            <tr className={styles.topFooter}>
-                <td colSpan="2">
-                    <Typography as={"p"} textAlign={'center'}>
-                        {translate('static_hash_sum')}: {name} <br/>
-                        {translate('static_file_name')}: {fileName}
-                    </Typography>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr className={styles.footer}>
-                <td colSpan="1">
-                    <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'} textAlign={'center'}>
-                        EMERNOTAR.IO &copy; 2018
-                    </Typography>
-                </td>
-                <td colSpan="1">
-                    <a target="_blank" style={{
-                        color: '#fff',
-                        textDecoration: 'none',
-                    }} href="https://compaero.ru">
-                        <div style={{
-                            display: 'inline-block',
-                            verticalAlign: 'middle',
-                            width: '40px',
-                            height: '40px',
-                            marginRight: '10px',
-                        }}>
-                            <img style={{border: 'none'}}
-                                 src={'http://rc.compaero.ru//assets/icons/Монтажная область 1-100.jpg'} alt=""/>
-                        </div>
-                        <Typography
-                            as={'span'}
-                            size={'medium'}
-                            color={'default'}
-                            bright={'contrastText'}
-                            styles={{
-                                display: 'inline-block',
-                                verticalAlign: 'middle',
-                            }}
-                        >
-                            CompAero
-                        </Typography>
-                    </a>
-                </td>
-            </tr>
-            </tfoot>
+
 
         </table> )
 
@@ -203,21 +241,21 @@ const style = ({theme}) => {
             paddingTop: '1px',
             verticalAlign: 'middle',
             position: 'relative',
-            borderBottom: '0.5rem solid #FDF396',
+            borderBottom: '6px solid #FDF396',
             width: '100%',
             ...theme.header,
         },
         topFooter: {
-            minHeight: '7rem',
+            minHeight: '43px',
             verticalAlign: 'middle',
             position: 'relative',
             textAlign: 'center',
             color: 'black',
-            marginTop: '2rem',
+            marginTop: '24px',
             width: '100%',
         },
         footer: {
-            minHeight: '5rem',
+            minHeight: '43px',
             verticalAlign: 'middle',
             position: 'relative',
             ...theme.footer,
@@ -228,20 +266,12 @@ const style = ({theme}) => {
         table: {
             borderSpacing: 0,
             borderCollapse: 'collapse',
-            width: '100%',
+            width: '640px',
         },
         th: {},
         tr: {
             width: '100%',
         },
-        col2: {
-            width: '50% !important',
-            display: 'inline-block',
-            '@media  only screen and  (max-width:600px)': {
-                width: '100% !important',
-
-            }
-        }
 
     }
 };

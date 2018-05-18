@@ -1,30 +1,26 @@
-// import path from 'path';
-// import webpack from 'webpack';
-// import webpackDevMiddleware from 'webpack-dev-middleware';
-// import webpackHotMiddleware from 'webpack-hot-middleware';
-// import express from 'express';
-// import browserSync from 'browser-sync';
-
-// import {serverConfig} from "./config/webpack.server";
-// import {browserConfig} from "./config/webpack.client";
+import path from 'path';
 import {getVariablesesEnvironment} from './lib/env';
 import bundle from "./bundle";
 import watch from "./watch";
 import {initMessage} from "./initLocalizationFiles";
 import {Clear} from "./clear";
-import fs from 'fs-extra'
-
-// const clientCompiler = webpack(browserConfig);
-// const serverCompiler = webpack(serverConfig);
-// const isomorphicCompiler = webpack([browserConfig, serverConfig]);
+import fsExtra from 'fs-extra'
+import fs from 'fs';
 
 
 const start = async () => {
     await Clear();
     await initMessage();
     await getVariablesesEnvironment();
-    fs.copySync('./src/assets/fonts', './public/assets/fonts');
+    fsExtra.copySync('./src/assets/fonts', './public/assets/fonts');
+    const certificates_dir = path.resolve(__dirname, '../public/assets/certificates/');
 
+    /**
+     * @description check for a directory for storing certificates
+     * */
+    if (!fs.existsSync(certificates_dir)) {
+        fs.mkdirSync(certificates_dir);
+    }
     if (process.env.WATCH === "true") {
         await watch();
 

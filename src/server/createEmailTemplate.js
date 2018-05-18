@@ -20,7 +20,6 @@ import Html from "./html";
 
 export const createEmailTemplate = async (language = 'EN') => {
     const renderer = createStyleRenderer();
-    console.log(language);
     await Store.dispatch(initLocalize(Store.getState(), language ));
 
     const Component = (

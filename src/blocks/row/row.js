@@ -16,28 +16,28 @@ const RowStyle = ({
     ...(justifyContent === 'center' ? {
         display: 'flex',
         justifyContent: 'center',
-        '-ms-flex-pack': 'center',
+        // '-ms-flex-pack': 'center',
     } : null),
     ...(justifyContent === 'left' ? {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: alignItems,
-        '-ms-flex-pack': 'start',
-        '-ms-flex-align': alignItems,
+        // '-ms-flex-pack': 'start',
+        // '-ms-flex-align': alignItems,
     } : null),
     ...(justifyContent === 'right' ? {
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: alignItems,
-        '-ms-flex-pack': 'end',
-        '-ms-flex-align': alignItems,
+        // '-ms-flex-pack': 'end',
+        // '-ms-flex-align': alignItems,
     } : null),
     ...(justifyContent === 'spaceBetween' ? {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: alignItems,
-        '-ms-flex-pack': 'justify',
-        '-ms-flex-align': alignItems,
+        // '-ms-flex-pack': 'justify',
+        // '-ms-flex-align': alignItems,
     } : null),
     ...styles
 });

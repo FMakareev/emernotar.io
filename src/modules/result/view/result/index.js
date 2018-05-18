@@ -20,12 +20,14 @@ const createCertificate = gql`mutation createCertificate(
     $notarizationCreateTime: String,
     $paymentId: String,
     $PayerID: String,
+    $language: String,
     ){
         createCertificate(
             name:$name,
             notarizationCreateTime: $notarizationCreateTime,
             paymentId: $paymentId,
             PayerID: $PayerID,
+            language: $language,
         ) {
             name
             notarizationCreateTime
@@ -81,6 +83,7 @@ class Result extends Component {
          * @description создание сертификата
          * */
         if (data.variables) {
+            data.variables.language = this.props.currentLanguage.toLowerCase();
             this.props.createCertificate(data)
                 .then((response) => {
                     if (response.errors && response.errors.length) {

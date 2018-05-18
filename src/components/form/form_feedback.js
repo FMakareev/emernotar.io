@@ -42,12 +42,14 @@ class FormFeedback extends Component {
         this.state = this.initialState;
         this.submit = this.submit.bind(this);
         this.required = this.required.bind(this);
+        this.statusTimer = this.statusTimer.bind(this);
     }
 
     get initialState() {
         return {
             preLoader: false,
-            error: null
+            error: null,
+            status: null,
         }
     }
 
@@ -69,6 +71,7 @@ class FormFeedback extends Component {
                 console.log(res);
                 this.onPreLoaderToggle(false);
                 this.setState({status: res});
+                this.statusTimer();
                 this.props.reset();
             })
             .catch((err) => {
@@ -78,10 +81,20 @@ class FormFeedback extends Component {
 
                 if (err.networkError.statusCode >= 400) {
                     this.setState({error: err.networkError.bodyText})
+                    this.statusTimer();
                 }
 
             })
     }
+
+    statusTimer() {
+        setTimeout(() => this.setState({
+            preLoader: false,
+            error: null,
+            status: null,
+        }), 3000);
+    }
+
 
     render() {
         const {handleSubmit,reset,pristine,submitting,styles,translate} = this.props;

@@ -25,7 +25,6 @@ export const certificateTemplate = async (hash,language = 'EN') => {
     try {
         await Store.dispatch(initLocalize(Store.getState(), language ));
 
-        console.log('certificate_template hash: ',hash);
         return new Promise((resolve,reject) => {
 
             const renderer = createStyleRenderer();
@@ -56,13 +55,14 @@ export const certificateTemplate = async (hash,language = 'EN') => {
 
                     const REACT_HTML = <Html getStatic={true} content={content}/>;
 
-                    const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>',styleMarkup)
+                    const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>',styleMarkup);
 
                     resolve(HTML)
                 })
                 .catch(e => {
+                    console.log('line 64 error:', e);
                     /** @description http://expressjs.com/en/4x/api.html#res.end */
-                    reject(`An error occurred. Please submit an issue to with the following stack trace:\n\n${ e.stack}`
+                    reject(`An error occurred. Please submit an issue to with the following stack trace:\n\n${ e}`
                     );
                 });
 
@@ -70,6 +70,7 @@ export const certificateTemplate = async (hash,language = 'EN') => {
 
 
     } catch (error) {
+        console.log('line 73. error:', error);
         return error
     }
 

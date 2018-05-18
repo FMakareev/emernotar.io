@@ -43,9 +43,9 @@ const STYLE = ({color, theme, count,active}) => {
             zIndex: 2,
             display: 'flex',
             flexDirection: 'row',
-            '-ms-flex-direction': 'row',
+            // '-ms-flex-direction': 'row',
             alignItems: 'inherit',
-            '-ms-flex-pack': 'inherit',
+            // '-ms-flex-pack': 'inherit',
             width: '100%',
             padding: 0,
             backgroundColor: 'transparent',
@@ -83,10 +83,10 @@ const STYLE = ({color, theme, count,active}) => {
         content: {
             display: 'flex',
             justifyContent: 'flex-start',
-            '-ms-flex-pack': 'start',
+            // '-ms-flex-pack': 'start',
 
             alignItems: 'center',
-            '-ms-flex-align': 'center',
+            // '-ms-flex-align': 'center',
 
             width: `calc(100% - ${baseSize / 2}rem)`,
             minHeight: `${baseSize}rem`,
