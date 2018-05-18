@@ -73,7 +73,11 @@ class Mail extends Component {
 
             <tr>
                 <td align="center">
-                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
+                        borderSpacing: 0,
+                        borderCollapse: 'collapse',
+                        width: '100%',
+                    }}>
                         <thead className={styles.th}>
                         <tr className={styles.top}>
                             <td colSpan="2" width="100%">
@@ -183,48 +187,62 @@ class Mail extends Component {
                         </tbody>
                     </table>
 
-                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
+                        borderSpacing: 0,
+                        borderCollapse: 'collapse',
+                        width: '100%',
+                    }}>
                         <tfoot>
                         <tr className={styles.footer}>
-                            <td colSpan="1">
-                                <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
-                                            textAlign={'center'}>
-                                    EMERNOTAR.IO &copy; 2018
-                                </Typography>
-                            </td>
-                            <td colSpan="1">
-                                <a target="_blank" style={{
-                                    color: '#fff',
-                                    textDecoration: 'none',
-                                }} href="https://compaero.ru">
-                                    <div style={{
-                                        display: 'inline-block',
-                                        verticalAlign: 'middle',
-                                        width: '40px',
-                                        height: '40px',
-                                        marginRight: '10px',
-                                    }}>
-                                        <img style={{border: 'none'}}
-                                             src={'http://rc.compaero.ru//assets/icons/Монтажная область 1-100.jpg'}
-                                             alt=""/>
-                                    </div>
-                                    <Typography
-                                        as={'span'}
-                                        size={'medium'}
-                                        color={'default'}
-                                        bright={'contrastText'}
-                                        styles={{
-                                            display: 'inline-block',
-                                            verticalAlign: 'middle',
-                                        }}
-                                    >
-                                        CompAero
-                                    </Typography>
-                                </a>
+                            <td colSpan="1" align="center">
+                                <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                                    <tfoot>
+                                    <tr className={styles.footer}>
+                                        <td colSpan="1">
+                                            <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
+                                                        textAlign={'center'}>
+                                                EMERNOTAR.IO &copy; 2018
+                                            </Typography>
+                                        </td>
+                                        <td colSpan="1">
+                                            <a target="_blank" style={{
+                                                color: '#fff',
+                                                textDecoration: 'none',
+                                            }} href="https://compaero.ru">
+                                                <div style={{
+                                                    display: 'inline-block',
+                                                    verticalAlign: 'middle',
+                                                    width: '40px',
+                                                    height: '40px',
+                                                    marginRight: '10px',
+                                                }}>
+                                                    <img style={{border: 'none'}}
+                                                         src={'http://rc.compaero.ru//assets/icons/Монтажная область 1-100.jpg'}
+                                                         alt=""/>
+                                                </div>
+                                                <Typography
+                                                    as={'span'}
+                                                    size={'medium'}
+                                                    color={'default'}
+                                                    bright={'contrastText'}
+                                                    styles={{
+                                                        display: 'inline-block',
+                                                        verticalAlign: 'middle',
+                                                    }}
+                                                >
+                                                    CompAero
+                                                </Typography>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
                             </td>
                         </tr>
                         </tfoot>
                     </table>
+
+
                 </td>
             </tr>
 
