@@ -75,8 +75,8 @@
     "unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.44",
-    "@babel/node": "7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/node": "^7.0.0-beta.44",
     "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.44",
     "@babel/plugin-transform-react-inline-elements": "7.0.0-beta.44",
     "@babel/polyfill": "^7.0.0-beta.46",
@@ -127,7 +127,7 @@
     "start:ssr": "concurrently \"yarn build:ssr:dev\" \"yarn start:ssr:server\"",
     "start:ssr:server": "nodemon --inspect --verbose public/server.js",
     "build:ssr:prod": "babel-node tools/start.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_server='\"http://127.0.0.1:3002\"'",
-    "build:ssr:dev": "babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
+    "build:ssr:dev": "babel-node tools/start.js --mode=development --watch=true --ssr_fetch=false --port='3001' --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
     "localization:prod": "babel-node ./tools/initLocalizationFiles.js",
     "create-index": "create-index ./src/modules/",
     "clear": "babel-node  ./tools/clear.js",

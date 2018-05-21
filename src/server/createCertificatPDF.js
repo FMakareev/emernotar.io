@@ -10,18 +10,6 @@ const puppeteer = require('puppeteer');
 
 import path from 'path';
 
-const convertHTMLToPDF = async (html,callback,options = null) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    if (!options) {
-        options = {format: 'letter'};
-    }
-    await page.setContent(html);
-    await page.pdf(options).then(callback,function (error) {
-        console.log(error);
-    });
-    await browser.close();
-};
 
 export const createCertificat = async (req,response) => {
     try {
@@ -57,7 +45,7 @@ export const createCertificat = async (req,response) => {
         } else {
             fsExtra.emptyDir(certificates_dir)
                 .then(() => {
-                    console.log('success!')
+                    console.log('SUCCESS EMPTY DIR!')
                 })
                 .catch(err => {
                     console.error(`ERROR EMPTY DIR: certificates_dir :`,err)
@@ -78,30 +66,7 @@ export const createCertificat = async (req,response) => {
         const result = await createPDF(hash,fileName);
         console.log('result',result);
 
-        // const result2 = convertHTMLToPDF(result,(pdf) => {
-        //     response.contentType("application/pdf");
-        //     // res.send('');
-        //     response.send(pdf);
-        // },{
-        //     printBackground: true,
-        //     // width: '842px',
-        //     // height: '595px',
-        //     marginsType: 1,
-        //     format: 'A4',
-        //     landscape: true,
-        //     pageRanges: '1-1',
-        //     margin: {
-        //         top: 0,
-        //         bottom: 0,
-        //         left: 0,
-        //         right: 0,
-        //     }
-        // });
-
-        // } else {
-        //     console.log('Yes certificate with hash:', hash);
-        // }
-
+        
         /**
          * @description Read the certificate file and send in response to the user
          */
@@ -134,7 +99,12 @@ const createPDF = async (hash,fileName) => {
 
     const options = {
         html: html,
-        "paperSize": {format: 'A5', orientation: 'landscape', border: '0'}
+        "paperSize": {
+            format: 'A4', 
+            orientation: 'landscape', 
+            border: '0',
+            // delay: 10000,
+        }
     };
     await new Promise((response, resolve) => {
 
@@ -144,12 +114,6 @@ const createPDF = async (hash,fileName) => {
             result.toBuffer(function (returnedBuffer) {
             });
 
-            /* Using a readable stream */
-            var stream = result.toStream();
-
-            /* Using the temp file path */
-            var tmpPath = result.getTmpPath();
-
             /* Using the file writer and callback */
             result.toFile(`${process.cwd()}/public/assets/certificates/${fileName}.pdf`,function (event) {
                 console.log('phantomPdf finish.',event);
@@ -157,77 +121,4 @@ const createPDF = async (hash,fileName) => {
             });
         });
     })
-
-
-    // const options = {
-    //     // height: '560px',
-    //     // width: '793px',
-    //     format: 'A5',
-    //     orientation: 'landscape',
-    //     "type": "pdf",
-    //     "border": "0",
-    //     // "zoomFactor": "1",
-    // };
-    // return new Promise((resolve, reject ) =>{
-    //     HtmlToPdf.create(html, options).toFile(`${process.cwd()}/public/assets/certificates/${fileName}.pdf`, function(err, res) {
-    //         if (err) {
-    //             console.log(err);
-    //             reject(err);
-    //             return err;
-    //         }
-    //         console.log(res);
-    //         resolve(res)
-    //     });
-    // })
-
 }
-
-
-//     "html5-to-pdf": "^2.2.9",
-// const createPDF = (hash,fileName) => {
-//     return new Promise((resolve,reject) => {
-//         console.log('createCertificatPDF');
-//         console.log(process.cwd());
-//         const inputBody = certificateTemplate(hash)
-//             .then((response) => {
-//                 console.log('response certificateTemplate: ',response);
-//                 const htmlToPDF = new HTMLToPDF({
-//                     inputBody: response,
-//                     outputPath: `${process.cwd()}/public/assets/certificates/${fileName}.pdf`,
-//
-//                     options: {
-//                         printBackground: true,
-//                         width: '842px',
-//                         height: '595px',
-//                         marginsType: 1,
-//                         format: 'A4',
-//                         landscape: true,
-//                         pageRanges: '1-1',
-//                         margin: {
-//                             top: 0,
-//                             bottom: 0,
-//                             left: 0,
-//                             right: 0,
-//                         }
-//                     }
-//                 });
-//
-//              try {
-//                  htmlToPDF.build((error) => {
-//                      if (error) {
-//                          console.log('htmlToPDF ERROR: ',error);
-//                          reject(error)
-//                      } else {
-//                          console.log('htmlToPDF finish');
-//                          resolve('htmlToPDF finish');
-//                      }
-//                  });
-//              } catch (error) {
-//                  console.log(error);
-//              }
-//             }).catch((error)=>{
-//                 console.log(error);
-//             })
-//
-//     })
-// };

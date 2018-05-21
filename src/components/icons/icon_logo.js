@@ -5,7 +5,8 @@ const Style = ({theme, styles, ...props}) => {
     return {
         wrapper: {
             display: 'block',
-            margin: '20px auto'
+            margin: '20px auto',
+            ...styles,
         },
         Vector: {
             // transform:"translate(139.188, 24.7876)",
