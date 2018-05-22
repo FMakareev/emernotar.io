@@ -178,9 +178,36 @@ class Mail extends Component {
                         <tbody>
                         <tr className={styles.topFooter}>
                             <td colSpan="2">
-                                <Typography as={"p"} textAlign={'center'}>
-                                    {translate('static_hash_sum')}: {name} <br/>
-                                    {translate('static_file_name')}: {fileName}
+                                <Typography as={"div"} textAlign={'center'}>
+                                    <table style={{
+                                        width: '100%',
+                                        textAlign: 'left'
+                                    }}>
+                                        <tbody>
+                                        <tr>
+                                            <td style={{whiteSpace: 'nowrap'}}>
+                                                {translate('static_hash_sum')}:
+                                            </td>
+                                            <td style={{
+                                                wordWrap: 'break-word',width: '100%',
+                                                maxWidth: 0,
+                                            }}>
+                                                {name}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{whiteSpace: 'nowrap'}}>
+                                                {translate('static_file_name')}:
+                                            </td>
+                                            <td style={{
+                                                wordWrap: 'break-word',width: '100%',
+                                                maxWidth: 0,
+                                            }}>
+                                                {fileName}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </Typography>
                             </td>
                         </tr>
