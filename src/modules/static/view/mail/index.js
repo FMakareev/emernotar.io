@@ -9,7 +9,7 @@ import {TopLabel} from '../../../../components/topLabel/index';
 import {Button} from '../../../../blocks/button/index';
 import {changeTranslate} from "../../../../store/reducers/localization/actions";
 import {Store} from '../../../../store';
-
+import CALogo from './ca_logo';
 const name = '{name}';
 const fileName = '{fileName}';
 const notarizationCreateTime = '{notarizationCreateTime}';
@@ -235,17 +235,16 @@ class Mail extends Component {
                                             <a target="_blank" style={{
                                                 color: '#fff',
                                                 textDecoration: 'none',
+                                                display: 'block',
+                                                padding: '10px 0'
                                             }} href="https://compaero.ru">
                                                 <div style={{
                                                     display: 'inline-block',
-                                                    verticalAlign: 'middle',
+                                                    verticalAlign: 'bottom',
                                                     width: '40px',
-                                                    height: '40px',
                                                     marginRight: '10px',
                                                 }}>
-                                                    <img style={{border: 'none'}}
-                                                         src={'http://rc.compaero.ru//assets/icons/Монтажная область 1-100.jpg'}
-                                                         alt=""/>
+                                                    <CALogo/>
                                                 </div>
                                                 <Typography
                                                     as={'span'}

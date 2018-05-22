@@ -97,8 +97,10 @@ class Cert extends Component {
             if (language.toUpperCase() !== currentLanguage) {
                 setActiveLanguage(language.toUpperCase());
             }
-            // width: 793px;
-            // height: 560px;
+            const submittingDateFormat          = new Date(Number.parseInt(submittingDate)*1000).toString();
+            const submittingExpirationFormat    = new Date(Number.parseInt(submittingExpiration)*1000).toString();
+            const notarizationCreateTimeFormat   = new Date(Number.parseInt(notarizationCreateTime)).toString();
+
             return (
                 <div style={{
                     display: 'flex',flexDirection: 'column',
@@ -139,7 +141,7 @@ class Cert extends Component {
                                                 {translate('static_date_entry')}:
                                             </td>
                                             <td>
-                                                {submittingDate}
+                                                {submittingDateFormat}
                                             </td>
                                         </tr>
                                         <tr>
@@ -185,7 +187,7 @@ class Cert extends Component {
                                                 {translate('static_notarization_date')}:
                                             </td>
                                             <td>
-                                                {notarizationCreateTime}
+                                                {notarizationCreateTimeFormat}
                                             </td>
                                         </tr>
                                         <tr>
@@ -201,7 +203,7 @@ class Cert extends Component {
                                                 {translate('static_validity_period')}:
                                             </td>
                                             <td>
-                                                {translate('static_to')} {submittingExpiration}
+                                                {translate('static_to')} {submittingExpirationFormat}
                                             </td>
                                         </tr>
                                         <tr>
@@ -229,30 +231,12 @@ class Cert extends Component {
                                 lineHeight: '13.75px',
                                 fontSize: '11.25px'
                             }} textAlign={'center'}>
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <td style={{whiteSpace: 'nowrap'}}>
-                                            {translate('static_hash_sum')}:
-                                        </td>
-                                        <td style={{
-                                            wordWrap: 'break-word',width: '100%',
-                                            maxWidth: 0,
-                                        }}>
-                                            {name}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{whiteSpace: 'nowrap'}}>
-                                            {translate('static_file_name')}:
-                                        </td>
-                                        <td>
-                                            {fileName}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-
+                                <Typography as={"p"} size={'small'} styles={{ width: '500px', margin: '0 auto', lineHeight: '13.75px', fontSize: '11.25px' }} textAlign={'center'}>
+                                    {translate('static_hash_sum')}: <span style={{ wordWrap: 'break-word' }}>
+                                    {name}
+                                </span> <br />
+                                    {translate('static_file_name')}:{fileName}
+                                </Typography>
 
                             </Typography>
                         </div>
