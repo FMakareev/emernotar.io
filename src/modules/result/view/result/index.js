@@ -33,7 +33,6 @@ const createCertificate = gql`mutation createCertificate(
             notarizationCreateTime
             paymentId
             PayerID
-            emerhash
             blockChainAddress
         }
     }`;

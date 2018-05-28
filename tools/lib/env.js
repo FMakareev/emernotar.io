@@ -1,6 +1,7 @@
 export const getVariablesesEnvironment = () => {
     console.info('run: getVariablesesEnvironment');
     return new Promise((resolve, reject) => {
+
         try {
             let env = {};
 
@@ -19,4 +20,3 @@ export const getVariablesesEnvironment = () => {
 
     })
 };
-// yarn build:ssr:prod  --endpoint_server='\"http://localhost:3002\"'  --endpoint_client='\"http://localhost:3002\"'
