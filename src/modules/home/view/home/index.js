@@ -178,7 +178,7 @@ class HomePage extends Component {
     }
 
     renderVideo() {
-        if (!process.env.__isBrowser__) return null;
+        if (!process.env.isBrowser) return null;
 
         if (!Cookies.get("video")) {
             Cookies.set("video", 'whatched');
@@ -273,7 +273,7 @@ class HomePage extends Component {
                 </Container>
                 <Container styles={{paddingBottom: '5rem', marginTop: '-5rem'}}>
                     <Row>
-                        <Query query={price} ssr={__SSR_FETCH__}>
+                        <Query query={price} ssr={SSR_FETCH}>
                             {({loading, error, data}) => {
                                 if (loading) {
                                     return <PreLoader/>;

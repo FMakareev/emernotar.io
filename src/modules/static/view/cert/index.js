@@ -163,38 +163,14 @@ class Cert extends Component {
                                                 {blockChainAddress}
                                             </td>
                                         </tr>
-                                        </tbody>
-                                    </table>
-                                </Typography>
-                            </div>
-
-                            <div className={styles.topLabel}>
-                                <Typography
-                                    styles={{margin: '0 0 2rem'}}
-                                    as={'h2'}
-                                    size={'medium'}
-                                    fontWeight={'inherit'}
-                                    textAlign={'center'}
-                                >
-                                    {translate('static_info_cert')}:
-                                </Typography>
-                                <Typography as={'div'} styles={{lineHeight: '13.75px',fontSize: '11.75px'}}>
-
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                {translate('static_notarization_date')}:
-                                            </td>
-                                            <td>
-                                                {notarizationCreateTimeFormat}
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <td>
                                                 {translate('static_owner')}:
                                             </td>
-                                            <td>
+                                            <td style={{
+                                                wordWrap: 'break-word',width: '100%',
+                                                maxWidth: 0,
+                                            }}>
                                                 {ownerEmail}
                                             </td>
                                         </tr>
@@ -218,6 +194,7 @@ class Cert extends Component {
                                     </table>
                                 </Typography>
                             </div>
+
                         </TopLabelRow>
                     </div>
 
@@ -325,7 +302,7 @@ const style = ({theme,marginBottom,paddingBottom}) => {
             fontWeight: 'bold',
             transform: 'none',
             padding: '1rem',
-            width: '48%',
+            width: '70%',
             lineHeight: '30.8px',
             fontSize: '22px'
         }

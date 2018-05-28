@@ -1,17 +1,17 @@
-import React, {Component, Fragment} from 'react';
+import React,{Component,Fragment} from 'react';
 import Modal from 'react-responsive-modal';
 import gql from 'graphql-tag';
-import {Mutation, graphql} from "react-apollo";
+import {Mutation,graphql} from "react-apollo";
 
 import {Typography} from "../../../../blocks/typography/index";
 import {connect as connectFela} from 'react-fela';
-import {Field, reduxForm} from "redux-form";
+import {Field,reduxForm} from "redux-form";
 import {Button} from "../../../../blocks/button/index";
 import {InputText} from "../../../../blocks/input-fela/input_text/input_text";
 import {Image} from "../../../../blocks/image/index";
 import {Checkbox} from '../../../../blocks/input-fela/input_checkbox-group/input_checkbox-group';
-import {RadioGroup, Radio} from '../../../../blocks/input-fela/input_radio-group/input_radio-group';
-import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {RadioGroup,Radio} from '../../../../blocks/input-fela/input_radio-group/input_radio-group';
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 
 import iconNotar from '../../../../assets/icons/icon_notorize-black.svg';
 import {connect} from "react-redux";
@@ -69,7 +69,10 @@ class VerifyModal extends Component {
     }
 
     get initialState() {
-        return {emailHashed: false};
+        return {
+            emailHashed: null,
+            emailHashedMessage: null,
+        };
     }
 
     submit(value) {
@@ -78,10 +81,13 @@ class VerifyModal extends Component {
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
         const notarizationCreateTime = Date.now() + ''; //timestamp
-        localStorage.setItem('timestamp', notarizationCreateTime);
+        localStorage.setItem('timestamp',notarizationCreateTime);
 
-
-        let obj = {name, docName, notarizationCreateTime, ...value, emailHashed: this.state.emailHashed};
+        if (this.state.emailHashed === null) {
+            this.setState({emailHashedMessage: this.props.translate('verify_modal_email_hashed_message')});
+            return null
+        }
+        let obj = {name,docName,notarizationCreateTime,...value,emailHashed: this.state.emailHashed};
         if (!obj.hasOwnProperty('additionalInfo') || !obj.additionalInfo) {
             obj.additionalInfo = '';
         }
@@ -105,7 +111,7 @@ class VerifyModal extends Component {
     }
 
     render() {
-        const {open, onModalToggle, styles, handleSubmit, reset, error, pristine, submitting, translate} = this.props;
+        const {open,onModalToggle,styles,handleSubmit,reset,error,pristine,submitting,translate} = this.props;
         const {preLoader} = this.state;
         console.log(this);
         return (
@@ -129,8 +135,41 @@ class VerifyModal extends Component {
                                     selectedValue={this.state.emailHashed}
                                     onChange={this.handleChange}
                         >
-                            <Radio value={true}/>{translate('verify_modal_hash_email')}<br/>
-                            <Radio value={false} checked/>{translate('verify_modal_open_email')}
+                            <div style={{
+                                marginBottom: '0.5rem',
+                            }}>
+                                <Radio value={true}/>{translate('verify_modal_hash_email')}
+                                <Typography  styles={{
+                                    fontStyle: 'italic',
+                                    paddingLeft: '20px',
+                                }} as={'div'} size={'small'} textDecoration={'none'} color={'secondary'}
+                                             bright={'contrastText'}>
+                                    {translate('verify_modal_hash_email_description')}
+                                </Typography>
+                            </div>
+                            <div style={{
+                                marginBottom: '0.5rem',
+                            }}>
+                                <Radio value={false} checked/>{translate('verify_modal_open_email')}
+                                <Typography  styles={{
+                                    fontStyle: 'italic',
+                                    paddingLeft: '20px',
+                                }} as={'div'} size={'small'} textDecoration={'none'} color={'secondary'}
+                                             bright={'contrastText'}>
+                                    {translate('verify_modal_open_email_description')}
+                                </Typography>
+                            </div>
+                            {
+                                this.state.emailHashedMessage && <div>
+                                    <Typography  styles={{
+                                        paddingLeft: '20px',
+                                    }}  as={'p'} size={'small'} textDecoration={'none'} color={'error'}
+                                                bright={'main'}>
+                                        {this.state.emailHashedMessage}
+                                    </Typography>
+                                </div>
+                            }
+
                         </RadioGroup>
                         <br/>
                         <label htmlFor="">
@@ -152,7 +191,7 @@ class VerifyModal extends Component {
                             <Button variant={'raised'} color={'primary'}
                                     type="submit"
                                     styles={{textAlign: 'center'}}>
-                                <Image src={iconNotar} styles={{padding: '0.2rem', maxWidth: '40px'}}/>
+                                <Image src={iconNotar} styles={{padding: '0.2rem',maxWidth: '40px'}}/>
 
                                 <Typography as={'p'} size={'small'} textDecoration={'none'} color={'secondary'}
                                             bright={'contrastText'}>
@@ -210,7 +249,7 @@ VerifyModal = reduxForm({
     form: 'VerifyModal',
 })(VerifyModal);
 
-VerifyModal = graphql(createNotarization, {
+VerifyModal = graphql(createNotarization,{
     name: 'createNotarization',
     mutate: {
         fetchPolicy: 'no-cache',

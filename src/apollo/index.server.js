@@ -9,7 +9,7 @@ import fetch from 'isomorphic-fetch'
 import {createHttpLink} from 'apollo-link-http';
 
 
-const httpLink = new createHttpLink({uri: __ENDPOINT_SERVER__ + '/graphql', fetch: fetch});
+const httpLink = new createHttpLink({uri: ENDPOINT_SERVER + '/graphql', fetch: fetch});
 
 const ErrorLogger = onError(({networkError}) => {
     console.log(JSON.stringify(networkError));
@@ -19,7 +19,7 @@ const ErrorLogger = onError(({networkError}) => {
 export const client = new ApolloClient({
     ssrMode: true,
     // link,
-    link: from([ErrorLogger, ...(__DEV__ ? [apolloLogger] : []), httpLink]),
+    link: from([ErrorLogger, ...(DEV ? [apolloLogger] : []), httpLink]),
     cache: new InMemoryCache(),
     defaultOptions: {
         watchQuery: {

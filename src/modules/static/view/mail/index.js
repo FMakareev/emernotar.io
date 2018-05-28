@@ -12,7 +12,7 @@ import {Store} from '../../../../store';
 import CALogo from './ca_logo';
 import {Image} from "../../../../blocks/image/index";
 
-import logoImage from '../../../../../image/email_logo.jpg';
+import logoImage from '../../../../assets/email_logo..jpg';
 
 const name = '{name}';
 const fileName = '{fileName}';

@@ -50,7 +50,7 @@ class VerifyPage extends Component {
     }
 
     get initialState() {
-        if (!process.env.__isBrowser__) {
+        if (!process.env.isBrowser) {
             return {
                 open: false,
                 hasError: false,

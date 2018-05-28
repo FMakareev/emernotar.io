@@ -10,7 +10,7 @@ const Html = ({content,request,title,cache,style,reduxState,asyncState,getStatic
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
-        <title>{title}</title>
+        <title>Emernotar.io: {title}</title>
             <style></style>
     </head>
     <body>

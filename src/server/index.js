@@ -38,8 +38,8 @@ import {createEmailTemplate} from "./createEmailTemplate";
 import {createCertificat} from "./createCertificatPDF";
 
 
-console.log('__ENDPOINT_CLIENT__: ',__ENDPOINT_CLIENT__);
-console.log('__ENDPOINT_SERVER__: ',__ENDPOINT_SERVER__);
+console.log('ENDPOINT_CLIENT: ',ENDPOINT_CLIENT);
+console.log('ENDPOINT_SERVER: ',ENDPOINT_SERVER);
 
 
 
@@ -73,7 +73,7 @@ app.use(requestLanguage({
     },
 }));
 
-if (__DEV__) {
+if (DEV) {
     app.get("/create_email_template", (request, response) => {
         createEmailTemplate('RU');
         createEmailTemplate('EN');
@@ -207,8 +207,8 @@ app.get("*", async (request, response) => {
 
 });
 
-app.listen(__PORT__, () => {
-    console.log(`Server is listening on port: ${__PORT__}. !!!!!!!!`)
+app.listen(PORT, () => {
+    console.log(`Server is listening on port: ${PORT}. !!!!!!!!`)
 });
 
 

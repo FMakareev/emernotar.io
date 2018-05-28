@@ -73,7 +73,7 @@ class Result extends Component {
      * */
     createCertificate() {
         console.log('run createCertificate...');
-        if (!__isBrowser__) return null;
+        if (!isBrowser) return null;
 
         const data = {
             variables: this.createCertificateData(),
@@ -119,7 +119,7 @@ class Result extends Component {
      * @description создание объекта с данными для ссертификата
      * */
     createCertificateData() {
-        if (!__isBrowser__) return null;
+        if (!isBrowser) return null;
         const url = qp.toObject(window.location.search.substring(1));
 
         /**
@@ -153,7 +153,7 @@ class Result extends Component {
      * @description метод добавляет обработчик события закрытия окна
      * */
     addEventListenerCloseWindow() {
-        if (!__isBrowser__) return null;
+        if (!isBrowser) return null;
         console.log('run addEventListenerCloseWindow');
         window.addEventListener("beforeunload",this.confirmationMessageCloseWindow);
     }
@@ -162,7 +162,7 @@ class Result extends Component {
      * @description метод убирает обработчик события закрытия окна
      * */
     removeEventListenerCloseWindow() {
-        if (!__isBrowser__) return null;
+        if (!isBrowser) return null;
         console.log('run removeEventListenerCloseWindow');
         window.removeEventListener("beforeunload",this.confirmationMessageCloseWindow);
     }
