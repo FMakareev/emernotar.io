@@ -69,7 +69,7 @@ export const serverConfig = () => {
                             options: {
                                 emitFile: false,
                                 useRelativePath: false,
-                                name: '[name]-[hash:8].[ext]',
+                                name: '[name].[ext]',
                                 outputPath: '/assets/media/',
                                 publicPath: '/assets/media/'
                             },

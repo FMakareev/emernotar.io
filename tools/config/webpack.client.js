@@ -75,7 +75,7 @@ export const browserConfig = () => {
                             options: {
                                 emitFile: true,
                                 useRelativePath: false,
-                                name: '[name]-[hash:8].[ext]',
+                                name: '[name].[ext]',
                                 outputPath: '/assets/media/',
                                 publicPath: '/assets/media/'
                             },
