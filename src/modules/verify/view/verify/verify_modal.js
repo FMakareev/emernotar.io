@@ -225,7 +225,7 @@ const STYLE = () => {
         VerifyModalWrapper: {
             backgroundColor: '#FDF396 !important',
             margin: '0 auto',
-            maxHeight: '600px'
+            maxHeight: '650px'
         },
         VerifyModalHeader: {
             padding: '1rem 2rem !important',

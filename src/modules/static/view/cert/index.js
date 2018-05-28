@@ -1,15 +1,15 @@
-import React,{Component,Fragment} from 'react';
-import {connect} from "react-fela";
-import {graphql} from "react-apollo";
-import {getTranslate,getActiveLanguage} from 'react-localize-redux';
-import {connect as ReduxConnect} from "react-redux";
-import {Typography} from "../../../../blocks/typography/index";
-import {TopLabelRow,TopLabel} from '../../../../components/topLabel/index';
+import React, { Component, Fragment } from 'react';
+import { connect } from "react-fela";
+import { graphql } from "react-apollo";
+import { getTranslate, getActiveLanguage } from 'react-localize-redux';
+import { connect as ReduxConnect } from "react-redux";
+import { Typography } from "../../../../blocks/typography/index";
+import { TopLabelRow, TopLabel } from '../../../../components/topLabel/index';
 import IconLogoEmerNatar from '../../../../components/icons/icon_logo';
 import gql from "graphql-tag";
-import {Query} from "react-apollo";
-import {changeTranslate} from "../../../../store/reducers/localization/actions";
-import {Store} from '../../../../store';
+import { Query } from "react-apollo";
+import { changeTranslate } from "../../../../store/reducers/localization/actions";
+import { Store } from '../../../../store';
 import BCgraphicelement from '../../../../assets/BCgraphicelement-3-min.jpg';
 
 const certificateItem = gql`
@@ -32,16 +32,6 @@ const certificateItem = gql`
   }
 `;
 
-// const name = '{name}';
-// const fileName = '{fileName}';
-// const notarizationCreateTime = '{notarizationCreateTime}';
-// const submittingDate = '{submittingDate}';
-// const submittingExpiration = '{submittingExpiration}';
-// const ownerEmail = '{ownerEmail}';
-// const emerhash = '{emerhash}';
-// const idTransaction = '{idTransaction}';
-// const blockChainAddress = '{blockChainAddress}';
-// const serviceName = '{serviceName}';
 
 class Cert extends Component {
 
@@ -59,13 +49,13 @@ class Cert extends Component {
     }
 
     render() {
-        const {translate,styles,loading,error,data,setActiveLanguage,currentLanguage} = this.props;
+        const { translate, styles, loading, error, data, setActiveLanguage, currentLanguage } = this.props;
         if (loading) {
-            console.log('loading...',loading);
+            console.log('loading...', loading);
             return null;
         }
         if (error) {
-            console.error('ERROR: ',error);
+            console.error('ERROR: ', error);
             return (<Typography
                 as={'p'}
                 size={'medium'}
@@ -97,35 +87,36 @@ class Cert extends Component {
             if (language.toUpperCase() !== currentLanguage) {
                 setActiveLanguage(language.toUpperCase());
             }
-            const submittingDateFormat          = new Date(Number.parseInt(submittingDate)*1000).toString();
-            const submittingExpirationFormat    = new Date(Number.parseInt(submittingExpiration)*1000).toString();
-            const notarizationCreateTimeFormat   = new Date(Number.parseInt(notarizationCreateTime)).toString();
+            const submittingDateFormat = new Date(Number.parseInt(submittingDate) * 1000).toString();
+            const submittingExpirationFormat = new Date(Number.parseInt(submittingExpiration) * 1000).toString();
+            const notarizationCreateTimeFormat = new Date(Number.parseInt(notarizationCreateTime)).toString();
 
             return (
                 <div style={{
-                    display: 'flex',flexDirection: 'column',
+                    display: 'flex', flexDirection: 'column',
                     justifyContent: 'space-between',
                 }}>
-                    <div style={{height: '467px'}}>
+                    <div style={{ height: '467px' }}>
                         <div className={styles.top}>
-                            <IconLogoEmerNatar/>
+                            <IconLogoEmerNatar />
                         </div>
-
-                        <div>
-                            <Typography as={"h1"} size={'large'} color={'primary'} bright={'dark'}
-                                        fontWeight={'bold'}
-                                        textAlign={'center'}
-                                        textTransform={'uppercase'}
-                                        styles={{fontSize: '30px',lineHeight: '50px'}}>
-                                {translate('static_pagetitle')}
-                            </Typography>
-                        </div>
-                        <TopLabelRow styles={{margin: 0,padding: '0 1rem'}}>
+                        <Typography
+                            as={"h1"}
+                            size={'large'}
+                            color={'primary'}
+                            bright={'dark'}
+                            fontWeight={'bold'}
+                            textAlign={'center'}
+                            textTransform={'uppercase'}
+                            styles={{ fontSize: '30px', lineHeight: '50px' }}>
+                            {translate('static_pagetitle')}
+                        </Typography>
+                        <TopLabelRow styles={{ margin: 0, padding: '0 1rem' }}>
                             <div className={styles.topLabel}>
 
 
                                 <Typography
-                                    styles={{margin: '0 0 2rem'}}
+                                    styles={{ margin: '0 0 2rem' }}
                                     as={'h2'}
                                     size={'medium'}
                                     fontWeight={'inherit'}
@@ -133,63 +124,63 @@ class Cert extends Component {
                                 >
                                     {translate('static_info_transactions')}:
                                 </Typography>
-                                <Typography as={'div'} styles={{lineHeight: '13.75px',fontSize: '11.75px'}}>
+                                <Typography as={'div'} styles={{ lineHeight: '13.75px', fontSize: '11.75px' }}>
                                     <table>
                                         <tbody>
-                                        <tr>
-                                            <td>
-                                                {translate('static_date_entry')}:
+                                            <tr>
+                                                <td>
+                                                    {translate('static_date_entry')}:
                                             </td>
-                                            <td>
-                                                {submittingDateFormat}
+                                                <td>
+                                                    {submittingDateFormat}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style={{ whiteSpace: 'nowrap' }}>
+                                                    {translate('static_transaction_id')}:
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td style={{whiteSpace: 'nowrap'}}>
-                                                {translate('static_transaction_id')}:
+                                                <td style={{
+                                                    wordWrap: 'break-word', width: '100%',
+                                                    maxWidth: 0,
+                                                }}>
+                                                    {idTransaction}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    {translate('static_your_address')}:
                                             </td>
-                                            <td style={{
-                                                wordWrap: 'break-word',width: '100%',
-                                                maxWidth: 0,
-                                            }}>
-                                                {idTransaction}
+                                                <td>
+                                                    {blockChainAddress}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    {translate('static_owner')}:
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {translate('static_your_address')}:
+                                                <td style={{
+                                                    wordWrap: 'break-word', width: '100%',
+                                                    maxWidth: 0,
+                                                }}>
+                                                    {ownerEmail}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    {translate('static_validity_period')}:
                                             </td>
-                                            <td>
-                                                {blockChainAddress}
+                                                <td>
+                                                    {translate('static_to')} {submittingExpirationFormat}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    {translate('static_service')}:
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {translate('static_owner')}:
-                                            </td>
-                                            <td style={{
-                                                wordWrap: 'break-word',width: '100%',
-                                                maxWidth: 0,
-                                            }}>
-                                                {ownerEmail}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {translate('static_validity_period')}:
-                                            </td>
-                                            <td>
-                                                {translate('static_to')} {submittingExpirationFormat}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {translate('static_service')}:
-                                            </td>
-                                            <td>
-                                                {serviceName}
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    {serviceName}
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </Typography>
@@ -210,8 +201,8 @@ class Cert extends Component {
                             }} textAlign={'center'}>
                                 <Typography as={"p"} size={'small'} styles={{ width: '500px', margin: '0 auto', lineHeight: '13.75px', fontSize: '11.25px' }} textAlign={'center'}>
                                     {translate('static_hash_sum')}: <span style={{ wordWrap: 'break-word' }}>
-                                    {name}
-                                </span> <br />
+                                        {name}
+                                    </span> <br />
                                     {translate('static_file_name')}:{fileName}
                                 </Typography>
 
@@ -219,8 +210,8 @@ class Cert extends Component {
                         </div>
                         <div className={styles.footer}>
                             <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
-                                        textAlign={'center'}
-                                        styles={{lineHeight: '13.75px',fontSize: '11.25px'}}
+                                textAlign={'center'}
+                                styles={{ lineHeight: '13.75px', fontSize: '11.25px' }}
                             >
                                 EMERNOTAR.IO &copy; 2018
                             </Typography>
@@ -233,7 +224,7 @@ class Cert extends Component {
     }
 }
 
-const style = ({theme,marginBottom,paddingBottom}) => {
+const style = ({ theme, marginBottom, paddingBottom }) => {
     return {
         wrapper: {},
         top: {
@@ -316,7 +307,7 @@ const mapStateToProps = state => ({
 
 Cert = connect(style)(Cert);
 
-Cert = graphql(certificateItem,{
+Cert = graphql(certificateItem, {
 
     options: (ownProps) => {
         console.log(ownProps);
@@ -351,7 +342,7 @@ Cert = ReduxConnect(
     mapStateToProps,
     dispatch => ({
         setActiveLanguage: (value) => {
-            dispatch(changeTranslate(Store.getState(),value))
+            dispatch(changeTranslate(Store.getState(), value))
         }
     })
 )(Cert);
