@@ -71,7 +71,7 @@ export const serverConfigGenerator = () => {
                 DEV: true,
                 SSR_FETCH: process.env.SSR_FETCH,
                 PORT: process.env.PORT || 3000,
-                ENDPOINT_CLIENT: process.env.ENDPOINT_CLIENT || "'http://localhost:5001'",
+                ENDPOINT_CLIENT: process.env.ENDPOINT_CLIENT || "''",
                 ENDPOINT_SERVER: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
             }),
 

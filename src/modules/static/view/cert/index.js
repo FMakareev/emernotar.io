@@ -1,16 +1,18 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from "react-fela";
-import { graphql } from "react-apollo";
-import { getTranslate, getActiveLanguage } from 'react-localize-redux';
-import { connect as ReduxConnect } from "react-redux";
-import { Typography } from "../../../../blocks/typography/index";
-import { TopLabelRow, TopLabel } from '../../../../components/topLabel/index';
-import IconLogoEmerNatar from '../../../../components/icons/icon_logo';
+import React, {Component} from 'react';
+import {connect} from "react-fela";
+import {graphql} from "react-apollo";
+import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {connect as ReduxConnect} from "react-redux";
+import {Typography} from "../../../../blocks/typography/index";
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import { changeTranslate } from "../../../../store/reducers/localization/actions";
-import { Store } from '../../../../store';
-import BCgraphicelement from '../../../../assets/BCgraphicelement-3-min.jpg';
+import {changeTranslate} from "../../../../store/reducers/localization/actions";
+import {Store} from '../../../../store';
+import CertificatePageTitle from "./certificatePageTitle";
+import CertificateHeader from './certificateHeader';
+import CertificateFooter from './certificateFooter';
+import CertificateFileInfo from './certificateFileInfo';
+import CertificatePageOne from './page1';
+import {TopLabelRow} from "../../../../components/topLabel";
 
 const certificateItem = gql`
   query($emerhash: String) {
@@ -28,6 +30,7 @@ const certificateItem = gql`
             paymentId
             PayerID
             language
+            additionalinfo
         }
   }
 `;
@@ -49,7 +52,7 @@ class Cert extends Component {
     }
 
     render() {
-        const { translate, styles, loading, error, data, setActiveLanguage, currentLanguage } = this.props;
+        const {translate, styles, loading, error, data, setActiveLanguage, currentLanguage} = this.props;
         if (loading) {
             console.log('loading...', loading);
             return null;
@@ -74,14 +77,8 @@ class Cert extends Component {
                 notarizationCreateTime,
                 submittingDate,
                 submittingExpiration,
-                ownerEmail,
-                emerhash,
-                idTransaction,
-                blockChainAddress,
-                serviceName,
-                paymentId,
-                PayerID,
-                language
+                language,
+                additionalinfo
 
             } = data.certificateItem;
             if (language.toUpperCase() !== currentLanguage) {
@@ -89,134 +86,74 @@ class Cert extends Component {
             }
             const submittingDateFormat = new Date(Number.parseInt(submittingDate) * 1000).toString();
             const submittingExpirationFormat = new Date(Number.parseInt(submittingExpiration) * 1000).toString();
-            const notarizationCreateTimeFormat = new Date(Number.parseInt(notarizationCreateTime)).toString();
-
+            // const notarizationCreateTimeFormat = new Date(Number.parseInt(notarizationCreateTime)).toString();
+            console.log(data);
             return (
-                <div style={{
-                    display: 'flex', flexDirection: 'column',
-                    justifyContent: 'space-between',
-                }}>
-                    <div style={{ height: '467px' }}>
-                        <div className={styles.top}>
-                            <IconLogoEmerNatar />
+                <div className={styles.wrapper}>
+                    <section>
+                        <div className={styles.content}>
+                            <CertificateHeader/>
+
+                            <CertificatePageTitle>
+                                {translate('static_pagetitle')}
+                            </CertificatePageTitle>
+
+                            <CertificatePageOne
+                                translate={translate}
+                                submittingDateFormat={submittingDateFormat}
+                                submittingExpirationFormat={submittingExpirationFormat}
+                                {...data.certificateItem}
+                            />
                         </div>
-                        <Typography
-                            as={"h1"}
-                            size={'large'}
-                            color={'primary'}
-                            bright={'dark'}
-                            fontWeight={'bold'}
-                            textAlign={'center'}
-                            textTransform={'uppercase'}
-                            styles={{ fontSize: '30px', lineHeight: '50px' }}>
-                            {translate('static_pagetitle')}
-                        </Typography>
-                        <TopLabelRow styles={{ margin: 0, padding: '0 1rem' }}>
-                            <div className={styles.topLabel}>
 
+                        <div style={{
+                            position: 'relative',
+                        }}>
+                            <CertificateFileInfo
+                                {...data.certificateItem}
+                                translate={translate}
+                                styles={{
+                                    ...(additionalinfo? {opacity: 0,}: null)
 
-                                <Typography
-                                    styles={{ margin: '0 0 2rem' }}
-                                    as={'h2'}
-                                    size={'medium'}
-                                    fontWeight={'inherit'}
-                                    textAlign={'center'}
-                                >
-                                    {translate('static_info_transactions')}:
-                                </Typography>
-                                <Typography as={'div'} styles={{ lineHeight: '13.75px', fontSize: '11.75px' }}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    {translate('static_date_entry')}:
-                                            </td>
-                                                <td>
-                                                    {submittingDateFormat}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style={{ whiteSpace: 'nowrap' }}>
-                                                    {translate('static_transaction_id')}:
-                                            </td>
-                                                <td style={{
-                                                    wordWrap: 'break-word', width: '100%',
-                                                    maxWidth: 0,
-                                                }}>
-                                                    {idTransaction}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    {translate('static_your_address')}:
-                                            </td>
-                                                <td>
-                                                    {blockChainAddress}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    {translate('static_owner')}:
-                                            </td>
-                                                <td style={{
-                                                    wordWrap: 'break-word', width: '100%',
-                                                    maxWidth: 0,
-                                                }}>
-                                                    {ownerEmail}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    {translate('static_validity_period')}:
-                                            </td>
-                                                <td>
-                                                    {translate('static_to')} {submittingExpirationFormat}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    {translate('static_service')}:
-                                            </td>
-                                                <td>
-                                                    {serviceName}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </Typography>
+                                }}
+                            />
+                            <CertificateFooter/>
+                        </div>
+                    </section>
+                    {
+                        additionalinfo &&  <section>
+                            <div style={{
+                                height: '458px'
+                            }}>
+                                <CertificateHeader/>
+
+                                <CertificatePageTitle>
+                                    {translate('static_pagetitle_2')}
+                                </CertificatePageTitle>
+                                <TopLabelRow styles={{margin: 0, padding: '0 1rem'}}>
+                                    <div className={styles.topLabel}>
+                                        <Typography
+                                            as={'div'}
+                                            styles={{lineHeight: '13.75px', fontSize: '11.75px'}}
+                                        >
+                                            {additionalinfo.substring(0,1500)}
+                                        </Typography>
+                                    </div>
+                                </TopLabelRow>
                             </div>
 
-                        </TopLabelRow>
-                    </div>
+                            <div style={{
+                                position: 'relative',
+                            }}>
+                                <CertificateFileInfo
+                                    {...data.certificateItem}
+                                    translate={translate}
+                                />
+                                <CertificateFooter/>
+                            </div>
+                        </section>
+                    }
 
-                    <div style={{
-                        position: 'relative',
-                    }}>
-                        <div className={styles.topFooter}>
-                            <Typography as={"p"} size={'small'} styles={{
-                                width: '60%',
-                                margin: '0 auto',
-                                lineHeight: '13.75px',
-                                fontSize: '11.25px'
-                            }} textAlign={'center'}>
-                                <Typography as={"p"} size={'small'} styles={{ width: '500px', margin: '0 auto', lineHeight: '13.75px', fontSize: '11.25px' }} textAlign={'center'}>
-                                    {translate('static_hash_sum')}: <span style={{ wordWrap: 'break-word' }}>
-                                        {name}
-                                    </span> <br />
-                                    {translate('static_file_name')}:{fileName}
-                                </Typography>
-
-                            </Typography>
-                        </div>
-                        <div className={styles.footer}>
-                            <Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
-                                textAlign={'center'}
-                                styles={{ lineHeight: '13.75px', fontSize: '11.25px' }}
-                            >
-                                EMERNOTAR.IO &copy; 2018
-                            </Typography>
-                        </div>
-                    </div>
                 </div>
             )
         }
@@ -224,19 +161,14 @@ class Cert extends Component {
     }
 }
 
-const style = ({ theme, marginBottom, paddingBottom }) => {
+const style = ({theme, marginBottom, paddingBottom}) => {
     return {
-        wrapper: {},
-        top: {
-            // minHeight: '10rem',
-            padding: '1px',
-            verticalAlign: 'middle',
-            position: 'relative',
-            overflow: 'hidden',
-            backgroundImage: 'url(http://rc.compaero.ru/assets/media/BCgraphicelement-3-min-597369e2.jpg)',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            ...theme.top,
+        wrapper: {
+            display: 'flex', flexDirection: 'column',
+            justifyContent: 'space-between',
+        },
+        content: {
+            height: '457px'
         },
         circle: {
             width: '2rem',
@@ -247,27 +179,6 @@ const style = ({ theme, marginBottom, paddingBottom }) => {
             textDecoration: 'none !important',
             padding: '0.1rem',
             margin: '0.1rem',
-        },
-        topFooter: {
-            // minHeight: '10rem',
-            padding: '10px',
-            verticalAlign: 'middle',
-            position: 'relative',
-            textAlign: 'center',
-            color: 'black',
-            ...theme.top,
-            margin: '0',
-
-        },
-        footer: {
-            height: 'auto',
-            verticalAlign: 'middle',
-            position: 'relative',
-            backgroundColor: theme.palette.primary.dark,
-            color: theme.palette.default.contrastText,
-            margin: '0',
-            padding: '1rem',
-
         },
         bgImage: {
             position: 'absolute',
@@ -286,7 +197,7 @@ const style = ({ theme, marginBottom, paddingBottom }) => {
         topLabel: {
             position: 'relative',
             display: 'inline-block',
-            margin: '1rem',
+            margin: '0',
             zIndex: 5,
             backgroundColor: '#FFFFFF',
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

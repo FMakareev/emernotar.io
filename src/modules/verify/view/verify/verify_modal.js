@@ -49,19 +49,8 @@ class VerifyModal extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
         this.onPreLoaderToggle = this.onPreLoaderToggle.bind(this);
+        this.maxLength = this.maxLength.bind(this);
     }
-
-    componentDidMount() {
-        // console.log(this.props);
-    }
-
-    // get InitialState() {
-    //     return {
-    //         selectedValue: true,
-    //         responseData: null,
-    //         emailHashed: false,
-    //     };
-    // }
 
     handleChange(value) {
         console.log(value);
@@ -108,6 +97,10 @@ class VerifyModal extends Component {
     onPreLoaderToggle(state) {
         console.log(open);
         this.setState({preLoader: state})
+    }
+
+    maxLength(value){
+        return value && value.length > 1500 ? this.props.translate('verify_modal_additional_maxlength') : undefined
     }
 
     render() {
@@ -182,12 +175,13 @@ class VerifyModal extends Component {
                                 component={InputText}
                                 placeholder={translate('verify_modal_additional_textarea')}
                                 type="textarea"
+                                validate={[ this.maxLength ]}
                             />
+
                         </label>
                         {error && <strong>{error}</strong>}
 
                         <div className={styles.VerifyModalFooter}>
-                            {/* <Link to='/paypal/paypal' styles={{textDecoration: 'none'}}> */}
                             <Button variant={'raised'} color={'primary'}
                                     type="submit"
                                     styles={{textAlign: 'center'}}>
@@ -200,16 +194,6 @@ class VerifyModal extends Component {
                                 </Typography>
                             </Button>
                         </div>
-
-                        {/*<div className={styles.VerifyModalFooterText}>*/}
-                        {/*<Typography as={'div'} color={'secondary'} bright={'contrastText'} fontWeight={'bold'}*/}
-                        {/*size={'small'} textTransform={'uppercase'}>*/}
-                        {/*{translate('verify_modal_info_title')}*/}
-                        {/*</Typography>*/}
-                        {/*<Typography as={'span'} color={'secondary'} bright={'contrastText'} size={'small'}>*/}
-                        {/*{translate('verify_modal_info_text')}*/}
-                        {/*</Typography>*/}
-                        {/*</div>*/}
                     </form>
                 </Modal>
 
