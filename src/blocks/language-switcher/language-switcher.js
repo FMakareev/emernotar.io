@@ -56,10 +56,6 @@ const STYLE = ({theme}) => {
             padding: 0,
             margin: 0,
             border: 'none',
-
-            // backgroundColor: 'transparent',
-            // color: '#fff',
-
             color: theme.palette.primary.dark,
             backgroundColor: theme.palette.primary.light,
 
@@ -73,7 +69,6 @@ const STYLE = ({theme}) => {
             ':hover ul': {
                 display: 'block',
                 backgroundColor: '#FFFFFF',
-                // backgroundColor: theme.palette.primary.dark,
                 boxShadow: '0px 0 4px rgba(0, 0, 0, 0.25)',
             }
         },

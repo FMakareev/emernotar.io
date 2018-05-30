@@ -83,7 +83,6 @@ export default connect(
     state => ({
         languages: getLanguages(state.locale),
         translate: getTranslate(state.locale),
-        // currentLanguage: getActiveLanguage(state.locale).code
     }),
     dispatch => ({
         setActiveLanguage: (value) => {

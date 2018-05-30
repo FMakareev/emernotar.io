@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import gql from 'graphql-tag';
 import {Mutation, graphql} from "react-apollo";
@@ -40,8 +41,32 @@ const createNotarization = gql`mutation createNotarization(
         }
     }`;
 
+    
+    /**
+     * @description Modal that receives information and sends a mutation crateNotarization
+     * @returns request with code answer
+     * @memberof Verify
+     */
 
 class VerifyModal extends Component {
+
+    static propTypes = {
+        translate: PropTypes.func,
+        open: PropTypes,
+        onModalToggle: PropTypes.func, 
+        handleSubmit: PropTypes.func, 
+        reset: PropTypes.func, 
+        error: PropTypes.string, 
+        pristine: PropTypes.bool, 
+        submitting: PropTypes.func,
+        styles: PropTypes.shape({
+            VerifyModalWrapper: PropTypes.string,
+            VerifyModalHeader: PropTypes.string,
+            VerifyModalContent: PropTypes.string,
+            VerifyModalFooter: PropTypes.string,
+            VerifyModalFooterText: PropTypes.string,
+        }),
+    }
 
     constructor(props) {
         super(props);
@@ -51,17 +76,7 @@ class VerifyModal extends Component {
         this.onPreLoaderToggle = this.onPreLoaderToggle.bind(this);
     }
 
-    componentDidMount() {
-        // console.log(this.props);
-    }
-
-    // get InitialState() {
-    //     return {
-    //         selectedValue: true,
-    //         responseData: null,
-    //         emailHashed: false,
-    //     };
-    // }
+    componentDidMount() { }
 
     handleChange(value) {
         console.log(value);
@@ -71,16 +86,23 @@ class VerifyModal extends Component {
     get initialState() {
         return {emailHashed: false};
     }
-
+    /**
+     * @description Submit function. Send mutation createNotarization
+     * @param {any} value 
+     * @memberof VerifyModal
+     */
     submit(value) {
-        console.log(value);
-        // получаешь данные local storage
+        /**
+         * @description Get param from localstorage. Set timestamp
+         */
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
-        const creationTime = Math.floor(Date.now() / 1000); //timestamp
+        const creationTime = Math.floor(Date.now() / 1000);
         localStorage.setItem('timestamp', creationTime);
 
-
+        /**
+         * @description Create obgect for  mutation
+         */
         let obj = {name, docName, creationTime, ...value, emailHashed: this.state.emailHashed};
         if (!obj.hasOwnProperty('additionalInfo') || !obj.additionalInfo) {
             obj.additionalInfo = '';
@@ -88,9 +110,15 @@ class VerifyModal extends Component {
         let data = {variables: obj};
         this.setState({responseData: data});
 
+        /**
+         * @description Close modal. Set preloader
+         */
         this.props.onModalToggle(false);
         this.onPreLoaderToggle(true);
 
+        /**
+         * @description Send requert to backend. Redirect to paypal
+         */
         this.props.createNotarization(data).then((res) => {
             console.log(res);
             window.location.replace(`http://rc.compaero.ru/paypal/paypal`);
@@ -98,7 +126,9 @@ class VerifyModal extends Component {
             console.log(err);
         })
     }
-
+    /**
+     * @description set loading, preloader
+     */
     onPreLoaderToggle(state) {
         console.log(open);
         this.setState({preLoader: state})
@@ -106,8 +136,8 @@ class VerifyModal extends Component {
 
     render() {
         const {open, onModalToggle, styles, handleSubmit, reset, error, pristine, submitting, translate} = this.props;
+        console.log(open);
         const {preLoader} = this.state;
-        console.log(this);
         return (
             <Fragment>
                 <Modal
@@ -148,7 +178,6 @@ class VerifyModal extends Component {
                         {error && <strong>{error}</strong>}
 
                         <div className={styles.VerifyModalFooter}>
-                            {/* <Link to='/paypal/paypal' styles={{textDecoration: 'none'}}> */}
                             <Button variant={'raised'} color={'primary'}
                                     type="submit"
                                     styles={{textAlign: 'center'}}>
@@ -161,16 +190,6 @@ class VerifyModal extends Component {
                                 </Typography>
                             </Button>
                         </div>
-
-                        {/*<div className={styles.VerifyModalFooterText}>*/}
-                            {/*<Typography as={'div'} color={'secondary'} bright={'contrastText'} fontWeight={'bold'}*/}
-                                        {/*size={'small'} textTransform={'uppercase'}>*/}
-                                {/*{translate('verify_modal_info_title')}*/}
-                            {/*</Typography>*/}
-                            {/*<Typography as={'span'} color={'secondary'} bright={'contrastText'} size={'small'}>*/}
-                                {/*{translate('verify_modal_info_text')}*/}
-                            {/*</Typography>*/}
-                        {/*</div>*/}
                     </form>
                 </Modal>
 

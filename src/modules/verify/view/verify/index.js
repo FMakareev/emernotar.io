@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import {connect as connectFela} from 'react-fela';
-// import 'react-responsive-modal/lib/react-responsive-modal.css';
 
 import {Container} from "../../../../blocks/container/index";
 import {Row} from "../../../../blocks/row/index";
@@ -41,10 +40,21 @@ const certificateList = gql`query($name: String){
     }
 }`;
 
+    /**
+     * @description Get hash and returns list of notarization file with the same hash or no, if there are not. 
+     * @returns List of notarization file with the same hash, if there are.
+     * @memberof Verify
+     */
 
 class VerifyPage extends Component {
-
-    static propTypes = {};
+    static propTypes = {
+        translate: PropTypes.func,
+        styles: PropTypes.shape({
+            topLabel: PropTypes.string,
+            topLabelIcon: PropTypes.string,
+        }),
+        hash: PropTypes.string
+    }
 
     static defaultProps = {
         match: {
@@ -53,12 +63,7 @@ class VerifyPage extends Component {
             },
         }
     };
-    // componentDidCatch(error, info) {
-    //     // Display fallback UI
-    //     this.setState({ hasError: true });
-    //     // You can also log the error to an error reporting service
-    //     console.log(error, info);
-    // }
+    
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -77,7 +82,6 @@ class VerifyPage extends Component {
             open: false,
             hasError: false,
             hash: qp.toObject(window.location.search.substring(1)).hash,
-            // hash: null,
         }
     }
 
@@ -86,19 +90,11 @@ class VerifyPage extends Component {
         this.setState({open})
     }
 
-
-    componentDidMount() {
-
-    }
+    componentDidMount() { }
 
     render() {
         const {translate, styles} = this.props;
         const {open} = this.state;
-        console.log(this.props);
-        // return (<div>
-        //     hello
-        // </div>)
-
         return (
             <Fragment>
                 <Top paddingBottom={'9rem'}>
@@ -214,11 +210,9 @@ class VerifyPage extends Component {
                                     }
                                 </Query>
                             }
-
                         </Column>
                     </Row>
                 </Container>
-
                 <VerifyModal open={open} onModalToggle={this.onModalToggle}/>
             </Fragment>
         )
@@ -245,4 +239,5 @@ const STYLE = () => {
 
 VerifyPage = connectFela(STYLE)(VerifyPage);
 VerifyPage = connect(mapStateToProps)(VerifyPage);
+
 export default VerifyPage;

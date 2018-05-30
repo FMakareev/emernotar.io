@@ -40,8 +40,9 @@ const createCertificate = gql`mutation createCertificate(
 
 
 class Result extends Component {
-
-    static propTypes = {};
+    static propTypes = {
+        translate: PropTypes.func
+    }
 
     static defaultProps = {};
 
@@ -51,27 +52,21 @@ class Result extends Component {
         this.createCertificate = this.createCertificate.bind(this);
     }
 
-    // initialState() {
-    //     const name = localStorage.getItem('fileHash');
-    //     const notarizationDate =localStorage.getItem('timestamp'); //timestam from notar
-    //     const paymentId = "lolo";
-    //     const payertId = window.location.href;
-
-    //     // const parsed = queryString.parse(location.get(paymentId));
-    //     console.log(payertId);
-
-    //     localStorage.clear();
-    //     return {}
-    // }
-
     componentDidMount() {
         console.log('run componentDidMount...');
         this.createCertificate();
     }
-
+    /**
+     * @description Scope data from ReduxForm and lockalstorage and send mutation Create Certificate to backend
+     * @returns Status answer. 200 Ok or some else
+     * @memberof Result
+     */
     createCertificate() {
         console.log('run createCertificate...');
         if (!process.env.__isBrowser__) return null;
+        /**
+         * @description Create object to send
+         */
         const name = localStorage.getItem('fileHash');
         const notarizationDate = Number.parseInt(localStorage.getItem('timestamp')); //timestam from notar
         const url = qp.toObject(window.location.search.substring(1));
@@ -79,8 +74,9 @@ class Result extends Component {
         const PayerID = url.PayerID;
         const obj = {name, notarizationDate, paymentId, PayerID};
         const data = {variables: obj};
-
-
+        /**
+         * @description Sent data to backend and handle фтыцук
+         */
         this.props.createCertificate(data).then((res)=>{
             console.log(res);
             localStorage.clear();
@@ -88,12 +84,6 @@ class Result extends Component {
             console.log(err);
         });
     }
-
-    // cachedHits = localStorage.getItem(value);
-    // if (cachedHits) {
-    //   this.setState({ hits: JSON.parse(cachedHits) });
-    //   return;
-    // }
 
     render() {
         const {translate} = this.props;
@@ -129,17 +119,6 @@ class Result extends Component {
                         </TopLabel>
                     </TopLabelRow>
                 </Container>
-                {/*<Container styles={{marginTop: '-10rem', textAlign: 'center'}}>*/}
-                    {/*<Column grid={[[, 70, '%'],]}>*/}
-                    {/*<Typography as={'p'} size={'medium'} fontWeight={'bold'} styles={{lineHeight: '2'}}*/}
-                        {/*color={'default'} bright={'contrastText'}>*/}
-                         {/*SHA512: {name} <br/>*/}
-                        {/*FileName: {fileName} <br/>*/}
-                        {/*Date: {notarizationDate} <br/>*/}
-                        {/*Owner: {ownerEmail}*/}
-                    {/*</Typography>*/}
-                    {/*</Column>*/}
-                {/*</Container>*/}
             </Fragment>
         )
     }

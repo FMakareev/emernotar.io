@@ -10,7 +10,6 @@ import history from '../../../routes/history';
 
 export const initLocalize = (store, currentLocale = getCurrentLocalize()) => {
     return (dispatch) => {
-        // let currentLocale ;
         dispatch(initialize(languages, {
             defaultLanguage: currentLocale,
             missingTranslationCallback: onMissingTranslation,
@@ -56,8 +55,6 @@ export const changeTranslate = (store, language) => {
                 if (queryLocale) {
                     history.push(`?lang=${language.toUpperCase()}`);
                 }
-
-                // document.getElementsByTagName('html')[0].setAttribute('lang', language.toLowerCase())
             }
 
 

@@ -4,6 +4,20 @@ import {Image} from "../../../../blocks/image/index";
 import iconVerify from '../../../../assets/icons/icon_verify.svg';
 import {Typography} from "../../../../blocks/typography/index";
 
+    /**
+     * @description Render list of file with the same hash
+     * @memberof Verify
+     */
+
+    // static propTypes = {
+    //     styles: PropTypes.shape({
+    //         VerifyItemWrapper: PropTypes.string,
+    //         VerifyItemImageWrapper: PropTypes.string,
+    //         VerifyItemImage: PropTypes.string,
+    //         VerifyItemContent: PropTypes.string,
+    //     }),
+    // }
+
 const VerifyItem = ({className, styles,data}) => {
     return (<div className={className + ' ' + styles.VerifyItemWrapper}>
         <div className={styles.VerifyItemImageWrapper}>
@@ -44,8 +58,6 @@ const STYLE = () => {
             width: '80%',
             paddingLeft: '2rem'
         },
-        VerifyItemTitle: {},
-        VerifyItemDescription: {},
     }
 }
 
