@@ -13,9 +13,20 @@ const mapState = state => ({
     currentLanguage: getActiveLanguage(state.locale).code
 });
 
-
+/**
+ * 
+ * @description Wrapper with styles for language switcher. Set language.
+ * @class LanguageSwitcher
+ * @extends {Component}
+ */
 class LanguageSwitcher extends Component {
-    static propTypes = {}
+    static propTypes = {
+        btnStyles: PropTypes.shapeOf.string,
+        translate: PropTypes.func, 
+        languages: PropTypes.any, 
+        setActiveLanguage: PropTypes.func, 
+        currentLanguage: PropTypes.func,
+    }
 
     static defaultProps = {
         btnStyles: {

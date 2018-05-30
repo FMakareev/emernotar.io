@@ -52,7 +52,7 @@ class VerifyModal extends Component {
 
     static propTypes = {
         translate: PropTypes.func,
-        open: PropTypes,
+        open: PropTypes.bool,
         onModalToggle: PropTypes.func, 
         handleSubmit: PropTypes.func, 
         reset: PropTypes.func, 
