@@ -3,24 +3,23 @@ import {InMemoryCache} from "apollo-cache-inmemory";
 import {from} from 'apollo-link';
 import {onError} from 'apollo-link-error';
 import apolloLogger from 'apollo-link-logger';
-// import fetch from 'isomorphic-fetch'
-import fetch from 'unfetch';
+import fetch from 'isomorphic-fetch'
+// import fetch from 'unfetch';
 
 import {createHttpLink} from 'apollo-link-http';
 
 
-const httpLink = new createHttpLink({uri: __ENDPOINT_SERVER__ + '/graphql', fetch: fetch});
+const httpLink = new createHttpLink({uri: ENDPOINT_SERVER + '/graphql', fetch: fetch});
 
 const ErrorLogger = onError(({networkError}) => {
     console.log(JSON.stringify(networkError));
     console.info('networkError: ', networkError);
-    console.info('statusCode: ', networkError.statusCode);
 });
 
 export const client = new ApolloClient({
     ssrMode: true,
     // link,
-    link: from([ErrorLogger, ...(__DEV__ ? [apolloLogger] : []), httpLink]),
+    link: from([ErrorLogger, ...(DEV ? [apolloLogger] : []), httpLink]),
     cache: new InMemoryCache(),
     defaultOptions: {
         watchQuery: {

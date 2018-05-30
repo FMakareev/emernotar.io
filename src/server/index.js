@@ -1,3 +1,6 @@
+/**
+ * @description
+ * */
 import register from 'ignore-styles'
 
 import {getTranslate} from 'react-localize-redux';
@@ -35,8 +38,8 @@ import {createEmailTemplate} from "./createEmailTemplate";
 import {createCertificat} from "./createCertificatPDF";
 
 
-console.log('__ENDPOINT_CLIENT__: ',__ENDPOINT_CLIENT__);
-console.log('__ENDPOINT_SERVER__: ',__ENDPOINT_SERVER__);
+console.log('ENDPOINT_CLIENT: ',ENDPOINT_CLIENT);
+console.log('ENDPOINT_SERVER: ',ENDPOINT_SERVER);
 
 
 
@@ -70,9 +73,10 @@ app.use(requestLanguage({
     },
 }));
 
-// if (__DEV__) {
+// if (DEV) {
 //     app.get("/create_email_template", (request, response) => {
-//         createEmailTemplate();
+//         createEmailTemplate('RU');
+//         createEmailTemplate('EN');
 //
 //         response.status(200);
 //         /** @description http://expressjs.com/en/4x/api.html#res.send */
@@ -85,17 +89,6 @@ app.use(requestLanguage({
 
 
 app.get('/create_certificat/:hash', createCertificat);
-
-
-app.get('/unity_test', (request, response) =>{
-    response.status(200);
-    response.send(JSON.stringify([
-        {
-            title: 'Hello Unity. My name in node.js.'
-        }
-    ]));
-    response.end();
-});
 
 /**
  * @description http://expressjs.com/en/4x/api.html#app.get.method
@@ -120,7 +113,7 @@ app.get("*", async (request, response) => {
     let parsedUrl = url.parse(request.url);
     let parsedQs = querystring.parse(parsedUrl.query);
 
-    const RouterContext = {}
+    const RouterContext = {};
 
     /**
      * @description root react component
@@ -195,7 +188,6 @@ app.get("*", async (request, response) => {
 
                 /** @description http://expressjs.com/en/4x/api.html#res.status */
                 response.status(200);
-                response.cookie('name', 'tobi', {domain: '.example.com', path: '/admin', secure: false});
                 /** @description http://expressjs.com/en/4x/api.html#res.send */
                 response.send(HTML);
                 /** @description http://expressjs.com/en/4x/api.html#res.end */
@@ -215,8 +207,8 @@ app.get("*", async (request, response) => {
 
 });
 
-app.listen(__PORT__, () => {
-    console.log(`Server is listening on port: ${__PORT__}. !!!!!!!!`)
+app.listen(PORT, () => {
+    console.log(`Server is listening on port: ${PORT}. !!!!!!!!`)
 });
 
 

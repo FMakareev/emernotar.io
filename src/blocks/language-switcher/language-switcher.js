@@ -83,7 +83,7 @@ const STYLE = ({theme}) => {
             }
         },
         toggle: {
-            padding: '0 1rem',
+            padding: '0.5rem 1rem',
             margin: 0,
             backgroundColor: 'transparent',
             border: 'none',
@@ -97,14 +97,14 @@ const STYLE = ({theme}) => {
             margin: 0,
         },
         dropdawnItem: {
-            padding: '0 1rem',
+            padding: '0.5rem 1rem',
             margin: 0,
             cursor: 'pointer',
             color: theme.palette.default.dark,
 
         },
         active: {
-            padding: '0 1rem',
+            padding: '0.5rem 1rem',
             color: theme.palette.primary.dark,
         }
 

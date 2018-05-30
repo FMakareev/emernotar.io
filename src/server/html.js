@@ -1,25 +1,22 @@
-import React, {Fragment} from 'react';
+import React,{Fragment} from 'react';
+import PropTypes from 'prop-types';
 import serialize from 'serialize-javascript'
 
 
-const Html = ({content,request,title, cache, style,reduxState, asyncState, getStatic=false}) => (
+const Html = ({content,request,title,cache,style,reduxState,asyncState,getStatic = false}) => (
     <html lang="en">
     <head>
         <meta charSet="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{title}</title>
-        <style></style>
-        {/*<style>*/}
-            {/*@import url('https://fonts.googleapis.com/css?family=Exo:300,400,700');*/}
-        {/*</style>*/}
-        {/*<style>*/}
-            {/*@import url('https://fonts.googleapis.com/css?family=Vollkorn:400,700,900&subset=cyrillic')*/}
-        {/*</style>*/}
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Emernotar.io: {title}</title>
+            <style></style>
     </head>
     <body>
     <div id="app" dangerouslySetInnerHTML={{__html: content}}/>
     {
-        cache &&  <script
+        cache && <script
             charSet="UTF-8"
             dangerouslySetInnerHTML={{
                 __html: `window.__APOLLO_STATE__=${JSON.stringify(cache.extract())};`,
@@ -52,5 +49,21 @@ const Html = ({content,request,title, cache, style,reduxState, asyncState, getSt
     </body>
     </html>
 );
+Html.propTypes = {
+    content: PropTypes.string,
+    client: PropTypes.shape({
+        cache: PropTypes.object,
+    }),
+    reduxState: PropTypes.string,
+    style: PropTypes.string,
+    asyncState: PropTypes.string,
+};
+Html.defaultProps = {
+    content: null,
+    client: null,
+    reduxState: null,
+    style: null,
+    asyncState: null,
+};
 
 export default Html;

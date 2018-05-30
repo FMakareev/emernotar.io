@@ -29,11 +29,12 @@ class TopLabelRow extends Component {
     }
 }
 
-const style = ({children}) => {
+const style = ({children,styles}) => {
     return {
         wrapper: {
             marginRight: '-1rem',
             marginLeft: '-1rem',
+            ...styles,
             ...(children && children.length ? {
                 display: 'flex',
                 justifyContent: 'space-around',

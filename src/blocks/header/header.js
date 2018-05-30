@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React,{Component} from 'react';
 import NavigationTopBurger from "../navigation/navigation_top-burger";
 
 import {createComponentWithProxy} from 'react-fela'
-import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 
 import {Container} from '../container/index';
 import {Row} from '../row/index';
@@ -49,14 +49,14 @@ class Header extends Component {
                                 <Image src={iconLogo} alt="logo" styles={{
                                     height: '2rem',
                                     // margin: '1rem 0.5rem',
-                                    '@media (min-width: 900px)': { height: '3rem'},
+                                    '@media (min-width: 900px)': {height: '3rem'},
                                     '@media (max-width: 810px)': {margin: 'auto'}
                                 }}/>
                             </NavLink>
                         </Column>
                         <Column>
-                            <Query query={price}  ssr={__SSR_FETCH__}>
-                                {({loading, error, data}) => {
+                            <Query query={price} ssr={SSR_FETCH}>
+                                {({loading,error,data}) => {
                                     if (loading) return '';
                                     if (error) return '';
                                     else
@@ -64,7 +64,7 @@ class Header extends Component {
                                             <Typography as={'p'} size={'small'} textAlign={'center'}
                                                         textTransform={'uppercase'} color={'default'}
                                                         bright={'contrastText'}>
-                                                {translate('home_rate')} {data.price && data.price.notarizationPrice} $
+                                                {translate('home_rate')} $ {data.price && data.price.notarizationPrice}
                                             </Typography>
                                         );
                                 }}
@@ -81,8 +81,7 @@ class Header extends Component {
 }
 
 
-
-Header = createComponentWithProxy(HeaderStyle, Header);
+Header = createComponentWithProxy(HeaderStyle,Header);
 
 const mapStateToProps = state => ({
     translate: getTranslate(state.locale),

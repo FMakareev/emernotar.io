@@ -37,13 +37,13 @@ export const getPageTitle = ({Store}) => WrappedComponent => {
             this.state.storeUnSubscribe();
         }
         onChangePageTitle() {
-            if (__isBrowser__) {
+            if (isBrowser) {
                 try {
                     const translate = getTranslate(Store.getState().locale);
                     let $Title = document.getElementsByTagName('title')[0];
 
                     let currentTitle = $Title.innerHTML;
-                    let newTitle = translate(this.props.route.name);
+                    let newTitle = 'Emernotar.io: '+ translate(this.props.route.name);
                     if (currentTitle !== newTitle) {
                         $Title.innerHTML = newTitle;
                     }

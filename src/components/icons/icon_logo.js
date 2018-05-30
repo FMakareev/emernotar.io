@@ -5,7 +5,8 @@ const Style = ({theme, styles, ...props}) => {
     return {
         wrapper: {
             display: 'block',
-            margin: '20px auto'
+            margin: '20px auto',
+            ...styles,
         },
         Vector: {
             // transform:"translate(139.188, 24.7876)",
@@ -21,8 +22,8 @@ const Style = ({theme, styles, ...props}) => {
     }
 }
 
-const IconLogoEmerNatar = ({styles, text = true}) => (
-    <svg className={styles.wrapper} width="473" height="70" viewBox="0 0 473 100">
+const IconLogoEmerNatar = ({styles, width="473",height="70" ,text = true}) => (
+    <svg className={styles.wrapper} width={width} height={height} viewBox="0 0 473 100">
         <g id="Canvas" fill="none">
             <g id="785325152">
                 {

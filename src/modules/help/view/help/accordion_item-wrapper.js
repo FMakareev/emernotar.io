@@ -35,6 +35,8 @@ const STYLE = ({color, theme, count}) => {
         wrapper: {
             marginBottom: `${baseSize/2}rem`,
 
+            position: 'relative',
+            zIndex: 1,
         },
     }
 }

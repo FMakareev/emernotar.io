@@ -1,3 +1,5 @@
+import 'promise-polyfill/src/polyfill';
+
 import React from 'react'
 import {hydrate, render} from 'react-dom'
 import {ApolloProvider} from "react-apollo";

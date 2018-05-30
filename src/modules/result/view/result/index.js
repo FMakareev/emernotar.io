@@ -1,39 +1,38 @@
-import React, {Component, Fragment} from 'react';
-import PropTypes from 'prop-types';
+import React,{Component,Fragment} from 'react';
 import gql from 'graphql-tag';
-import {Mutation, graphql} from "react-apollo";
+import {graphql} from "react-apollo";
 import qp from 'query-parse';
 import {Container} from "../../../../blocks/container/index";
 import Button from '../../../../blocks/button/button';
 import {Top} from "../../../../components/top/index";
 import {Row} from "../../../../blocks/row/index";
-import {Column} from "../../../../blocks/column/index";
-import {TopLabel, TopLabelRow} from "../../../../components/topLabel/index";
-import {Wrapper} from "../../../../blocks/wrapper/index";
+import {TopLabel,TopLabelRow} from "../../../../components/topLabel/index";
 import {Typography} from '../../../../blocks/typography/index';
-import { Link } from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import {Image} from "../../../../blocks/image/index";
-import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import iconHome from '../../../../assets/icons/icon_home.svg';
+import {PreLoader} from "../../../../components/preloader/index";
 
 const createCertificate = gql`mutation createCertificate(
     $name: String!,
-    $notarizationDate: Int,
+    $notarizationCreateTime: String,
     $paymentId: String,
     $PayerID: String,
+    $language: String,
     ){
         createCertificate(
             name:$name,
-            notarizationDate: $notarizationDate,
+            notarizationCreateTime: $notarizationCreateTime,
             paymentId: $paymentId,
             PayerID: $PayerID,
+            language: $language,
         ) {
             name
-            notarizationDate
+            notarizationCreateTime
             paymentId
             PayerID
-            emerhash
             blockChainAddress
         }
     }`;
@@ -50,6 +49,19 @@ class Result extends Component {
         super(props);
         this.state = this.initialState;
         this.createCertificate = this.createCertificate.bind(this);
+        this.createCertificateData = this.createCertificateData.bind(this);
+        this.addEventListenerCloseWindow = this.addEventListenerCloseWindow.bind(this);
+        this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
+
+        this.addEventListenerCloseWindow();
+    }
+
+    get initialState() {
+        return {
+            preLoader: true,
+            error: false,
+            redirect: false,
+        }
     }
 
     componentDidMount() {
@@ -87,7 +99,10 @@ class Result extends Component {
 
     render() {
         const {translate} = this.props;
-
+        const {preLoader,redirect} = this.state;
+        if (redirect) {
+            return <Redirect to={redirect}/>
+        }
         return (
             <Fragment>
                 <Top paddingBottom={'7rem'}>
@@ -125,7 +140,7 @@ class Result extends Component {
 }
 
 
-Result = graphql(createCertificate, {
+Result = graphql(createCertificate,{
     name: 'createCertificate',
     mutate: {
         fetchPolicy: 'no-cache',

@@ -51,6 +51,7 @@ const style = ({theme, count}) => {
             marginBottom: '1.875rem',
             justifyContent: 'space-between',
             alignItems: 'center',
+            // '-ms-flex-align': 'center',
         },
         iconWrapper: {
             width: '3.125rem',
@@ -61,6 +62,7 @@ const style = ({theme, count}) => {
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
+            // '-ms-flex-align': 'center',
             marginRighrt: '0.625rem',
             width: '100%',
         },

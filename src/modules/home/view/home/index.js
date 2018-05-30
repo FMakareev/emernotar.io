@@ -5,16 +5,16 @@ import SHA512 from 'sha512-es';
 import Dropzone from "react-dropzone";
 import { getTranslate, getActiveLanguage } from 'react-localize-redux';
 import Cookies from 'js-cookie';
-import { connect as felaConnect } from 'react-fela';
+import {connect as felaConnect} from 'react-fela';
+import {connect} from "react-redux";
 
-import { Container } from "../../../../blocks/container/index";
-import { Row } from "../../../../blocks/row/index";
-import { Column } from "../../../../blocks/column/index";
-import { connect } from "react-redux";
-import { TopLabel, TopLabelRow } from "../../../../components/topLabel/index";
-import { Top } from "../../../../components/top/index";
-import { Image } from "../../../../blocks/image/index";
-import { ReactPlayer } from "../../../../blocks/video/index";
+import {Container} from "../../../../blocks/container/index";
+import {Row} from "../../../../blocks/row/index";
+import {Column} from "../../../../blocks/column/index";
+import {TopLabel, TopLabelRow} from "../../../../components/topLabel/index";
+import {Top} from "../../../../components/top/index";
+import {Image} from "../../../../blocks/image/index";
+import {ReactPlayer} from "../../../../blocks/video/index";
 
 import iconVerify from '../../../../assets/icons/icon_verify.svg';
 import iconArrow from '../../../../assets/icons/icon_arrow_group.svg';
@@ -84,7 +84,7 @@ class HomePage extends Component {
         super();
         this.state = this.initialState;
         this.renderVideo = this.renderVideo.bind(this);
-        this.onDrop = this.onDrop.bind(this);
+        this.createHashFromFile = this.createHashFromFile.bind(this);
         this.addEventListenerCloseWindow = this.addEventListenerCloseWindow.bind(this);
         this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
         this.errorHandler = this.errorHandler.bind(this);
@@ -310,7 +310,7 @@ class HomePage extends Component {
                         <Column>
                             <TopLabelRow>
                                 <TopLabel as={'div'} className={styles.dropZoneContent} isActive>
-                                    <Dropzone className={styles.dropzone} onDrop={this.onDrop}>
+                                    <Dropzone className={styles.dropzone} onDrop={this.createHashFromFile}>
                                         <Typography
                                             styles={{ margin: '0 0 2rem 0' }}
                                             as={'h2'}
@@ -370,8 +370,8 @@ class HomePage extends Component {
                 </Container>
                 <Container styles={{ paddingBottom: '5rem', marginTop: '-5rem' }}>
                     <Row>
-                        <Query query={price} ssr={__SSR_FETCH__}>
-                            {({ loading, error, data }) => {
+                        <Query query={price} ssr={SSR_FETCH}>
+                            {({loading, error, data}) => {
                                 if (loading) {
                                     return <PreLoader />;
                                 }
@@ -512,7 +512,6 @@ HomePage = felaConnect(STYLE)(HomePage);
 const mapStateToProps = state => ({
     translate: getTranslate(state.locale),
     currentLanguage: getActiveLanguage(state.locale).code,
-    preLoader: state.preLoader.toggle
 });
 
 HomePage = connect(mapStateToProps)(HomePage);

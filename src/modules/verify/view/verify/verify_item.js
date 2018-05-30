@@ -19,6 +19,7 @@ import {Typography} from "../../../../blocks/typography/index";
     // }
 
 const VerifyItem = ({className, styles,data}) => {
+    const notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
     return (<div className={className + ' ' + styles.VerifyItemWrapper}>
         <div className={styles.VerifyItemImageWrapper}>
             <Image src={iconVerify} className={styles.VerifyItemImage}/>
@@ -31,7 +32,7 @@ const VerifyItem = ({className, styles,data}) => {
                 {data.name}
             </Typography>
             <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                {data.notarizationDate}
+                {notarizationCreateTime}
             </Typography>
         </div>
     </div>);

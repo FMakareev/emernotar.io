@@ -7,9 +7,11 @@ import {TopLabel, TopLabelRow} from "../../components/topLabel/index";
 import {Typography} from '../../blocks/typography/index';
 import {Image} from "../../blocks/image/index";
 import { Link } from 'react-router-dom';
+import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 
 import iconClose from '../../assets/icons/icon_close.svg';
 import iconHome from '../../assets/icons/icon_home.svg';
+import {connect} from "react-redux";
 
 class PageNotFound extends Component {
 
@@ -28,32 +30,34 @@ class PageNotFound extends Component {
     }
 
     render() {
+        const {translate, instruction, styles, staticContext} = this.props;
+
         return (
             <Fragment>
                 <Top paddingBottom={'7rem'}>
-                    Error<br/> 404
+                    {translate('home_error')}
                 </Top>
                 <Container>
                             <TopLabelRow>
-                                <TopLabel isActive>
-                                    <Image src={iconClose}/>
-                                    <Typography styles={{padding: '2rem'}} as={'h2'} size={'large'}
+                                <TopLabel as={'div'} isActive>
+                                    <Image styles={{maxWidth: '8rem'}} src={iconClose}/>
+                                    <Typography  as={'h2'} size={'large'}
                                         fontWeight={'bold'} textAlign={'center'}
                                         textTransform={'uppercase'}
                                         color={'secondary'} bright={'contrastText'}>
-                                        Page Not Found
+                                        {translate('home_error_page_not_found')}
                                     </Typography>
                                 </TopLabel>
                             </TopLabelRow>
                 </Container>
                 <Container styles={{marginTop: '-10rem', textAlign: 'center'}}>
                     <Column grid={[[, 70, '%'],]}>
-                    <Typography as={'p'} size={'medium'} fontWeight={'bold'} styles={{lineHeight: '2'}} 
-                            color={'default'} bright={'contrastText'}>
-                        the reasons for the emergence of the problem:<br/>
-                        1. the page has been moved or renamed<br/>
-                        2. the page no longer exists <br/>
-                        3. URL does not correspond to reality
+                    <Typography as={'p'}  size={'medium'} fontWeight={'bold'} styles={{lineHeight: '2'}}
+                                color={'secondary'} bright={'contrastText'}>
+                        {translate('home_error_page_not_found_description_title')}<br/>
+                        {translate('home_error_page_not_found_description_1')}<br/>
+                        {translate('home_error_page_not_found_description_2')}<br/>
+                        {translate('home_error_page_not_found_description_3')}
                     </Typography>
                     </Column>
                 </Container>
@@ -62,7 +66,7 @@ class PageNotFound extends Component {
                     <Button variant={"raised"} color={'primary'}>
                         <Image src={iconHome} styles={{padding: '0.2rem'}}/>
                         <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
-                            Home
+                            {translate('home_page_title')}
                         </Typography>
                     </Button>
                     </Link>
@@ -71,4 +75,13 @@ class PageNotFound extends Component {
         )
     }
 }
+
+
+const mapStateToProps = state => ({
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code,
+});
+
+
+PageNotFound = connect(mapStateToProps)(PageNotFound);
 export default PageNotFound

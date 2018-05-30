@@ -88,6 +88,7 @@ class NavigationSidebarMenu extends Component {
                             menu.map((item, index) =>
                                 <Button key={`Button-${index}`} fullWidth={true} styles={{
                                     alignItems: 'center',
+                                    // '-ms-flex-align': 'center',
                                     ':hover > svg': {
                                         opacity: 1,
                                     }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
 import {asyncComponent} from 'react-async-component';
 import * as modules from '../modules/index';
 import Layout from "../blocks/layout/layout";

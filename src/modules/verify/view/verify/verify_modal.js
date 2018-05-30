@@ -2,17 +2,17 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import gql from 'graphql-tag';
-import {Mutation, graphql} from "react-apollo";
+import {Mutation,graphql} from "react-apollo";
 
 import {Typography} from "../../../../blocks/typography/index";
 import {connect as connectFela} from 'react-fela';
-import {Field, reduxForm} from "redux-form";
+import {Field,reduxForm} from "redux-form";
 import {Button} from "../../../../blocks/button/index";
 import {InputText} from "../../../../blocks/input-fela/input_text/input_text";
 import {Image} from "../../../../blocks/image/index";
 import {Checkbox} from '../../../../blocks/input-fela/input_checkbox-group/input_checkbox-group';
-import {RadioGroup, Radio} from '../../../../blocks/input-fela/input_radio-group/input_radio-group';
-import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {RadioGroup,Radio} from '../../../../blocks/input-fela/input_radio-group/input_radio-group';
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 
 import iconNotar from '../../../../assets/icons/icon_notorize-black.svg';
 import {connect} from "react-redux";
@@ -24,20 +24,20 @@ const createNotarization = gql`mutation createNotarization(
     $emailHashed: Boolean,
     $docName: String,
     $additionalInfo: String,
-    $creationTime: Int,
+    $notarizationCreateTime: String,
     ){
         createNotarization(
             name:$name,
             emailHashed:$emailHashed,
             docName:$docName,
             additionalInfo:$additionalInfo,
-            creationTime:$creationTime
+            notarizationCreateTime:$notarizationCreateTime
         ) {
             name
             emailHashed
             docName
             additionalInfo
-            creationTime
+            notarizationCreateTime
         }
     }`;
 
@@ -74,6 +74,7 @@ class VerifyModal extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
         this.onPreLoaderToggle = this.onPreLoaderToggle.bind(this);
+        this.maxLength = this.maxLength.bind(this);
     }
 
     componentDidMount() { }
@@ -84,7 +85,10 @@ class VerifyModal extends Component {
     }
 
     get initialState() {
-        return {emailHashed: false};
+        return {
+            emailHashed: null,
+            emailHashedMessage: null,
+        };
     }
     /**
      * @description Submit function. Send mutation createNotarization
@@ -121,7 +125,7 @@ class VerifyModal extends Component {
          */
         this.props.createNotarization(data).then((res) => {
             console.log(res);
-            window.location.replace(`http://rc.compaero.ru/paypal/paypal`);
+            window.location.replace(`/paypal/paypal`);
         }).catch((err) => {
             console.log(err);
         })
@@ -132,6 +136,10 @@ class VerifyModal extends Component {
     onPreLoaderToggle(state) {
         console.log(open);
         this.setState({preLoader: state})
+    }
+
+    maxLength(value){
+        return value && value.length > 1500 ? this.props.translate('verify_modal_additional_maxlength') : undefined
     }
 
     render() {
@@ -159,8 +167,41 @@ class VerifyModal extends Component {
                                     selectedValue={this.state.emailHashed}
                                     onChange={this.handleChange}
                         >
-                            <Radio value={true} checked/>{translate('verify_modal_hash_email')}<br/>
-                            <Radio value={false}/>{translate('verify_modal_open_email')}
+                            <div style={{
+                                marginBottom: '0.5rem',
+                            }}>
+                                <Radio value={true}/>{translate('verify_modal_hash_email')}
+                                <Typography  styles={{
+                                    fontStyle: 'italic',
+                                    paddingLeft: '20px',
+                                }} as={'div'} size={'small'} textDecoration={'none'} color={'secondary'}
+                                             bright={'contrastText'}>
+                                    {translate('verify_modal_hash_email_description')}
+                                </Typography>
+                            </div>
+                            <div style={{
+                                marginBottom: '0.5rem',
+                            }}>
+                                <Radio value={false} checked/>{translate('verify_modal_open_email')}
+                                <Typography  styles={{
+                                    fontStyle: 'italic',
+                                    paddingLeft: '20px',
+                                }} as={'div'} size={'small'} textDecoration={'none'} color={'secondary'}
+                                             bright={'contrastText'}>
+                                    {translate('verify_modal_open_email_description')}
+                                </Typography>
+                            </div>
+                            {
+                                this.state.emailHashedMessage && <div>
+                                    <Typography  styles={{
+                                        paddingLeft: '20px',
+                                    }}  as={'p'} size={'small'} textDecoration={'none'} color={'error'}
+                                                bright={'main'}>
+                                        {this.state.emailHashedMessage}
+                                    </Typography>
+                                </div>
+                            }
+
                         </RadioGroup>
                         <br/>
                         <label htmlFor="">
@@ -173,7 +214,9 @@ class VerifyModal extends Component {
                                 component={InputText}
                                 placeholder={translate('verify_modal_additional_textarea')}
                                 type="textarea"
+                                validate={[ this.maxLength ]}
                             />
+
                         </label>
                         {error && <strong>{error}</strong>}
 
@@ -181,7 +224,7 @@ class VerifyModal extends Component {
                             <Button variant={'raised'} color={'primary'}
                                     type="submit"
                                     styles={{textAlign: 'center'}}>
-                                <Image src={iconNotar} styles={{padding: '0.2rem', maxWidth: '40px'}}/>
+                                <Image src={iconNotar} styles={{padding: '0.2rem',maxWidth: '40px'}}/>
 
                                 <Typography as={'p'} size={'small'} textDecoration={'none'} color={'secondary'}
                                             bright={'contrastText'}>
@@ -204,6 +247,8 @@ const STYLE = () => {
     return {
         VerifyModalWrapper: {
             backgroundColor: '#FDF396 !important',
+            margin: '0 auto',
+            maxHeight: '650px'
         },
         VerifyModalHeader: {
             padding: '1rem 2rem !important',
@@ -219,7 +264,7 @@ const STYLE = () => {
             padding: '1rem 2rem !important',
         },
     }
-}
+};
 
 VerifyModal = connectFela(STYLE)(VerifyModal);
 
@@ -227,7 +272,7 @@ VerifyModal = reduxForm({
     form: 'VerifyModal',
 })(VerifyModal);
 
-VerifyModal = graphql(createNotarization, {
+VerifyModal = graphql(createNotarization,{
     name: 'createNotarization',
     mutate: {
         fetchPolicy: 'no-cache',

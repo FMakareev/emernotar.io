@@ -37,13 +37,13 @@ export const getCurrentLocalize = () => {
         } else {
 
 
-            return process.env.__isBrowser__ ? window.navigator.language.match(/([A-z]{2})/i)[1].toUpperCase() : '';
+            return isBrowser ? window.navigator.language.match(/([A-z]{2})/i)[1].toUpperCase() : '';
         }
     } else if (Cookies.get('lang')) {
 
         return Cookies.get('lang');
     } else {
-        return process.env.__isBrowser__ ? window.navigator.language.match(/([A-z]{2})/i)[1].toUpperCase() : ''
+        return isBrowser ? window.navigator.language.match(/([A-z]{2})/i)[1].toUpperCase() : ''
     }
 
 };
@@ -59,9 +59,9 @@ export const changeTranslate = (store, language) => {
             dispatch(addTranslationForLanguage(jsonTranslate, language));
             dispatch(setActiveLanguage(language));
 
-            if (process.env.__isBrowser__) {
+            if (isBrowser) {
                 Cookies.set('lang', language, {expires: 700});
-                const queryLocale = process.env.__isBrowser__ ? queryString.parse(window.location.search).lang : null;
+                const queryLocale = isBrowser ? queryString.parse(window.location.search).lang : null;
 
                 if (queryLocale) {
                     history.push(`?lang=${language.toUpperCase()}`);

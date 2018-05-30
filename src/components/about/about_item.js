@@ -39,23 +39,20 @@ const STYLE = ({theme,variant = 'vertical'}) => {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
+            // '-ms-flex-pack': 'start',
             verticalAlign: 'inherit',
-
             ...(variant === 'vertical' ? {
                 '@media(min-width: 768px)':{
                     alignItems: 'center',
+                    // '-ms-flex-align': 'center',
+                    // '-ms-flex-pack': 'center',
                     flexDirection: 'column',
                     justifyContent: 'center',
                 }
             }: null)
-
-
         },
-
-
         aboutIconWrapper: {
             position: 'relative',
-            // border: '0.3rem solid #FDF396',
             backgroundColor: '#4F4F4F',
             borderRadius: '50%',
             overflow: 'hidden',
@@ -63,13 +60,11 @@ const STYLE = ({theme,variant = 'vertical'}) => {
             height: '5rem',
             minWidth: '5rem',
             marginRight: '2rem',
-
             ...(variant === 'vertical' ? {
                 '@media(min-width: 768px)':{
-                    marginRight: '0',
+                    margin: '0 auto',
                 }
             }:null),
-
         },
         aboutIconImage: {
             position: 'absolute !important',
@@ -81,12 +76,12 @@ const STYLE = ({theme,variant = 'vertical'}) => {
         },
         aboutContent:{
             textAlign: 'left',
+            width: '100%',
             ...(variant === 'vertical' ? {
                 '@media(min-width: 768px)':{
                     textAlign: 'center',
                 }
             }:null),
-
         },
         aboutTitle: {
             marginBottom: '1rem',
@@ -96,12 +91,13 @@ const STYLE = ({theme,variant = 'vertical'}) => {
                     marginTop: '1.4rem'
                 }
             }:null),
-
         },
         aboutDescription: {
             margin: '0',
+            wordWrap: 'normal',
+            whiteSpace: 'pre-wrap',
         }
     }
-}
+};
 
 export default connect(STYLE)(AboutItem)

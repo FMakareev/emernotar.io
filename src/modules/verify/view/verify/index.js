@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import PropTypes from 'prop-types';
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import {connect as connectFela} from 'react-fela';
@@ -18,12 +17,10 @@ import iconHome from '../../../../assets/icons/icon_home.svg';
 import iconNotar from '../../../../assets/icons/icon_notorize-black.svg';
 import iconVerify from '../../../../assets/icons/icon_verify.svg';
 
-import VerifyItem from './verify_item';
 import VerifyModal from "./verify_modal";
 
-import {Query} from "react-apollo";
 import gql from 'graphql-tag';
-import {PreLoader} from "../../../../components/preloader/index";
+import VerifyCertificatList from "./verify_certificat-list";
 
 
 const certificate = gql`query certificate($hash: String){
@@ -32,13 +29,6 @@ const certificate = gql`query certificate($hash: String){
     }
 }`;
 
-const certificateList = gql`query($name: String){
-    certificateList(name: $name) {
-        name
-        notarizationDate
-        ownerEmail
-    }
-}`;
 
     /**
      * @description Get hash and returns list of notarization file with the same hash or no, if there are not. 
@@ -71,7 +61,7 @@ class VerifyPage extends Component {
     }
 
     get initialState() {
-        if (!process.env.__isBrowser__) {
+        if (!process.env.isBrowser) {
             return {
                 open: false,
                 hasError: false,

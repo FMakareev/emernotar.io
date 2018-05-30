@@ -6,9 +6,7 @@ import {connect as FelaConnect} from 'react-fela'
 
 const NavigationLink = ({children, to, styles}) => {
 
-    return (<NavLink exact to={to} activeStyle={{
-        textDecoration: 'underline'
-    }} className={styles.link}>
+    return (<NavLink exact to={to} className={styles.link}>
         {children}
     </NavLink>);
 }

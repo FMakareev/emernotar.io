@@ -7,12 +7,23 @@ import apolloLogger from 'apollo-link-logger';
 
 import fetch from 'unfetch';
 
-const httpLink = new HttpLink({uri: __ENDPOINT_CLIENT__+ '/graphql',fetch:fetch});
+console.log('ENDPOINT_CLIENT: ', ENDPOINT_CLIENT);
+const httpLink = new HttpLink({uri: ENDPOINT_CLIENT+ '/graphql',fetch:fetch});
 
-const ErrorLogger = onError(({ networkError }) => {
-    console.log(JSON.stringify(networkError));
-    console.info('networkError: ',networkError);
-    console.info('statusCode: ',networkError.statusCode);
+const ErrorLogger = onError(({graphQLErrors, operation, response, networkError}) => {
+    console.log('graphQLErrors : ', graphQLErrors   );
+    console.log('operation     : ', operation       );
+    console.log('response      : ', response        );
+    console.log('networkError  : ', networkError    );
+    if(graphQLErrors) {
+        return graphQLErrors
+    }
+    if(networkError) {
+        return networkError
+    }
+    // console.log(JSON.stringify(networkError));
+    // console.info('networkError: ',networkError);
+    // console.info('statusCode: ',networkError.statusCode);
 });
 
 
@@ -20,7 +31,7 @@ const ErrorLogger = onError(({ networkError }) => {
 export const client = new ApolloClient({
     cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
     // link,
-    link:  from([ErrorLogger, ...(__DEV__ ? [apolloLogger] : []), httpLink]),
+    link:  from([ErrorLogger, ...(DEV ? [apolloLogger] : []), httpLink]),
     defaultOptions: {
         watchQuery: {
             fetchPolicy: 'cache-and-network',
@@ -32,7 +43,7 @@ export const client = new ApolloClient({
         },
         mutate: {
             fetchPolicy: 'no-cache',
-            errorPolicy: 'ignore'
+            errorPolicy: 'all'
         }
     },
     queryDeduplication: true,
