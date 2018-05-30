@@ -14,18 +14,24 @@ const mapState = state => ({
 });
 
 /**
- * 
  * @description Wrapper with styles for language switcher. Set language.
  * @class LanguageSwitcher
  * @extends {Component}
  */
 class LanguageSwitcher extends Component {
     static propTypes = {
-        btnStyles: PropTypes.shapeOf.string,
+        btnStyles: PropTypes.shape({
+            display: PropTypes.string,
+            width: PropTypes.string,
+            minWidth: PropTypes.string,
+            minHeight: PropTypes.string,
+            height: PropTypes.string,
+            padding: PropTypes.string,
+        }),
         translate: PropTypes.func, 
         languages: PropTypes.any, 
         setActiveLanguage: PropTypes.func, 
-        currentLanguage: PropTypes.func,
+        currentLanguage: PropTypes.any,
     }
 
     static defaultProps = {

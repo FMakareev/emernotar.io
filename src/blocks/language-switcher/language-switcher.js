@@ -7,8 +7,19 @@ import {Store} from '../../store';
 import {connect as felaConnect} from 'react-fela';
 import {Button} from '../button/index';
 
+/**
+ * @description Wrapper for language switcher. Set current language and language code.
+ * @class LanguageSwitcher
+ * @extends {Component}
+ */
 
 class LanguageSwitcher extends Component {
+    static propTypes = {
+        translate: PropTypes.func, 
+        languages: PropTypes.any, 
+        setActiveLanguage: PropTypes.func, 
+        currentLanguage: PropTypes.any,
+    }
     static propTypes = {}
 
     static defaultProps = {}
@@ -27,7 +38,6 @@ class LanguageSwitcher extends Component {
     render() {
         const {translate, languages, setActiveLanguage, currentLanguage, styles} = this.props;
         return (
-
             <ul className={styles.wrapper}>
                 <li className={styles.toggle}>
                     {currentLanguage}
