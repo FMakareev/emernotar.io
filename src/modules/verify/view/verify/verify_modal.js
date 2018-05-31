@@ -1,4 +1,5 @@
-import React,{Component,Fragment} from 'react';
+import React, {Component, Fragment} from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import gql from 'graphql-tag';
 import {Mutation,graphql} from "react-apollo";
@@ -40,8 +41,32 @@ const createNotarization = gql`mutation createNotarization(
         }
     }`;
 
+    
+    /**
+     * @description Modal that receives information and sends a mutation crateNotarization
+     * @returns request with code answer
+     * @memberof Verify
+     */
 
 class VerifyModal extends Component {
+
+    static propTypes = {
+        translate: PropTypes.func,
+        open: PropTypes.bool,
+        onModalToggle: PropTypes.func, 
+        handleSubmit: PropTypes.func, 
+        reset: PropTypes.func, 
+        error: PropTypes.string, 
+        pristine: PropTypes.bool, 
+        submitting: PropTypes.func,
+        styles: PropTypes.shape({
+            VerifyModalWrapper: PropTypes.string,
+            VerifyModalHeader: PropTypes.string,
+            VerifyModalContent: PropTypes.string,
+            VerifyModalFooter: PropTypes.string,
+            VerifyModalFooterText: PropTypes.string,
+        }),
+    }
 
     constructor(props) {
         super(props);
@@ -51,6 +76,8 @@ class VerifyModal extends Component {
         this.onPreLoaderToggle = this.onPreLoaderToggle.bind(this);
         this.maxLength = this.maxLength.bind(this);
     }
+
+    componentDidMount() { }
 
     handleChange(value) {
         console.log(value);
@@ -63,29 +90,39 @@ class VerifyModal extends Component {
             emailHashedMessage: null,
         };
     }
-
+    /**
+     * @description Submit function. Send mutation createNotarization
+     * @param {any} value 
+     * @memberof VerifyModal
+     */
     submit(value) {
-        console.log(value);
-        // получаешь данные local storage
+        /**
+         * @description Get param from localstorage. Set timestamp
+         */
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
-        const notarizationCreateTime = Date.now() + ''; //timestamp
-        localStorage.setItem('timestamp',notarizationCreateTime);
+        const creationTime = Math.floor(Date.now() / 1000);
+        localStorage.setItem('timestamp', creationTime);
 
-        if (this.state.emailHashed === null) {
-            this.setState({emailHashedMessage: this.props.translate('verify_modal_email_hashed_message')});
-            return null
-        }
-        let obj = {name,docName,notarizationCreateTime,...value,emailHashed: this.state.emailHashed};
+        /**
+         * @description Create obgect for  mutation
+         */
+        let obj = {name, docName, creationTime, ...value, emailHashed: this.state.emailHashed};
         if (!obj.hasOwnProperty('additionalInfo') || !obj.additionalInfo) {
             obj.additionalInfo = '';
         }
         let data = {variables: obj};
         this.setState({responseData: data});
 
+        /**
+         * @description Close modal. Set preloader
+         */
         this.props.onModalToggle(false);
         this.onPreLoaderToggle(true);
-        console.log(data);
+
+        /**
+         * @description Send requert to backend. Redirect to paypal
+         */
         this.props.createNotarization(data).then((res) => {
             console.log(res);
             window.location.replace(`/paypal/paypal`);
@@ -93,7 +130,9 @@ class VerifyModal extends Component {
             console.log(err);
         })
     }
-
+    /**
+     * @description set loading, preloader
+     */
     onPreLoaderToggle(state) {
         console.log(open);
         this.setState({preLoader: state})
@@ -104,9 +143,9 @@ class VerifyModal extends Component {
     }
 
     render() {
-        const {open,onModalToggle,styles,handleSubmit,reset,error,pristine,submitting,translate} = this.props;
+        const {open, onModalToggle, styles, handleSubmit, reset, error, pristine, submitting, translate} = this.props;
+        console.log(open);
         const {preLoader} = this.state;
-        console.log(this);
         return (
             <Fragment>
                 <Modal

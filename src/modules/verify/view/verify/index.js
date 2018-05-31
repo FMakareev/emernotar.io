@@ -30,10 +30,21 @@ const certificate = gql`query certificate($hash: String){
 }`;
 
 
+    /**
+     * @description Get hash and returns list of notarization file with the same hash or no, if there are not. 
+     * @returns List of notarization file with the same hash, if there are.
+     * @memberof Verify
+     */
 
 class VerifyPage extends Component {
-
-    static propTypes = {};
+    static propTypes = {
+        translate: PropTypes.func,
+        styles: PropTypes.shape({
+            topLabel: PropTypes.string,
+            topLabelIcon: PropTypes.string,
+        }),
+        hash: PropTypes.string
+    }
 
     static defaultProps = {
         match: {
@@ -42,7 +53,7 @@ class VerifyPage extends Component {
             },
         }
     };
-
+    
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -61,7 +72,6 @@ class VerifyPage extends Component {
             open: false,
             hasError: false,
             hash: qp.toObject(window.location.search.substring(1)).hash,
-            // hash: null,
         }
     }
 
@@ -70,12 +80,11 @@ class VerifyPage extends Component {
         this.setState({open})
     }
 
+    componentDidMount() { }
 
     render() {
         const {translate, styles} = this.props;
         const {open} = this.state;
-        const FILE_HASH = this.props.match.params.hash;
-
         return (
             <Fragment>
                 <Top paddingBottom={'9rem'}>
@@ -128,11 +137,72 @@ class VerifyPage extends Component {
                 <Container styles={{maxWidth: '768px !important', marginBottom: '5rem', marginTop: '-5rem'}}>
                     <Row>
                         <Column>
-                            <VerifyCertificatList fileHash={FILE_HASH} />
+                            {
+                                this.props.match.params.hash &&
+                                <Query query={certificateList} variables={{name: this.props.match.params.hash}}
+                                       ssr={__SSR_FETCH__}>
+                                    {
+                                        ({loading, error, data}) => {
+                                            console.log(loading, error, data);
+
+                                            if (loading) {
+                                                return (<PreLoader palette={'dark'}/>);
+                                            }
+                                            if (error) {
+                                                return (<Typography
+                                                    as={'p'}
+                                                    size={'medium'}
+                                                    color={'error'}
+                                                    bright={'dark'}
+                                                    fontWeight={'bold'}
+                                                    textAlign={'center'}
+                                                >
+                                                    {translate('home_network_error')}
+                                                </Typography>)
+                                            }
+                                            if (data.certificateList && data.certificateList.length) {
+
+                                                return (
+                                                    <Fragment>
+                                                        <Typography
+                                                            as={'h3'}
+                                                            size={'large'}
+                                                            fontWeight={'bold'}
+                                                            textAlign={'center'}
+                                                        >
+                                                            {translate('verify_file_is_not_unique')}<br/>
+                                                            {translate('verify_matches_found')}: {data.certificateList.length}
+                                                        </Typography>
+
+                                                        {
+                                                            data.certificateList.map((data, index) => <VerifyItem
+                                                                data={data} key={`VerifyItem-${index}`}/>)
+                                                        }
+                                                    </Fragment>
+                                                );
+                                            } else {
+                                                return (
+                                                    <Fragment>
+                                                        <Typography
+                                                            styles={{marginBottom: '5rem'}}
+                                                            as={'h3'}
+                                                            size={'large'}
+                                                            fontWeight={'bold'}
+                                                            textAlign={'center'}
+                                                        >
+                                                            {translate('verify_not_matches_found')}
+                                                        </Typography>
+
+                                                    </Fragment>
+                                                );
+                                            }
+                                        }
+                                    }
+                                </Query>
+                            }
                         </Column>
                     </Row>
                 </Container>
-
                 <VerifyModal open={open} onModalToggle={this.onModalToggle}/>
             </Fragment>
         )
@@ -159,4 +229,5 @@ const STYLE = () => {
 
 VerifyPage = connectFela(STYLE)(VerifyPage);
 VerifyPage = connect(mapStateToProps)(VerifyPage);
+
 export default VerifyPage;

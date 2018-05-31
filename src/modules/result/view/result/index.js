@@ -39,8 +39,9 @@ const createCertificate = gql`mutation createCertificate(
 
 
 class Result extends Component {
-
-    static propTypes = {};
+    static propTypes = {
+        translate: PropTypes.func
+    }
 
     static defaultProps = {};
 
@@ -67,104 +68,33 @@ class Result extends Component {
         console.log('run componentDidMount...');
         this.createCertificate();
     }
-
     /**
-     * @description создание сертификата
-     * */
+     * @description Scope data from ReduxForm and lockalstorage and send mutation Create Certificate to backend
+     * @returns Status answer. 200 Ok or some else
+     * @memberof Result
+     */
     createCertificate() {
         console.log('run createCertificate...');
-        if (!isBrowser) return null;
-
-        const data = {
-            variables: this.createCertificateData(),
-        };
+        if (!process.env.__isBrowser__) return null;
         /**
-         * @description создание сертификата
-         * */
-        if (data.variables) {
-            data.variables.language = this.props.currentLanguage.toLowerCase();
-            this.props.createCertificate(data)
-                .then((response) => {
-                    if (response.errors && response.errors.length) {
-                        this.setState({
-                            preLoader: false,
-                            redirect: '/404'
-                        });
-                    } else {
-                        this.setState({preLoader: false});
-                    }
-                    this.removeEventListenerCloseWindow();
-
-                    localStorage.clear();
-                })
-                .catch((err) => {
-                    this.setState({
-                        preLoader: false,
-                        redirect: '/404'
-                    });
-                    this.removeEventListenerCloseWindow();
-
-                    localStorage.clear();
-                    console.log(err);
-                });
-        } else {
-            this.setState({
-                preLoader: false,
-                redirect: '/404'
-            });
-        }
-    }
-
-    /**
-     * @description создание объекта с данными для ссертификата
-     * */
-    createCertificateData() {
-        if (!isBrowser) return null;
+         * @description Create object to send
+         */
+        const name = localStorage.getItem('fileHash');
+        const notarizationDate = Number.parseInt(localStorage.getItem('timestamp')); //timestam from notar
         const url = qp.toObject(window.location.search.substring(1));
-
+        const paymentId = url.paymentId;
+        const PayerID = url.PayerID;
+        const obj = {name, notarizationDate, paymentId, PayerID};
+        const data = {variables: obj};
         /**
-         * @description проверка query параметров
-         * */
-        if (url && Object.getOwnPropertyNames(url).length) {
-            const name = localStorage.getItem('fileHash');
-            const notarizationCreateTime = localStorage.getItem('timestamp'); //timestam from notar
-            const paymentId = url.paymentId;
-            const PayerID = url.PayerID;
-
-            if (!name) return null;
-            if (!notarizationCreateTime) return null;
-
-            return {name,notarizationCreateTime,paymentId,PayerID};
-        } else {
-            return null
-        }
-    }
-
-    /**
-     * @description callback функция для создания confirm окна блокирующего закрытие окна браузера
-     * */
-    confirmationMessageCloseWindow(e) {
-        let confirmationMessage = "";
-        (e || window.event).returnValue = confirmationMessage;
-        return confirmationMessage;
-    }
-
-    /**
-     * @description метод добавляет обработчик события закрытия окна
-     * */
-    addEventListenerCloseWindow() {
-        if (!isBrowser) return null;
-        console.log('run addEventListenerCloseWindow');
-        window.addEventListener("beforeunload",this.confirmationMessageCloseWindow);
-    }
-
-    /**
-     * @description метод убирает обработчик события закрытия окна
-     * */
-    removeEventListenerCloseWindow() {
-        if (!isBrowser) return null;
-        console.log('run removeEventListenerCloseWindow');
-        window.removeEventListener("beforeunload",this.confirmationMessageCloseWindow);
+         * @description Sent data to backend and handle фтыцук
+         */
+        this.props.createCertificate(data).then((res)=>{
+            console.log(res);
+            localStorage.clear();
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     render() {
@@ -175,50 +105,35 @@ class Result extends Component {
         }
         return (
             <Fragment>
-                {
-                    preLoader && <PreLoader backdrop/>
-                }
-                {
-                    !preLoader &&
-                    <Fragment>
-                        <Top paddingBottom={'7rem'}>
-                            {translate('result_сongratulations')}
-                        </Top>
-                        <Container>
-                            <TopLabelRow>
-
-
-                                <TopLabel as="div" isActive>
-                                    <Typography styles={{padding: '0.5rem'}} as={'h2'} size={'large'}
-                                                fontWeight={'bold'} textAlign={'center'}
-                                                textTransform={'uppercase'}
-                                                color={'secondary'} bright={'contrastText'}>
-                                        {translate('result_file_notar')}
-                                    </Typography>
-                                    <Typography styles={{padding: '0.5rem',maxWidth: '30rem'}} as={'p'}
-                                                textAlign={'center'}
-                                                color={'secondary'} bright={'contrastText'}>
-                                        {translate('result_description')}
-                                    </Typography>
-                                    <Row>
-                                        <Link to='/'
-                                              style={{textDecoration: 'none',display: 'block',textAlign: 'center'}}>
-                                            <Button styles={{textDecoration: 'none'}} size={'medium'} variant={'raised'}
-                                                    color={'primary'}>
-                                                <Image src={iconHome} styles={{padding: '0.2rem'}}/>
-                                                <Typography as={'p'} size={'small'} color={'secondary'}
-                                                            bright={'contrastText'}>
-                                                    {translate('result_home')}
-                                                </Typography>
-                                            </Button>
-                                        </Link>
-                                    </Row>
-                                </TopLabel>
-
-                            </TopLabelRow>
-                        </Container>
-                    </Fragment>
-                }
+                <Top paddingBottom={'7rem'}>
+                    {translate('result_сongratulations')}
+                </Top>
+                <Container>
+                    <TopLabelRow>
+                        <TopLabel isActive>
+                            <Typography styles={{padding: '0.5rem'}} as={'h2'} size={'large'}
+                                fontWeight={'bold'} textAlign={'center'}
+                                textTransform={'uppercase'}
+                                color={'secondary'} bright={'contrastText'}>  
+                                    {translate('result_file_notar')}
+                            </Typography>
+                            <Typography styles={{padding: '0.5rem',maxWidth: '30rem'}} as={'p'} textAlign={'center'}
+                                color={'secondary'} bright={'contrastText'}>
+                                {translate('result_description')}
+                            </Typography>
+                            <Row>
+                                <Link to='/' style={{textDecoration: 'none',display: 'block',textAlign: 'center'}}>
+                                    <Button styles={{textDecoration: 'none'}} size={'medium'} variant={'raised'} color={'primary'}>
+                                        <Image src={iconHome} styles={{padding: '0.2rem'}}/>
+                                        <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
+                                        {translate('result_home')}
+                                        </Typography>
+                                    </Button>
+                                </Link>
+                            </Row>
+                        </TopLabel>
+                    </TopLabelRow>
+                </Container>
             </Fragment>
         )
     }

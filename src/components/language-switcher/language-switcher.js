@@ -13,9 +13,26 @@ const mapState = state => ({
     currentLanguage: getActiveLanguage(state.locale).code
 });
 
-
+/**
+ * @description Wrapper with styles for language switcher. Set language.
+ * @class LanguageSwitcher
+ * @extends {Component}
+ */
 class LanguageSwitcher extends Component {
-    static propTypes = {}
+    static propTypes = {
+        btnStyles: PropTypes.shape({
+            display: PropTypes.string,
+            width: PropTypes.string,
+            minWidth: PropTypes.string,
+            minHeight: PropTypes.string,
+            height: PropTypes.string,
+            padding: PropTypes.string,
+        }),
+        translate: PropTypes.func, 
+        languages: PropTypes.any, 
+        setActiveLanguage: PropTypes.func, 
+        currentLanguage: PropTypes.any,
+    }
 
     static defaultProps = {
         btnStyles: {
@@ -83,7 +100,6 @@ export default connect(
     state => ({
         languages: getLanguages(state.locale),
         translate: getTranslate(state.locale),
-        // currentLanguage: getActiveLanguage(state.locale).code
     }),
     dispatch => ({
         setActiveLanguage: (value) => {

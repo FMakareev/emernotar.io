@@ -89,4 +89,4 @@ const mapStateToProps = state => ({
     preLoader: state.preLoader.toggle
 });
 Header = connect(mapStateToProps)(Header);
-export default Header
+export default Header;
