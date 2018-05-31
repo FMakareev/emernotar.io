@@ -30,7 +30,7 @@ const certificateItem = gql`
             paymentId
             PayerID
             language
-            additionalinfo
+            additionalInfo
         }
   }
 `;
@@ -72,13 +72,13 @@ class Cert extends Component {
         }
         if (data && data.certificateItem) {
             const {
-                name,
-                fileName,
-                notarizationCreateTime,
+                // name,
+                // fileName,
+                // notarizationCreateTime,
                 submittingDate,
                 submittingExpiration,
                 language,
-                additionalinfo
+                additionalInfo
 
             } = data.certificateItem;
             if (language.toUpperCase() !== currentLanguage) {
@@ -113,7 +113,7 @@ class Cert extends Component {
                                 {...data.certificateItem}
                                 translate={translate}
                                 styles={{
-                                    ...(additionalinfo? {opacity: 0,}: null)
+                                    ...(additionalInfo? {opacity: 0,}: null)
 
                                 }}
                             />
@@ -121,7 +121,7 @@ class Cert extends Component {
                         </div>
                     </section>
                     {
-                        additionalinfo &&  <section>
+                        additionalInfo &&  <section>
                             <div style={{
                                 height: '458px'
                             }}>
@@ -136,7 +136,7 @@ class Cert extends Component {
                                             as={'div'}
                                             styles={{lineHeight: '13.75px', fontSize: '11.75px'}}
                                         >
-                                            {additionalinfo.substring(0,1500)}
+                                            {additionalInfo.substring(0,1500)}
                                         </Typography>
                                     </div>
                                 </TopLabelRow>
