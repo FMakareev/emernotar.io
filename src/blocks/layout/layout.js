@@ -13,6 +13,8 @@ import {Row} from "../row/index";
 import {Column} from "../column/index";
 
 import logoCA from '../../assets/icons/logo_compaero_2018.svg'
+import appleStore from '../../assets/icons/apple_store.svg';
+import googlePlay from '../../assets/icons/google_play.svg';
 import {Typography} from "../typography/index";
 
 const LayoutStyle = ({theme}) => {
@@ -45,12 +47,22 @@ class Layout extends Component {
                 <Footer className={styles && styles.footer}>
                     <Container>
                         <Row>
+                            <Column grid={[[786, '10', '%']]}
+                                styles={{verticalAlign: 'middle'}}
+                            >
+                                    <img style={{width: '100%'}} src={appleStore} alt="download from app store"/>
+                            </Column>
+                            <Column grid={[[786, '10', '%']]}
+                                styles={{verticalAlign: 'middle'}}
+                            >
+                                    <img style={{width: '100%'}} src={googlePlay} alt="download from google play"/>
+                            </Column>
                             <Column
                                 styles={{
                                     marginBottom: '15px',
                                     '@media(min-width: 768px)': {
                                         display: 'inline-block',
-                                        width: '50%',
+                                        width: '40%',
                                         verticalAlign: 'middle',
                                         textAlign: 'center',
                                         marginBottom: '0',
@@ -71,13 +83,12 @@ class Layout extends Component {
                                 styles={{
                                     '@media(min-width: 768px)': {
                                         display: 'inline-block',
-                                        width: '50%',
+                                        width: '40%',
                                         verticalAlign: 'middle',
                                         textAlign: 'center'
                                     }
                                 }}
                             >
-
                                 <a target="_blank" style={{
                                     color: '#fff',
                                     textDecoration: 'none',
