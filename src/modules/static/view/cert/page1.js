@@ -89,7 +89,7 @@ const CertificatePageOne = ({
                     </tr>
                     <tr>
                         <td>https://prohashing.com/explorer/Emercoin</td>
-                    </tr
+                    </tr>
                 </tbody>
             </table>
         </Typography>
