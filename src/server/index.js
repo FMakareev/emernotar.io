@@ -73,19 +73,19 @@ app.use(requestLanguage({
     },
 }));
 
-// if (DEV) {
-//     app.get("/create_email_template", (request, response) => {
-//         createEmailTemplate('RU');
-//         createEmailTemplate('EN');
-//
-//         response.status(200);
-//         /** @description http://expressjs.com/en/4x/api.html#res.send */
-//         response.send('create_email_template');
-//         /** @description http://expressjs.com/en/4x/api.html#res.end */
-//         response.end();
-//
-//     })
-// }
+if (DEV) {
+    app.get("/create_email_template", (request, response) => {
+        createEmailTemplate('RU');
+        createEmailTemplate('EN');
+
+        response.status(200);
+        /** @description http://expressjs.com/en/4x/api.html#res.send */
+        response.send('create_email_template');
+        /** @description http://expressjs.com/en/4x/api.html#res.end */
+        response.end();
+
+    })
+}
 
 
 app.get('/create_certificat/:hash', createCertificat);

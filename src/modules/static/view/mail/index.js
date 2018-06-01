@@ -76,16 +76,16 @@ class Mail extends Component {
         }
     }
 
-    ownerEmail(ownerEmail){
-        const {translate,styles} = this.props;
+    validityOwnerEmail(ownerEmail){
+        const {translate} = this.props;
 
-        if(isEmail(ownerEmail) ){
+        if(!isEmail(ownerEmail) ) {
             return (<Fragment>
                 {translate('static_owner')}: {ownerEmail} <br/>
             </Fragment> )
         } else {
             return (<Fragment>
-                {translate('static_owner')}: {ownerEmail} <br/>
+                {translate('static_owner_hash')}: {ownerEmail} <br/>
             </Fragment> )
         }
     }
@@ -151,7 +151,7 @@ class Mail extends Component {
                                         {translate('static_transaction_id')}: {idTransaction} <br/>
                                         {translate('static_your_address')}: {blockChainAddress} <br/>
                                         {
-                                            isEmail(ownerEmail)
+                                            this.validityOwnerEmail(ownerEmail)
                                         }
 
                                         {translate('static_validity_period')}: <a target="_blank"
@@ -168,7 +168,7 @@ class Mail extends Component {
                                                     width: '18px',
                                                     height: '18px',
                                                 }}
-                                                src={questionIcon}
+                                                src={'http://rc.compaero.ru' + questionIcon}
                                                 alt={"?"}
                                             />
                                         </span>

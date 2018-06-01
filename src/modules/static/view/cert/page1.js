@@ -2,6 +2,40 @@ import React,{Component} from 'react';
 import {connect} from "react-fela";
 import {Typography} from "../../../../blocks/typography";
 import {TopLabelRow} from "../../../../components/topLabel";
+import {isEmail} from "../../../../utils/validation/is_email";
+
+const  validityOwnerEmail = (ownerEmail, translate) => {
+
+    if(!isEmail(ownerEmail) ) {
+        return (<tr>
+            <td>
+                {translate('static_owner')}:
+            </td>
+            <td
+                style={{
+                    wordWrap: 'break-word',width: '100%',
+                    maxWidth: 0,
+                }}
+            >
+                {ownerEmail}
+            </td>
+        </tr>)
+    } else {
+        return (<tr>
+            <td>
+                {translate('static_owner_hash')}:
+            </td>
+            <td
+                style={{
+                    wordWrap: 'break-word',width: '100%',
+                    maxWidth: 0,
+                }}
+            >
+                {ownerEmail}
+            </td>
+        </tr>)
+    }
+};
 
 const CertificatePageOne = ({
                                 styles,
@@ -12,7 +46,6 @@ const CertificatePageOne = ({
                                 ownerEmail,
                                 submittingExpirationFormat,
                                 serviceName,
-
                             }) => (<TopLabelRow styles={{margin: 0,padding: '0 1rem'}}>
     <div className={styles.topLabel}>
 
@@ -56,17 +89,11 @@ const CertificatePageOne = ({
                         {blockChainAddress}
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        {translate('static_owner')}:
-                    </td>
-                    <td style={{
-                        wordWrap: 'break-word',width: '100%',
-                        maxWidth: 0,
-                    }}>
-                        {ownerEmail}
-                    </td>
-                </tr>
+
+                {
+                    validityOwnerEmail(ownerEmail, translate)
+                }
+
                 <tr>
                     <td>
                         {translate('static_validity_period')}:
