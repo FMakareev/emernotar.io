@@ -57,7 +57,6 @@ class VerifyCertificatList extends Component {
                         {translate('verify_file_is_not_unique')}<br/>
                         {translate('verify_matches_found')}: {data.certificateList.length}
                     </Typography>
-
                     {
                         data.certificateList.map((data,index) => <VerifyItem
                             data={data} key={`VerifyItem-${index}`}/>)
@@ -76,7 +75,7 @@ class VerifyCertificatList extends Component {
                     >
                         {translate('verify_not_matches_found')}
                     </Typography>
-
+                    <VerifyItem/>
                 </Fragment>
             );
         }
