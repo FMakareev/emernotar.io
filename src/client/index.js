@@ -19,7 +19,8 @@ import {Store} from '../store'
 
 
 /**
- * @description http://fela.js.org/
+ * @description function render styles
+ * @link http://fela.js.org/
  * */
 const renderer = createStyleRenderer();
 
@@ -30,6 +31,7 @@ const rehydrateState = window.__ASYNC_COMPONENTS_STATE__;
 
 
 /**
+ * @description root component with StyleProvider, ThemeProvider, ApolloProvider, ProviderRedux, BrowserRouter
  * {@linkcode https://github.com/ctrlplusb/react-universally/blob/master/client/index.js#L34}
  * {@linkcode https://github.com/ctrlplusb/react-async-component#server-side-rendering}
  * */

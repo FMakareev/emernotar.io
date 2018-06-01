@@ -20,6 +20,7 @@ const mapState = state => ({
  */
 class LanguageSwitcher extends Component {
     static propTypes = {
+        /** @property {shape} btnStyles   */  
         btnStyles: PropTypes.shape({
             display: PropTypes.string,
             width: PropTypes.string,
@@ -28,9 +29,13 @@ class LanguageSwitcher extends Component {
             height: PropTypes.string,
             padding: PropTypes.string,
         }),
+        /** @property {func} translate   */  
         translate: PropTypes.func, 
+        /** @property {any} languages   */  
         languages: PropTypes.any, 
+        /** @property {func} setActiveLanguage   */  
         setActiveLanguage: PropTypes.func, 
+        /** @property {any} currentLanguage   */  
         currentLanguage: PropTypes.any,
     }
 

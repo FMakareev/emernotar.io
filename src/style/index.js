@@ -8,7 +8,8 @@ import felaPluginFlexBoxPrefixerIE from './felaPluginFlexBoxPrefixerIE';
 
 
 /**
- * {@linkcode http://fela.js.org/docs/advanced/RendererConfiguration.html}
+ * @description function create global style configuration
+ * @link http://fela.js.org/docs/advanced/RendererConfiguration.html
  * */
 export const createStyleRenderer = () => {
     const renderer = createRenderer({

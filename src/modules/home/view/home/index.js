@@ -43,9 +43,11 @@ const price = gql`
 
 class HomePage extends Component {
     static propTypes = {
-
+        /** @property {arrayOf.object} instruction   */        
         instruction: PropTypes.arrayOf(PropTypes.object),
+        /** @property {func} translate   */        
         translate: PropTypes.func,
+        /** @property {shape} styles   */
         styles: PropTypes.shape({
             dropzone: PropTypes.string,
             dropZoneContent: PropTypes.string,
@@ -56,6 +58,7 @@ class HomePage extends Component {
             playerVideo: PropTypes.string,
             playerWrapper: PropTypes.string,
         }),
+        /** @property {any} staticContext   */        
         staticContext: PropTypes.any,
     }
     static defaultProps = {
