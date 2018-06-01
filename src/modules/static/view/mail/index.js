@@ -4,6 +4,8 @@ import {connect as FelaConnect} from "react-fela";
 import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 import {connect as ReduxConnect} from "react-redux";
 
+import questionIcon from '../../../../assets/icons/questionIcon.jpg';
+
 import {Typography} from "../../../../blocks/typography/index";
 import {TopLabel} from '../../../../components/topLabel/index';
 import {Button} from '../../../../blocks/button/index';
@@ -13,6 +15,7 @@ import CALogo from './ca_logo';
 import {Image} from "../../../../blocks/image/index";
 
 import logoImage from '../../../../assets/email_logo..jpg';
+import {isEmail} from "../../../../utils/validation/is_email";
 
 const name = '{name}';
 const fileName = '{fileName}';
@@ -24,6 +27,7 @@ const emerhash = '{emerhash}';
 const idTransaction = '{idTransaction}';
 const blockChainAddress = '{blockChainAddress}';
 const serviceName = '{serviceName}';
+const additionalInfo = '{additionalInfo}';
 
 
 class Mail extends Component {
@@ -65,17 +69,36 @@ class Mail extends Component {
         return {}
     }
 
-    render() {
-        const {translate,styles,setActiveLanguage,currentLanguage,language} = this.props;
+    componentWillMount() {
+        const {setActiveLanguage,currentLanguage,language} = this.props;
         if (currentLanguage !== language) {
             setActiveLanguage(language);
         }
+    }
+
+    ownerEmail(ownerEmail){
+        const {translate,styles} = this.props;
+
+        if(isEmail(ownerEmail) ){
+            return (<Fragment>
+                {translate('static_owner')}: {ownerEmail} <br/>
+            </Fragment> )
+        } else {
+            return (<Fragment>
+                {translate('static_owner')}: {ownerEmail} <br/>
+            </Fragment> )
+        }
+    }
+
+    render() {
+        const {translate,styles} = this.props;
 
         return (<table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
             borderSpacing: 0,
             borderCollapse: 'collapse',
         }}>
 
+            <tbody>
             <tr>
                 <td align="center">
                     <table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
@@ -86,7 +109,7 @@ class Mail extends Component {
                         <thead className={styles.th}>
                         <tr className={styles.top}>
                             <td colSpan="2" width="100%">
-                               <Image src={logoImage} alt={'emernotar.io'}/>
+                                <Image src={logoImage} alt={'emernotar.io'}/>
                             </td>
                         </tr>
                         </thead>
@@ -127,6 +150,33 @@ class Mail extends Component {
                                         {translate('static_date_entry')}: {submittingDate} <br/>
                                         {translate('static_transaction_id')}: {idTransaction} <br/>
                                         {translate('static_your_address')}: {blockChainAddress} <br/>
+                                        {
+                                            isEmail(ownerEmail)
+                                        }
+
+                                        {translate('static_validity_period')}: <a target="_blank"
+                                                                                  href='http://rc.compaero.ru/help'
+                                                                                  style={{textDecoration: 'none'}}>
+                                        <span
+                                            style={{
+                                                display: 'inline-block',
+                                            }}
+                                        >
+                                            <Image
+                                                styles={{
+                                                    display: 'block',
+                                                    width: '18px',
+                                                    height: '18px',
+                                                }}
+                                                src={questionIcon}
+                                                alt={"?"}
+                                            />
+                                        </span>
+                                    </a> : {translate('static_to')} {submittingExpiration}<br/>
+                                        {translate('static_service')}: {serviceName} <br/>
+                                        {translate('static_alternative_parsers')}: <a
+                                        href="https://explorer.emercoin.com">https://explorer.emercoin.com</a>,{' '}
+                                        <a href="https://prohashing.com/explorer/Emercoin">https://prohashing.com/explorer/Emercoin</a>
                                     </Typography>
                                 </TopLabel>
                             </td>
@@ -139,16 +189,9 @@ class Mail extends Component {
                             <td>
                                 <TopLabel isActive
                                           styles={{transform: 'none',width: 'calc(100% - 48px)',margin: '0 24px 24px'}}>
-                                    {translate('static_info_cert')}
+                                    {translate('static_pagetitle_2')}
                                     <Typography as={'p'} lineHeight={'24px'}>
-                                        {translate('static_notarization_date')}: {notarizationCreateTime} <br/>
-                                        {translate('static_owner')}: {ownerEmail} <br/>
-                                        {translate('static_validity_period')}: <a target="_blank"
-                                                                                  href='http://rc.compaero.ru/help'
-                                                                                  style={{textDecoration: 'none'}}>
-                                        <span className={styles.circle}> ? </span>
-                                    </a>: {translate('static_to')} {submittingExpiration}<br/>
-                                        {translate('static_service')}: {serviceName} <br/>
+                                        {additionalInfo}
                                     </Typography>
                                 </TopLabel>
                             </td>
@@ -269,6 +312,7 @@ class Mail extends Component {
 
                 </td>
             </tr>
+            </tbody>
 
 
         </table> )
