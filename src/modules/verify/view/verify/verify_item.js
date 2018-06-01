@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 import PropTypes from 'prop-types';
 
+import {connect as connectRedux} from "react-redux";
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 import {connect} from 'react-fela';
 import {Image} from "../../../../blocks/image/index";
 import iconVerify from '../../../../assets/icons/icon_verify.svg';
@@ -13,7 +15,7 @@ import {Column} from '../../../../blocks/column/index';
      * @memberof Verify
      */
 
-const VerifyItem = ({className, styles,data}) => {
+const VerifyItem = ({className, styles,data, translate}) => {
     VerifyItem.propTypes = {
         /** @property {shape} styles   */
         styles: PropTypes.shape({
@@ -24,6 +26,29 @@ const VerifyItem = ({className, styles,data}) => {
         }),
     }
     const notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
+
+    const  validityOwnerEmail = (ownerEmail, translate) => {
+        if(!isEmail(ownerEmail) ) {
+            return (<Fragment>
+                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
+                    {translate('static_owner')}:
+                </Typography>
+                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
+                    {ownerEmail}
+                </Typography>
+            </Fragment>)
+        } else {
+            return (<Fragment>
+                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
+                    {translate('static_owner_hash')}:
+                </Typography>
+                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
+                    {ownerEmail}
+                </Typography>
+            </Fragment>)
+        }
+    }
+
     return (
         <Row>
         <Column grid={[[768,'20','%']]}>
@@ -32,9 +57,7 @@ const VerifyItem = ({className, styles,data}) => {
         <Column grid={[[768,'80','%']]}>
             <Row>
                 <Column grid={[[768,'40','%']]}>
-                    <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-                        {translate('verify_owner')}
-                    </Typography>
+                    {validityOwnerEmail}    
                 </Column>
                 <Column grid={[[768,'60','%']]}>
                     <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
@@ -94,5 +117,15 @@ const STYLE = () => {
     }
 }
 
+VerifyItem = connect(STYLE)(VerifyItem);
 
-export default connect(STYLE)(VerifyItem);
+const mapStateToProps = state => ({
+    translate: getTranslate(state.locale),
+    currentLanguage: state.locale ? getActiveLanguage(state.locale).code : null,
+    preLoader: state.preLoader.toggle
+});
+
+VerifyCertificatList = connectRedux(mapStateToProps)(VerifyItem);
+
+
+export default VerifyItem;
