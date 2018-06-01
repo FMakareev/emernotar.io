@@ -38,11 +38,14 @@ const certificate = gql`query certificate($hash: String){
 
 class VerifyPage extends Component {
     static propTypes = {
+        /** @property {func} translate   */
         translate: PropTypes.func,
+        /** @property {shape} shape   */
         styles: PropTypes.shape({
             topLabel: PropTypes.string,
             topLabelIcon: PropTypes.string,
         }),
+        /** @property {string} hash   */
         hash: PropTypes.string
     }
 

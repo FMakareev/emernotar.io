@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: blocks/language-switcher/language-switcher.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: blocks/language-switcher/language-switcher.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {getTranslate, getActiveLanguage, getLanguages} from 'react-localize-redux';
+import {changeTranslate} from "../../store/reducers/localization/actions";
+import {Store} from '../../store';
+import {connect as felaConnect} from 'react-fela';
+import {Button} from '../button/index';
+
+/**
+ * @description Wrapper for language switcher. Set current language and language code.
+ * @class LanguageSwitcher
+ * @extends {Component}
+ */
+
+class LanguageSwitcher extends Component {
+    static propTypes = {
+        translate: PropTypes.func, 
+        languages: PropTypes.any, 
+        setActiveLanguage: PropTypes.func, 
+        currentLanguage: PropTypes.any,
+    }
+    static propTypes = {}
+
+    static defaultProps = {}
+
+
+    constructor(props) {
+        super(props);
+        this.state = this.initialState;
+    }
+
+    get initialState() {
+        return {}
+    }
+
+
+    render() {
+        const {translate, languages, setActiveLanguage, currentLanguage, styles} = this.props;
+        return (
+            &lt;ul className={styles.wrapper}>
+                &lt;li className={styles.toggle}>
+                    {currentLanguage}
+                &lt;/li>
+                &lt;li>
+                    &lt;ul className={styles.dropdawnWrapper}>
+                        {languages.map((language, index) => (
+                            &lt;li key={`dropdawnItem-${index}`}
+                                className={styles.dropdawnItem + ' ' + (language.code === currentLanguage ? styles.active : null)}
+                                onClick={() => setActiveLanguage(language.code)}>
+                                {language.code}
+                            &lt;/li>
+                        ))}
+                    &lt;/ul>
+                &lt;/li>
+
+            &lt;/ul>
+        )
+    }
+}
+
+const STYLE = ({theme}) => {
+    return {
+        wrapper: {
+            position: 'relative',
+            padding: 0,
+            margin: 0,
+            border: 'none',
+            color: theme.palette.primary.dark,
+            backgroundColor: theme.palette.primary.light,
+
+            textTransform: 'uppercase',
+            fontSize: '1rem',
+            fontWeight: 400,
+            ':hover': {
+                backgroundColor: theme.palette.default.main,
+                color: theme.palette.primary.dark,
+            },
+            ':hover ul': {
+                display: 'block',
+                backgroundColor: '#FFFFFF',
+                boxShadow: '0px 0 4px rgba(0, 0, 0, 0.25)',
+            }
+        },
+        toggle: {
+            padding: '0.5rem 1rem',
+            margin: 0,
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: theme.palette.primary.dark,
+            cursor: 'pointer'
+        },
+        dropdawnWrapper: {
+            position: 'absolute',
+            display: 'none',
+            padding: 0,
+            margin: 0,
+        },
+        dropdawnItem: {
+            padding: '0.5rem 1rem',
+            margin: 0,
+            cursor: 'pointer',
+            color: theme.palette.default.dark,
+
+        },
+        active: {
+            padding: '0.5rem 1rem',
+            color: theme.palette.primary.dark,
+        }
+
+    }
+};
+
+LanguageSwitcher = felaConnect(STYLE)(LanguageSwitcher);
+
+export default connect(
+    state => ({
+        languages: getLanguages(state.locale),
+        translate: getTranslate(state.locale),
+        currentLanguage: getActiveLanguage(state.locale).code
+    }),
+    dispatch => ({
+        setActiveLanguage: (value) => {
+            dispatch(changeTranslate(Store.getState(), value))
+        }
+    })
+)(LanguageSwitcher)</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LanguageSwitcher.html">LanguageSwitcher</a></li><li><a href="Verify.VerifyModal.html">VerifyModal</a></li><li><a href="Verify.VerifyPage.html">VerifyPage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFlexMS">addFlexMS</a></li><li><a href="global.html#btnStyles">btnStyles</a></li><li><a href="global.html#createRoutes">createRoutes</a></li><li><a href="global.html#createStyleRenderer">createStyleRenderer</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#handleSubmit">handleSubmit</a></li><li><a href="global.html#has">has</a></li><li><a href="global.html#hash">hash</a></li><li><a href="global.html#initLocalize">initLocalize</a></li><li><a href="global.html#instruction">instruction</a></li><li><a href="global.html#language">language</a></li><li><a href="global.html#languages">languages</a></li><li><a href="global.html#onModalToggle">onModalToggle</a></li><li><a href="global.html#open">open</a></li><li><a href="global.html#pristine">pristine</a></li><li><a href="global.html#rehydrateState">rehydrateState</a></li><li><a href="global.html#renderer">renderer</a></li><li><a href="global.html#reset">reset</a></li><li><a href="global.html#ROOT">ROOT</a></li><li><a href="global.html#setActiveLanguage">setActiveLanguage</a></li><li><a href="global.html#staticContext">staticContext</a></li><li><a href="global.html#styles">styles</a></li><li><a href="global.html#submitting">submitting</a></li><li><a href="global.html#translate">translate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 01 2018 13:15:57 GMT+0300 (MSK)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

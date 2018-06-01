@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: style/felaPluginFlexBoxPrefixerIE.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: style/felaPluginFlexBoxPrefixerIE.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const propsMap = [
+    {
+        styleName: [ 'justifyContent','WebkitJustifyContent' ],
+        ieAlias: '-ms-flex-pack',
+        styleValues: {
+            baseline: 'baseline',
+            center: 'center',
+            end: 'end',
+            'flex-end': 'end',
+            'flex-start': 'start',
+            inherit: 'inherit',
+            initial: 'initial',
+            left: 'left',
+            normal: 'normal',
+            right: 'right',
+            safe: 'safe',
+            'space-around': 'distribute',
+            'space-between': 'justify',
+            'space-evenly': 'space-evenly',
+            start: 'start',
+            stretch: 'stretch',
+            unsafe: 'unsafe',
+            unset: 'unset',
+        },
+    },
+    {
+        styleName: [ 'alignItems','WebkitAlignItems' ],
+        ieAlias: '-ms-flex-align',
+        styleValues: {
+            baseline: 'baseline',
+            center: 'center',
+            end: 'end',
+            'flex-end': 'end',
+            'flex-start': 'start',
+            inherit: 'inherit',
+            initial: 'initial',
+            left: 'left',
+            normal: 'normal',
+            right: 'right',
+            safe: 'safe',
+            'self-end': 'self-end',
+            'self-start': 'self-start',
+            start: 'start',
+            stretch: 'stretch',
+            unsafe: 'unsafe',
+            unset: 'unset',
+        },
+    },
+    {
+        styleName: [ 'flexDirection','WebkitFlexDirection' ],
+        ieAlias: '-ms-flex-direction',
+        styleValues: {
+            column: 'column',
+            'column-reverse': 'column-reverse',
+            row: 'row',
+            'row-reverse': 'row-reverse',
+            inherit: 'inherit',
+            initial: 'initial',
+            unset: 'unset',
+        },
+    },
+    {
+        styleName: 'flexWrap',
+        ieAlias: '-ms-flex-wrap',
+        styleValues: {
+            nowrap: 'nowrap',
+            wrap: 'wrap',
+            'wrap-reverse': 'wrap-reverse',
+            inherit: 'inherit',
+            initial: 'initial',
+            unset: 'unset',
+        },
+    },
+    {
+        styleName: 'flexFlow',
+        ieAlias: '-ms-flex-flow',
+    },
+    {
+        styleName: 'order',
+        ieAlias: '-ms-flex-order',
+    },
+    {
+        styleName: 'flexBasis',
+        ieAlias: '-ms-flex-preferred-size',
+    },
+    {
+        styleName: 'flexGrow',
+        ieAlias: '-ms-flex-positive',
+    },
+    {
+        styleName: 'flex',
+        ieAlias: '-ms-flex',
+    },
+    {
+        styleName: 'flexShrink',
+        ieAlias: '-ms-flex-negative',
+    },
+    {
+        styleName: 'alignСontent',
+        ieAlias: '-ms-flex-line-pack',
+        styleValues: {
+            baseline: 'baseline',
+            center: 'center',
+            end: 'end',
+            'flex-end': 'end',
+            'flex-start': 'start',
+            inherit: 'inherit',
+            initial: 'initial',
+            left: 'left',
+            normal: 'normal',
+            right: 'right',
+            safe: 'safe',
+            'space-around': 'distribute',
+            'space-between': 'justify',
+            'space-evenly': 'space-evenly',
+            start: 'start',
+            stretch: 'stretch',
+            unsafe: 'unsafe',
+            unset: 'unset',
+        },
+    },
+    {
+        styleName: 'alignSelf',
+        ieAlias: '-ms-flex-item-align',
+        styleValues: {
+            baseline: 'baseline',
+            center: 'center',
+            end: 'end',
+            'flex-end': 'end',
+            'flex-start': 'start',
+            inherit: 'inherit',
+            initial: 'initial',
+            left: 'left',
+            normal: 'normal',
+            right: 'right',
+            safe: 'safe',
+            'self-end': 'self-end',
+            'self-start': 'self-start',
+            start: 'start',
+            stretch: 'stretch',
+            unsafe: 'unsafe',
+            unset: 'unset',
+        },
+    },
+];
+/**
+ * @desc Фенкция для проверки наличия метода в объекте
+ * */
+const has = Object.prototype.hasOwnProperty;
+
+
+/**
+ * @param {object}  styleMap - карта стилей
+ * @param {object}  felaStyle - стили класса фелы
+ * @return {object} felaStyle - возвращает измененные стили
+ * */
+const addFlexMS = (styleMap, felaStyle) => {
+    styleMap.map(item => {
+        let styleName = '';
+
+        if (Array.isArray(item.styleName)) {
+            styleName = item.styleName.find(item => has.call(felaStyle,item))
+        } else {
+            styleName = item.styleName;
+        }
+
+        if (has.call(felaStyle,styleName)) {
+            if (has.call(item,'styleValues')) {
+                Object.entries(item.styleValues).map(([ key,value ]) => {
+                    if (felaStyle[ styleName ].indexOf(key) !== -1) {
+                        felaStyle[ styleName ] += `;${item.ieAlias}:${value}`;
+                    }
+                    return null;
+                });
+            } else {
+                console.info(`Для свойства ${styleName} нет альтернативных значений.`);
+                felaStyle[ styleName ] += `;${item.ieAlias}:${felaStyle[ styleName ]}`;
+            }
+        }
+        return null;
+    });
+    return felaStyle;
+};
+
+
+export default (style,type,renderer,props) => {
+    const felaStyle = addFlexMS(propsMap, style);
+    /**
+     * Проверить есть ли вложенные объекты и если есть то проверить есть ли в них свойства flex box
+     * */
+    Object.entries(felaStyle).map(([ key, prop ]) => {
+        if (typeof prop === 'object') {
+            felaStyle[key] = addFlexMS(propsMap, prop);
+        }
+    });
+    return felaStyle;
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LanguageSwitcher.html">LanguageSwitcher</a></li><li><a href="Verify.VerifyModal.html">VerifyModal</a></li><li><a href="Verify.VerifyPage.html">VerifyPage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFlexMS">addFlexMS</a></li><li><a href="global.html#btnStyles">btnStyles</a></li><li><a href="global.html#createRoutes">createRoutes</a></li><li><a href="global.html#createStyleRenderer">createStyleRenderer</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#handleSubmit">handleSubmit</a></li><li><a href="global.html#has">has</a></li><li><a href="global.html#hash">hash</a></li><li><a href="global.html#initLocalize">initLocalize</a></li><li><a href="global.html#instruction">instruction</a></li><li><a href="global.html#language">language</a></li><li><a href="global.html#languages">languages</a></li><li><a href="global.html#onModalToggle">onModalToggle</a></li><li><a href="global.html#open">open</a></li><li><a href="global.html#pristine">pristine</a></li><li><a href="global.html#rehydrateState">rehydrateState</a></li><li><a href="global.html#renderer">renderer</a></li><li><a href="global.html#reset">reset</a></li><li><a href="global.html#ROOT">ROOT</a></li><li><a href="global.html#setActiveLanguage">setActiveLanguage</a></li><li><a href="global.html#staticContext">staticContext</a></li><li><a href="global.html#styles">styles</a></li><li><a href="global.html#submitting">submitting</a></li><li><a href="global.html#translate">translate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 01 2018 13:15:57 GMT+0300 (MSK)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

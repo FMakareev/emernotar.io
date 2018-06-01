@@ -51,14 +51,23 @@ const createNotarization = gql`mutation createNotarization(
 class VerifyModal extends Component {
 
     static propTypes = {
+        /** @property {func} translate   */
         translate: PropTypes.func,
+        /** @property {bool} open   */
         open: PropTypes.bool,
-        onModalToggle: PropTypes.func, 
+        /** @property {func} onModalToggle   */
+        onModalToggle: PropTypes.func,
+        /** @property {func} handleSubmit   */
         handleSubmit: PropTypes.func, 
+        /** @property {func} reset   */
         reset: PropTypes.func, 
+        /** @property {string} error   */
         error: PropTypes.string, 
+        /** @property {bool} prestine   */
         pristine: PropTypes.bool, 
+        /** @property {func} submitting   */
         submitting: PropTypes.func,
+        /** @property {shape} styles   */
         styles: PropTypes.shape({
             VerifyModalWrapper: PropTypes.string,
             VerifyModalHeader: PropTypes.string,
@@ -124,7 +133,7 @@ class VerifyModal extends Component {
          * @description Send requert to backend. Redirect to paypal
          */
         this.props.createNotarization(data).then((res) => {
-            console.log(res);
+            console.log("createNotarization", res);
             window.location.replace(`/paypal/paypal`);
         }).catch((err) => {
             console.log(err);

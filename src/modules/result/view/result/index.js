@@ -40,6 +40,7 @@ const createCertificate = gql`mutation createCertificate(
 
 class Result extends Component {
     static propTypes = {
+        /** @property {func} translate   */
         translate: PropTypes.func
     }
 

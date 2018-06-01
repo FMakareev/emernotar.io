@@ -9,16 +9,16 @@ import {Typography} from "../../../../blocks/typography/index";
      * @memberof Verify
      */
 
-    // static propTypes = {
-    //     styles: PropTypes.shape({
-    //         VerifyItemWrapper: PropTypes.string,
-    //         VerifyItemImageWrapper: PropTypes.string,
-    //         VerifyItemImage: PropTypes.string,
-    //         VerifyItemContent: PropTypes.string,
-    //     }),
-    // }
-
 const VerifyItem = ({className, styles,data}) => {
+    VerifyItem.propTypes = {
+        /** @property {shape} styles   */
+        styles: PropTypes.shape({
+            VerifyItemWrapper: PropTypes.string,
+            VerifyItemImageWrapper: PropTypes.string,
+            VerifyItemImage: PropTypes.string,
+            VerifyItemContent: PropTypes.string,
+        }),
+    }
     const notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
     return (<div className={className + ' ' + styles.VerifyItemWrapper}>
         <div className={styles.VerifyItemImageWrapper}>
