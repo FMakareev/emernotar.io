@@ -5,7 +5,7 @@ import {graphql} from "react-apollo";
 import gql from 'graphql-tag';
 import {PreLoader} from "../../../../components/preloader/index";
 import {Typography} from "../../../../blocks/typography/index";
-import VerifyItem from './verify_item1';
+import VerifyItem from './verify_item';
 
 const certificateList = gql`query($name: String){
     certificateList(name: $name) {
