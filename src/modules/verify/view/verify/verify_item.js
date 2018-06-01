@@ -5,6 +5,8 @@ import {connect} from 'react-fela';
 import {Image} from "../../../../blocks/image/index";
 import iconVerify from '../../../../assets/icons/icon_verify.svg';
 import {Typography} from "../../../../blocks/typography/index";
+import {Row} from '../../../../blocks/row/index';
+import {Column} from '../../../../blocks/column/index';
 
     /**
      * @description Render list of file with the same hash
@@ -22,22 +24,50 @@ const VerifyItem = ({className, styles,data}) => {
         }),
     }
     const notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
-    return (<div className={className + ' ' + styles.VerifyItemWrapper}>
-        <div className={styles.VerifyItemImageWrapper}>
+    return (
+        <Row>
+        <Column grid={[[768,'20','%']]}>
             <Image src={iconVerify} className={styles.VerifyItemImage}/>
-        </div>
-        <div className={styles.VerifyItemContent}>
-            <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-               {data.ownerEmail}
-            </Typography>
-            <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                {data.name}
-            </Typography>
-            <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                {notarizationCreateTime}
-            </Typography>
-        </div>
-    </div>);
+        </Column>
+        <Column grid={[[768,'80','%']]}>
+            <Row>
+                <Column grid={[[768,'40','%']]}>
+                    <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
+                        {translate('verify_owner')}
+                    </Typography>
+                </Column>
+                <Column grid={[[768,'60','%']]}>
+                    <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
+                        {data.ownerEmail}
+                    </Typography>
+                </Column>                
+            </Row>
+            <Row>
+                <Column grid={[[768,'40','%']]}>
+                <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
+                    {translate('verify_hashsha')}
+                </Typography>
+                </Column>
+                <Column grid={[[768,'60','%']]}>
+                    <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
+                        {data.name}
+                    </Typography>
+                </Column>                
+            </Row>
+            <Row>
+                <Column grid={[[768,'40','%']]}>
+                <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
+                    {translate('verify_creation_time')}
+                </Typography>
+                </Column>
+                <Column grid={[[768,'60','%']]}>
+                    <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
+                        {notarizationCreateTime}
+                    </Typography>
+                </Column>                
+            </Row>
+        </Column>
+    </Row>);
 };
 
 const STYLE = () => {
@@ -58,7 +88,7 @@ const STYLE = () => {
         },
         VerifyItemContent: {
             display: 'inline-block',
-            width: '80%',
+            width: '60%',
             paddingLeft: '2rem'
         },
     }
