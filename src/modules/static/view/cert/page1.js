@@ -83,6 +83,17 @@ const CertificatePageOne = ({
                         {serviceName}
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        {translate('static_alternative_parsers')}
+                    </td>
+                    <td>
+                        https://explorer.emercoin.com/
+                    </td>
+                    <td>
+                        https://prohashing.com/explorer/Emercoin/
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </Typography>
