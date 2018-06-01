@@ -1,24 +1,24 @@
-import React, {Component} from 'react';
-import { connect } from "react-fela";
+import React,{Component} from 'react';
+import {connect} from "react-fela";
 import {Typography} from "../../../../blocks/typography";
 import {TopLabelRow} from "../../../../components/topLabel";
 
 const CertificatePageOne = ({
-                               styles,
-                               translate,
-                               submittingDateFormat,
-                               idTransaction,
-                               blockChainAddress,
-                               ownerEmail,
-                               submittingExpirationFormat,
-                               serviceName,
+                                styles,
+                                translate,
+                                submittingDateFormat,
+                                idTransaction,
+                                blockChainAddress,
+                                ownerEmail,
+                                submittingExpirationFormat,
+                                serviceName,
 
-}) => (<TopLabelRow styles={{ margin: 0, padding: '0 1rem' }}>
+                            }) => (<TopLabelRow styles={{margin: 0,padding: '0 1rem'}}>
     <div className={styles.topLabel}>
 
 
         <Typography
-            styles={{ margin: '0 0 2rem' }}
+            styles={{margin: '0 0 2rem'}}
             as={'h2'}
             size={'medium'}
             fontWeight={'inherit'}
@@ -26,7 +26,7 @@ const CertificatePageOne = ({
         >
             {translate('static_info_transactions')}:
         </Typography>
-        <Typography as={'div'} styles={{ lineHeight: '13.75px', fontSize: '11.75px' }}>
+        <Typography as={'div'} styles={{lineHeight: '13.75px',fontSize: '11.75px'}}>
             <table>
                 <tbody>
                 <tr>
@@ -38,11 +38,11 @@ const CertificatePageOne = ({
                     </td>
                 </tr>
                 <tr>
-                    <td style={{ whiteSpace: 'nowrap' }}>
+                    <td style={{whiteSpace: 'nowrap'}}>
                         {translate('static_transaction_id')}:
                     </td>
                     <td style={{
-                        wordWrap: 'break-word', width: '100%',
+                        wordWrap: 'break-word',width: '100%',
                         maxWidth: 0,
                     }}>
                         {idTransaction}
@@ -61,7 +61,7 @@ const CertificatePageOne = ({
                         {translate('static_owner')}:
                     </td>
                     <td style={{
-                        wordWrap: 'break-word', width: '100%',
+                        wordWrap: 'break-word',width: '100%',
                         maxWidth: 0,
                     }}>
                         {ownerEmail}
@@ -84,12 +84,12 @@ const CertificatePageOne = ({
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="2"> {translate('static_alternative_parsers')}</td>
-                        <td>https://explorer.emercoin.com</td>
-                    </tr>
-                    <tr>
-                        <td>https://prohashing.com/explorer/Emercoin</td>
-                    </tr>
+                    <td rowSpan="2"> {translate('static_alternative_parsers')}</td>
+                    <td>https://explorer.emercoin.com</td>
+                </tr>
+                <tr>
+                    <td>https://prohashing.com/explorer/Emercoin</td>
+                </tr>
                 </tbody>
             </table>
         </Typography>
@@ -98,7 +98,7 @@ const CertificatePageOne = ({
 </TopLabelRow>);
 
 
-const style = ({ theme }) => {
+const style = ({theme}) => {
     return {
         topLabel: {
             position: 'relative',

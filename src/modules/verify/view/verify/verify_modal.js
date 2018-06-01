@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import gql from 'graphql-tag';
-import {Mutation,graphql} from "react-apollo";
+import {graphql} from "react-apollo";
 
 import {Typography} from "../../../../blocks/typography/index";
 import {connect as connectFela} from 'react-fela';
@@ -75,7 +75,7 @@ class VerifyModal extends Component {
             VerifyModalFooter: PropTypes.string,
             VerifyModalFooterText: PropTypes.string,
         }),
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -112,6 +112,12 @@ class VerifyModal extends Component {
         const docName = localStorage.getItem('fileName');
         const creationTime = Math.floor(Date.now() / 1000);
         localStorage.setItem('timestamp', creationTime);
+
+        if (this.state.emailHashed === null) {
+            this.setState({emailHashedMessage: this.props.translate('verify_modal_email_hashed_message')});
+            return null
+        }
+
 
         /**
          * @description Create obgect for  mutation

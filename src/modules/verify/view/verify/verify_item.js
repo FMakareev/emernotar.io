@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-fela';
 import {Image} from "../../../../blocks/image/index";
 import iconVerify from '../../../../assets/icons/icon_verify.svg';

@@ -1,4 +1,6 @@
 import React,{Component,Fragment} from 'react';
+import PropTypes from 'prop-types';
+
 import gql from 'graphql-tag';
 import {graphql} from "react-apollo";
 import qp from 'query-parse';
@@ -13,7 +15,6 @@ import {Image} from "../../../../blocks/image/index";
 import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
 import iconHome from '../../../../assets/icons/icon_home.svg';
-import {PreLoader} from "../../../../components/preloader/index";
 
 const createCertificate = gql`mutation createCertificate(
     $name: String!,
@@ -69,34 +70,106 @@ class Result extends Component {
         console.log('run componentDidMount...');
         this.createCertificate();
     }
+
     /**
-     * @description Scope data from ReduxForm and lockalstorage and send mutation Create Certificate to backend
-     * @returns Status answer. 200 Ok or some else
-     * @memberof Result
-     */
+     * @description создание сертификата
+     * */
     createCertificate() {
         console.log('run createCertificate...');
-        if (!process.env.__isBrowser__) return null;
+        if (!isBrowser) return null;
+
+        const data = {
+            variables: this.createCertificateData(),
+        };
         /**
-         * @description Create object to send
-         */
-        const name = localStorage.getItem('fileHash');
-        const notarizationDate = Number.parseInt(localStorage.getItem('timestamp')); //timestam from notar
-        const url = qp.toObject(window.location.search.substring(1));
-        const paymentId = url.paymentId;
-        const PayerID = url.PayerID;
-        const obj = {name, notarizationDate, paymentId, PayerID};
-        const data = {variables: obj};
-        /**
-         * @description Sent data to backend and handle фтыцук
-         */
-        this.props.createCertificate(data).then((res)=>{
-            console.log(res);
-            localStorage.clear();
-        }).catch((err) => {
-            console.log(err);
-        });
+         * @description создание сертификата
+         * */
+        if (data.variables) {
+            data.variables.language = this.props.currentLanguage.toLowerCase();
+            this.props.createCertificate(data)
+                .then((response) => {
+                    if (response.errors && response.errors.length) {
+                        this.setState({
+                            preLoader: false,
+                            redirect: '/404'
+                        });
+                    } else {
+                        this.setState({preLoader: false});
+                    }
+                    this.removeEventListenerCloseWindow();
+
+                    localStorage.clear();
+                })
+                .catch((err) => {
+                    this.setState({
+                        preLoader: false,
+                        redirect: '/404'
+                    });
+                    this.removeEventListenerCloseWindow();
+
+                    localStorage.clear();
+                    console.log(err);
+                });
+        } else {
+            this.setState({
+                preLoader: false,
+                redirect: '/404'
+            });
+        }
     }
+
+    /**
+     * @description создание объекта с данными для ссертификата
+     * */
+    createCertificateData() {
+        if (!isBrowser) return null;
+        const url = qp.toObject(window.location.search.substring(1));
+
+        /**
+         * @description проверка query параметров
+         * */
+        if (url && Object.getOwnPropertyNames(url).length) {
+            const name = localStorage.getItem('fileHash');
+            const notarizationCreateTime = localStorage.getItem('timestamp'); //timestam from notar
+            const paymentId = url.paymentId;
+            const PayerID = url.PayerID;
+
+            if (!name) return null;
+            if (!notarizationCreateTime) return null;
+
+            return {name,notarizationCreateTime,paymentId,PayerID};
+        } else {
+            return null
+        }
+    }
+
+    /**
+     * @description callback функция для создания confirm окна блокирующего закрытие окна браузера
+     * */
+    confirmationMessageCloseWindow(e) {
+        let confirmationMessage = "";
+        (e || window.event).returnValue = confirmationMessage;
+        return confirmationMessage;
+    }
+
+    /**
+     * @description метод добавляет обработчик события закрытия окна
+     * */
+    addEventListenerCloseWindow() {
+        if (!isBrowser) return null;
+        console.log('run addEventListenerCloseWindow');
+        window.addEventListener("beforeunload",this.confirmationMessageCloseWindow);
+    }
+
+    /**
+     * @description метод убирает обработчик события закрытия окна
+     * */
+    removeEventListenerCloseWindow() {
+        if (!isBrowser) return null;
+        console.log('run removeEventListenerCloseWindow');
+        window.removeEventListener("beforeunload",this.confirmationMessageCloseWindow);
+    }
+
 
     render() {
         const {translate} = this.props;

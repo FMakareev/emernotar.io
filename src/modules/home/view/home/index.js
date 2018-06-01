@@ -60,7 +60,8 @@ class HomePage extends Component {
         }),
         /** @property {any} staticContext   */        
         staticContext: PropTypes.any,
-    }
+    };
+
     static defaultProps = {
         instruction: [
             {
@@ -81,7 +82,7 @@ class HomePage extends Component {
                 description: 'home_answer_description',
             }
         ]
-    }
+    };
 
     constructor() {
         super();
@@ -108,7 +109,7 @@ class HomePage extends Component {
      * @param {any} files 
      * @memberof HomePage
      */
-    onDrop(files) {
+    createHashFromFile(files) {
         /**
          * @description lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer
          * @link https://developer.mozilla.org/en-US/docs/Web/API/FileReader
