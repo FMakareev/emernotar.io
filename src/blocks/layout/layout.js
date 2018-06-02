@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React,{Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect as FelaConnect} from "react-fela";
 import {renderRoutes} from 'react-router-config';
-import {getTranslate, getActiveLanguage} from 'react-localize-redux';
+import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 
 import Header from "../../blocks/header/header";
 import Footer from "../../blocks/footer/footer";
@@ -33,7 +33,7 @@ class Layout extends Component {
     static propTypes = {};
 
     render() {
-        const {styles, translate} = this.props;
+        const {styles,translate} = this.props;
         return (
             <React.Fragment>
 
@@ -47,15 +47,33 @@ class Layout extends Component {
                 <Footer className={styles && styles.footer}>
                     <Container>
                         <Row>
-                            <Column grid={[[786, '10', '%']]}
-                                styles={{verticalAlign: 'middle'}}
+                            <Column
+                                styles={{
+                                    verticalAlign: 'middle',
+                                    display: 'inline-block',
+                                    width: '50%',
+                                    marginBottom: '15px',
+                                    '@media(min-width: 768px)': {
+                                        width: '10%',
+                                        marginBottom: '0',
+                                    }
+                                }}
                             >
-                                    <img style={{width: '100%'}} src={appleStore} alt="download from app store"/>
+                                <img style={{width: '100%'}} src={appleStore} alt="download from app store"/>
                             </Column>
-                            <Column grid={[[786, '10', '%']]}
-                                styles={{verticalAlign: 'middle'}}
+                            <Column
+                                styles={{
+                                    verticalAlign: 'middle',
+                                    display: 'inline-block',
+                                    width: '50%',
+                                    marginBottom: '15px',
+                                    '@media(min-width: 768px)': {
+                                        width: '10%',
+                                        marginBottom: '0',
+                                    }
+                                }}
                             >
-                                    <img style={{width: '100%'}} src={googlePlay} alt="download from google play"/>
+                                <img style={{width: '100%'}} src={googlePlay} alt="download from google play"/>
                             </Column>
                             <Column
                                 styles={{
@@ -112,7 +130,7 @@ class Layout extends Component {
                                             verticalAlign: 'middle',
                                         }}
                                     >
-                                    CompAero
+                                        CompAero
                                     </Typography>
                                 </a>
                             </Column>
