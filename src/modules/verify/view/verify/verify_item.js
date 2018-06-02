@@ -9,13 +9,45 @@ import iconVerify from '../../../../assets/icons/icon_verify.svg';
 import {Typography} from "../../../../blocks/typography/index";
 import {Row} from '../../../../blocks/row/index';
 import {Column} from '../../../../blocks/column/index';
+import {isEmail} from "../../../../utils/validation/is_email";
 
-    /**
-     * @description Render list of file with the same hash
-     * @memberof Verify
-     */
+const validityOwnerEmail = (ownerEmail,translate) => {
+    if (!isEmail(ownerEmail)) {
+        return (<Row>
+            <Column grid={[ [ 768,'40','%' ] ]}>
+                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'p'} size={'medium'}>
+                    {translate('static_owner')}:
+                </Typography>
+            </Column>
+            <Column grid={[ [ 768,'60','%' ] ]}>
+                <Typography styles={{wordWrap: 'break-word'}}  as={'p'} size={'medium'}>
+                    {ownerEmail}
+                </Typography>
+            </Column>
+        </Row>)
+    } else {
+        return (<Row>
+            <Column grid={[ [ 768,'40','%' ] ]}>
+                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'p'} size={'medium'}>
+                    {translate('static_owner_hash')}:
+                </Typography>
+            </Column>
+            <Column grid={[ [ 768,'60','%' ] ]}>
+                <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
+                    {ownerEmail}
+                </Typography>
+            </Column>
+        </Row>)
+    }
+};
 
-const VerifyItem = ({className, styles,data, translate}) => {
+
+/**
+ * @description Render list of file with the same hash
+ * @memberof Verify
+ */
+
+let VerifyItem = ({className,styles,data,translate}) => {
     VerifyItem.propTypes = {
         /** @property {shape} styles   */
         styles: PropTypes.shape({
@@ -24,73 +56,51 @@ const VerifyItem = ({className, styles,data, translate}) => {
             VerifyItemImage: PropTypes.string,
             VerifyItemContent: PropTypes.string,
         }),
+    };
+
+    if (!data) {
+        return null;
     }
+
     const notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
 
-    const  validityOwnerEmail = (ownerEmail, translate) => {
-        if(!isEmail(ownerEmail) ) {
-            return (<Fragment>
-                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-                    {translate('static_owner')}:
-                </Typography>
-                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-                    {ownerEmail}
-                </Typography>
-            </Fragment>)
-        } else {
-            return (<Fragment>
-                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-                    {translate('static_owner_hash')}:
-                </Typography>
-                <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-                    {ownerEmail}
-                </Typography>
-            </Fragment>)
-        }
-    }
 
     return (
         <Row>
-        <Column grid={[[768,'20','%']]}>
-            <Image src={iconVerify} className={styles.VerifyItemImage}/>
-        </Column>
-        <Column grid={[[768,'80','%']]}>
-            <Row>
-                <Column grid={[[768,'40','%']]}>
-                    {validityOwnerEmail}    
-                </Column>
-                <Column grid={[[768,'60','%']]}>
-                    <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'h3'} size={'medium'}>
-                        {data.ownerEmail}
-                    </Typography>
-                </Column>                
-            </Row>
-            <Row>
-                <Column grid={[[768,'40','%']]}>
-                <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                    {translate('verify_hashsha')}
-                </Typography>
-                </Column>
-                <Column grid={[[768,'60','%']]}>
-                    <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                        {data.name}
-                    </Typography>
-                </Column>                
-            </Row>
-            <Row>
-                <Column grid={[[768,'40','%']]}>
-                <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                    {translate('verify_creation_time')}
-                </Typography>
-                </Column>
-                <Column grid={[[768,'60','%']]}>
-                    <Typography as={'p'} styles={{wordWrap: 'break-word'}} size={'small'}>
-                        {notarizationCreateTime}
-                    </Typography>
-                </Column>                
-            </Row>
-        </Column>
-    </Row>);
+            <Column grid={[ [ 768,'20','%' ] ]}>
+                <Image src={iconVerify} className={styles.VerifyItemImage}/>
+            </Column>
+            <Column grid={[ [ 768,'80','%' ] ]}>
+
+                {validityOwnerEmail(data.ownerEmail,translate)}
+
+
+                <Row>
+                    <Column grid={[ [ 768,'40','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'p'} size={'medium'}>
+                            {translate('verify_hashsha')}
+                        </Typography>
+                    </Column>
+                    <Column grid={[ [ 768,'60','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
+                            {data.name}
+                        </Typography>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column grid={[ [ 768,'40','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'p'} size={'medium'}>
+                            {translate('verify_creation_time')}
+                        </Typography>
+                    </Column>
+                    <Column grid={[ [ 768,'60','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
+                            {notarizationCreateTime}
+                        </Typography>
+                    </Column>
+                </Row>
+            </Column>
+        </Row>);
 };
 
 const STYLE = () => {
@@ -125,7 +135,6 @@ const mapStateToProps = state => ({
     preLoader: state.preLoader.toggle
 });
 
-VerifyCertificatList = connectRedux(mapStateToProps)(VerifyItem);
 
-
-export default VerifyItem;
+export default connectRedux(mapStateToProps)(VerifyItem);
+;

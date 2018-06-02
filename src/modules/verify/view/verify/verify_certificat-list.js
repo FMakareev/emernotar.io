@@ -18,11 +18,6 @@ const certificateList = gql`query($name: String){
 class VerifyCertificatList extends Component {
 
 
-    componentDidCatch(error,info) {
-
-        console.error('componentDidCatch: ',error);
-        console.info('componentDidCatch: ',info);
-    }
 
     render() {
         const {translate,loading,error,data} = this.props;
@@ -58,8 +53,8 @@ class VerifyCertificatList extends Component {
                         {translate('verify_matches_found')}: {data.certificateList.length}
                     </Typography>
                     {
-                        data.certificateList.map((data,index) => <VerifyItem
-                            data={data} key={`VerifyItem-${index}`}/>)
+                        data.certificateList.map((item,index) => <VerifyItem
+                            data={item} key={`VerifyItem-${index}`}/>)
                     }
                 </Fragment>
             );
@@ -79,7 +74,6 @@ class VerifyCertificatList extends Component {
                 </Fragment>
             );
         }
-        return null;
     }
 
 }
