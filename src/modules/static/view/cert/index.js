@@ -30,7 +30,7 @@ const certificateItem = gql`
             paymentId
             PayerID
             language
-            additionalInfo
+            additionalinfo
         }
   }
 `;
