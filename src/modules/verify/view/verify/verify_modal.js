@@ -110,8 +110,8 @@ class VerifyModal extends Component {
          */
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
-        const creationTime = Math.floor(Date.now() / 1000);
-        localStorage.setItem('timestamp', creationTime);
+        const notarizationCreateTime = Math.floor(Date.now() / 1000);
+        localStorage.setItem('timestamp', notarizationCreateTime);
 
         if (this.state.emailHashed === null) {
             this.setState({emailHashedMessage: this.props.translate('verify_modal_email_hashed_message')});
@@ -122,7 +122,7 @@ class VerifyModal extends Component {
         /**
          * @description Create obgect for  mutation
          */
-        let obj = {name, docName, creationTime, ...value, emailHashed: this.state.emailHashed};
+        let obj = {name, docName, notarizationCreateTime, ...value, emailHashed: this.state.emailHashed};
         if (!obj.hasOwnProperty('additionalInfo') || !obj.additionalInfo) {
             obj.additionalInfo = '';
         }
