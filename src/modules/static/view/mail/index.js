@@ -76,10 +76,10 @@ class Mail extends Component {
         }
     }
 
-    validityOwnerEmail(ownerEmail){
+    validityOwnerEmail(ownerEmail) {
         const {translate} = this.props;
 
-        if(!isEmail(ownerEmail) ) {
+        if (!isEmail(ownerEmail)) {
             return (<Fragment>
                 {translate('static_owner')}: {ownerEmail} <br/>
             </Fragment> )
@@ -109,7 +109,7 @@ class Mail extends Component {
                         <thead className={styles.th}>
                         <tr className={styles.top}>
                             <td colSpan="2" width="100%">
-                                <Image src={logoImage} alt={'emernotar.io'}/>
+                                <Image src={'http://rc.compaero.ru'+logoImage} alt={'emernotar.io'}/>
                             </td>
                         </tr>
                         </thead>
@@ -154,10 +154,10 @@ class Mail extends Component {
                                             this.validityOwnerEmail(ownerEmail)
                                         }
 
-                                        {translate('static_validity_period')}: {translate('static_to')} {submittingExpiration}   
+                                        {translate('static_validity_period')}: {translate('static_to')} {submittingExpiration} { ' '}
                                         <a target="_blank"
-                                                                                  href='http://rc.compaero.ru/help'
-                                                                                  style={{textDecoration: 'none'}}>
+                                           href='http://rc.compaero.ru/help'
+                                           style={{textDecoration: 'none'}}>
                                         <span
                                             style={{
                                                 display: 'inline-block',
@@ -173,7 +173,8 @@ class Mail extends Component {
                                                 alt={"?"}
                                             />
                                         </span>
-                                    </a><br/>
+                                        </a>
+                                        <br/>
                                         {translate('static_service')}: {serviceName} <br/>
                                         {translate('static_alternative_parsers')}: <a
                                         href="https://explorer.emercoin.com">https://explorer.emercoin.com</a>,{' '}
