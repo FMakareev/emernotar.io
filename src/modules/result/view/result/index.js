@@ -56,6 +56,8 @@ class Result extends Component {
         this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
 
         this.addEventListenerCloseWindow();
+
+        this.createCertificate();
     }
 
     get initialState() {
@@ -67,8 +69,6 @@ class Result extends Component {
     }
 
     componentDidMount() {
-        console.log('run componentDidMount...');
-        this.createCertificate();
     }
 
     /**
@@ -77,6 +77,12 @@ class Result extends Component {
     createCertificate() {
         console.log('run createCertificate...');
         if (!isBrowser) return null;
+
+        if(this.state.preLoader){
+            console.log('preLoader return ', this.state);
+            this.removeEventListenerCloseWindow();
+            return null;
+        }
 
         const data = {
             variables: this.createCertificateData(),
@@ -90,10 +96,9 @@ class Result extends Component {
                 .then((response) => {
                     if (response.errors && response.errors.length) {
                         console.log(response.errors, response.errors.length);
-                        alert('ERROR!: response.errors - ' + response.errors[0]);
                         this.setState({
                             preLoader: false,
-                            // redirect: '/404'
+                            redirect: '/404'
                         });
                     } else {
                         this.setState({preLoader: false});
@@ -104,10 +109,9 @@ class Result extends Component {
                 })
                 .catch((err) => {
                     console.error(err);
-                    alert('ERROR!: catch - '+ err);
                     this.setState({
                         preLoader: false,
-                        // redirect: '/404'
+                        redirect: '/404',
                     });
                     this.removeEventListenerCloseWindow();
 
@@ -115,10 +119,10 @@ class Result extends Component {
                 });
         } else {
             console.log('data.variables is empty');
-            alert('data.variables is empty');
+            this.removeEventListenerCloseWindow();
             this.setState({
                 preLoader: false,
-                // redirect: '/404'
+                redirect: '/404',
             });
         }
     }
