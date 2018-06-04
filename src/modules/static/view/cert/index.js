@@ -78,7 +78,7 @@ class Cert extends Component {
                 submittingDate,
                 submittingExpiration,
                 language,
-                additionalInfo
+                additionalinfo
 
             } = data.certificateItem;
             if (language.toUpperCase() !== currentLanguage) {
@@ -113,7 +113,7 @@ class Cert extends Component {
                                 {...data.certificateItem}
                                 translate={translate}
                                 styles={{
-                                    ...(additionalInfo? {opacity: 0,}: null)
+                                    ...(additionalinfo? {opacity: 0,}: null)
 
                                 }}
                             />
@@ -121,7 +121,7 @@ class Cert extends Component {
                         </div>
                     </section>
                     {
-                        additionalInfo &&  <section>
+                        additionalinfo &&  <section>
                             <div style={{
                                 height: '458px'
                             }}>
@@ -136,7 +136,7 @@ class Cert extends Component {
                                             as={'div'}
                                             styles={{lineHeight: '13.75px', fontSize: '11.75px'}}
                                         >
-                                            {additionalInfo.substring(0,1500)}
+                                            {additionalinfo.substring(0,1500)}
                                         </Typography>
                                     </div>
                                 </TopLabelRow>
@@ -220,10 +220,12 @@ Cert = connect(style)(Cert);
 
 Cert = graphql(certificateItem, {
 
+    fetchPolicy: 'network-only',
     options: (ownProps) => {
         console.log(ownProps);
         if (ownProps.emerhash) {
             return {
+                fetchPolicy: 'network-only',
                 variables: {
                     emerhash: ownProps.emerhash
                 }
@@ -232,6 +234,7 @@ Cert = graphql(certificateItem, {
             try {
                 if (ownProps.match.params.emerhash) {
                     return {
+                        fetchPolicy: 'network-only',
                         variables: {
                             emerhash: ownProps.match.params.emerhash
                         }
@@ -243,10 +246,6 @@ Cert = graphql(certificateItem, {
         }
 
     },
-    mutate: {
-        fetchPolicy: 'no-cache',
-        errorPolicy: 'all'
-    }
 })(Cert);
 
 Cert = ReduxConnect(
