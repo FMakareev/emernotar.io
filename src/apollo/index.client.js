@@ -29,16 +29,17 @@ const ErrorLogger = onError(({graphQLErrors, operation, response, networkError})
 
 
 export const client = new ApolloClient({
-    cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
+    // cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
+    cache: new InMemoryCache(),
     // link,
     link:  from([ErrorLogger, ...(DEV ? [apolloLogger] : []), httpLink]),
     defaultOptions: {
         watchQuery: {
-            fetchPolicy: 'cache-and-network',
+            fetchPolicy:  'network-only',
             errorPolicy: 'ignore',
         },
         query: {
-            fetchPolicy: 'cache-and-network',
+            fetchPolicy: 'network-only',
             errorPolicy: 'ignore',
         },
         mutate: {
