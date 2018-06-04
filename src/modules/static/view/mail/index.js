@@ -154,7 +154,8 @@ class Mail extends Component {
                                             this.validityOwnerEmail(ownerEmail)
                                         }
 
-                                        {translate('static_validity_period')}: <a target="_blank"
+                                        {translate('static_validity_period')}: {translate('static_to')} {submittingExpiration}   
+                                        <a target="_blank"
                                                                                   href='http://rc.compaero.ru/help'
                                                                                   style={{textDecoration: 'none'}}>
                                         <span
@@ -172,7 +173,7 @@ class Mail extends Component {
                                                 alt={"?"}
                                             />
                                         </span>
-                                    </a> : {translate('static_to')} {submittingExpiration}<br/>
+                                    </a><br/>
                                         {translate('static_service')}: {serviceName} <br/>
                                         {translate('static_alternative_parsers')}: <a
                                         href="https://explorer.emercoin.com">https://explorer.emercoin.com</a>,{' '}
