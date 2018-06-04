@@ -15,14 +15,14 @@ const Html = ({content,request,title,cache,style,reduxState,asyncState,getStatic
     </head>
     <body>
     <div id="app" dangerouslySetInnerHTML={{__html: content}}/>
-    {
-        cache && <script
-            charSet="UTF-8"
-            dangerouslySetInnerHTML={{
-                __html: `window.__APOLLO_STATE__=${JSON.stringify(cache.extract())};`,
-            }}
-        />
-    }
+    {/*{*/}
+        {/*cache && <script*/}
+            {/*charSet="UTF-8"*/}
+            {/*dangerouslySetInnerHTML={{*/}
+                {/*__html: `window.__APOLLO_STATE__=${JSON.stringify(cache.extract())};`,*/}
+            {/*}}*/}
+        {/*/>*/}
+    {/*}*/}
     {
         reduxState &&
         <script
