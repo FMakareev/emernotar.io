@@ -95,13 +95,34 @@ class HomePage extends Component {
     }
 
     get initialState() {
-        return {
-            files: [],
-            hash: null,
-            loading: false
+
+        if (!isBrowser) {
+            return {
+                files: [],
+                hash: null,
+                loading: false,
+                whatched: false,
+            }
+        } else {
+
+            return {
+                files: [],
+                hash: null,
+                loading: false,
+                whatched: Cookies.get("video") ,
+            }
         }
+
+
     }
 
+    componentWillUnmount() {
+
+        /**
+         * @description if not - set coockie
+         */
+        Cookies.set("video", 'whatched');
+    }
 
     /**
      * @descrition Get and make hash of file
@@ -110,73 +131,44 @@ class HomePage extends Component {
      * @memberof HomePage
      */
     createHashFromFile(files) {
-        /**
-         * @description lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer
-         * @link https://developer.mozilla.org/en-US/docs/Web/API/FileReader
-         */
-        let reader = new FileReader();
-        /**
-         * @description callback that read file
-         */
-        reader.onload = (e) => {
-            console.log('onload:', e);
-            /**
-             * @description get file, make hash SHA512 from loading file and write it in const hash
-             */
-            const hash = SHA512.hash(reader.result);
-            /**
-            * @description set on state file and hash
-            */
-            this.setState({
-                files,
-                hash: hash
-            });
-            /**
-             * @description listener  to close the window
-             */
-            this.removeEventListenerCloseWindow()
-        };
 
-        /**
-        * @description loading callback
-        * @param {any} files 
-        * @memberof HomePage
-        */
+        let reader = new FileReader();
+
+
         reader.onloadstart = (e) => {
-            console.log('onloadstart:', e);
-            /**
-             * @description set filename on local storage
-             */
-            localStorage.setItem('fileName', files[0].name);
-            /**
-             * @description create listener for close eindow after loading
-             */
             this.addEventListenerCloseWindow();
-            /**
-            * @description set status loading on state
-            */
             this.setState({
                 loading: true
             });
         };
-
         reader.onloadend = (e) => {
-            console.log('onloadend:', e);
-            /**
-             * @description set status loading false on state
-             */
             this.setState({
                 loading: false
             });
         };
-        /**
-        * @description Handle errors 
-        */
         reader.onerror = this.errorHandler;
-        /**
-        * @description method is used to start reading the contents of the specified Blob or File
-        */
-        reader.readAsBinaryString(files[0]);
+
+        reader.onload = (e) => {
+            let binary = "";
+            let bytes = new Uint8Array(reader.result);
+            let length = bytes.byteLength;
+            for (let i = 0; i < length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            const hash = SHA512.hash(binary);
+
+            localStorage.setItem('fileName', files[0].name);
+            localStorage.setItem('fileHash', hash);
+
+            this.setState({
+                files,
+                hash: hash
+            });
+            this.removeEventListenerCloseWindow()
+        };
+
+        reader.readAsArrayBuffer(files[0]);
+
     }
     /**
      * @description function that update event
@@ -271,14 +263,13 @@ class HomePage extends Component {
      */
     renderVideo() {
         if (!isBrowser) return null;
+        console.log(this.state);
+
         /**
          * @description check cookies
          */
-        if (!Cookies.get("video")) {
-            /**
-             * @description if not - set coockie
-             */
-            Cookies.set("video", 'whatched');
+        if (this.state.whatched !== "whatched") {
+
             return (
                 <div className={this.props.styles.playerWrapper}>
                     <ReactPlayer

@@ -89,9 +89,11 @@ class Result extends Component {
             this.props.createCertificate(data)
                 .then((response) => {
                     if (response.errors && response.errors.length) {
+                        console.log(response.errors, response.errors.length);
+                        alert('ERROR!: response.errors - ' + response.errors[0]);
                         this.setState({
                             preLoader: false,
-                            redirect: '/404'
+                            // redirect: '/404'
                         });
                     } else {
                         this.setState({preLoader: false});
@@ -101,19 +103,22 @@ class Result extends Component {
                     localStorage.clear();
                 })
                 .catch((err) => {
+                    console.error(err);
+                    alert('ERROR!: catch - '+ err);
                     this.setState({
                         preLoader: false,
-                        redirect: '/404'
+                        // redirect: '/404'
                     });
                     this.removeEventListenerCloseWindow();
 
                     localStorage.clear();
-                    console.log(err);
                 });
         } else {
+            console.log('data.variables is empty');
+            alert('data.variables is empty');
             this.setState({
                 preLoader: false,
-                redirect: '/404'
+                // redirect: '/404'
             });
         }
     }
