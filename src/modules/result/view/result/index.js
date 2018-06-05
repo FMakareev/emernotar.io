@@ -4,17 +4,11 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {graphql} from "react-apollo";
 import qp from 'query-parse';
-import {Container} from "../../../../blocks/container/index";
-import Button from '../../../../blocks/button/button';
-import {Top} from "../../../../components/top/index";
-import {Row} from "../../../../blocks/row/index";
-import {TopLabel,TopLabelRow} from "../../../../components/topLabel/index";
-import {Typography} from '../../../../blocks/typography/index';
-import {Link,Redirect} from 'react-router-dom';
-import {Image} from "../../../../blocks/image/index";
 import {getTranslate,getActiveLanguage} from 'react-localize-redux';
 import {connect} from "react-redux";
-import iconHome from '../../../../assets/icons/icon_home.svg';
+import {SuccessCreateCertificate} from "./successCreateCertificate";
+import {PreLoader} from "../../../../components/preloader/index";
+import {ErrorCreateCertificate} from "./errorCreateCertificate";
 
 const createCertificate = gql`mutation createCertificate(
     $name: String!,
@@ -54,21 +48,28 @@ class Result extends Component {
         this.createCertificateData = this.createCertificateData.bind(this);
         this.addEventListenerCloseWindow = this.addEventListenerCloseWindow.bind(this);
         this.removeEventListenerCloseWindow = this.removeEventListenerCloseWindow.bind(this);
+        this.createCertificateErrorHandler = this.createCertificateErrorHandler.bind(this);
 
         this.addEventListenerCloseWindow();
-
-        this.createCertificate();
+        console.log('run constructor...');
     }
 
     get initialState() {
         return {
-            preLoader: true,
+            loading: true,
             error: false,
             redirect: false,
+            createCertificate: false,
         }
     }
 
+    componentWillMount() {
+        console.log('componentWillMount;');
+    }
+
     componentDidMount() {
+        console.log('componentDidMount;');
+        this.createCertificate();
     }
 
     /**
@@ -78,11 +79,6 @@ class Result extends Component {
         console.log('run createCertificate...');
         if (!isBrowser) return null;
 
-        if(this.state.preLoader){
-            console.log('preLoader return ', this.state);
-            this.removeEventListenerCloseWindow();
-            return null;
-        }
 
         const data = {
             variables: this.createCertificateData(),
@@ -90,41 +86,44 @@ class Result extends Component {
         /**
          * @description создание сертификата
          * */
-        if (data.variables) {
-            data.variables.language = this.props.currentLanguage.toLowerCase();
-            this.props.createCertificate(data)
-                .then((response) => {
-                    if (response.errors && response.errors.length) {
-                        console.log(response.errors, response.errors.length);
-                        this.setState({
-                            preLoader: false,
-                            redirect: '/404'
-                        });
-                    } else {
-                        this.setState({preLoader: false});
-                    }
-                    this.removeEventListenerCloseWindow();
-
-                    localStorage.clear();
-                })
-                .catch((err) => {
-                    console.error(err);
+        // if (data.variables) {
+        this.setState({
+            loading: true,
+        });
+        data.variables.language = this.props.currentLanguage.toLowerCase();
+        this.props.createCertificate(data)
+            .then((response) => {
+                if (response.errors && response.errors.length) {
+                    console.log(response.errors,response.errors.length);
                     this.setState({
-                        preLoader: false,
-                        redirect: '/404',
+                        loading: false,
+                        error: this.createCertificateErrorHandler(response.errors[ 0 ].message,response.errors),
                     });
-                    this.removeEventListenerCloseWindow();
 
-                    localStorage.clear();
+                } else {
+                    this.setState({
+                        loading: false,
+                    });
+                }
+                this.removeEventListenerCloseWindow();
+                // localStorage.clear();
+            })
+            .catch(error => {
+                this.setState({
+                    loading: false,
+                    error: this.createCertificateErrorHandler('NETWORK_ERROR',error),
                 });
-        } else {
-            console.log('data.variables is empty');
-            this.removeEventListenerCloseWindow();
-            this.setState({
-                preLoader: false,
-                redirect: '/404',
+                this.removeEventListenerCloseWindow();
+                // localStorage.clear();
             });
-        }
+        // } else {
+        //     this.removeEventListenerCloseWindow();
+        //
+        //     this.setState({
+        //         loading: false,
+        //         error: this.createCertificateErrorHandler('DATA_INTEGRITY','data.variables is empty'),
+        //     });
+        // }
     }
 
     /**
@@ -166,7 +165,6 @@ class Result extends Component {
      * */
     addEventListenerCloseWindow() {
         if (!isBrowser) return null;
-        console.log('run addEventListenerCloseWindow');
         window.addEventListener("beforeunload",this.confirmationMessageCloseWindow);
     }
 
@@ -179,44 +177,86 @@ class Result extends Component {
         window.removeEventListener("beforeunload",this.confirmationMessageCloseWindow);
     }
 
+    /**
+     * @param {string} type - const error type
+     * @param {any} error - error message
+     * @return {object} - объект с ключами локализации
+     * @desc метод принимает константу ошибки и записывает в state данные для отображения ошибки
+     * */
+    createCertificateErrorHandler(type,error) {
+        console.log('createCertificateErrorHandler - type: ',type);
+        console.log('createCertificateErrorHandler - error: ',error);
+        switch (type) {
+            case('Payment error: Payment has been done already for this cart.'):
+                console.log('PAYMENT_ERROR');
+                return {
+                    pageTitle: 'result_сongratulations',
+                    title: 'result_file_notar',
+                    description: 'result_description',
+                    linkLabel: 'result_home',
+                    linkHref: '/'
+                };
+            case('Timeouted notarization'):
+                console.log('TIMEOUTED_NOTARIZATION');
+                if (isBrowser){
+                    console.log('setTimeout run');
+                   setTimeout(() => {
+                       console.log('setTimeout');
+                       window.location.reload()
+                   }, 10000);
+                }
+
+                return {
+                    pageTitle: 'home_error',
+                    title: 'result_timeouted_notarization_title',
+                    description: 'result_timeouted_notarization_description',
+                    linkLabel: 'result_btn_page_reload',
+                    linkHref: window.location.href,
+                    onClick: () => {
+                        window.location.reload()
+                    }
+                };
+            case('NETWORK_ERROR'):
+                console.log('NETWORK_ERROR');
+                return {
+                    pageTitle: 'home_error',
+                    title: 'result_error_networkerror_title',
+                    description: 'result_error_networkerror_description',
+                    linkLabel: 'contact_our_contacts',
+                    linkHref: '/contact'
+                };
+            default:
+                console.log('UNKNOUN_ERROR');
+                return {
+                    pageTitle: 'home_error',
+                    title: 'result_unknoun_error_title',
+                    description: 'result_unknoun_error_description',
+                    linkLabel: 'contact_our_contacts',
+                    linkHref: '/contact',
+                }
+        }
+    }
 
     render() {
         const {translate} = this.props;
-        const {preLoader,redirect} = this.state;
-        if (redirect) {
-            return <Redirect to={redirect}/>
-        }
+        const {loading,error} = this.state;
+        console.log(this.props);
+
         return (
             <Fragment>
-                <Top paddingBottom={'7rem'}>
-                    {translate('result_сongratulations')}
-                </Top>
-                <Container>
-                    <TopLabelRow>
-                        <TopLabel isActive>
-                            <Typography styles={{padding: '0.5rem'}} as={'h2'} size={'large'}
-                                fontWeight={'bold'} textAlign={'center'}
-                                textTransform={'uppercase'}
-                                color={'secondary'} bright={'contrastText'}>  
-                                    {translate('result_file_notar')}
-                            </Typography>
-                            <Typography styles={{padding: '0.5rem',maxWidth: '30rem'}} as={'p'} textAlign={'center'}
-                                color={'secondary'} bright={'contrastText'}>
-                                {translate('result_description')}
-                            </Typography>
-                            <Row>
-                                <Link to='/' style={{textDecoration: 'none',display: 'block',textAlign: 'center'}}>
-                                    <Button styles={{textDecoration: 'none'}} size={'medium'} variant={'raised'} color={'primary'}>
-                                        <Image src={iconHome} styles={{padding: '0.2rem'}}/>
-                                        <Typography as={'p'} size={'small'} color={'secondary'} bright={'contrastText'}>
-                                        {translate('result_home')}
-                                        </Typography>
-                                    </Button>
-                                </Link>
-                            </Row>
-                        </TopLabel>
-                    </TopLabelRow>
-                </Container>
+                {
+                    !loading &&
+                    <SuccessCreateCertificate {...error} translate={translate}/>
+                }
+                {/*{*/}
+                    {/*!loading && error &&*/}
+                    {/*<ErrorCreateCertificate {...error} translate={translate}/>*/}
+                {/*}*/}
+                {
+                    loading &&
+                    <PreLoader backdrop/>
+                }
+
             </Fragment>
         )
     }
