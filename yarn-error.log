@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js deploy:app
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js create-index]
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\FMakareev\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\WINDOWS\System32\OpenSSH;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32;C:\Users\FMakareev\AppData\Local\Microsoft\WindowsApps;C:\Users\FMakareev\AppData\Roaming\npm;C:\Users\FMakareev\AppData\Local\Yarn\bin;C:\Program Files\Microsoft VS Code\bin
@@ -149,7 +149,7 @@ npm manifest:
       "build:ssr:prod": "babel-node scripts/build.ssr.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_client='' --endpoint_server='\"http://127.0.0.1:3002\"'",
       "start:ssr": "babel-node scripts/start.ssr.js --mode=development --watch=true --ssr_fetch=false --port='3000' --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
       "localization:prod": "babel-node ./tools/initLocalizationFiles.js",
-      "create-index": "create-index ./src/modules/",
+      "create-index": "babel-node ./tools/createIndex.js ",
       "clear": "babel-node  ./tools/clear.js",
       "test": "echo \"Error: no test specified\" && exit 1",
       "create:jsdoc": "jsdoc -c ./docconf.json",
@@ -11159,17 +11159,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 2
-  Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c npm run build:ssr:prod && tar -cvzf public.tar.gz public/ && scp public.tar.gz fmakareev@rc.compaero.ru:/var/tmp/
-  Directory: E:\development\compaero.project\emernatar.io-ssr
-  Output:
-  
-      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+  Error: Command "create-index]" not found. Did you mean "create-index"?
+      at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:87307:17
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (C:\Program Files (x86)\Yarn\lib\cli.js:23451:28)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:95:12
+      at runCommand (C:\Program Files (x86)\Yarn\lib\cli.js:87312:22)
+      at Object.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:87412:14)
