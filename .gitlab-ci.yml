@@ -1,0 +1,13 @@
+stages:
+  - deploy
+  
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - sudo -u mech /usr/bin/rsync -rahP ./ /home/mech/
+    - sudo -u root chown -R mech /home/mech/
+  tags:
+    - rc
+    - shell
