@@ -19,9 +19,9 @@ class AccordionItemWrapper extends Component {
     }
 
     render() {
-        const {children, styles} = this.props;
+        const {children,id, styles} = this.props;
         return (
-            <div className={styles.wrapper}>
+            <div id={id} className={styles.wrapper}>
                 {children}
             </div>
         )

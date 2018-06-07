@@ -4,7 +4,7 @@ import {getElementType} from '../../utils/component/get_element_type';
 import PropTypes from 'prop-types';
 
 const ColorTheme = ({palette}, color, bright) => ({
-    color: palette[color][bright]
+    color: palette[color][bright] + ' !important'
 });
 
 

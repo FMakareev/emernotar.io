@@ -110,7 +110,7 @@ class VerifyModal extends Component {
          */
         const name = localStorage.getItem('fileHash');
         const docName = localStorage.getItem('fileName');
-        const notarizationCreateTime = Math.floor(Date.now() / 1000);
+        const notarizationCreateTime = Math.floor(Date.now());
         localStorage.setItem('timestamp', notarizationCreateTime);
 
         if (this.state.emailHashed === null) {

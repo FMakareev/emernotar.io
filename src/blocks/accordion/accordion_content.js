@@ -8,7 +8,7 @@ class AccordionContent extends Component {
     static propTypes = {};
 
     static defaultProps = {
-        isActive: false
+        active: false
     };
 
 

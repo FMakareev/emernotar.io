@@ -66,7 +66,7 @@
     "react-router": "^4.2.0",
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
-    "react-scrollchor": "^5.0.1",
+    "react-scrollchor": "^5.1.0",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.3.0",
@@ -137,6 +137,7 @@
     "clear": "babel-node  ./tools/clear.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "create:jsdoc": "jsdoc -c ./docconf.json",
-    "deploy:app":"npm run build:ssr:prod && tar -cvzf public.tar.gz public/ && scp public.tar.gz fmakareev@rc.compaero.ru:/var/tmp/"
+    "deploy:app": "npm run build:ssr:prod && tar -cvzf public.tar.gz public/ && scp public.tar.gz fmakareev@rc.compaero.ru:/var/tmp/",
+    "deploy:mail": "tar -cvzf MailTemplates.tar.gz MailTemplates/ && scp MailTemplates.tar.gz fmakareev@rc.compaero.ru:/var/tmp/"
   }
 }

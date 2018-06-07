@@ -112,10 +112,10 @@ const CertificatePageOne = ({
                 </tr>
                 <tr>
                     <td rowSpan="2"> {translate('static_alternative_parsers')}</td>
-                    <td>https://explorer.emercoin.com</td>
+                    <td><a href={"https://explorer.emercoin.com/tx/"+ idTransaction} target="_blank">https://explorer.emercoin.com</a></td>
                 </tr>
                 <tr>
-                    <td>https://prohashing.com/explorer/Emercoin</td>
+                    <td><a href={"https://prohashing.com/explorer/Emercoin/"+ idTransaction}>https://prohashing.com/</a></td>
                 </tr>
                 </tbody>
             </table>
