@@ -61,8 +61,13 @@ let VerifyItem = ({className,styles,data,translate}) => {
     if (!data) {
         return null;
     }
-
-    const notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
+    console.log(data)
+    let notarizationCreateTime;
+    if(data.notarizationCreateTime.length === 10){
+        notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime) * 1000).toString();
+    } else if(data.notarizationCreateTime.length === 13){
+        notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime)).toString();
+    }
 
 
     return (

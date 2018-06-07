@@ -5,6 +5,11 @@ import {createComponentWithProxy} from "react-fela";
 const AccordionWrapperStyle = () => ({})
 
 class AccordionWrapper extends Component {
+
+    static defaultProps = {
+        active: null,
+    };
+
     constructor(props) {
         super(props);
         this.state = this.initialState;
@@ -13,7 +18,7 @@ class AccordionWrapper extends Component {
 
     get initialState() {
         return {
-            active: null,
+            active: this.props.active,
         }
     }
 
@@ -25,7 +30,7 @@ class AccordionWrapper extends Component {
     render() {
         const {children, className} = this.props;
         const {active} = this.state;
-
+        console.log(this);
         let childrenWithProps = React.Children.map(children, (child, index) => {
             return React.cloneElement(child, {
                 index: index,

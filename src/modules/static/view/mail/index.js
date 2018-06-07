@@ -109,7 +109,7 @@ class Mail extends Component {
                         <thead className={styles.th}>
                         <tr className={styles.top}>
                             <td colSpan="2" width="100%">
-                                <Image src={'http://rc.compaero.ru'+logoImage} alt={'emernotar.io'}/>
+                                <Image src={'http://rc.compaero.ru' + logoImage} alt={'emernotar.io'}/>
                             </td>
                         </tr>
                         </thead>
@@ -150,13 +150,14 @@ class Mail extends Component {
                                         {translate('static_date_entry')}: {submittingDate} <br/>
                                         {translate('static_transaction_id')}: {idTransaction} <br/>
                                         {translate('static_your_address')}: {blockChainAddress} <br/>
+
                                         {
                                             this.validityOwnerEmail(ownerEmail)
                                         }
 
-                                        {translate('static_validity_period')}: {translate('static_to')} {submittingExpiration} { ' '}
+                                        {translate('static_validity_period')}: {translate('static_to')} {submittingExpiration} {' '}
                                         <a target="_blank"
-                                           href='http://rc.compaero.ru/help'
+                                           href='http://rc.compaero.ru/help#5'
                                            style={{textDecoration: 'none'}}>
                                         <span
                                             style={{
@@ -177,29 +178,30 @@ class Mail extends Component {
                                         <br/>
                                         {translate('static_service')}: {serviceName} <br/>
                                         {translate('static_alternative_parsers')}: <a
-                                        href="https://explorer.emercoin.com">https://explorer.emercoin.com</a>,{' '}
-                                        <a href="https://prohashing.com/explorer/Emercoin">https://prohashing.com/explorer/Emercoin</a>
+                                        href={"https://explorer.emercoin.com/tx/" + idTransaction} target="_blank">https://explorer.emercoin.com</a>,{' '}
+                                        <a href={"https://prohashing.com/explorer/Emercoin/"+ idTransaction}>https://prohashing.com/</a>
                                     </Typography>
                                 </TopLabel>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <TopLabel isActive
-                                          styles={{transform: 'none',width: 'calc(100% - 48px)',margin: '0 24px 24px'}}>
-                                    {translate('static_pagetitle_2')}
-                                    <Typography as={'p'} lineHeight={'24px'}>
-                                        {additionalInfo}
-                                    </Typography>
-                                </TopLabel>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                    {/*<table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>*/}
+                        {/*<tbody>*/}
+                        {/*<tr>*/}
+                            {/*<td>*/}
+                                {/*<TopLabel isActive*/}
+                                          {/*styles={{transform: 'none',width: 'calc(100% - 48px)',margin: '0 24px 24px'}}>*/}
+                                    {/*{translate('static_pagetitle_2')}*/}
+                                    {/*<Typography as={'p'} lineHeight={'24px'}>*/}
+                                        {/*{additionalInfo}*/}
+                                    {/*</Typography>*/}
+                                {/*</TopLabel>*/}
+                            {/*</td>*/}
+                        {/*</tr>*/}
+                        {/*</tbody>*/}
+                    {/*</table>*/}
 
                     <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
                         <tbody>
