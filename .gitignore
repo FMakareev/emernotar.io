@@ -7,3 +7,8 @@
 /npm-debug.log
 !/yarn-error.log
 !/yarn.lock
+
+*.gz
+*.exe
+*.log
+/src/modules/index.js
