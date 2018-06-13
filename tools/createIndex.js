@@ -8,15 +8,8 @@ const getCliParams = () => {
 
     process.argv.map(item => {
         if (item.indexOf('--') !== -1) {
-<<<<<<< HEAD
-            
-            env[ item.substring(2,item.indexOf('=')) ] = item.substring(item.indexOf('=') + 1);
-            
-=======
-
             env[ item.substring(2,item.indexOf('=')) ] = item.substring(item.indexOf('=') + 1);
 
->>>>>>> d9c960dfec846b471ab0eb76ae06f1d6cecd4c5a
             process.env[ item.substring(2,item.indexOf('=')).toUpperCase() ] = item.substring(
                 item.indexOf('=') + 1,
             );
