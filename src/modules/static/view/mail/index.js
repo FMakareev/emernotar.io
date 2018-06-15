@@ -109,7 +109,7 @@ class Mail extends Component {
                         <thead className={styles.th}>
                         <tr className={styles.top}>
                             <td colSpan="2" width="100%">
-                                <Image src={'http://rc.compaero.ru' + logoImage} alt={'emernotar.io'}/>
+                                <Image src={'{endpoint}' + logoImage} alt={'emernotar.io'}/>
                             </td>
                         </tr>
                         </thead>
@@ -157,7 +157,7 @@ class Mail extends Component {
 
                                         {translate('static_validity_period')}: {translate('static_to')} {submittingExpiration} {' '}
                                         <a target="_blank"
-                                           href='http://rc.compaero.ru/help#5'
+                                           href='{endpoint}/help#5'
                                            style={{textDecoration: 'none'}}>
                                         <span
                                             style={{
@@ -170,7 +170,7 @@ class Mail extends Component {
                                                     width: '18px',
                                                     height: '18px',
                                                 }}
-                                                src={'http://rc.compaero.ru' + questionIcon}
+                                                src={'{endpoint}' + questionIcon}
                                                 alt={"?"}
                                             />
                                         </span>
@@ -207,7 +207,7 @@ class Mail extends Component {
                         <tbody>
                         <tr className={styles.topFooter}>
                             <td>
-                                <Button as="a" href="http://rc.compaero.ru/create_certificat/{emerhash}"
+                                <Button as="a" href="{endpoint}/create_certificat/{emerhash}"
                                         variant={"raised"}
                                         color={'primary'}>
                                     <Typography as={'span'} size={'large'} textDecoration={'none'}>

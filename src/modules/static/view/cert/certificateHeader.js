@@ -15,7 +15,7 @@ const style = ({ theme, marginBottom, paddingBottom }) => {
             verticalAlign: 'middle',
             position: 'relative',
             overflow: 'hidden',
-            backgroundImage: 'url(http://rc.compaero.ru/assets/media/BCgraphicelement-3-min-597369e2.jpg)',
+            backgroundImage: 'url({endpoint}/assets/media/BCgraphicelement-3-min-597369e2.jpg)',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             ...theme.top,
