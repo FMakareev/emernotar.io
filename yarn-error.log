@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js create-index]
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js build:ssr:prod
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\FMakareev\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\WINDOWS\System32\OpenSSH;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\FMakareev\AppData\Local\Programs\Python\Python36-32;C:\Users\FMakareev\AppData\Local\Microsoft\WindowsApps;C:\Users\FMakareev\AppData\Roaming\npm;C:\Users\FMakareev\AppData\Local\Yarn\bin;C:\Program Files\Microsoft VS Code\bin
@@ -27,6 +27,7 @@ npm manifest:
       "apollo-link-error": "^1.0.9",
       "apollo-link-http": "^1.5.4",
       "apollo-link-logger": "^1.2.2",
+      "argv-parse": "^1.0.1",
       "babel-polyfill": "^6.26.0",
       "cookie-parser": "^1.4.3",
       "create-index": "^2.3.0",
@@ -55,6 +56,7 @@ npm manifest:
       "juice": "^4.2.3",
       "load-script": "^1.0.0",
       "lodash": "^4.17.5",
+      "minimist": "^1.2.0",
       "node-fetch": "^2.1.2",
       "nodemailer": "^4.6.4",
       "npm": "^6.1.0",
@@ -82,14 +84,15 @@ npm manifest:
       "react-router": "^4.2.0",
       "react-router-config": "^1.0.0-beta.4",
       "react-router-dom": "^4.2.2",
-      "react-scrollchor": "^5.0.1",
+      "react-scrollchor": "^5.1.0",
       "redux": "^4.0.0",
       "redux-devtools-extension": "^2.13.2",
       "redux-form": "^7.3.0",
       "redux-thunk": "^2.2.0",
       "serve-favicon": "^2.5.0",
       "sha512-es": "^1.8.2",
-      "unfetch": "^3.0.0"
+      "unfetch": "^3.0.0",
+      "yargs": "^11.0.0"
     },
     "devDependencies": {
       "@babel/core": "^7.0.0-beta.44",
@@ -141,19 +144,14 @@ npm manifest:
       "write-file-webpack-plugin": "^4.3.2"
     },
     "scripts": {
-      "start": "",
-      "start:server": "",
-      "build:prod": "",
-      "build:dev": "",
-      "start:ssr:server": "nodemon --inspect --verbose public/server.js",
-      "build:ssr:prod": "babel-node scripts/build.ssr.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_client='' --endpoint_server='\"http://127.0.0.1:3002\"'",
-      "start:ssr": "babel-node scripts/start.ssr.js --mode=development --watch=true --ssr_fetch=false --port='3000' --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
-      "localization:prod": "babel-node ./tools/initLocalizationFiles.js",
+      "start": "babel-node scripts/start.ssr.js --mode=development --watch=true --ssr_fetch=false --port='3000' --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
+      "build": "babel-node scripts/build.ssr.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_client='' --endpoint_server='\"http://127.0.0.1:3002\"'",
+      "localization": "babel-node ./tools/initLocalizationFiles.js",
       "create-index": "babel-node ./tools/createIndex.js ",
       "clear": "babel-node  ./tools/clear.js",
-      "test": "echo \"Error: no test specified\" && exit 1",
       "create:jsdoc": "jsdoc -c ./docconf.json",
-      "deploy:app":"npm run build:ssr:prod && tar -cvzf public.tar.gz public/ && scp public.tar.gz fmakareev@rc.compaero.ru:/var/tmp/"
+      "deploy:app": "npm run build:ssr:prod && tar -cvzf public.tar.gz public/ && scp public.tar.gz fmakareev@rc.compaero.ru:/var/tmp/",
+      "deploy:mail": "tar -cvzf MailTemplates.tar.gz MailTemplates/ && scp MailTemplates.tar.gz fmakareev@rc.compaero.ru:/var/tmp/"
     }
   }
 
@@ -2463,9 +2461,9 @@ Lockfile:
     version "5.0.0"
     resolved "https://registry.yarnpkg.com/byline/-/byline-5.0.0.tgz#741c5216468eadc457b03410118ad77de8c1ddb1"
   
-  byte-size@^4.0.2:
-    version "4.0.2"
-    resolved "https://registry.yarnpkg.com/byte-size/-/byte-size-4.0.2.tgz#e8ddbf7161913965c6af5b236a4bed8896bdc83e"
+  byte-size@^4.0.3:
+    version "4.0.3"
+    resolved "https://registry.yarnpkg.com/byte-size/-/byte-size-4.0.3.tgz#b7c095efc68eadf82985fccd9a2df43a74fa2ccd"
   
   bytes@3.0.0:
     version "3.0.0"
@@ -2489,7 +2487,7 @@ Lockfile:
       unique-filename "^1.1.0"
       y18n "^4.0.0"
   
-  cacache@^11.0.1:
+  cacache@^11.0.1, cacache@^11.0.2:
     version "11.0.2"
     resolved "https://registry.yarnpkg.com/cacache/-/cacache-11.0.2.tgz#ff30541a05302200108a759e660e30786f788764"
     dependencies:
@@ -3450,7 +3448,7 @@ Lockfile:
     dependencies:
       ms "0.7.1"
   
-  debuglog@^1.0.1:
+  debuglog@*, debuglog@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
   
@@ -5244,7 +5242,7 @@ Lockfile:
       pkg-dir "^2.0.0"
       resolve-cwd "^2.0.0"
   
-  imurmurhash@^0.1.4:
+  imurmurhash@*, imurmurhash@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   
@@ -6275,6 +6273,10 @@ Lockfile:
     version "4.17.8"
     resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.8.tgz#6fa8c8c5d337481df0bdf1c0d899d42473121e45"
   
+  lodash._baseindexof@*:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/lodash._baseindexof/-/lodash._baseindexof-3.1.0.tgz#fe52b53a1c6761e42618d654e4a25789ed61822c"
+  
   lodash._baseuniq@~4.6.0:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/lodash._baseuniq/-/lodash._baseuniq-4.6.0.tgz#0ebb44e456814af7905c6212fa2c9b2d51b841e8"
@@ -6282,9 +6284,27 @@ Lockfile:
       lodash._createset "~4.0.0"
       lodash._root "~3.0.0"
   
+  lodash._bindcallback@*:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
+  
+  lodash._cacheindexof@*:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/lodash._cacheindexof/-/lodash._cacheindexof-3.0.2.tgz#3dc69ac82498d2ee5e3ce56091bafd2adc7bde92"
+  
+  lodash._createcache@*:
+    version "3.1.2"
+    resolved "https://registry.yarnpkg.com/lodash._createcache/-/lodash._createcache-3.1.2.tgz#56d6a064017625e79ebca6b8018e17440bdcf093"
+    dependencies:
+      lodash._getnative "^3.0.0"
+  
   lodash._createset@~4.0.0:
     version "4.0.3"
     resolved "https://registry.yarnpkg.com/lodash._createset/-/lodash._createset-4.0.3.tgz#0f4659fbb09d75194fa9e2b88a6644d363c9fe26"
+  
+  lodash._getnative@*, lodash._getnative@^3.0.0:
+    version "3.9.1"
+    resolved "https://registry.yarnpkg.com/lodash._getnative/-/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
   
   lodash._root@~3.0.0:
     version "3.0.1"
@@ -6361,6 +6381,10 @@ Lockfile:
   lodash.reject@^4.4.0:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/lodash.reject/-/lodash.reject-4.6.0.tgz#80d6492dc1470864bbf583533b651f42a9f52415"
+  
+  lodash.restparam@*:
+    version "3.6.1"
+    resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
   
   lodash.some@^4.4.0:
     version "4.6.0"
@@ -6453,7 +6477,7 @@ Lockfile:
       pseudomap "^1.0.2"
       yallist "^2.1.2"
   
-  lru-cache@^4.1.2:
+  lru-cache@^4.1.2, lru-cache@^4.1.3:
     version "4.1.3"
     resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.3.tgz#a1175cf3496dfc8436c156c334b4955992bce69c"
     dependencies:
@@ -6725,6 +6749,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.2.4.tgz#03c824d84551ec38a8d1bb5bc350a5a30a354a40"
     dependencies:
       safe-buffer "^5.1.1"
+      yallist "^3.0.0"
+  
+  minipass@^2.3.3:
+    version "2.3.3"
+    resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.3.tgz#a7dcc8b7b833f5d368759cce544dccb55f50f233"
+    dependencies:
+      safe-buffer "^5.1.2"
       yallist "^3.0.0"
   
   minizlib@^1.1.0:
@@ -7118,9 +7149,9 @@ Lockfile:
       query-string "^4.1.0"
       sort-keys "^1.0.0"
   
-  npm-audit-report@^1.0.8:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/npm-audit-report/-/npm-audit-report-1.1.0.tgz#c4c74bb08b3be25cafaff89fd68ed81fecf6846d"
+  npm-audit-report@^1.2.1:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/npm-audit-report/-/npm-audit-report-1.2.1.tgz#14813e9551f0f33088e7acc442e83ea6d627ef13"
     dependencies:
       cli-table2 "^0.2.0"
       console-control-strings "^1.1.0"
@@ -7139,9 +7170,22 @@ Lockfile:
     dependencies:
       semver "^2.3.0 || 3.x || 4 || 5"
   
-  npm-lifecycle@^2.0.0, npm-lifecycle@^2.0.1:
+  npm-lifecycle@^2.0.0:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/npm-lifecycle/-/npm-lifecycle-2.0.1.tgz#897313f05ed24db8e28d99fa8b42c31b625e6237"
+    dependencies:
+      byline "^5.0.0"
+      graceful-fs "^4.1.11"
+      node-gyp "^3.6.2"
+      resolve-from "^4.0.0"
+      slide "^1.1.6"
+      uid-number "0.0.6"
+      umask "^1.1.0"
+      which "^1.3.0"
+  
+  npm-lifecycle@^2.0.3:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/npm-lifecycle/-/npm-lifecycle-2.0.3.tgz#696bedf1143371163e9cc16fe872357e25d8d90e"
     dependencies:
       byline "^5.0.0"
       graceful-fs "^4.1.11"
@@ -7249,9 +7293,9 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/npm-user-validate/-/npm-user-validate-1.0.0.tgz#8ceca0f5cea04d4e93519ef72d0557a75122e951"
   
-  npm@^6.0.1:
-    version "6.0.1"
-    resolved "https://registry.yarnpkg.com/npm/-/npm-6.0.1.tgz#13b8850d5521daf39924600ad87220fcb6636d81"
+  npm@^6.1.0:
+    version "6.1.0"
+    resolved "https://registry.yarnpkg.com/npm/-/npm-6.1.0.tgz#d685cdfc1a812fb063f031af09bed7a5a68eedf1"
     dependencies:
       JSONStream "^1.3.2"
       abbrev "~1.1.1"
@@ -7262,8 +7306,8 @@ Lockfile:
       archy "~1.0.0"
       bin-links "^1.1.2"
       bluebird "~3.5.1"
-      byte-size "^4.0.2"
-      cacache "^11.0.1"
+      byte-size "^4.0.3"
+      cacache "^11.0.2"
       call-limit "~1.1.0"
       chownr "~1.0.1"
       cli-columns "^3.1.2"
@@ -7302,7 +7346,7 @@ Lockfile:
       lodash.union "~4.6.0"
       lodash.uniq "~4.5.0"
       lodash.without "~4.4.0"
-      lru-cache "^4.1.2"
+      lru-cache "^4.1.3"
       meant "~1.0.1"
       mississippi "^3.0.0"
       mkdirp "~0.5.1"
@@ -7310,10 +7354,10 @@ Lockfile:
       node-gyp "^3.6.2"
       nopt "~4.0.1"
       normalize-package-data "~2.4.0"
-      npm-audit-report "^1.0.8"
+      npm-audit-report "^1.2.1"
       npm-cache-filename "~1.0.2"
       npm-install-checks "~3.0.0"
-      npm-lifecycle "^2.0.1"
+      npm-lifecycle "^2.0.3"
       npm-package-arg "^6.1.0"
       npm-packlist "~1.1.10"
       npm-pick-manifest "^2.1.0"
@@ -7325,7 +7369,7 @@ Lockfile:
       once "~1.4.0"
       opener "~1.4.3"
       osenv "^0.1.5"
-      pacote "^8.1.1"
+      pacote "^8.1.5"
       path-is-inside "~1.0.2"
       promise-inflight "~1.0.1"
       qrcode-terminal "^0.12.0"
@@ -7337,7 +7381,7 @@ Lockfile:
       read-package-json "^2.0.13"
       read-package-tree "^5.2.1"
       readable-stream "^2.3.6"
-      request "^2.85.0"
+      request "^2.86.0"
       retry "^0.12.0"
       rimraf "~2.6.2"
       safe-buffer "^5.1.2"
@@ -7348,7 +7392,7 @@ Lockfile:
       sorted-union-stream "~2.1.3"
       ssri "^6.0.0"
       strip-ansi "~4.0.0"
-      tar "^4.4.2"
+      tar "^4.4.1"
       text-table "~0.2.0"
       tiny-relative-date "^1.3.0"
       uid-number "0.0.6"
@@ -7646,17 +7690,18 @@ Lockfile:
       unique-filename "^1.1.0"
       which "^1.3.0"
   
-  pacote@^8.1.1:
-    version "8.1.1"
-    resolved "https://registry.yarnpkg.com/pacote/-/pacote-8.1.1.tgz#7ee85dad2bccf5524e5460508f833c60dddf5183"
+  pacote@^8.1.5:
+    version "8.1.6"
+    resolved "https://registry.yarnpkg.com/pacote/-/pacote-8.1.6.tgz#8e647564d38156367e7a9dc47a79ca1ab278d46e"
     dependencies:
       bluebird "^3.5.1"
-      cacache "^11.0.1"
+      cacache "^11.0.2"
       get-stream "^3.0.0"
       glob "^7.1.2"
-      lru-cache "^4.1.2"
+      lru-cache "^4.1.3"
       make-fetch-happen "^4.0.1"
       minimatch "^3.0.4"
+      minipass "^2.3.3"
       mississippi "^3.0.0"
       mkdirp "^0.5.1"
       normalize-package-data "^2.4.0"
@@ -7668,10 +7713,10 @@ Lockfile:
       promise-retry "^1.1.1"
       protoduck "^5.0.0"
       rimraf "^2.6.2"
-      safe-buffer "^5.1.1"
+      safe-buffer "^5.1.2"
       semver "^5.5.0"
       ssri "^6.0.0"
-      tar "^4.4.1"
+      tar "^4.4.3"
       unique-filename "^1.1.0"
       which "^1.3.0"
   
@@ -8660,9 +8705,9 @@ Lockfile:
       prop-types "^15.5.4"
       warning "^3.0.0"
   
-  react-scrollchor@^5.0.1:
-    version "5.0.1"
-    resolved "https://registry.yarnpkg.com/react-scrollchor/-/react-scrollchor-5.0.1.tgz#8168cc653fe339fd6d50fd6d1d3ed7c187ac7280"
+  react-scrollchor@^5.1.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/react-scrollchor/-/react-scrollchor-5.1.0.tgz#2f4fdebeb381d84ecc7761614c3715406a5dc052"
     dependencies:
       requestanimationframe-timer "1.x.x"
   
@@ -8809,7 +8854,7 @@ Lockfile:
       isarray "0.0.1"
       string_decoder "~0.10.x"
   
-  readdir-scoped-modules@^1.0.0:
+  readdir-scoped-modules@*, readdir-scoped-modules@^1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/readdir-scoped-modules/-/readdir-scoped-modules-1.0.2.tgz#9fafa37d286be5d92cbaebdee030dc9b5f406747"
     dependencies:
@@ -9056,7 +9101,7 @@ Lockfile:
     dependencies:
       throttleit "^1.0.0"
   
-  request@2, request@^2.74.0, request@^2.85.0:
+  request@2, request@^2.74.0:
     version "2.85.0"
     resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
     dependencies:
@@ -9123,6 +9168,31 @@ Lockfile:
       form-data "~2.3.1"
       har-validator "~5.0.3"
       hawk "~6.0.2"
+      http-signature "~1.2.0"
+      is-typedarray "~1.0.0"
+      isstream "~0.1.2"
+      json-stringify-safe "~5.0.1"
+      mime-types "~2.1.17"
+      oauth-sign "~0.8.2"
+      performance-now "^2.1.0"
+      qs "~6.5.1"
+      safe-buffer "^5.1.1"
+      tough-cookie "~2.3.3"
+      tunnel-agent "^0.6.0"
+      uuid "^3.1.0"
+  
+  request@^2.86.0:
+    version "2.87.0"
+    resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
+    dependencies:
+      aws-sign2 "~0.7.0"
+      aws4 "^1.6.0"
+      caseless "~0.12.0"
+      combined-stream "~1.0.5"
+      extend "~3.0.1"
+      forever-agent "~0.6.1"
+      form-data "~2.3.1"
+      har-validator "~5.0.3"
       http-signature "~1.2.0"
       is-typedarray "~1.0.0"
       isstream "~0.1.2"
@@ -10123,13 +10193,25 @@ Lockfile:
       safe-buffer "^5.1.1"
       yallist "^3.0.2"
   
-  tar@^4.4.0, tar@^4.4.1, tar@^4.4.2:
+  tar@^4.4.0, tar@^4.4.1:
     version "4.4.2"
     resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.2.tgz#60685211ba46b38847b1ae7ee1a24d744a2cd462"
     dependencies:
       chownr "^1.0.1"
       fs-minipass "^1.2.5"
       minipass "^2.2.4"
+      minizlib "^1.1.0"
+      mkdirp "^0.5.0"
+      safe-buffer "^5.1.2"
+      yallist "^3.0.2"
+  
+  tar@^4.4.3:
+    version "4.4.4"
+    resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.4.tgz#ec8409fae9f665a4355cc3b4087d0820232bb8cd"
+    dependencies:
+      chownr "^1.0.1"
+      fs-minipass "^1.2.5"
+      minipass "^2.3.3"
       minizlib "^1.1.0"
       mkdirp "^0.5.0"
       safe-buffer "^5.1.2"
@@ -11159,7 +11241,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
 
 Trace: 
-  Error: Command "create-index]" not found. Did you mean "create-index"?
+  Error: Command "build:ssr:prod" not found.
       at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
       at C:\Program Files (x86)\Yarn\lib\cli.js:87307:17
       at Generator.next (<anonymous>)
