@@ -32,6 +32,7 @@ import { PreLoader } from '../../../../components/preloader/index';
 
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import {config} from "../../../../config";
 
 const price = gql`
   {
@@ -274,7 +275,7 @@ class HomePage extends Component {
                 <div className={this.props.styles.playerWrapper}>
                     <ReactPlayer
                         className={this.props.styles.playerVideo}
-                        url='https://www.youtube.com/watch?v=N3Vt2VXO8AU&t'
+                        url={config.youtube}
                         width='100%'
                         height='100%'
                     />
