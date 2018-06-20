@@ -128,7 +128,7 @@
     "write-file-webpack-plugin": "^4.3.2"
   },
   "scripts": {
-    "start": "babel-node scripts/start.ssr.js --mode=development --watch=true --ssr_fetch=false --port='3000' --endpoint_client='\"http://rc.compaero.ru\"' --endpoint_server='\"http://rc.compaero.ru\"'",
+    "start": "babel-node scripts/start.ssr.js --mode=development --watch=true --ssr_fetch=false --port='3000' --endpoint_client='\"http://emernotar.io\"' --endpoint_server='\"http://emernotar.io\"'",
     "build": "babel-node scripts/build.ssr.js --mode=production --watch=false --ssr_fetch=false --port='3001' --endpoint_client='' --endpoint_server='\"http://127.0.0.1:3002\"'",
     "localization": "babel-node ./tools/initLocalizationFiles.js",
     "create-index": "babel-node ./tools/createIndex.js ",
