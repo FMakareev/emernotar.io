@@ -178,7 +178,7 @@ class Mail extends Component {
                                         <br/>
                                         {translate('static_service')}: {serviceName} <br/>
                                         {translate('static_alternative_parsers')}: <a
-                                        href={"https://explorer.emercoin.com/tx/" + idTransaction} target="_blank">https://explorer.emercoin.com</a>,{' '}
+                                        href={"https://explorer.emercoin.com/nvs//" + emerhash} target="_blank">https://explorer.emercoin.com</a>,{' '}
                                         <a href={"https://prohashing.com/explorer/Emercoin/"+ idTransaction}>https://prohashing.com/</a>
                                     </Typography>
                                 </TopLabel>
