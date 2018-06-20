@@ -79,7 +79,7 @@ class Mail extends Component {
     validityOwnerEmail(ownerEmail) {
         const {translate} = this.props;
 
-        if (!isEmail(ownerEmail)) {
+        if (isEmail(ownerEmail)) {
             return (<Fragment>
                 {translate('static_owner')}: {ownerEmail} <br/>
             </Fragment> )
