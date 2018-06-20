@@ -40,7 +40,7 @@ Creates a release build for the release
 * [Global variables](./docs/global_variables.md)- list of global variables
 * [ESLint](./docs/eslint_guide.md)- description of the code
 * [Module](./docs/module.md)- description of the structure of the module in the project
-* [Translate](./docs/translate.md)- description of the interface localization method
+* [Translate](./docs/module.md#translatexml)- description of the interface localization method
 
 
 ## Рецепты
