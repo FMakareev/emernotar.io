@@ -51,8 +51,3 @@ Creates a release build for the release
 2. replace the value of the `youtube` property with the new video;
 3. Run the command `npm run build`;
 4. If you are on the main server to restart the client server, issue the command `service emc-front restart`;
-
-### добавление новых языков или изменение старых
-
-Для того чтобы добавить новый язык на страницу или изменить старый необходимо:
-
