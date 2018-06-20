@@ -1,12 +1,18 @@
 import React,{Component} from 'react';
 import {connect} from "react-fela";
+import path from 'path';
+
 import {Typography} from "../../../../blocks/typography";
 import {TopLabelRow} from "../../../../components/topLabel";
 import {isEmail} from "../../../../utils/validation/is_email";
+import {Image} from "../../../../blocks/image/index";
+import questionIcon from '../../../../assets/icons/questionIcon.jpg';
 
-const  validityOwnerEmail = (ownerEmail, translate) => {
 
-    if(!isEmail(ownerEmail) ) {
+
+const validityOwnerEmail = (ownerEmail,translate) => {
+
+    if (!isEmail(ownerEmail)) {
         return (<tr>
             <td>
                 {translate('static_owner')}:
@@ -46,6 +52,7 @@ const CertificatePageOne = ({
                                 ownerEmail,
                                 submittingExpirationFormat,
                                 serviceName,
+                                emerhash,
                             }) => (<TopLabelRow styles={{margin: 0,padding: '0 1rem'}}>
     <div className={styles.topLabel}>
 
@@ -91,7 +98,7 @@ const CertificatePageOne = ({
                 </tr>
 
                 {
-                    validityOwnerEmail(ownerEmail, translate)
+                    validityOwnerEmail(ownerEmail,translate)
                 }
 
                 <tr>
@@ -99,7 +106,25 @@ const CertificatePageOne = ({
                         {translate('static_validity_period')}:
                     </td>
                     <td>
-                        {translate('static_to')} {submittingExpirationFormat}
+                        {translate('static_to')} {submittingExpirationFormat} <a target="_blank"
+                                                                                 href='/help#5'
+                                                                                 style={{textDecoration: 'none'}}>
+                                        <span
+                                            style={{
+                                                display: 'inline-block',
+                                            }}
+                                        >
+                                            <Image
+                                                styles={{
+                                                    display: 'block',
+                                                    width: '18px',
+                                                    height: '18px',
+                                                }}
+                                                src={'http://emernotar.io/assets/media/questionIcon.jpg'}
+                                                alt={"?"}
+                                            />
+                                        </span>
+                    </a>
                     </td>
                 </tr>
                 <tr>
@@ -112,10 +137,13 @@ const CertificatePageOne = ({
                 </tr>
                 <tr>
                     <td rowSpan="2"> {translate('static_alternative_parsers')}</td>
-                    <td><a href={"https://explorer.emercoin.com/tx/"+ idTransaction} target="_blank">https://explorer.emercoin.com</a></td>
+                    <td><a href={"https://explorer.emercoin.com/nvs//" + emerhash} target="_blank">https://explorer.emercoin.com</a>
+                    </td>
                 </tr>
                 <tr>
-                    <td><a href={"https://prohashing.com/explorer/Emercoin/"+ idTransaction}>https://prohashing.com/</a></td>
+                    <td><a
+                        href={"https://prohashing.com/explorer/Emercoin/" + idTransaction}>https://prohashing.com/</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
