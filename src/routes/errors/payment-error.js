@@ -9,7 +9,7 @@ import {Typography} from '../../blocks/typography/index';
 import iconClose from '../../assets/icons/icon_close.svg';
 import {Image} from "../../blocks/image/index";
 
-class InternalServerPayPalError extends Component {
+class PaymentError extends Component {
 
     static propTypes = {};
 
@@ -35,7 +35,7 @@ class InternalServerPayPalError extends Component {
                         paddingBottom: '11rem',
                     }
                 }}>
-                    {translate('home_error_500paypal_pagetitle')}
+                    {translate('home_error_payment_pagetitle')}
                 </Top>
                 <Container>
 
@@ -48,7 +48,7 @@ class InternalServerPayPalError extends Component {
                                         fontWeight={'bold'} textAlign={'center'}
                                         textTransform={'uppercase'}
                                         color={'secondary'} bright={'contrastText'}>
-                                {translate('home_error_500paypal_description')}
+                                {translate('home_error_payment_description')}
                             </Typography>
                         </TopLabel>
                     </TopLabelRow>
@@ -63,6 +63,6 @@ const mapStateToProps = state => ({
     currentLanguage: getActiveLanguage(state.locale).code,
 });
 
-InternalServerPayPalError = ReduxConnect(mapStateToProps)(InternalServerPayPalError);
+PaymentError = ReduxConnect(mapStateToProps)(PaymentError);
 
-export default InternalServerPayPalError
+export default PaymentError
