@@ -86,7 +86,7 @@ class Result extends Component {
         /**
          * @description создание сертификата
          * */
-        // if (data.variables) {
+        if (data.variables) {
         this.setState({
             loading: true,
         });
@@ -116,14 +116,14 @@ class Result extends Component {
                 this.removeEventListenerCloseWindow();
                 // localStorage.clear();
             });
-        // } else {
-        //     this.removeEventListenerCloseWindow();
-        //
-        //     this.setState({
-        //         loading: false,
-        //         error: this.createCertificateErrorHandler('DATA_INTEGRITY','data.variables is empty'),
-        //     });
-        // }
+        } else {
+            this.removeEventListenerCloseWindow();
+
+            this.setState({
+                loading: false,
+                error: this.createCertificateErrorHandler('UNKNOUN_ERROR','data.variables is empty'),
+            });
+        }
     }
 
     /**
