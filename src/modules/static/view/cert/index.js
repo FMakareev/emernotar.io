@@ -81,13 +81,14 @@ class Cert extends Component {
                 additionalinfo
 
             } = data.certificateItem;
+
             if (language.toUpperCase() !== currentLanguage) {
                 setActiveLanguage(language.toUpperCase());
             }
+
             const submittingDateFormat = new Date(Number.parseInt(submittingDate) * 1000).toString();
             const submittingExpirationFormat = new Date(Number.parseInt(submittingExpiration) * 1000).toString();
-            // const notarizationCreateTimeFormat = new Date(Number.parseInt(notarizationCreateTime)).toString();
-            console.log(data);
+
             return (
                 <div className={styles.wrapper}>
                     <section>
@@ -219,7 +220,6 @@ const mapStateToProps = state => ({
 Cert = connect(style)(Cert);
 
 Cert = graphql(certificateItem, {
-
     fetchPolicy: 'network-only',
     options: (ownProps) => {
         console.log(ownProps);

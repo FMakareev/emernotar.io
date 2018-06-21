@@ -72,6 +72,15 @@ routes.push({
         LoadingComponent: () => <PreLoader/>,
     }),
 });
+routes.push({
+    exact: true,
+    path: '/500-paypal',
+    name: 'PayPal Server Error',
+    component: asyncComponent({
+        resolve: () => import(/* webpackChunkName: "500PayPal",webpackPrefetch: true */ './errors/500-paypal'),
+        LoadingComponent: () => <PreLoader/>,
+    }),
+});
 
 routes.push({
     exact: true,

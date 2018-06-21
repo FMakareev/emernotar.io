@@ -12,7 +12,6 @@ import Html from "./html";
 import {ApolloProvider,renderToStringWithData} from "react-apollo";
 
 import {StaticRouter} from 'react-router';
-import {getTranslate} from 'react-localize-redux';
 import {Provider as ProviderRedux} from 'react-redux'
 import {Store} from '../store'
 import {initLocalize} from "../store/reducers/localization/actions";

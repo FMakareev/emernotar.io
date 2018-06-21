@@ -44,7 +44,7 @@ class Top extends Component {
     }
 }
 
-const style = ({theme, marginBottom, paddingBottom}) => {
+const style = ({theme, marginBottom, paddingBottom, wrapperStyles}) => {
     return {
         wrapper: {
             paddingTop: '1px',
@@ -55,7 +55,8 @@ const style = ({theme, marginBottom, paddingBottom}) => {
             overflow: 'hidden',
             ...(theme ? {...theme.top} : null),
             ...(marginBottom ? {marginBottom: marginBottom} : null),
-            ...(paddingBottom ? {paddingBottom: paddingBottom} : {paddingBottom: '1px'})
+            ...(paddingBottom ? {paddingBottom: paddingBottom} : {paddingBottom: '1px'}),
+            ...wrapperStyles,
         },
         bgImage: {
             position: 'absolute',

@@ -14,7 +14,7 @@ export const routes = [
     {
         exact: true,
         title: 'Mail',
-        path: "/mail",
+        path: "/mail/:emerhash",
         load: () => import('./view/mail'),
     },
 ];
