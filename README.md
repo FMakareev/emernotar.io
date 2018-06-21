@@ -43,7 +43,7 @@ Creates a release build for the release
 * [Translate](./docs/module.md#translatexml)- description of the interface localization method
 
 
-## Рецепты
+## Other
 
 ### To replace the video on the main page, you need:
 
