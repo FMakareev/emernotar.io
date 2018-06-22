@@ -107,7 +107,7 @@ const CertificatePageOne = ({
                     </td>
                     <td>
                         {translate('static_to')} {submittingExpirationFormat} <a target="_blank"
-                                                                                 href='/help#5'
+                                                                                 href='https://emernotar.io//help#5'
                                                                                  style={{textDecoration: 'none'}}>
                                         <span
                                             style={{

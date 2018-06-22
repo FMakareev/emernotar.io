@@ -267,21 +267,21 @@ class Mail extends Component {
                         }
 
 
-                        {/*<table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>*/}
-                            {/*<tbody>*/}
-                            {/*<tr className={styles.topFooter}>*/}
-                                {/*<td>*/}
-                                    {/*<Button as="a" href="{endpoint}/create_certificat/{emerhash}"*/}
-                                            {/*variant={"raised"}*/}
-                                            {/*color={'primary'}>*/}
-                                        {/*<Typography as={'span'} size={'large'} textDecoration={'none'}>*/}
-                                            {/*{translate('static_print')}*/}
-                                        {/*</Typography>*/}
-                                    {/*</Button>*/}
-                                {/*</td>*/}
-                            {/*</tr>*/}
-                            {/*</tbody>*/}
-                        {/*</table>*/}
+                        <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
+                            <tbody>
+                            <tr className={styles.topFooter}>
+                                <td>
+                                    <Button as="a" href="{endpoint}/create_certificat/{emerhash}"
+                                            variant={"raised"}
+                                            color={'primary'}>
+                                        <Typography as={'span'} size={'large'} textDecoration={'none'}>
+                                            {translate('static_print')}
+                                        </Typography>
+                                    </Button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
 
                         <table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
                             <tbody>
