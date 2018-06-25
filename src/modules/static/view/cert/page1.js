@@ -140,11 +140,11 @@ const CertificatePageOne = ({
                     <td><a href={"https://explorer.emercoin.com/nvs//" + emerhash} target="_blank">https://explorer.emercoin.com</a>
                     </td>
                 </tr>
-                <tr>
-                    <td><a
-                        href={"https://prohashing.com/explorer/Emercoin/" + idTransaction}>https://prohashing.com/</a>
-                    </td>
-                </tr>
+                {/*<tr>*/}
+                    {/*<td><a*/}
+                        {/*href={"https://prohashing.com/explorer/Emercoin/" + idTransaction}>https://prohashing.com/</a>*/}
+                    {/*</td>*/}
+                {/*</tr>*/}
                 </tbody>
             </table>
         </Typography>

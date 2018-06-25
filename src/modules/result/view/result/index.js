@@ -11,26 +11,26 @@ import {PreLoader} from "../../../../components/preloader/index";
 import {ErrorCreateCertificate} from "./errorCreateCertificate";
 
 const createCertificate = gql`mutation createCertificate(
-    $name: String!,
-    $notarizationCreateTime: String,
-    $paymentId: String,
-    $PayerID: String,
-    $language: String,
-    ){
-        createCertificate(
-            name:$name,
-            notarizationCreateTime: $notarizationCreateTime,
-            paymentId: $paymentId,
-            PayerID: $PayerID,
-            language: $language,
-        ) {
-            name
-            notarizationCreateTime
-            paymentId
-            PayerID
-            blockChainAddress
-        }
-    }`;
+$name: String!,
+$notarizationCreateTime: String,
+$paymentId: String,
+$PayerID: String,
+$language: String,
+){
+    createCertificate(
+        name:$name,
+        notarizationCreateTime: $notarizationCreateTime,
+        paymentId: $paymentId,
+        PayerID: $PayerID,
+        language: $language,
+    ) {
+        name
+        notarizationCreateTime
+        paymentId
+        PayerID
+        blockChainAddress
+    }
+}`;
 
 
 class Result extends Component {
@@ -87,35 +87,35 @@ class Result extends Component {
          * @description создание сертификата
          * */
         if (data.variables) {
-        this.setState({
-            loading: true,
-        });
-        data.variables.language = this.props.currentLanguage.toLowerCase();
-        this.props.createCertificate(data)
-            .then((response) => {
-                if (response.errors && response.errors.length) {
-                    console.log(response.errors,response.errors.length);
-                    this.setState({
-                        loading: false,
-                        error: this.createCertificateErrorHandler(response.errors[ 0 ].message,response.errors),
-                    });
-
-                } else {
-                    this.setState({
-                        loading: false,
-                    });
-                }
-                this.removeEventListenerCloseWindow();
-                // localStorage.clear();
-            })
-            .catch(error => {
-                this.setState({
-                    loading: false,
-                    error: this.createCertificateErrorHandler('NETWORK_ERROR',error),
-                });
-                this.removeEventListenerCloseWindow();
-                // localStorage.clear();
+            this.setState({
+                loading: true,
             });
+            data.variables.language = this.props.currentLanguage.toLowerCase();
+            this.props.createCertificate(data)
+                .then((response) => {
+                    if (response.errors && response.errors.length) {
+                        console.log(response.errors,response.errors.length);
+                        this.setState({
+                            loading: false,
+                            error: this.createCertificateErrorHandler(response.errors[ 0 ].message,response.errors),
+                        });
+
+                    } else {
+                        this.setState({
+                            loading: false,
+                        });
+                    }
+                    this.removeEventListenerCloseWindow();
+                    // localStorage.clear();
+                })
+                .catch(error => {
+                    this.setState({
+                        loading: false,
+                        error: this.createCertificateErrorHandler('NETWORK_ERROR',error),
+                    });
+                    this.removeEventListenerCloseWindow();
+                    // localStorage.clear();
+                });
         } else {
             this.removeEventListenerCloseWindow();
 
@@ -198,12 +198,12 @@ class Result extends Component {
                 };
             case('Timeouted notarization'):
                 console.log('TIMEOUTED_NOTARIZATION');
-                if (isBrowser){
+                if (isBrowser) {
                     console.log('setTimeout run');
-                   setTimeout(() => {
-                       console.log('setTimeout');
-                       window.location.reload()
-                   }, 10000);
+                    setTimeout(() => {
+                        console.log('setTimeout');
+                        window.location.reload()
+                    },10000);
                 }
 
                 return {
@@ -249,8 +249,8 @@ class Result extends Component {
                     <SuccessCreateCertificate {...error} translate={translate}/>
                 }
                 {/*{*/}
-                    {/*!loading && error &&*/}
-                    {/*<ErrorCreateCertificate {...error} translate={translate}/>*/}
+                {/*!loading && error &&*/}
+                {/*<ErrorCreateCertificate {...error} translate={translate}/>*/}
                 {/*}*/}
                 {
                     loading &&
