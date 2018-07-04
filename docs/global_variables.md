@@ -15,3 +15,6 @@
 (on production it is necessary to put an empty string for the browser to substitute the domain address)
 * endpoint_server -*default: 'http://localhost:5001'* - the address where the graphql requests from the express server will go
 * debug -**default: true** - this depends on the code at the output or is minified or not.
+* modulePrefix -**default: false** - added prefix module name to translate key
+* translateExclude -**default: null** - 
+* translateInclude -**default: null** - 
