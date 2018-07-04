@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect as FelaConnect} from "react-fela";
 import {renderRoutes} from 'react-router-config';
 import {getTranslate,getActiveLanguage} from 'react-localize-redux';
+import { Link } from 'react-router-dom';
 
 import Header from "../../blocks/header/header";
 import Footer from "../../blocks/footer/footer";
@@ -36,7 +37,6 @@ class Layout extends Component {
         const {styles,translate} = this.props;
         return (
             <React.Fragment>
-
                 <div className={styles && styles.layout}>
                     <Header/>
                     <main>
@@ -49,12 +49,35 @@ class Layout extends Component {
                         <Row>
                             <Column
                                 styles={{
+                                    marginBottom: '15px',
+                                    '@media(min-width: 768px)': {
+                                        display: 'inline-block',
+                                        width: '40%',
+                                        verticalAlign: 'middle',
+                                        textAlign: 'center',
+                                        marginBottom: '0',
+                                    }
+                                }}
+                            >
+                                <Row>
+                                <Typography
+                                    as={'span'}
+                                    size={'medium'}
+                                    color={'default'}
+                                    bright={'contrastText'}
+                                >
+                                    {translate('home_copyright')}
+                                </Typography>
+                                </Row>
+                                <Row>
+                                <Column
+                                styles={{
                                     verticalAlign: 'middle',
                                     display: 'inline-block',
                                     width: '50%',
                                     marginBottom: '15px',
                                     '@media(min-width: 768px)': {
-                                        width: '10%',
+                                        width: '30%',
                                         marginBottom: '0',
                                     }
                                 }}
@@ -68,41 +91,44 @@ class Layout extends Component {
                                     width: '50%',
                                     marginBottom: '15px',
                                     '@media(min-width: 768px)': {
-                                        width: '10%',
+                                        width: '30%',
                                         marginBottom: '0',
                                     }
                                 }}
                             >
                                 <img style={{width: '100%'}} src={googlePlay} alt="download from google play"/>
                             </Column>
+                                </Row>
+                            </Column>
+                           
                             <Column
                                 styles={{
-                                    marginBottom: '15px',
                                     '@media(min-width: 768px)': {
                                         display: 'inline-block',
-                                        width: '40%',
-                                        verticalAlign: 'middle',
-                                        textAlign: 'center',
-                                        marginBottom: '0',
+                                        width: '30%',
+                                        verticalAlign: 'top',
+                                        textAlign: 'center'
                                     }
                                 }}
                             >
-
-                                <Typography
+                            <Link to='/policy' styles={{verticalAlign: 'top',}}>
+                            <Typography
                                     as={'span'}
                                     size={'medium'}
                                     color={'default'}
                                     bright={'contrastText'}
                                 >
-                                    {translate('home_copyright')}
+                                    {translate('home_policy')}
                                 </Typography>
+                            </Link>
                             </Column>
+
                             <Column
                                 styles={{
                                     '@media(min-width: 768px)': {
                                         display: 'inline-block',
-                                        width: '40%',
-                                        verticalAlign: 'middle',
+                                        width: '30%',
+                                        verticalAlign: 'top',
                                         textAlign: 'center'
                                     }
                                 }}
@@ -113,7 +139,7 @@ class Layout extends Component {
                                 }} href="https://compaero.ru">
                                     <div style={{
                                         display: 'inline-block',
-                                        verticalAlign: 'middle',
+                                        verticalAlign: 'top',
                                         width: '40px',
                                         height: '40px',
                                         marginRight: '10px',
@@ -127,7 +153,7 @@ class Layout extends Component {
                                         bright={'contrastText'}
                                         styles={{
                                             display: 'inline-block',
-                                            verticalAlign: 'middle',
+                                            verticalAlign: 'top',
                                         }}
                                     >
                                         CompAero
