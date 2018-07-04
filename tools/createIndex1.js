@@ -114,7 +114,7 @@ const createIndex = async (modulesList,src) => {
                 let includeModules = env[ prop ].split(',');
                 let newModulesList = [];
 
-                modulesList.filter(e => !~excludeModules.indexOf(e));
+                modulesList.filter(e => !~includeModules.indexOf(e));
                 newModulesList = includeModules.filter(
                     function(n){
                         return modulesList.indexOf(n) >= 0;
