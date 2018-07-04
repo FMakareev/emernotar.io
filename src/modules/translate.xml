@@ -1,0 +1,907 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Created>2006-09-28T05:33:49Z</Created>
+  <LastSaved>2018-07-04T08:03:20Z</LastSaved>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <RemovePersonalInformation/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>8010</WindowHeight>
+  <WindowWidth>15120</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>105</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62" ss:Name="Default">
+  </Style>
+  <Style ss:ID="s63" ss:Parent="s62">
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"
+    ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s66" ss:Parent="s62">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"
+    ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s67" ss:Parent="s62">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+   <Font ss:FontName="Liberation Serif"/>
+  </Style>
+  <Style ss:ID="s68" ss:Parent="s62">
+   <Font ss:FontName="Liberation Serif"/>
+  </Style>
+  <Style ss:ID="s69">
+   <NumberFormat/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Лист1">
+  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="156" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="124.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="199.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="85.5"/>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Key</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">EN</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">RU</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_aboutus</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">About us</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">О нас</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_navigation_name</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">About</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">О нас</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_page_title</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">About us</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">О нас</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_1_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">This service is provided by Emercoin Partnership</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Этот сервис предоставляется Emercoin Partnership </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_2_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Managing partner and author of the project is Oleksii Konashevych.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Управляющим партнером и автором проекта является Алексей Конашевич.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_3_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Online service is purposed to satisfy demand for protection of digital assets integrity with the help of blockchain technology.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Онлайн сервис направлен удовлетворить спрос на защиту целостности цифровых активов с помощью технологии блокчейн.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_4_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">The service is addressed to an end user and can also be integrated into a business solution using API.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Сервис адресован конечному пользователю, а также может быть встроен в бизнес решения с помощью API.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_5_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">The service can be used to sign contracts, to protect copyrights, for example, of photographers, writers, programmers, copywriters, researchers and inventors, for signing petitions, etc.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Сервис может быть использован для заключения договоров, для защиты авторского права, например, фотографами, писателями, программистами, копирайтерами, исследователями и изобретателями, для подписания петиций и тому подбодное.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_6_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">The basis of the service is the technology of Emercoin platform, which started in 2014.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Основой сервиса является технология платформы Emercoin, разрабатываемая международной командой с 2014 года</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_7_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">It is based on the unique NVS technology, which not only saves user's data on the blockchain, but creates a special index field &quot;Name&quot; for quick search in the database, and &quot;Value&quot; field, where you can add any data, and update it. At the same time the history of changes is preserved, because the blockchain cannot be altered. Also, the record that certifies copyrights can be transferred to another person (to another address).</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Сервис использует уникальную технологию NVS, с помощь которой не просто сохраняются пользовательские данные в блокчейне, а создается специальное индексируемое поле Name для быстрого поиска по базе данных, и поле Value, в которое можно добавить любые данные, и впоследствии обновить. Но при этом сохраняется история, ведь блокчейн нельзя изменить. Также можно передать запись, удостоверяющую авторские права, в собственность другому лицу (на другой адрес).</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">about_question_8_description</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Our mission is to provide a service for blockchain data notarization, which guarantees protection of the legal rights of a user on his digital assets and gives a convenient tool to manage them.</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Наша миссия — это предоставление сервиса по блокчейн нотаризации данных, который гарантирует защиту юридических прав пользователя на его цифровые активы, а также дает удобный инструмент по управлению ими.</Data></Cell>
+   </Row>
+   <Row ss:Height="30">
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_our_contacts</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Our contacts</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Контакты</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_ask_a_question</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Ask a question</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Задать вопрос</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_contacts</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Contacts</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Контакты</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">contact_navigation_name</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Contacts</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Контакты</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_submit</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Submit</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Отправить</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_phone</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Phone</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Телефон</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_email</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">E-mail</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">E-mail</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">contact_address</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Address</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Адрес</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s67"><Data ss:Type="String">contact_form_name</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">How can I call you?</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Как к вам обращаться?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_form_email</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">E-mail</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">E-mail</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_form_theme</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Subject</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Тема</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_form_message</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Message</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Сообщение</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_page_title</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Contacts</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Контакты</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">contact_error_required</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Required field</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Поле обязательно для заполнения</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_faq</Data></Cell>
+    <Cell><Data ss:Type="String">FAQ</Data></Cell>
+    <Cell><Data ss:Type="String">ЧаВо</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_help</Data></Cell>
+    <Cell><Data ss:Type="String">Help</Data></Cell>
+    <Cell><Data ss:Type="String">Помощь</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_navigation_name</Data></Cell>
+    <Cell><Data ss:Type="String">Help</Data></Cell>
+    <Cell><Data ss:Type="String">Помощь</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_page_title</Data></Cell>
+    <Cell><Data ss:Type="String">Help</Data></Cell>
+    <Cell><Data ss:Type="String">Помощь</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_question_1_title</Data></Cell>
+    <Cell><Data ss:Type="String">What does this service do?</Data></Cell>
+    <Cell><Data ss:Type="String">Что делает этот сервис?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_question_1_description</Data></Cell>
+    <Cell><Data ss:Type="String">Calculates the hash (checksum) of the file and sends it to the blockchain transaction.</Data></Cell>
+    <Cell><Data ss:Type="String">Рассчитывает хеш-сумму (контрольную сумму) файла и отправляет ее в блокчейн транзакцию.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_question_2_title</Data></Cell>
+    <Cell><Data ss:Type="String">Who needs this service?</Data></Cell>
+    <Cell><Data ss:Type="String">Кому нужен этот сервис? </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_question_2_description</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">This service can be used to protect copyrights: a photographer, a scientist, an inventor, a programmer, a writer, a copywriter, a journalist, a blogger, a businessman. Just add a file with your materials: photo, documents, video, program, business plan. Also with the help of the service it is possible to conclude contracts, each party must notarize the same file with the contract. You can also make a petition or vote for something.</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="String">Этот сервис можно использовать для защиты авторских прав: фотографу, ученому, изобретателю, программисту, писателю, копирайтеру, журналисту, блоггеру, бизнесмену. Просто добавьте файл со своими материалами: фото, документы, видео, программу, бизнес-план. Также с помощью сервиса можно заключать договоры, каждая из сторон должна нотаризовать один и тот же файл с договором. Вы можете также составить петицию или за что-то проголосовать.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">help_question_3_title</Data></Cell>
+    <Cell><Data ss:Type="String">What is the hash of the file?</Data></Cell>
+    <Cell><Data ss:Type="String">Что такое хеш-сумма файла?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_page_title</Data></Cell>
+    <Cell><Data ss:Type="String">Home</Data></Cell>
+    <Cell><Data ss:Type="String">Главная </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_motivating_text</Data></Cell>
+    <Cell><Data ss:Type="String">Blockchain notarization online — certification of electronic data without a notary</Data></Cell>
+    <Cell><Data ss:Type="String">Блокчейн нотаризация онлайн — заверение электронных данных без нотариуса</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_or</Data></Cell>
+    <Cell><Data ss:Type="String">or</Data></Cell>
+    <Cell><Data ss:Type="String">или</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_notarize</Data></Cell>
+    <Cell><Data ss:Type="String">Notarization</Data></Cell>
+    <Cell><Data ss:Type="String">Нотаризовать</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_verify</Data></Cell>
+    <Cell><Data ss:Type="String">Verification</Data></Cell>
+    <Cell><Data ss:Type="String">Проверить</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_add_title</Data></Cell>
+    <Cell><Data ss:Type="String">Add</Data></Cell>
+    <Cell><Data ss:Type="String">Добавь</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_add_description</Data></Cell>
+    <Cell><Data ss:Type="String">your file</Data></Cell>
+    <Cell><Data ss:Type="String">свой файл</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_pay_title</Data></Cell>
+    <Cell><Data ss:Type="String">Pay</Data></Cell>
+    <Cell><Data ss:Type="String">Оплати</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_pay_description</Data></Cell>
+    <Cell><Data ss:Type="String">_price dollar with a bank card through PayPal</Data></Cell>
+    <Cell><Data ss:Type="String">_price доллара с помощью банковской карты через PayPal</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_wait_title</Data></Cell>
+    <Cell><Data ss:Type="String">Wait </Data></Cell>
+    <Cell><Data ss:Type="String">Подожди</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_wait_description</Data></Cell>
+    <Cell><Data ss:Type="String">10 - 15 min for a confirmation of blockchain transaction</Data></Cell>
+    <Cell><Data ss:Type="String">10 - 15 минут, пока транзакция запишется в блокчейн</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_answer_title</Data></Cell>
+    <Cell><Data ss:Type="String">Receive</Data></Cell>
+    <Cell><Data ss:Type="String">Получи</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_answer_description</Data></Cell>
+    <Cell><Data ss:Type="String">certificate of notarizing your file to e-mail</Data></Cell>
+    <Cell><Data ss:Type="String">сертификат о нотаризации твоего файла на e-mail</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_nav_title</Data></Cell>
+    <Cell><Data ss:Type="String">Home </Data></Cell>
+    <Cell><Data ss:Type="String">Главная </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_drugndrop</Data></Cell>
+    <Cell><Data ss:Type="String">Drag'n'drop file here for:</Data></Cell>
+    <Cell><Data ss:Type="String">Перетащи сюда файл, чтобы:</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_navigation_name</Data></Cell>
+    <Cell><Data ss:Type="String">Home</Data></Cell>
+    <Cell><Data ss:Type="String">Главная </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_copyright</Data></Cell>
+    <Cell><Data ss:Type="String">Emernotar Partnership © 2018</Data></Cell>
+    <Cell><Data ss:Type="String">Emernotar Partnership © 2018</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_network_error</Data></Cell>
+    <Cell><Data ss:Type="String">Sorry, the server is currently unavailable.</Data></Cell>
+    <Cell><Data ss:Type="String">К сожалению, сервер в настоящее время недоступен.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_success</Data></Cell>
+    <Cell><Data ss:Type="String">E-mail had been successfully sent</Data></Cell>
+    <Cell><Data ss:Type="String">Письмо успешно отправлено</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_calculation_of_hash_preloader</Data></Cell>
+    <Cell><Data ss:Type="String">Data is being processed, it may take a few minutes. Please do not close the browser.</Data></Cell>
+    <Cell><Data ss:Type="String">Идет обработка данных, это может занять несколько минут. Пожалуйста не закрывайте браузер.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_rate</Data></Cell>
+    <Cell><Data ss:Type="String">rate</Data></Cell>
+    <Cell><Data ss:Type="String">тариф</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_not_found_err</Data></Cell>
+    <Cell><Data ss:Type="String">File not found</Data></Cell>
+    <Cell><Data ss:Type="String">Файл не найден</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_not_readable_err</Data></Cell>
+    <Cell><Data ss:Type="String">File is not readable</Data></Cell>
+    <Cell><Data ss:Type="String">Файл не читается</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_any_error</Data></Cell>
+    <Cell><Data ss:Type="String">An error occurred reading this file</Data></Cell>
+    <Cell><Data ss:Type="String">Произошла ошибка при чтении этого файла</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error</Data></Cell>
+    <Cell><Data ss:Type="String">Error</Data></Cell>
+    <Cell><Data ss:Type="String">Ошибка</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_page_not_found</Data></Cell>
+    <Cell><Data ss:Type="String">Page not found</Data></Cell>
+    <Cell><Data ss:Type="String">Страница не найдена</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_page_not_found_description_title</Data></Cell>
+    <Cell><Data ss:Type="String">The reasons for the emergence of the problem:</Data></Cell>
+    <Cell><Data ss:Type="String">Причины возникновения проблемы:</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_page_not_found_description_1</Data></Cell>
+    <Cell><Data ss:Type="String">1. The page has been moved or renamed</Data></Cell>
+    <Cell><Data ss:Type="String">1. Страница была перемещена или переименована</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_page_not_found_description_2</Data></Cell>
+    <Cell><Data ss:Type="String">2. The page no longer exists</Data></Cell>
+    <Cell><Data ss:Type="String">2. Страницы больше не существует</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_page_not_found_description_3</Data></Cell>
+    <Cell><Data ss:Type="String">3. URL does not correspond to reality</Data></Cell>
+    <Cell><Data ss:Type="String">3. URL-адрес не соответствует действительности</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_payment_pagetitle</Data></Cell>
+    <Cell><Data ss:Type="String">Payment system error</Data></Cell>
+    <Cell><Data ss:Type="String">Ошибка платежной системы</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_error_payment_description</Data></Cell>
+    <Cell><Data ss:Type="String">The payment system is not available, please try again later.</Data></Cell>
+    <Cell><Data ss:Type="String">Платежная система недоступна, повторите попытку позже.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">home_policy</Data></Cell>
+    <Cell><Data ss:Type="String">Privacy Policy</Data></Cell>
+    <Cell><Data ss:Type="String">Политика конфиденциальности</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">notification_record_added</Data></Cell>
+    <Cell><Data ss:Type="String">Record was successfully added </Data></Cell>
+    <Cell><Data ss:Type="String">Запись была успешно внесена в блокчейн</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">notification_notar_info</Data></Cell>
+    <Cell><Data ss:Type="String">Notarization info</Data></Cell>
+    <Cell><Data ss:Type="String">Данные нотаризации</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">notification_owner</Data></Cell>
+    <Cell><Data ss:Type="String">Owner</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">notification_date</Data></Cell>
+    <Cell><Data ss:Type="String">Date</Data></Cell>
+    <Cell><Data ss:Type="String">Дата</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">notification_view_cert</Data></Cell>
+    <Cell><Data ss:Type="String">View certificate</Data></Cell>
+    <Cell><Data ss:Type="String">Посмотреть сертификат</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_pagetitle</Data></Cell>
+    <Cell><Data ss:Type="String">Certificate</Data></Cell>
+    <Cell><Data ss:Type="String">Сертификат</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_dear_user</Data></Cell>
+    <Cell><Data ss:Type="String">Dear user!</Data></Cell>
+    <Cell><Data ss:Type="String">Уважаемый пользователь!</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_description_row_1</Data></Cell>
+    <Cell><Data ss:Type="String">Your application for creating a record in blockchain was performed.</Data></Cell>
+    <Cell><Data ss:Type="String">Ваша заявка на создание записи в блокчейн была выполнена.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_description_row_2</Data></Cell>
+    <Cell><Data ss:Type="String">Below you will find all the necessary data about the transaction, as well as a link to the certificate.</Data></Cell>
+    <Cell><Data ss:Type="String">Ниже Вы найдете все нужные данные о транзакции, а так же ссылку на сертификат.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_info_transactions</Data></Cell>
+    <Cell><Data ss:Type="String">Data on transactions in blockchain</Data></Cell>
+    <Cell><Data ss:Type="String">Данные о транзакции в блокчейн</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_date_entry</Data></Cell>
+    <Cell><Data ss:Type="String">Date</Data></Cell>
+    <Cell><Data ss:Type="String">Дата</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_transaction_id</Data></Cell>
+    <Cell><Data ss:Type="String">Transaction ID</Data></Cell>
+    <Cell><Data ss:Type="String">ID транзакции</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_your_address</Data></Cell>
+    <Cell><Data ss:Type="String">Your address in the blockchain of Emercoin</Data></Cell>
+    <Cell><Data ss:Type="String">Ваш адрес в блокчейн Emercoin</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_owner</Data></Cell>
+    <Cell><Data ss:Type="String">Owner of notarization</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец нотаризации</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_owner_hash</Data></Cell>
+    <Cell><Data ss:Type="String">Owner of notarization, hash (SHA512)</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец нотаризации, хэш (SHA512)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_validity_period</Data></Cell>
+    <Cell><Data ss:Type="String">Validity period</Data></Cell>
+    <Cell><Data ss:Type="String">Срок действия</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_to</Data></Cell>
+    <Cell><Data ss:Type="String">to</Data></Cell>
+    <Cell><Data ss:Type="String">до</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_service</Data></Cell>
+    <Cell><Data ss:Type="String">Service</Data></Cell>
+    <Cell><Data ss:Type="String">Сервис</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_hash_sum</Data></Cell>
+    <Cell><Data ss:Type="String">SHA512 hash sum</Data></Cell>
+    <Cell><Data ss:Type="String">SHA512 Хэш-сумма</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_file_name</Data></Cell>
+    <Cell><Data ss:Type="String">File name</Data></Cell>
+    <Cell><Data ss:Type="String">Наименование файла</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_print</Data></Cell>
+    <Cell><Data ss:Type="String">Download PDF certificate</Data></Cell>
+    <Cell><Data ss:Type="String">Скачать PDF сертификат</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_pagetitle_2</Data></Cell>
+    <Cell><Data ss:Type="String">Additional information</Data></Cell>
+    <Cell><Data ss:Type="String">Дополнительная информация</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">policy_alternative_parsers</Data></Cell>
+    <Cell><Data ss:Type="String">Alternative parsers</Data></Cell>
+    <Cell><Data ss:Type="String">Альтернативные парсеры</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_description</Data></Cell>
+    <Cell><Data ss:Type="String">We will send a certificate to your PayPal email within 20 minutes.</Data></Cell>
+    <Cell><Data ss:Type="String">Мы отправим сертификат на вашу электронную почту PayPal в течение 20 минут</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_file_notar</Data></Cell>
+    <Cell><Data ss:Type="String">File notarized</Data></Cell>
+    <Cell><Data ss:Type="String">Файл  нотаризован</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_home</Data></Cell>
+    <Cell><Data ss:Type="String">Home</Data></Cell>
+    <Cell><Data ss:Type="String">На главную</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_page_title</Data></Cell>
+    <Cell><Data ss:Type="String">File notarized</Data></Cell>
+    <Cell><Data ss:Type="String">Файл  нотаризован</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_сongratulations</Data></Cell>
+    <Cell><Data ss:Type="String">Congratulations!</Data></Cell>
+    <Cell><Data ss:Type="String">Поздравляем!</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_paymentid </Data></Cell>
+    <Cell><Data ss:Type="String">Payment Id </Data></Cell>
+    <Cell><Data ss:Type="String">Идентификатор платежа</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_payerid</Data></Cell>
+    <Cell><Data ss:Type="String">Payer ID </Data></Cell>
+    <Cell><Data ss:Type="String">ID плательщика</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_payment_error_description</Data></Cell>
+    <Cell><Data ss:Type="String">Payment completed. We will send a certificate to your PayPal email within 20 minutes.</Data></Cell>
+    <Cell><Data ss:Type="String">Платеж выполнен. Мы отправим сертификат на вашу электронную почту PayPal в течение 20 минут</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_payment_error_title</Data></Cell>
+    <Cell><Data ss:Type="String">Payment completed.</Data></Cell>
+    <Cell><Data ss:Type="String">Платеж выполнен</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_timeouted_notarization_title</Data></Cell>
+    <Cell><Data ss:Type="String">Data processing.</Data></Cell>
+    <Cell><Data ss:Type="String">Обработка данных.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_timeouted_notarization_description</Data></Cell>
+    <Cell><Data ss:Type="String">Notarization data is in processing. To complete the notarization, the page will be rebooted automatically in 10 seconds. If this does not happen please reload the page manually.</Data></Cell>
+    <Cell><Data ss:Type="String">Данные нотаризации находятся в обработке. Для завершения нотаризации страница будет перезагружена в автоматическом режиме через 10 секунд. Если этого не произошло пожалуйста перезагрузите страницу вручную.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_error_data_integrity_title</Data></Cell>
+    <Cell><Data ss:Type="String">Data integrity is corrupted. Payment has not been made.</Data></Cell>
+    <Cell><Data ss:Type="String">Нарушена целостность данных. Оплата не произведена.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_error_data_integrity_description</Data></Cell>
+    <Cell><Data ss:Type="String">Please contact technical support with payment details</Data></Cell>
+    <Cell><Data ss:Type="String">Пожалуйста обратитесь в техническую поддержку с  данными платежа</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_error_networkerror_title</Data></Cell>
+    <Cell><Data ss:Type="String">Network error.</Data></Cell>
+    <Cell><Data ss:Type="String">Сетевая ошибка.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_error_networkerror_description</Data></Cell>
+    <Cell><Data ss:Type="String">Please contact technical support with payment details</Data></Cell>
+    <Cell><Data ss:Type="String">Пожалуйста обратитесь в техническую поддержку с  данными платежа</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_unknoun_error_title</Data></Cell>
+    <Cell><Data ss:Type="String">Unknown error.</Data></Cell>
+    <Cell><Data ss:Type="String">Неизвестная ошибка.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_unknoun_error_description</Data></Cell>
+    <Cell><Data ss:Type="String">An unknown error occurred. Try again later or contact support.</Data></Cell>
+    <Cell><Data ss:Type="String">Произошла неизвестная ошибка. Попробуйте повторить запрос позже или обратитесь в поддержку.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">result_btn_page_reload</Data></Cell>
+    <Cell><Data ss:Type="String">Reload this Page.</Data></Cell>
+    <Cell><Data ss:Type="String">Перезагрузить страницу.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_pagetitle</Data></Cell>
+    <Cell><Data ss:Type="String">Certificate</Data></Cell>
+    <Cell><Data ss:Type="String">Сертификат</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_dear_user</Data></Cell>
+    <Cell><Data ss:Type="String">Dear user!</Data></Cell>
+    <Cell><Data ss:Type="String">Уважаемый пользователь!</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_description_row_1</Data></Cell>
+    <Cell><Data ss:Type="String">Your application for creating a record in blockchain was performed.</Data></Cell>
+    <Cell><Data ss:Type="String">Ваша заявка на создание записи в блокчейн была выполнена.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_description_row_2</Data></Cell>
+    <Cell><Data ss:Type="String">Below you will find all the necessary data about the transaction, as well as a link to the certificate.</Data></Cell>
+    <Cell><Data ss:Type="String">Ниже Вы найдете все нужные данные о транзакции, а так же ссылку на сертификат.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_info_transactions</Data></Cell>
+    <Cell><Data ss:Type="String">Data on transactions in blockchain</Data></Cell>
+    <Cell><Data ss:Type="String">Данные о транзакции в блокчейн</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_date_entry</Data></Cell>
+    <Cell><Data ss:Type="String">Date</Data></Cell>
+    <Cell><Data ss:Type="String">Дата</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_transaction_id</Data></Cell>
+    <Cell><Data ss:Type="String">Transaction ID</Data></Cell>
+    <Cell><Data ss:Type="String">ID транзакции</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_your_address</Data></Cell>
+    <Cell><Data ss:Type="String">Your address in the blockchain of Emercoin</Data></Cell>
+    <Cell><Data ss:Type="String">Ваш адрес в блокчейн Emercoin</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_owner</Data></Cell>
+    <Cell><Data ss:Type="String">Owner of notarization</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец нотаризации</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_owner_hash</Data></Cell>
+    <Cell><Data ss:Type="String">Owner of notarization, hash (SHA512)</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец нотаризации, хэш (SHA512)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_validity_period</Data></Cell>
+    <Cell><Data ss:Type="String">Validity period</Data></Cell>
+    <Cell><Data ss:Type="String">Срок действия</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_to</Data></Cell>
+    <Cell><Data ss:Type="String">to</Data></Cell>
+    <Cell><Data ss:Type="String">до</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_service</Data></Cell>
+    <Cell><Data ss:Type="String">Service</Data></Cell>
+    <Cell><Data ss:Type="String">Сервис</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_hash_sum</Data></Cell>
+    <Cell><Data ss:Type="String">SHA512 hash sum</Data></Cell>
+    <Cell><Data ss:Type="String">SHA512 Хэш-сумма</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_file_name</Data></Cell>
+    <Cell><Data ss:Type="String">File name</Data></Cell>
+    <Cell><Data ss:Type="String">Наименование файла</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_print</Data></Cell>
+    <Cell><Data ss:Type="String">Download PDF certificate</Data></Cell>
+    <Cell><Data ss:Type="String">Скачать PDF сертификат</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_pagetitle_2</Data></Cell>
+    <Cell><Data ss:Type="String">Additional information</Data></Cell>
+    <Cell><Data ss:Type="String">Дополнительная информация</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static_alternative_parsers</Data></Cell>
+    <Cell><Data ss:Type="String">Alternative parsers</Data></Cell>
+    <Cell><Data ss:Type="String">Альтернативные парсеры</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_file_hash</Data></Cell>
+    <Cell><Data ss:Type="String">File hash created</Data></Cell>
+    <Cell><Data ss:Type="String">Хэш сформирован</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_file_notar</Data></Cell>
+    <Cell><Data ss:Type="String">File notrize</Data></Cell>
+    <Cell><Data ss:Type="String">Файл  нотаризован</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_notarize</Data></Cell>
+    <Cell><Data ss:Type="String">Notarize</Data></Cell>
+    <Cell><Data ss:Type="String">Нотаризовать</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_notar_info</Data></Cell>
+    <Cell><Data ss:Type="String">Notarization info</Data></Cell>
+    <Cell><Data ss:Type="String">Данные нотаризации</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_owner</Data></Cell>
+    <Cell><Data ss:Type="String">Owner</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_date</Data></Cell>
+    <Cell><Data ss:Type="String">Date</Data></Cell>
+    <Cell><Data ss:Type="String">Дата</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_verify</Data></Cell>
+    <Cell><Data ss:Type="String">Verify</Data></Cell>
+    <Cell><Data ss:Type="String">Верифицировать</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_navitation_name</Data></Cell>
+    <Cell><Data ss:Type="String">Verify</Data></Cell>
+    <Cell><Data ss:Type="String">Верификация</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_home</Data></Cell>
+    <Cell><Data ss:Type="String">Home</Data></Cell>
+    <Cell><Data ss:Type="String">Домой</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_not_matches_found</Data></Cell>
+    <Cell><Data ss:Type="String">Matches not found</Data></Cell>
+    <Cell><Data ss:Type="String">Совпадений не найдено</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_file_is_not_unique</Data></Cell>
+    <Cell><Data ss:Type="String">File is not unique</Data></Cell>
+    <Cell><Data ss:Type="String">Файл не уникален</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_matches_found</Data></Cell>
+    <Cell><Data ss:Type="String">matches found</Data></Cell>
+    <Cell><Data ss:Type="String">Найдено совпадений</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_title</Data></Cell>
+    <Cell><Data ss:Type="String">Мake your choise:</Data></Cell>
+    <Cell><Data ss:Type="String">Сделайте свой выбор:</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_additional_label</Data></Cell>
+    <Cell><Data ss:Type="String">Add additional info</Data></Cell>
+    <Cell><Data ss:Type="String">Добавить дополнительную информацию</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_additional_textarea</Data></Cell>
+    <Cell><Data ss:Type="String">Additional information</Data></Cell>
+    <Cell><Data ss:Type="String">Дополнительная информация</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_additional_maxlength</Data></Cell>
+    <Cell><Data ss:Type="String">Character limit exceeded: 1500</Data></Cell>
+    <Cell><Data ss:Type="String">Превышено максимальное количество символов: 1500</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_hash_email</Data></Cell>
+    <Cell><Data ss:Type="String">Hash E-mail </Data></Cell>
+    <Cell><Data ss:Type="String">Хэшировать электронную почту</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_open_email</Data></Cell>
+    <Cell><Data ss:Type="String">Open E-mail </Data></Cell>
+    <Cell><Data ss:Type="String">Открыть электронную почту</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_info_title</Data></Cell>
+    <Cell><Data ss:Type="String">What for hashing mail? What for write additional information?</Data></Cell>
+    <Cell><Data ss:Type="String">Что для хеширования почты? Зачем писать дополнительную информацию?</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_info_text</Data></Cell>
+    <Cell><Data ss:Type="String">Our robot loves cryptography. It takes your document and turns it into a single 32-digit string of letters and numbers.</Data></Cell>
+    <Cell><Data ss:Type="String">Наш робот любит криптографию. Он берет ваш документ и превращает его в одну 32-значную строку букв и цифр.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_btn_submit</Data></Cell>
+    <Cell><Data ss:Type="String">Notarize</Data></Cell>
+    <Cell><Data ss:Type="String">Нотаризовать</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_page_title</Data></Cell>
+    <Cell><Data ss:Type="String">Verification </Data></Cell>
+    <Cell><Data ss:Type="String">Проверка </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_open_email_description</Data></Cell>
+    <Cell><Data ss:Type="String">Publish your email publicly in the blockchain transaction. By clicking it you agree that this data will be permanently stored on the blockchain and you cannot ever change it.</Data></Cell>
+    <Cell><Data ss:Type="String">Публиковать свой e-mail в сделке блокчейн. Выбрав этот пункт, Вы соглашаетесь с тем, что Ваш e-mail будет всегда храниться в блокчейне, и Вы никогда не сможете это изменить. </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_hash_email_description</Data></Cell>
+    <Cell><Data ss:Type="String">Encode your email by casting only a hash sum of it </Data></Cell>
+    <Cell><Data ss:Type="String">Зашифровать свой e-mail. В блокчейне будет храниться только хэш-сумма Вашего e-mail </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_modal_email_hashed_message</Data></Cell>
+    <Cell><Data ss:Type="String">Please choose to encrypt or not to encrypt email.</Data></Cell>
+    <Cell><Data ss:Type="String">Пожалуйста выберите зашифровать или не зашифровать электронную почту</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_hashsha</Data></Cell>
+    <Cell><Data ss:Type="String">Hash sum (SHA-512)</Data></Cell>
+    <Cell><Data ss:Type="String">Хеш сумма файла (SHA-512)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_creation_time</Data></Cell>
+    <Cell><Data ss:Type="String">Creation time</Data></Cell>
+    <Cell><Data ss:Type="String">Дата создания</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_owneremail</Data></Cell>
+    <Cell><Data ss:Type="String">Owner</Data></Cell>
+    <Cell><Data ss:Type="String">Владелец</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">verify_hashemail</Data></Cell>
+    <Cell><Data ss:Type="String">Hash owner e-mail</Data></Cell>
+    <Cell><Data ss:Type="String">Хеш e-mail</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>180</HorizontalResolution>
+    <VerticalResolution>180</VerticalResolution>
+   </Print>
+   <Selected/>
+   <TopRowVisible>117</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>128</ActiveRow>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Лист2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>180</HorizontalResolution>
+    <VerticalResolution>180</VerticalResolution>
+   </Print>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Лист3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>180</HorizontalResolution>
+    <VerticalResolution>180</VerticalResolution>
+   </Print>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
