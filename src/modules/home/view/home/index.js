@@ -263,9 +263,9 @@ class HomePage extends Component {
      * @memberof HomePage
      */
     renderVideo() {
-        if (!isBrowser) return null;
-        console.log(this.state);
+        const { translate, instruction, styles, staticContext } = this.props;
 
+        if (!isBrowser) return null;
         /**
          * @description check cookies
          */
@@ -275,7 +275,7 @@ class HomePage extends Component {
                 <div className={this.props.styles.playerWrapper}>
                     <ReactPlayer
                         className={this.props.styles.playerVideo}
-                        url={config.youtube}
+                        url={translate('home_youtube_link')}
                         width='100%'
                         height='100%'
                     />
