@@ -4,7 +4,7 @@
 import register from 'ignore-styles'
 
 import {getTranslate} from 'react-localize-redux';
-
+import fs from 'fs';
 import React from 'react'
 import ReactDOMServer from 'react-dom/server';
 import {renderToString} from "react-dom/server";
@@ -76,6 +76,10 @@ app.use(requestLanguage({
 app.get('/create_email_template/:hash', createEmailTemplate);
 
 app.get('/create_certificat/:hash', createCertificat);
+
+app.get('/.well-known/pki-validation/', (response, request) => {
+    request.send(fs.readFileSync(path.resolve(__dirname, '../../4FB990F422AADB8FFD93C450CEA516E6.txt')))
+});
 
 /**
  * @description http://expressjs.com/en/4x/api.html#app.get.method
