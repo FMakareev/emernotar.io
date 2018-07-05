@@ -78,7 +78,11 @@ app.get('/create_email_template/:hash', createEmailTemplate);
 app.get('/create_certificat/:hash', createCertificat);
 
 app.get('/.well-known/pki-validation/', (response, request) => {
-    request.send(fs.readFileSync(path.resolve(__dirname, '../../4FB990F422AADB8FFD93C450CEA516E6.txt')))
+    let filename = path.resolve(__dirname, '../../4FB990F422AADB8FFD93C450CEA516E6.txt');
+    fs.readFile(filename, 'utf8', function(err, data) {
+        if (err) throw err;
+        request.send(data);
+    })
 });
 
 /**
