@@ -27,6 +27,7 @@ class AboutPage extends Component {
                 {content: `about_question_6_description`},
                 {content: `about_question_7_description`},
                 {content: `about_question_8_description`},
+                {content: `about_question_9_description`},
             ]
         };
     };
@@ -45,6 +46,12 @@ class AboutPage extends Component {
         }
         if (target.substring('Emercoin Partnership')) {
             target = target.replace('Emercoin Partnership', '<a target="_blank" href="https://emercoin.com/">Emercoin Partnership</a>')
+        }
+        if (target.substring('видео об Эмеркойне')) {
+            target = target.replace('видео об Эмеркойне', '<a target="_blank" href="https://www.youtube.com/watch?v=oIXNVc9en8c">видео об Эмеркойне</a>')
+        }
+        if (target.substring('video about Emercoin')) {
+            target = target.replace('video about Emercoin', '<a target="_blank" href="https://www.youtube.com/watch?v=LIBakaR55ng">video about Emercoin</a>')
         }
         return ReactHtmlParser(target);
     }
