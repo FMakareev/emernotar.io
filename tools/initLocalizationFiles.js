@@ -63,7 +63,7 @@ const findXMLTranslate = (moduleName,module) => {
             const xmlData = fs.readFileSync(
                 path.resolve(__dirname,`${srcPath}/modules/${moduleName}/${module[ a ]}`),
             );
-
+                console.log('(xmlData.toString()', xmlData.toString());
             /** @desc конвертируем файл локализации в JSON и фильтруем */
             const jsonData = filterJsonObj(
                 fastXmlParser.parse(xmlData.toString(),{
@@ -76,7 +76,7 @@ const findXMLTranslate = (moduleName,module) => {
                     arrayMode: false,
                 }).Workbook.Worksheet[0].Table.Row,
             );
-
+            
             /** @type {object} result
              * @type {object[][]} result.data - массив массивов с данными словарей
              * @type {object[].<Object>} result.translate - массив объектов первой строки таблицы
