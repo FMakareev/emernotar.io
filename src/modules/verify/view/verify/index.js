@@ -141,7 +141,21 @@ class VerifyPage extends Component {
                         </Column>
                     </Row>
                 </Container>
-                <Container styles={{maxWidth: '768px !important', marginBottom: '5rem', marginTop: '-5rem'}}>
+                <Container styles={{maxWidth: '768px !important', marginTop: '-10rem'}}>
+                    <Row>
+                        <Column>
+                            <Typography styles={{margin: '3.125rem 0 5.625rem',wordWrap: 'break-word', fontSize: '2rem'}} as={"div"} size={'medium'}
+                                        textAlign={'left'}>
+                                <Typography styles={{fontSize: '2rem'}} as={"div"} size={'medium'}
+                                            textAlign={'left'} fontWeight={'bold'}>
+                                {translate('verify_hashsha')}: {' '}
+                                </Typography>
+                                {FILE_HASH}
+                            </Typography>
+                        </Column>
+                    </Row>
+                </Container>
+                <Container styles={{maxWidth: '768px !important', marginBottom: '5rem',}}>
                     <Row>
                         <Column>
                             <VerifyCertificatList fileHash={FILE_HASH} />
