@@ -408,7 +408,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.config = void 0;\nvar config = {\n  /**\r\n   * @desc ссылка на видео с youtube для главной страницы\r\n   * */\n  youtube: 'https://www.youtube.com/watch?v=N3Vt2VXO8AU&t'\n};\nexports.config = config;\n\n//# sourceURL=webpack:///./src/config.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.config = void 0;\nvar config = {\n  /**\n   * @desc ссылка на видео с youtube для главной страницы\n   * */\n  youtube: 'https://www.youtube.com/watch?v=N3Vt2VXO8AU&t'\n};\nexports.config = config;\n\n//# sourceURL=webpack:///./src/config.js?");
 
 /***/ }),
 
