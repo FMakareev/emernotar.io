@@ -68,19 +68,6 @@ class VerifyCertificatList extends Component {
                     );
                 } else {
                     return(
-                        <Fragment>
-                        <Fragment>
-                            <Typography
-                                styles={{marginBottom: '5rem'}}
-                                as={'h3'}
-                                size={'large'}
-                                fontWeight={'bold'}
-                                textAlign={'center'}
-                            >
-                                {translate('verify_not_matches_found')}
-                            </Typography>
-                            <VerifyItem/>
-                        </Fragment>
                         <Query query={nameShow} variables={{name: fileHash}}>
                             {({loading, error, data}) => {
                                 if (loading) {
@@ -125,7 +112,7 @@ class VerifyCertificatList extends Component {
                                                 fontWeight={'bold'}
                                                 textAlign={'center'}
                                             >
-                                                {translate('verify_not_matches_found_emer')}
+                                                {translate('verify_not_matches_found')}
                                             </Typography>
                                             <VerifyItem/>
                                         </Fragment>
@@ -133,7 +120,6 @@ class VerifyCertificatList extends Component {
                                 }
                             }}
                         </Query>
-                    </Fragment>
                     )
                 }
             }}

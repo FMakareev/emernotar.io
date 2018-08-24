@@ -20,13 +20,17 @@ const createRoutes = (modulesRoutes, newRoutes, moduleName) => {
         if (modulesRoutes[i].hasOwnProperty('load')) {
             newRoutes.push({
                 exact: modulesRoutes[i].exact,
+
                 name: modulesRoutes[i].name || modulesRoutes[i].title,
                 path: modulesRoutes[i].path || console.error(`Error: in the module ${moduleName} in one of the routes there is no property "path".`),
 
                 component: getPageTitle({Store})(asyncComponent({
                     resolve: modulesRoutes[i].load,
                     LoadingComponent: () => <PreLoader/>,
-                    ErrorComponent: ({error}) => <div>{error.message}</div>
+                    ErrorComponent: ({error}) =>{
+                                console.log(error);
+                        return  (<div>{error.message}</div>)
+                    }
                 })),
 
             })
