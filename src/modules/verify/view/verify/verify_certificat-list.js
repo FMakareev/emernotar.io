@@ -12,6 +12,8 @@ const certificateList = gql`query($name: String){
         name
         notarizationCreateTime
         ownerEmail
+        idTransaction
+        additionalinfo
     }
 }`;
 
