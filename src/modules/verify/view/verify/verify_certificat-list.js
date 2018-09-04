@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import {connect} from "react-redux";
 import {getTranslate,getActiveLanguage} from 'react-localize-redux';
-import {graphql} from "react-apollo";
+import {Query} from "react-apollo";
 import gql from 'graphql-tag';
 import {PreLoader} from "../../../../components/preloader/index";
 import {Typography} from "../../../../blocks/typography/index";
@@ -12,70 +12,136 @@ const certificateList = gql`query($name: String){
         name
         notarizationCreateTime
         ownerEmail
+        idTransaction
+        additionalinfo
+    }
+}`;
+
+const nameShow = gql`query($name: String!){
+    nameShow(name: $name) {
+        name
+        answer
     }
 }`;
 
 class VerifyCertificatList extends Component {
 
-
-
     render() {
-        const {translate,loading,error,data} = this.props;
-        console.log(this.props);
-        if (loading) {
-            console.log('loading...',loading);
-            return (<PreLoader palette={'dark'}/>);
-        }
-        if (error) {
-            console.error('ERROR: ',error);
-            return (<Typography
-                as={'p'}
-                size={'medium'}
-                color={'error'}
-                bright={'dark'}
-                fontWeight={'bold'}
-                textAlign={'center'}
-            >
-                {translate('home_network_error')}
-            </Typography>)
-        }
-        if (data && data.certificateList && data.certificateList.length) {
-
-            return (
-                <Fragment>
-                    <Typography
-                        as={'h3'}
-                        size={'large'}
+        console.log(this.props)
+        const {translate,loading, error, data, fileHash} = this.props;
+        console.log(fileHash)
+        return (
+        <Query query={certificateList} variables={{name: fileHash}}>
+            {({loading, error, data}) => {
+                 if (loading) {
+                    console.log('loading...',loading);
+                    return (<PreLoader palette={'dark'}/>);
+                }
+                if (error) {
+                    console.error('ERROR: ',error);
+                    return (<Typography
+                        as={'p'}
+                        size={'medium'}
+                        color={'error'}
+                        bright={'dark'}
                         fontWeight={'bold'}
                         textAlign={'center'}
                     >
-                        {translate('verify_file_is_not_unique')}<br/>
-                        {translate('verify_matches_found')}: {data.certificateList.length}
-                    </Typography>
-                    {
-                        data.certificateList.map((item,index) => <VerifyItem
-                            data={item} key={`VerifyItem-${index}`}/>)
-                    }
-                </Fragment>
-            );
-        } else {
-            return (
-                <Fragment>
-                    <Typography
-                        styles={{marginBottom: '5rem'}}
-                        as={'h3'}
-                        size={'large'}
-                        fontWeight={'bold'}
-                        textAlign={'center'}
-                    >
-                        {translate('verify_not_matches_found')}
-                    </Typography>
-                    <VerifyItem/>
-                </Fragment>
-            );
-        }
+                        {translate('home_network_error')}
+                    </Typography>)
+                }
+                if (data && data.certificateList && data.certificateList.length) {
+                    return (
+                        <Fragment>
+                            <Typography
+                                as={'h3'}
+                                size={'large'}
+                                fontWeight={'bold'}
+                                textAlign={'center'}
+                            >
+                                {translate('verify_file_is_not_unique')}<br/>
+                                {translate('verify_matches_found')}: {data.certificateList.length}
+                            </Typography>
+                            {
+                                data.certificateList.map((item,index) => <VerifyItem
+                                    data={item} key={`VerifyItem-${index}`}/>)
+                            }
+                        </Fragment>
+                    );
+                } else {
+                    return(
+                        <Fragment>
+                        <Fragment>
+                            <Typography
+                                styles={{marginBottom: '5rem'}}
+                                as={'h3'}
+                                size={'large'}
+                                fontWeight={'bold'}
+                                textAlign={'center'}
+                            >
+                                {translate('verify_not_matches_found')}
+                            </Typography>
+                            <VerifyItem/>
+                        </Fragment>
+                        <Query query={nameShow} variables={{name: fileHash}}>
+                            {({loading, error, data}) => {
+                                if (loading) {
+                                    console.log('loading...',loading);
+                                    return (<PreLoader palette={'dark'}/>);
+                                }
+                                if (error) {
+                                    console.error('ERROR: ',error);
+                                    return (<Typography
+                                        as={'p'}
+                                        size={'medium'}
+                                        color={'error'}
+                                        bright={'dark'}
+                                        fontWeight={'bold'}
+                                        textAlign={'center'}
+                                    >
+                                        {translate('home_network_error')}
+                                    </Typography>)
+                                }
+                                if (data && data.nameShow && (data.nameShow.length > 63)) {
+                                    return (
+                                        <Fragment>
+                                            <Typography
+                                                as={'h3'}
+                                                size={'large'}
+                                                fontWeight={'bold'}
+                                                textAlign={'center'}
+                                            >
+                                                {translate('verify_file_is_not_unique')}<br/>
+                                                {translate('verify_matches_found_emercoin')}: {data.nameShow.length}
+                                            </Typography>
+                                            
+                                        </Fragment>
+                                    )
+                                } else {
+                                    return (
+                                        <Fragment>
+                                            <Typography
+                                                styles={{marginBottom: '5rem'}}
+                                                as={'h3'}
+                                                size={'large'}
+                                                fontWeight={'bold'}
+                                                textAlign={'center'}
+                                            >
+                                                {translate('verify_not_matches_found_emer')}
+                                            </Typography>
+                                            <VerifyItem/>
+                                        </Fragment>
+                                    );
+                                }
+                            }}
+                        </Query>
+                    </Fragment>
+                    )
+                }
+            }}
+        </Query>
+        )
     }
-
 }
 
 const mapStateToProps = state => ({
@@ -85,22 +151,6 @@ const mapStateToProps = state => ({
 });
 
 VerifyCertificatList = connect(mapStateToProps)(VerifyCertificatList);
-
-VerifyCertificatList = graphql(certificateList,{
-
-    options: (ownProps) => {
-        console.log('ownProps:',ownProps);
-        return {
-            // ssr: __SSR_FETCH__,
-            variables: {
-                name: ownProps.fileHash
-            }
-        }
-    },
-    mutate: {
-        fetchPolicy: 'no-cache',
-        errorPolicy: 'all'
-    }
-})(VerifyCertificatList);
+  
 
 export default VerifyCertificatList;

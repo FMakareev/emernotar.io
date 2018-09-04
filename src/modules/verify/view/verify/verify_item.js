@@ -10,6 +10,7 @@ import {Typography} from "../../../../blocks/typography/index";
 import {Row} from '../../../../blocks/row/index';
 import {Column} from '../../../../blocks/column/index';
 import {isEmail} from "../../../../utils/validation/is_email";
+import {Link} from 'react-router-dom';
 
 const validityOwnerEmail = (ownerEmail,translate) => {
     if (!isEmail(ownerEmail)) {
@@ -61,7 +62,7 @@ let VerifyItem = ({className,styles,data,translate}) => {
     if (!data) {
         return null;
     }
-    console.log(data)
+    console.log('data', data)
     let notarizationCreateTime;
     if(data.notarizationCreateTime.length === 10){
         notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime) * 1000).toString();
@@ -101,6 +102,30 @@ let VerifyItem = ({className,styles,data,translate}) => {
                     <Column grid={[ [ 768,'60','%' ] ]}>
                         <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
                             {notarizationCreateTime}
+                        </Typography>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column grid={[ [ 768,'40','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'p'} size={'medium'}>
+                            {translate('verify_additional_info')}
+                        </Typography>
+                    </Column>
+                    <Column grid={[ [ 768,'60','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
+                            {data.additionalinfo}
+                        </Typography>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column grid={[ [ 768,'40','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} fontWeight={'bold'} as={'p'} size={'medium'}>
+                            {translate('verify_parser_transaction')}
+                        </Typography>
+                    </Column>
+                    <Column grid={[ [ 768,'60','%' ] ]}>
+                        <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
+                            <a target="_blank" href={'https://explorer.emercoin.com/tx/' + data.idTransaction}>{data.idTransaction}</a>
                         </Typography>
                     </Column>
                 </Row>
