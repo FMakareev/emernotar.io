@@ -2,7 +2,7 @@
 /node_modules/
 /.idea/
 /src/store/reducers/localization/localization.json
-/public/
+./public/*
 /package-lock.json
 /npm-debug.log
 !/yarn-error.log
@@ -11,4 +11,4 @@
 *.gz
 *.exe
 *.log
-/src/modules/index.js
+./src/modules/index.js
