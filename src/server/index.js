@@ -84,6 +84,13 @@ app.get('/.well-known/pki-validation/', (response, request) => {
         request.send(data);
     })
 });
+app.get('/.well-known/apple-developer-merchantid-domain-association.txt', (response, request) => {
+    let filename = path.resolve(__dirname, '../../apple-developer-merchantid-domain-association.txt');
+    fs.readFile(filename, 'utf8', function(err, data) {
+        if (err) throw err;
+        request.send(data);
+    })
+});
 
 /**
  * @description http://expressjs.com/en/4x/api.html#app.get.method
