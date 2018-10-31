@@ -63,7 +63,7 @@ const findXMLTranslate = (moduleName,module) => {
             const xmlData = fs.readFileSync(
                 path.resolve(__dirname,`${srcPath}/modules/${moduleName}/${module[ a ]}`),
             );
-                console.log('(xmlData.toString()', xmlData.toString());
+                // console.log('(xmlData.toString()', xmlData.toString());
             /** @desc конвертируем файл локализации в JSON и фильтруем */
             const jsonData = filterJsonObj(
                 fastXmlParser.parse(xmlData.toString(),{
@@ -76,7 +76,7 @@ const findXMLTranslate = (moduleName,module) => {
                     arrayMode: false,
                 }).Workbook.Worksheet[0].Table.Row,
             );
-            
+
             /** @type {object} result
              * @type {object[][]} result.data - массив массивов с данными словарей
              * @type {object[].<Object>} result.translate - массив объектов первой строки таблицы
@@ -135,7 +135,7 @@ const createDictionary = (translateJson,messagesArray,moduleName) => {
     // console.info('run createDictionary... messagesArray: ',messagesArray);
     // console.info('run createDictionary... moduleName);: ',moduleName);
     // console.info('run createDictionary... getCliParams);: ',process.env);
-    console.info('run createDictionary... getCliParams);: ',typeof process.env.modulePrefix);
+    // console.info('run createDictionary... getCliParams);: ',typeof process.env.modulePrefix);
 
     messagesArray.map(item => {
         for (let i = 1 ; i < translateJson.translate.length ; i += 1) {
@@ -165,7 +165,7 @@ const createDictionary = (translateJson,messagesArray,moduleName) => {
                     }
                 }
             } else {
-                console.info('Empty key ISO_Code in XML or package.json');
+                // console.info('Empty key ISO_Code in XML or package.json');
             }
         }
         return null;
@@ -203,17 +203,17 @@ const createMessageArray = (packageJson,translateJson,defaultTranslate) => {
                             message: {},
                         });
                     } else if (ISOCodeChild.toUpperCase() !== 'Key'.toUpperCase()) {
-                        console.info(
-                            `In module ${moduleName} translate "${ISOCodeChild}" not announced in package.json.`,
-                        );
+                        // console.info(
+                        //     `In module ${moduleName} translate "${ISOCodeChild}" not announced in package.json.`,
+                        // );
                     }
                 }
                 return null;
             });
         } else {
-            console.info(
-                `In module ${moduleName} trISO_Codeanslate "${itemParent.ISO_Code}" is disabled.`,
-            );
+            // console.info(
+            //     `In module ${moduleName} trISO_Codeanslate "${itemParent.ISO_Code}" is disabled.`,
+            // );
         }
         return null;
     });
@@ -249,9 +249,9 @@ const initModuleTranslate = (packageJson,translateJson) => {
         allModulesMessage.push(messagesArray);
         return messagesArray;
     } else {
-        console.error(
-            `Module ${moduleName} does not contain localization files.  Please create a localization file for your module otherwise it will not be included in the system.`,
-        );
+        // console.error(
+        //     `Module ${moduleName} does not contain localization files.  Please create a localization file for your module otherwise it will not be included in the system.`,
+        // );
     }
 };
 
@@ -275,13 +275,13 @@ const normalizeTranslateFiles = modules => {
                     if (packageJson && packageJson.translate && packageJson.translate.length) {
                         initModuleTranslate(packageJson,translateJson);
                     } else {
-                        console.error(`Can not find file "package.json" in ${modules[ i ]}`);
+                        // console.error(`Can not find file "package.json" in ${modules[ i ]}`);
                     }
                 } else {
-                    console.error(`Can not find file "translate.xml" in ${modules[ i ]}`);
+                    // console.error(`Can not find file "translate.xml" in ${modules[ i ]}`);
                 }
             } else {
-                console.error(`Folder "${modules[ i ]}"  is empty`);
+                // console.error(`Folder "${modules[ i ]}"  is empty`);
             }
         }
     }
@@ -323,14 +323,14 @@ const createLanguageListFile = (languageListFile,allModulesMessageFile) => {
 };
 
 const creatingLocalizationFiles = data => {
-    console.info('run creatingLocalizationFiles...');
+    // console.info('run creatingLocalizationFiles...');
     const messagesDirectoryPath = path.resolve(__dirname,`${publicPath}/messages/`);
     if (!fs.existsSync(messagesDirectoryPath)) {
-        console.info('Create folder messages...');
+        // console.info('Create folder messages...');
         fs.mkdirSync(path.resolve(__dirname,`${publicPath}`));
         fs.mkdirSync(messagesDirectoryPath);
     } else {
-        console.info(`Directory: ${messagesDirectoryPath} created. `);
+        // console.info(`Directory: ${messagesDirectoryPath} created. `);
     }
     const messagesList = {};
 
@@ -361,12 +361,12 @@ const moduleListFilter = (modules) => {
     for (let prop in  process.env) {
         switch (prop) {
             case ('TRANSLATEEXCLUDE') :
-                console.log('TRANSLATEEXCLUDE');
+                // console.log('TRANSLATEEXCLUDE');
                 let excludeModules = process.env[ prop ].split(',');
                 newArrayModules = modules.filter(n => excludeModules.indexOf(n) === -1);
                 break;
             case ('TRANSLATEINCLUDE') :
-                console.log('TRANSLATEINCLUDE');
+                // console.log('TRANSLATEINCLUDE');
                 let includeModules = process.env[ prop ].split(',');
                 modules.filter(e => !~includeModules.indexOf(e));
                 newArrayModules = includeModules.filter(
@@ -397,7 +397,7 @@ export const initMessage = () =>
             /** @type {array} - получаем массив названий всех файлов и папок в папке с модулями*/
             let modules = moduleListFilter(fs.readdirSync(path.resolve(__dirname,`${srcPath}/modules`)));
 
-            console.log(modules);
+            // console.log(modules);
             normalizeTranslateFiles(modules);
 
             languageList = createLanguageListFile(languageList,allModulesMessage);
