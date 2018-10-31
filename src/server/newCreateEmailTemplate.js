@@ -5,7 +5,7 @@ import fs from 'fs';
 import {Provider as ProviderRedux} from 'react-redux'
 import {Store} from '../store'
 import {initLocalize} from "../store/reducers/localization/actions";
-import React,{Component} from 'react';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {Provider as StyleProvider} from 'react-fela'
 import {ThemeProvider} from 'react-fela'
@@ -17,8 +17,6 @@ import {createTheme,palette} from '../style/theme';
 
 import {createStyleRenderer} from "../style";
 import Html from "./html";
-import {renderRoutes} from 'react-router-config';
-import {ConfigRouter} from "../routes/index";
 import EmailTemplate from '../modules/static/view/mail/index'
 
 
