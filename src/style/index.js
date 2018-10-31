@@ -2,7 +2,6 @@ import {createRenderer} from 'fela'
 import monolithic from 'fela-monolithic'
 import prefixer from 'fela-plugin-prefixer'
 import fallbackValue from 'fela-plugin-fallback-value'
-import removeUndefined from 'fela-plugin-remove-undefined'
 
 import felaPluginFlexBoxPrefixerIE from './felaPluginFlexBoxPrefixerIE';
 
@@ -14,7 +13,6 @@ import felaPluginFlexBoxPrefixerIE from './felaPluginFlexBoxPrefixerIE';
 export const createStyleRenderer = () => {
     const renderer = createRenderer({
         plugins: [
-            removeUndefined(),
             prefixer(),
             fallbackValue(),
             felaPluginFlexBoxPrefixerIE,
