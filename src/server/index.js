@@ -38,9 +38,6 @@ import {createEmailTemplate} from "./newCreateEmailTemplate";
 import {createCertificat} from "./createCertificatPDF";
 
 
-console.log('ENDPOINT_CLIENT: ',ENDPOINT_CLIENT);
-console.log('ENDPOINT_SERVER: ',ENDPOINT_SERVER);
-
 
 
 
@@ -130,7 +127,7 @@ app.get("*", async (request, response) => {
                             <StaticRouter
                                 location={{
                                     pathname: parsedUrl.pathname,
-                                    search: parsedQs,
+                                    // search: parsedQs,
                                 }} context={RouterContext}
                             >
                                 {renderRoutes(ConfigRouter)}
