@@ -40,7 +40,7 @@ export const browserConfigGenerator = () => {
 				DEV: process.env.NODE_ENV === 'development',
 				SSR_FETCH: true,
 				PORT: process.env.PORT || 3000,
-				ENDPOINT_CLIENT: process.env.ENDPOINT_CLIENT || "'http://localhost:5001'",
+				ENDPOINT_CLIENT: process.env.ENDPOINT_CLIENT || "",
 				ENDPOINT_SERVER: process.env.ENDPOINT_SERVER || "'http://localhost:5001'",
 			}),
 			// new CleanWebpackPlugin([ process.env.PUBLIC_URL || '../../public']),
