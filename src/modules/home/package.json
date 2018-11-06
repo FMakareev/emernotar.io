@@ -4,24 +4,54 @@
   "private": true,
   "main": "./index.js",
   "translate":[{
-    "ISO_Code":"ru",
-    "language":"Русский",
-    "active": true,
-    "default": true
-  },{
     "ISO_Code":"en",
     "language":"English",
-    "active": true,
-    "default": false
-  },{
-    "ISO_Code":"ua",
-    "language":"Українська",
     "active": true,
     "default": false
   },{
 	"ISO_Code":"es",
     "language":"Español",
     "active": true,
-    "default": false  
+    "default": false
+  },{
+	"ISO_Code":"kr",
+    "language":"한국어",
+    "active": true,
+    "default": false
+  },{
+	"ISO_Code":"cn",
+    "language":"中文",
+    "active": true,
+    "default": false
+  },{
+	"ISO_Code":"fr",
+    "language":"Francais",
+    "active": true,
+    "default": false
+  },{
+	"ISO_Code":"de",
+    "language":"Deutsch",
+    "active": true,
+    "default": false
+  },{
+	"ISO_Code":"it",
+    "language":"Italiano",
+    "active": true,
+    "default": false
+  },{
+	"ISO_Code":"pt",
+    "language":"Português",
+    "active": true,
+    "default": false
+  },{	
+    "ISO_Code":"ru",
+    "language":"Русский",
+    "active": true,
+    "default": true
+  },{
+    "ISO_Code":"ua",
+    "language":"Українська",
+    "active": true,
+    "default": false
   }]
 }
