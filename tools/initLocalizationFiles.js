@@ -313,8 +313,8 @@ const createLanguageListFile = (languageListFile,allModulesMessageFile) => {
     });
 
     const languageListDirectoryPath = path.resolve(__dirname,languageListPath);
-
-    fs.writeFileSync(
+	console.log('languageListFile: ', languageListFile);
+	fs.writeFileSync(
         `${languageListDirectoryPath}/localization.json`,
         JSON.stringify(languageListFile),
     );
@@ -323,14 +323,15 @@ const createLanguageListFile = (languageListFile,allModulesMessageFile) => {
 };
 
 const creatingLocalizationFiles = data => {
-    // console.info('run creatingLocalizationFiles...');
+    console.info('run creatingLocalizationFiles...');
     const messagesDirectoryPath = path.resolve(__dirname,`${publicPath}/messages/`);
-    if (!fs.existsSync(messagesDirectoryPath)) {
-        // console.info('Create folder messages...');
-        fs.mkdirSync(path.resolve(__dirname,`${publicPath}`));
+	// console.log('messagesDirectoryPath: ', messagesDirectoryPath);
+	  if (!fs.existsSync(messagesDirectoryPath)) {
+        // console.info('Create folder messages...', path.resolve(__dirname,`${publicPath}`));
+        // fs.mkdirSync(path.resolve(__dirname,`${publicPath}`));
         fs.mkdirSync(messagesDirectoryPath);
     } else {
-        // console.info(`Directory: ${messagesDirectoryPath} created. `);
+        console.info(`Directory: ${messagesDirectoryPath} created. `);
     }
     const messagesList = {};
 
