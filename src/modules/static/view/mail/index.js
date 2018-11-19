@@ -204,7 +204,7 @@ class Mail extends Component {
 												<Typography as={'p'} fontWeight={'bold'}>
 
 													{translate('static_description_row_1')} <br/>
-													{translate('static_description_row_2')} {language}
+													{translate('static_description_row_2')}
 												</Typography>
 											</TopLabel>
 										</td>
