@@ -183,7 +183,7 @@ class Mail extends Component {
 									<thead className={styles.th}>
 									<tr className={styles.top}>
 										<td colSpan="2" width="100%">
-											<Image src={'{endpoint}' + logoImage} alt={'emernotar.io'}/>
+											<Image src={ENDPOINT_CLIENT + logoImage} alt={'emernotar.io'}/>
 										</td>
 									</tr>
 									</thead>
@@ -231,7 +231,7 @@ class Mail extends Component {
 
 													{translate('static_validity_period')}: {translate('static_to')} {submittingExpiration} {' '}
 													<a target="_blank"
-													   href='{endpoint}/help#5'
+													   href={`${ENDPOINT_CLIENT}/help#5`}
 													   style={{textDecoration: 'none'}}>
                                         <span
 	                                        style={{
@@ -244,7 +244,7 @@ class Mail extends Component {
 		                                            width: '18px',
 		                                            height: '18px',
 	                                            }}
-	                                            src={'{endpoint}' + questionIcon}
+	                                            src={ENDPOINT_CLIENT + questionIcon}
 	                                            alt={"?"}
                                             />
                                         </span>
@@ -286,7 +286,7 @@ class Mail extends Component {
 									<tbody>
 									<tr className={styles.topFooter}>
 										<td>
-											<Button as="a" href="{endpoint}/create_certificat/{emerhash}"
+											<Button as="a" href={`${{ENDPOINT_CLIENT}}/create_certificat/{emerhash}`}
 											        variant={"raised"}
 											        color={'primary'}>
 												<Typography as={'span'} size={'large'} textDecoration={'none'}>

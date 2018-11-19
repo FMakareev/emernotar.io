@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import serialize from 'serialize-javascript'
 
 
-const Html = ({content, request, title, cache, style, reduxState, asyncState, getStatic = false}) => (
-  <html lang="en">
+const Html = ({content,language, request, title, cache, style, reduxState, asyncState, getStatic = false}) => (
+  <html lang={language}>
   <head>
     <meta charSet="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>

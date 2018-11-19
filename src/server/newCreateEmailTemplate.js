@@ -27,7 +27,7 @@ export const createEmailTemplate = async (request, response) => {
 		const {params} = request;
 		const {search} = url.parse(request.originalUrl);
 		const queryParams = search ? qp.toObject(search.substring(1)): {};
-		const language = queryParams.language || request.language || 'EN';
+		const language = queryParams.language || 'EN';
 		console.log('createEmailTemplate: language', language);
 
 		console.log('createEmailTemplate: queryParams', queryParams);
@@ -57,7 +57,7 @@ export const createEmailTemplate = async (request, response) => {
 			.then(content => {
 				const styleMarkup = renderToMarkup(renderer);
 
-				const REACT_HTML = <Html getStatic={true} content={content}/>;
+				const REACT_HTML = <Html language={language} getStatic={true} content={content}/>;
 
 				const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>', styleMarkup);
 
@@ -69,7 +69,7 @@ export const createEmailTemplate = async (request, response) => {
 					if (err) throw err;
 					console.log('Saved!');
 				});
-				// response.status(200);
+				response.status(200);
 				/** @description http://expressjs.com/en/4x/api.html#res.send */
 				response.send(HTML);
 				/** @description http://expressjs.com/en/4x/api.html#res.end */

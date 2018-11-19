@@ -173,7 +173,7 @@ const addFlexMS = (styleMap, felaStyle) => {
                     return null;
                 });
             } else {
-                console.info(`Для свойства ${styleName} нет альтернативных значений.`);
+                // console.info(`Для свойства ${styleName} нет альтернативных значений.`);
                 felaStyle[ styleName ] += `;${item.ieAlias}:${felaStyle[ styleName ]}`;
             }
         }
