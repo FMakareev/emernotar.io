@@ -166,7 +166,8 @@ class Mail extends Component {
 					if (language.toUpperCase() !== currentLanguage) {
 						setActiveLanguage(language.toUpperCase());
 					}
-
+					const submittingDateFormat = new Date(Number.parseInt(submittingDate) * 1000).toString();
+					const submittingExpirationFormat = new Date(Number.parseInt(submittingExpiration) * 1000).toString();
 					return (<table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
 						borderSpacing: 0,
 						borderCollapse: 'collapse',
@@ -221,7 +222,7 @@ class Mail extends Component {
 
 												{translate('static_info_transactions')}
 												<Typography as={'p'}>
-													{translate('static_date_entry')}: {submittingDate} <br/>
+													{translate('static_date_entry')}: {submittingDateFormat} <br/>
 													{translate('static_transaction_id')}: {idTransaction} <br/>
 													{translate('static_your_address')}: {blockChainAddress} <br/>
 
@@ -229,7 +230,7 @@ class Mail extends Component {
 														this.validityOwnerEmail(ownerEmail)
 													}
 
-													{translate('static_validity_period')}: {translate('static_to')} {submittingExpiration} {' '}
+													{translate('static_validity_period')}: {translate('static_to')} {submittingExpirationFormat} {' '}
 													<a target="_blank"
 													   href={`${ENDPOINT_CLIENT}/help#5`}
 													   style={{textDecoration: 'none'}}>
