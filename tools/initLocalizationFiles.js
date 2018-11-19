@@ -324,10 +324,17 @@ const createLanguageListFile = (languageListFile,allModulesMessageFile) => {
 
 const creatingLocalizationFiles = data => {
     console.info('run creatingLocalizationFiles...');
-    const messagesDirectoryPath = path.resolve(__dirname,`${publicPath}/messages/`);
-	// console.log('messagesDirectoryPath: ', messagesDirectoryPath);
+	console.log(fs.existsSync(path.resolve(__dirname, `${publicPath}`)));
+
+	if(!fs.existsSync(path.resolve(__dirname, `${publicPath}`))){
+		fs.mkdirSync(path.resolve(__dirname, `${publicPath}`));
+
+	}
+
+	const messagesDirectoryPath = path.resolve(__dirname,`${publicPath}/messages/`);
+	console.log('messagesDirectoryPath: ', messagesDirectoryPath);
 	  if (!fs.existsSync(messagesDirectoryPath)) {
-        // console.info('Create folder messages...', path.resolve(__dirname,`${publicPath}`));
+        console.info('Create folder messages...', path.resolve(__dirname,`${publicPath}`));
         // fs.mkdirSync(path.resolve(__dirname,`${publicPath}`));
         fs.mkdirSync(messagesDirectoryPath);
     } else {
