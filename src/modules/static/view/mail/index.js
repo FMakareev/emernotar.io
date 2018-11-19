@@ -286,7 +286,7 @@ class Mail extends Component {
 									<tbody>
 									<tr className={styles.topFooter}>
 										<td>
-											<Button as="a" href={`${{ENDPOINT_CLIENT}}/create_certificat/{emerhash}`}
+											<Button as="a" href={`${ENDPOINT_CLIENT}/create_certificat/${emerhash}`}
 											        variant={"raised"}
 											        color={'primary'}>
 												<Typography as={'span'} size={'large'} textDecoration={'none'}>
@@ -308,28 +308,34 @@ class Mail extends Component {
 													textAlign: 'left'
 												}}>
 													<tbody>
-													<tr>
-														<td style={{whiteSpace: 'nowrap'}}>
-															{translate('static_hash_sum')}:
-														</td>
-														<td style={{
-															wordWrap: 'break-word', width: '100%',
-															maxWidth: 0,
-														}}>
-															{name}
-														</td>
-													</tr>
-													<tr>
-														<td style={{whiteSpace: 'nowrap'}}>
-															{translate('static_file_name')}:
-														</td>
-														<td style={{
-															wordWrap: 'break-word', width: '100%',
-															maxWidth: 0,
-														}}>
-															{fileName}
-														</td>
-													</tr>
+													{
+														name && <tr>
+															<td style={{whiteSpace: 'nowrap'}}>
+																{translate('static_hash_sum')}:
+															</td>
+															<td style={{
+																wordWrap: 'break-word', width: '100%',
+																maxWidth: 0,
+															}}>
+																{name}
+															</td>
+														</tr>
+													}
+
+													{
+														fileName &&
+														<tr>
+															<td style={{whiteSpace: 'nowrap'}}>
+																{translate('static_file_name')}:
+															</td>
+															<td style={{
+																wordWrap: 'break-word', width: '100%',
+																maxWidth: 0,
+															}}>
+																{fileName}
+															</td>
+														</tr>
+													}
 													</tbody>
 												</table>
 											</Typography>
