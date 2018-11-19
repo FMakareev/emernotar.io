@@ -20,13 +20,14 @@ import { createTheme, palette } from '../style/theme';
 import { createStyleRenderer } from "../style";
 import Html from "./html";
 import EmailTemplate from '../modules/static/view/mail/index'
+import { getTranslate } from "react-localize-redux/lib/index";
 
 
 export const createEmailTemplate = async (request, response) => {
 	try {
 		const {params} = request;
 		const {search} = url.parse(request.originalUrl);
-		const queryParams = search ? qp.toObject(search.substring(1)): {};
+		const queryParams = search ? qp.toObject(search.substring(1)) : {};
 		const language = queryParams.language || 'EN';
 		console.log('createEmailTemplate: language', language);
 
@@ -35,7 +36,7 @@ export const createEmailTemplate = async (request, response) => {
 		const renderer = createStyleRenderer();
 		await Store.dispatch(initLocalize(Store.getState(), language || 'EN'));
 
-
+		// home_static_mail_subject
 		const Component = (
 			<ProviderRedux store={Store}>
 				<StyleProvider renderer={renderer}>
@@ -57,9 +58,9 @@ export const createEmailTemplate = async (request, response) => {
 			.then(content => {
 				const styleMarkup = renderToMarkup(renderer);
 
-				const REACT_HTML = <Html language={language} getStatic={true} content={content}/>;
+				const REACT_HTML = <Html subject language={language} getStatic={true} content={content}/>;
 
-				const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>', styleMarkup);
+				const HTML = `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(REACT_HTML)}`.replace('<style></style>', styleMarkup).replace('<mailsubject></mailsubject>', `<mailsubject>${getTranslate(Store.getState().locale)('static_mail_subject')}}</mailsubject>`)
 
 				fs.appendFile(`public/EmailTemplateInlineTEST.html`, juice(HTML, {
 					insertPreservedExtraCss: true,
@@ -69,6 +70,8 @@ export const createEmailTemplate = async (request, response) => {
 					if (err) throw err;
 					console.log('Saved!');
 				});
+
+
 				response.status(200);
 				/** @description http://expressjs.com/en/4x/api.html#res.send */
 				response.send(HTML);
