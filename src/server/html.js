@@ -9,7 +9,7 @@ const Html = ({content,language, request, title, cache, style, reduxState, async
     <meta charSet="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
-
+	  <mailsubject></mailsubject>
     <title>Emernotar.io: {title}</title>
     <style></style>
     {/*<!-- Global site tag (gtag.js) - Google Analytics -->*/}
