@@ -157,7 +157,7 @@ class Mail extends Component {
 						ownerEmail,
 						serviceName,
 						emerhash,
-						additionalInfo,
+						additionalinfo,
 						fileName,
 						name,
 					} = data.certificateItem;
@@ -263,7 +263,7 @@ class Mail extends Component {
 								</table>
 
 								{
-									additionalInfo &&
+									additionalinfo &&
 									<table width="100%" border="0" cellPadding="0" cellSpacing="0" className={styles.table}>
 										<tbody>
 										<tr>
@@ -272,7 +272,7 @@ class Mail extends Component {
 												          styles={{transform: 'none', width: 'calc(100% - 48px)', margin: '0 24px 24px'}}>
 													{translate('static_pagetitle_2')}
 													<Typography as={'p'} lineHeight={'24px'}>
-														{additionalInfo}
+														{additionalinfo}
 													</Typography>
 												</TopLabel>
 											</td>
