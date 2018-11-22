@@ -1,3 +1,4 @@
+
 export const routes = [
     // {
     //     exact: true,
@@ -14,7 +15,12 @@ export const routes = [
     {
         exact: true,
         title: 'Mail',
-        path: "/mail/:emerhash",
+        path: "/email-template-0",
         load: () => import('./view/mail'),
+    }, {
+        exact: true,
+        title: 'MailIOS',
+		    path: "/email-template-1",
+        load: () => import('./view/mailIOS'),
     },
 ];
