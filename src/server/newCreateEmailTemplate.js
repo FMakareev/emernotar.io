@@ -55,7 +55,10 @@ export const createEmailTemplate = async (request, response) => {
 				<StyleProvider renderer={renderer}>
 					<ThemeProvider theme={createTheme(palette)}>
 						<ApolloProvider client={client}>
-							{getTemplatePath(queryParams)}
+							{
+								params && params.emerhash ?
+									<EmailTemplateWeb emerhash={params.emerhash}/>: getTemplatePath(queryParams)
+							}
 						</ApolloProvider>
 					</ThemeProvider>
 				</StyleProvider>
