@@ -70,7 +70,7 @@ app.use(requestLanguage({
     },
 }));
 
-app.get('/create_email_template/:hash', createEmailTemplate);
+app.get('/create_email_template', createEmailTemplate);
 
 app.get('/create_certificat/:hash', createCertificat);
 
