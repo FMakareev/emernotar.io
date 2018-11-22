@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect as FelaConnect } from "react-fela";
 import { getTranslate, getActiveLanguage } from 'react-localize-redux';
 import { connect as ReduxConnect } from "react-redux";
-import { graphql, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import questionIcon from '../../../../assets/icons/questionIcon.jpg';
@@ -118,11 +118,11 @@ class Mail extends Component {
 	}
 
 	render() {
-		const {translate, styles, setActiveLanguage,emerhash, currentLanguage} = this.props;
-
+		const {translate, styles, setActiveLanguage, emerhash, location, currentLanguage} = this.props;
 
 		return <Query
 			query={certificateItem}
+			// skip={!url.emerhash}
 			variables={{
 				emerhash
 			}}
@@ -130,12 +130,12 @@ class Mail extends Component {
 			{({loading, error, data}) => {
 				console.log('certificateItem: ', loading, error, data);
 
-				if (data.loading) {
-					console.log('loading...', data.loading);
-					return null;
-				}
-				if (data.error) {
-					console.error('ERROR: ', data.error);
+				// if (loading) {
+				// 	console.log('loading...', loading);
+				// 	return null;
+				// }
+				if (error) {
+					console.error('ERROR: ', error);
 					return (<Typography
 						as={'p'}
 						size={'medium'}
@@ -174,6 +174,13 @@ class Mail extends Component {
 					}}>
 
 						<tbody>
+						<tr style={{display: 'none'}}>
+							<td>
+								<mailsubject>
+									{translate('static_mail_subject')}
+								</mailsubject>
+							</td>
+						</tr>
 						<tr>
 							<td align="center">
 								<table width="100%" border="0" cellPadding="0" cellSpacing="0" style={{
@@ -422,8 +429,6 @@ class Mail extends Component {
 		</Query>
 
 
-
-
 	}
 }
 
@@ -481,37 +486,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Mail = FelaConnect(style)(Mail);
-
-// Mail = graphql(certificateItem, {
-// 	// skip: (ownProps) => !ownProps.emerhash || !(ownProps.match && ownProps.match.params && ownProps.match.params.emerhash),
-// 	fetchPolicy: 'network-only',
-// 	options: (ownProps) => {
-// 		console.log('ownProps: ', ownProps);
-// 		if (ownProps.emerhash) {
-// 			return {
-// 				fetchPolicy: 'network-only',
-// 				variables: {
-// 					"emerhash": "notar:0e5ccb545fe2c9da27aff509258413719c4c62385ec2f81fcecb85aac6a2ffb04126bbeb99c6418a68650aa3fa46e743c2e7eff0f1fea3c408ffb7ab20c27056:ee81a8b89de61d0f1203acaafc17832f27a6234024961940b5ddeb3e5fb914afa9d2aaa6377c394f35b8025f18614c8bcc07026fc1092fb8785022365cf794b7:1542586809079"
-// 				}
-// 			}
-// 		} else {
-// 			try {
-// 				if (ownProps.match.params.emerhash) {
-// 					return {
-// 						fetchPolicy: 'network-only',
-// 						variables: {
-// 							"emerhash": "notar:0e5ccb545fe2c9da27aff509258413719c4c62385ec2f81fcecb85aac6a2ffb04126bbeb99c6418a68650aa3fa46e743c2e7eff0f1fea3c408ffb7ab20c27056:ee81a8b89de61d0f1203acaafc17832f27a6234024961940b5ddeb3e5fb914afa9d2aaa6377c394f35b8025f18614c8bcc07026fc1092fb8785022365cf794b7:1542586809079"
-// 						}
-// 					}
-// 				}
-// 			} catch (err) {
-// 				console.log(err);
-// 			}
-// 		}
-//
-// 	},
-// })(Mail);
-
 
 Mail = ReduxConnect(mapStateToProps, mapDispatchToProps)(Mail);
 
