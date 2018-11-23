@@ -40,7 +40,7 @@ export class MailIOS extends Component {
 						<thead className={styles.th}>
 						<tr className={styles.top}>
 							<td colSpan="2" width="100%">
-								<Image src={logoImage} alt={'emernotar.io'}/>
+                                <Image src={ENDPOINT_CLIENT + logoImage} alt={'emernotar.io'}/>
 							</td>
 						</tr>
 						</thead>
