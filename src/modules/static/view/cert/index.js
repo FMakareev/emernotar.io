@@ -53,6 +53,7 @@ class Cert extends Component {
 
     render() {
         const {translate, styles, loading, error, data, setActiveLanguage, currentLanguage} = this.props;
+
         if (loading) {
             console.log('loading...', loading);
             return null;
@@ -71,6 +72,7 @@ class Cert extends Component {
             </Typography>)
         }
         if (data && data.certificateItem) {
+            console.log('data.certificateItem: ', data.certificateItem);
             const {
                 // name,
                 // fileName,

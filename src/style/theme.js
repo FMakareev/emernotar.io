@@ -57,7 +57,7 @@ export const createTheme = (colorPallet) => {
             backgroundColor: colorPallet.primary.dark,
             color: colorPallet.default.contrastText,
             // padding: '1px',
-            zIndex: 3,
+            zIndex: 40,
             height: 'fit-content',
             padding: '1rem 0'
         },

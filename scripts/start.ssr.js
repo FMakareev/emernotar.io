@@ -24,10 +24,10 @@ const start = async () => {
     await createIndex();
 
     const app = express();
-    const WEBPACK_PORT = 3001;
+    const WEBPACK_PORT =  3002;
     const clientConfig = browserConfigGenerator();
     const serverConfig = serverConfigGenerator();
-
+    console.log('WEBPACK_PORT: ', WEBPACK_PORT);
     clientConfig.entry = [
         `webpack-hot-middleware/client?path=http://localhost:${WEBPACK_PORT}/__webpack_hmr`,
         ...clientConfig.entry,
