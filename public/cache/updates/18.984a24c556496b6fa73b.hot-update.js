@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[18],{
+webpackHotUpdate(18,{
 
 /***/ "./src/modules/static/view/mailIOS/index.js":
 /*!**************************************************!*\
@@ -12,4 +12,4 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ })
 
-}]);
+})

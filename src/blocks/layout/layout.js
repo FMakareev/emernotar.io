@@ -13,7 +13,7 @@ import { Container } from '../container/index'
 import { Row } from '../row/index'
 import { Column } from '../column/index'
 
-import logoCA from '../../assets/icons/logo_compaero_2018.svg'
+import logoCA from '../../assets/icons/logo CArtel.svg'
 import appleStore from '../../assets/icons/apple_store.svg'
 import googlePlay from '../../assets/icons/google_play.svg'
 import { Typography } from '../typography/index'
@@ -152,7 +152,7 @@ class Layout extends Component {
                     color: '#fff',
                     textDecoration: 'none'
                   }}
-                  href='https://compaero.ru'
+                  href='https://code-artel.com/'
                 >
                   <div
                     style={{
@@ -163,7 +163,7 @@ class Layout extends Component {
                       marginRight: '10px'
                     }}
                   >
-                    <img style={{ border: 'none' }} src={logoCA} alt='' />
+                    <img style={{ border: 'none',     width: '100%' }} src={logoCA} alt='' />
                   </div>
                   <Typography
                     as={'span'}
@@ -175,7 +175,7 @@ class Layout extends Component {
                       verticalAlign: 'top'
                     }}
                   >
-                    CompAero
+                    Code Artel
                   </Typography>
                 </a>
               </Column>

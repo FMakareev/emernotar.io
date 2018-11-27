@@ -375,7 +375,7 @@ class Mail extends Component {
 															textDecoration: 'none',
 															display: 'block',
 															padding: '10px 0'
-														}} href="https://compaero.ru">
+														}} href="https://code-artel.com/">
 															<div style={{
 																display: 'inline-block',
 																verticalAlign: 'bottom',
@@ -392,9 +392,10 @@ class Mail extends Component {
 																styles={{
 																	display: 'inline-block',
 																	verticalAlign: 'middle',
+																	lineHeight: '40px'
 																}}
 															>
-																CompAero
+																Code Artel
 															</Typography>
 														</a>
 													</td>

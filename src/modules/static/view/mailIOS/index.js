@@ -112,7 +112,7 @@ export class MailIOS extends Component {
 												textDecoration: 'none',
 												display: 'block',
 												padding: '10px 0'
-											}} href="https://compaero.ru">
+											}} href="https://code-artel.com/">
 												<div style={{
 													display: 'inline-block',
 													verticalAlign: 'bottom',
@@ -131,7 +131,7 @@ export class MailIOS extends Component {
 														verticalAlign: 'middle',
 													}}
 												>
-													CompAero
+													Code Artel
 												</Typography>
 											</a>
 										</td>
