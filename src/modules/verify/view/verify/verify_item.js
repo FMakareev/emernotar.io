@@ -62,7 +62,6 @@ let VerifyItem = ({className,styles,data,translate}) => {
     if (!data) {
         return null;
     }
-    console.log('data', data)
     let notarizationCreateTime;
     if(data.notarizationCreateTime.length === 10){
         notarizationCreateTime = new Date(Number.parseInt(data.notarizationCreateTime) * 1000).toString();
@@ -125,7 +124,7 @@ let VerifyItem = ({className,styles,data,translate}) => {
                     </Column>
                     <Column grid={[ [ 768,'60','%' ] ]}>
                         <Typography styles={{wordWrap: 'break-word'}} as={'p'} size={'medium'}>
-                            <a target="_blank" href={'https://explorer.emercoin.com/tx/' + data.idTransaction}>{data.idTransaction}</a>
+                            <a target="_blank" href={'https://explorer.emercoin.com/nvs//' + data.name}>{data.name}</a>
                         </Typography>
                     </Column>
                 </Row>
