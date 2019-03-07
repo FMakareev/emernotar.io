@@ -14,13 +14,8 @@
     "active": true,
     "default": false
   },{
-	"ISO_Code":"kr",
-    "language":"한국어",
-    "active": true,
-    "default": false
-  },{
-	"ISO_Code":"cn",
-    "language":"中文",
+	"ISO_Code":"pt",
+    "language":"Português",
     "active": true,
     "default": false
   },{
@@ -39,8 +34,23 @@
     "active": true,
     "default": false
   },{
-	"ISO_Code":"pt",
-    "language":"Português",
+	"ISO_Code":"se",
+    "language":"Svenska",
+    "active": true,
+    "default": false
+  },{
+	"ISO_Code":"cn",
+    "language":"中文",
+    "active": true,
+    "default": false
+  },{
+    "ISO_Code":"kr",
+    "language":"한국어",
+    "active": true,
+    "default": false
+  },{
+    "ISO_Code":"ae",
+    "language":"العربية",
     "active": true,
     "default": false
   },{	
