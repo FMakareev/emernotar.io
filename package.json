@@ -39,7 +39,7 @@
     "juice": "^4.2.3",
     "load-script": "^1.0.0",
     "lodash": "^4.17.5",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "node-fetch": "^2.1.2",
     "nodemailer": "^4.6.4",
     "npm": "^6.3.0",
