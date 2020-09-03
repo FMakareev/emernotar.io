@@ -47,7 +47,7 @@
     "phantom-html2pdf": "^4.0.1",
     "promise-polyfill": "^7.1.2",
     "prop-types": "^15.6.1",
-    "puppeteer": "^1.4.0",
+    "puppeteer": "^1.13.0",
     "query-parse": "^2.0.0",
     "query-string": "^6.0.0",
     "react": "^16.3.1",
