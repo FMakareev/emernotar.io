@@ -41,7 +41,7 @@
     "lodash": "^4.17.5",
     "minimist": "^1.2.0",
     "node-fetch": "^2.1.2",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^6.4.16",
     "npm": "^6.3.0",
     "pdf-puppeteer": "^1.0.5",
     "phantom-html2pdf": "^4.0.1",
