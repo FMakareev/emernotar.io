@@ -48,7 +48,7 @@
     "mkdirp": "^1.0.4",
     "node-fetch": "^2.1.2",
     "node-gyp": "^7.1.2",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^6.4.16",
     "nopt": "^5.0.0",
     "npm": "^6.3.0",
     "opener": "^1.5.2",
