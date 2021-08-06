@@ -152,7 +152,7 @@ class Layout extends Component {
                     color: '#fff',
                     textDecoration: 'none'
                   }}
-                  href='https://code-artel.com/'
+                  href='https://blog.emernotar.io/'
                 >
                   <div
                     style={{
@@ -175,7 +175,7 @@ class Layout extends Component {
                       verticalAlign: 'top'
                     }}
                   >
-                    Code Artel
+                    News•Blog
                   </Typography>
                 </a>
               </Column>

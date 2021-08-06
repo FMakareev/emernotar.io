@@ -103,7 +103,7 @@ export class MailIOS extends Component {
 										<td colSpan="1">
 											<Typography as={"p"} size={'small'} bright={'light'} fontWeight={'bold'}
 											            textAlign={'center'}>
-												EMERNOTAR.IO &copy; 2018
+												EMERNOTAR.IO &copy; 2018-2021
 											</Typography>
 										</td>
 										<td colSpan="1">
@@ -112,7 +112,7 @@ export class MailIOS extends Component {
 												textDecoration: 'none',
 												display: 'block',
 												padding: '10px 0'
-											}} href="https://code-artel.com/">
+											}} href="https://blog.emernotar.io/">
 												<div style={{
 													display: 'inline-block',
 													verticalAlign: 'bottom',
@@ -131,7 +131,7 @@ export class MailIOS extends Component {
 														verticalAlign: 'middle',
 													}}
 												>
-													Code Artel
+													News•Blog
 												</Typography>
 											</a>
 										</td>

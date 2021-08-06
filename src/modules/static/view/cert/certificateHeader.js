@@ -3,7 +3,7 @@ import { connect } from "react-fela";
 
 import IconLogoEmerNatar from '../../../../components/icons/icon_logo';
 
-export const CertificateHeader = ({ styles }) => (<div className={styles.top}>
+export const CertificateHeader = ({ styles }) => (<div className={'CertificateHeader ' + styles.top}>
     <IconLogoEmerNatar styles={{margin: '10px auto'}} height={50}/>
 </div>);
 
@@ -11,6 +11,7 @@ const style = ({ theme, marginBottom, paddingBottom }) => {
     return {
         top: {
             // minHeight: '10rem',
+            width: '100%',
             padding: '1px',
             verticalAlign: 'middle',
             position: 'relative',
