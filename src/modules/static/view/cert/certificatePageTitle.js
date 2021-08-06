@@ -2,7 +2,7 @@ import React from 'react';
 import {Typography} from "../../../../blocks/typography";
 
 
-const CertificatePageTitle = ({children}) => (<Typography
+const CertificatePageTitle = ({children, styles}) => (<Typography
     as={"h1"}
     size={'large'}
     color={'primary'}
@@ -10,7 +10,7 @@ const CertificatePageTitle = ({children}) => (<Typography
     fontWeight={'bold'}
     textAlign={'center'}
     textTransform={'uppercase'}
-    styles={{ fontSize: '30px', lineHeight: '50px' }}>
+    styles={{ fontSize: '30px', lineHeight: '50px' , ...styles}}>
     {children}
 </Typography>);
 

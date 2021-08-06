@@ -17,26 +17,19 @@ import {Store} from '../store'
 import {initLocalize} from "../store/reducers/localization/actions";
 
 
-export const certificateTemplate = async (hash,language = 'EN') => {
-
-
+export const certificateTemplate = async (Content,language = 'EN') => {
 
     try {
         await Store.dispatch(initLocalize(Store.getState(), language ));
 
         return new Promise((resolve,reject) => {
-
             const renderer = createStyleRenderer();
-
-
             const Component = (
                 <ProviderRedux store={Store}>
                     <StyleProvider renderer={renderer}>
                         <ThemeProvider theme={createTheme(palette)}>
                             <ApolloProvider client={client}>
-                                <StaticRouter location={'/create_certificat'}>
-                                    <Cert emerhash={hash}/>
-                                </StaticRouter>
+                                <Content/> 
                             </ApolloProvider>
                         </ThemeProvider>
                     </StyleProvider>

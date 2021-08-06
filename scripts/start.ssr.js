@@ -16,6 +16,7 @@ import {logMessage} from '../tools/logMessage';
 import {init as createIndex} from '../tools/createIndex';
 
 // https://github.com/manuelbieh/react-ssr-setup
+//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const start = async () => {
     await Clear();

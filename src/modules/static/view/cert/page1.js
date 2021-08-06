@@ -66,7 +66,7 @@ const CertificatePageOne = ({
         >
             {translate('static_info_transactions')}:
         </Typography>
-        <Typography as={'div'} styles={{lineHeight: '13.75px',fontSize: '11.75px'}}>
+        <Typography as={'div'} styles={{lineHeight: '13px',fontSize: '10px'}}>
             <table>
                 <tbody>
                 <tr>
@@ -158,7 +158,7 @@ const style = ({theme}) => {
         topLabel: {
             position: 'relative',
             display: 'inline-block',
-            margin: '0 1rem 1rem 1rem',
+            margin: '0 auto 1rem auto',
             zIndex: 5,
             backgroundColor: '#FFFFFF',
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

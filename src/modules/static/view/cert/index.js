@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-fela";
 import {graphql} from "react-apollo";
+import { QRCode } from "react-qr-svg";
+
 import {getTranslate, getActiveLanguage} from 'react-localize-redux';
 import {connect as ReduxConnect} from "react-redux";
 import {Typography} from "../../../../blocks/typography/index";
@@ -85,7 +87,7 @@ class Cert extends Component {
             } = data.certificateItem;
 
             if (language.toUpperCase() !== currentLanguage) {
-                setActiveLanguage(language.toUpperCase());
+                setActiveLanguage(language?language.toUpperCase(): 'EN');
             }
 
             const submittingDateFormat = new Date(Number.parseInt(submittingDate) * 1000).toString();
@@ -93,14 +95,21 @@ class Cert extends Component {
 
             return (
                 <div className={styles.wrapper}>
-                    <section>
+                    <section style={{
+                            position: 'relative',
+                        }} className={'pdf-page '}>
                         <div className={styles.content}>
                             <CertificateHeader/>
 
-                            <CertificatePageTitle>
+                            <CertificatePageTitle
+                                 styles={{
+                                    fontSize: '24px', lineHeight: '32px'
+                                }}
+                            >
                                 {translate('static_pagetitle')}
                             </CertificatePageTitle>
 
+                          
                             <CertificatePageOne
                                 translate={translate}
                                 submittingDateFormat={submittingDateFormat}
@@ -109,9 +118,11 @@ class Cert extends Component {
                             />
                         </div>
 
+
                         <div style={{
                             position: 'relative',
                         }}>
+                        
                             <CertificateFileInfo
                                 {...data.certificateItem}
                                 translate={translate}
@@ -120,24 +131,42 @@ class Cert extends Component {
 
                                 }}
                             />
+
                             <CertificateFooter/>
+                            {/* <QRCode
+                                bgColor="#FFFFFF"
+                                fgColor="#000000"
+                                level="Q"
+                                style={{ 
+                                    width: 62,
+                                    position: 'fixed',
+                                    zIndex: '100',
+                                    top: '348px',
+                                    right:' 30px'
+                                }}
+                            value="some text"
+                        /> */}
                         </div>
                     </section>
                     {
-                        additionalinfo &&  <section>
+                        additionalinfo &&  <section  className={'pdf-page '}>
                             <div style={{
                                 height: '458px'
                             }}>
                                 <CertificateHeader/>
 
-                                <CertificatePageTitle>
+                                <CertificatePageTitle
+                                    styles={{
+                                        fontSize: '24px', lineHeight: '32px'
+                                    }}
+                                >
                                     {translate('static_pagetitle_2')}
                                 </CertificatePageTitle>
                                 <TopLabelRow styles={{margin: 0, padding: '0 1rem'}}>
                                     <div className={styles.topLabel}>
                                         <Typography
                                             as={'div'}
-                                            styles={{lineHeight: '13.75px', fontSize: '11.75px'}}
+                                            styles={{lineHeight: '13px', fontSize: '10px',wordBreak: 'break-all'}}
                                         >
                                             {additionalinfo.substring(0,1500)}
                                         </Typography>
@@ -167,8 +196,11 @@ class Cert extends Component {
 const style = ({theme, marginBottom, paddingBottom}) => {
     return {
         wrapper: {
-            display: 'flex', flexDirection: 'column',
-            justifyContent: 'space-between',
+            
+            width: '100%',
+            // display: 'flex', 
+            // flexDirection: 'column',
+            // justifyContent: 'space-between',
         },
         content: {
             height: '457px'
@@ -200,7 +232,7 @@ const style = ({theme, marginBottom, paddingBottom}) => {
         topLabel: {
             position: 'relative',
             display: 'inline-block',
-            margin: '0',
+            margin: '0 auto',
             zIndex: 5,
             backgroundColor: '#FFFFFF',
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

@@ -112,6 +112,20 @@ export const createStyleRenderer = () => {
                 font-size: 16px;        
             }
         }
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+            .pdf-page {
+                position: 'relative',
+              margin: 0;
+              height: 100%;
+              width: 100%;
+            }
+          }
     `);
     renderer.renderStatic({
         fontFamily: "'Vollkorn-Regular', serif, 'Roboto', sans-serif",

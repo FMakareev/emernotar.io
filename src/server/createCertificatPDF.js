@@ -1,14 +1,9 @@
+import React from 'react';
 import {certificateTemplate} from './certificate_template';
+import Cert from '../modules/static/view/cert/index'
 import fs from 'fs';
 import fsExtra from 'fs-extra'
-
-const phantomPdf = require('phantom-html2pdf');
-const puppeteer = require('puppeteer');
-
-// import HtmlToPdf from 'html-pdf';
-// const convertHTMLToPDF = require("pdf-puppeteer");
-
-import path from 'path';
+const pdf = require('html-pdf');
 
 
 export const createCertificat = async (req,response) => {
@@ -93,32 +88,19 @@ export const createCertificat = async (req,response) => {
 }
 
 const createPDF = async (hash,fileName) => {
-    const html = await certificateTemplate(hash);
-    // console.log('html: ',html);
+    const html = await certificateTemplate(()=><Cert emerhash={hash}/>);
+
+    var options = {
+        format: 'A4', 
+        orientation: 'landscape', 
+        border: '0',
+     };
 
 
-    const options = {
-        html: html,
-        "paperSize": {
-            format: 'A4', 
-            orientation: 'landscape', 
-            border: '0',
-            // delay: 10000,
-        }
-    };
-    await new Promise((response, resolve) => {
-
-        phantomPdf.convert(options,function (err,result) {
-
-            /* Using a buffer and callback */
-            result.toBuffer(function (returnedBuffer) {
-            });
-
-            /* Using the file writer and callback */
-            result.toFile(`${process.cwd()}/public/assets/certificates/${fileName}.pdf`,function (event) {
-                console.log('phantomPdf finish.',event);
-                response(event)
-            });
-        });
+    return await new Promise((resolve, reject) => {
+        pdf.create(html,options).toFile(`${process.cwd()}/public/assets/certificates/${fileName}.pdf`, (err, res) => {
+            console.log(res.filename);
+            resolve(res)
+          });
     })
 }
