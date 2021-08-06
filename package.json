@@ -50,7 +50,7 @@
     "node-gyp": "^7.1.2",
     "nodemailer": "^4.6.4",
     "nopt": "^5.0.0",
-    "npm": "^6.3.0",
+    "npm": "^6.14.6",
     "opener": "^1.5.2",
     "promise-polyfill": "^7.1.2",
     "prop-types": "^15.6.1",
