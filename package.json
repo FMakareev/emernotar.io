@@ -34,7 +34,7 @@
     "graphql-tag": "^2.9.1",
     "graphql-tools": "^2.24.0",
     "history": "^4.7.2",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "^3.0.1",
     "inline-css": "^2.4.0",
     "install": "^0.11.0",
     "isomorphic-fetch": "^2.2.1",
