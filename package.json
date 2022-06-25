@@ -46,7 +46,7 @@
     "lodash": "^4.17.5",
     "minimist": "^1.2.0",
     "mkdirp": "^1.0.4",
-    "node-fetch": "^2.1.2",
+    "node-fetch": "^2.6.7",
     "node-gyp": "^7.1.2",
     "nodemailer": "^4.6.4",
     "nopt": "^5.0.0",
