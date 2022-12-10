@@ -19,7 +19,7 @@
     "cookie-parser": "^1.4.3",
     "create-index": "^2.3.0",
     "deepmerge": "^2.1.0",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-request-language": "^1.1.15",
     "extract-files": "^3.1.0",
     "fast-xml-parser": "^3.3.9",
